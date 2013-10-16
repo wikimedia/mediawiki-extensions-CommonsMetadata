@@ -8,6 +8,29 @@
  */
 class CommonsMetadata {
 	/**
+	 * Mapping of license category names to message strings used in e.g.
+	 * UploadWizard (not yet centralized, big TODO item)
+	 *
+	 * Lowercase everything before checking against this array.
+	 */
+	static $licenses = array(
+		'cc-by-1.0' => 'cc-by-1.0',
+		'cc-sa-1.0' => 'cc-sa-1.0',
+		'cc-by-sa-1.0' => 'cc-by-sa-1.0',
+		'cc-by-2.0' => 'cc-by-2.0',
+		'cc-by-sa-2.0' => 'cc-by-sa-2.0',
+		'cc-by-2.1' => 'cc-by-2.1',
+		'cc-by-sa-2.1' => 'cc-by-sa-2.1',
+		'cc-by-2.5' => 'cc-by-2.5',
+		'cc-by-sa-2.5' => 'cc-by-sa-2.5',
+		'cc-by-3.0' => 'cc-by-3.0',
+		'cc-by-sa-3.0' => 'cc-by-sa-3.0',
+		'cc-by-sa-3.0-migrated' => 'cc-by-sa-3.0',
+		'cc-pd' => 'cc-pd',
+		'cc-zero' => 'cc-zero',
+	);
+
+	/**
 	 * @param $doc String The html to parse
 	 * @param String|boolean $lang Language code or false for all langs.
 	 * @return Array The properties extracted from the page.
@@ -43,6 +66,31 @@ class CommonsMetadata {
 		} else {
 			$data = self::getMetadata( $descriptionText );
 		}
+
+		// For now only get the immediate categories
+		$cats = array_keys( $file->getOriginalTitle()->getParentCategories() );
+
+		foreach ( $cats as $i => $cat ) {
+			$t = Title::newFromText( $cat );
+			$catName = strtolower( $t->getText() );
+
+			if ( isset( self::$licenses[$catName] ) ) {
+				$combinedMeta['License'] = array(
+					'value' => self::$licenses[$catName],
+					'source' => 'commons-categories',
+				);
+				$license = $i;
+			}
+		}
+
+		if ( isset( $license ) ) {
+			unset( $cats[$license] );
+		}
+
+		$combinedMeta['Categories'] = array(
+			'value' => implode( '|', $cats ),
+			'source' => 'commons-categories',
+		);
 
 		foreach( $data as $name => $value ) {
 			$combinedMeta[ $name ] = array(
