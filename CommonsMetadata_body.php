@@ -51,7 +51,7 @@ class CommonsMetadata {
 	 * @param &$maxCache Integer How many seconds to cache the result
 	 * @return bool this hook handler always returns true.
 	 */
-	public static function onGetExtendedMetadata( $combinedMeta, File $file, IContextSource $context, $singleLang, &$maxCache ) {
+	public static function onGetExtendedMetadata( &$combinedMeta, File $file, IContextSource $context, $singleLang, &$maxCache ) {
 		$lang = $context->getLanguage();
 
 		# Note: If this is a local file, there is no caching here.
