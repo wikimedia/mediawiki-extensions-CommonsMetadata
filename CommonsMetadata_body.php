@@ -31,6 +31,19 @@ class CommonsMetadata {
 	);
 
 	/**
+	 * Mapping of category names to assesment levels. Array keys are regexps which will be
+	 * matched case-insensitively against category names; the first match is returned.
+	 * @var array
+	 */
+	protected static $assessmentCategories = array(
+		'poty' => '/^pictures of the year \(.*\)/',
+		'potd' => '/^pictures of the day \(.*\)/',
+		'featured' => '/^featured (pictures|sounds) on wikimedia commons/',
+		'quality' => '/^quality images/',
+		'valued' => '/^valued images/',
+	);
+
+	/**
 	 * @param $doc String The html to parse
 	 * @param String|boolean $lang Language code or false for all langs.
 	 * @return Array The properties extracted from the page.
@@ -91,8 +104,16 @@ class CommonsMetadata {
 
 		// For now only get the immediate categories
 		$categories = self::getCategories( $file );
+
+		$assessments = self::getAssessmentsAndRemoveFromCategories( $categories );
+
 		$combinedMeta['Categories'] = array(
 			'value' => implode( '|', $categories ),
+			'source' => 'commons-categories',
+		);
+
+		$combinedMeta['Assessments'] = array(
+			'value' => implode('|', $assessments),
 			'source' => 'commons-categories',
 		);
 
@@ -165,7 +186,29 @@ class CommonsMetadata {
 				unset( $categories[$i] );
 			}
 		}
-		return array_merge( $licenses ); // renumber to avoid holes in array
+		$categories = array_merge( $categories ); // renumber to avoid holes in array
+		return $licenses;
+	}
+
+	/**
+	 * Matches category names to a category => assessment mapping, removes the matching categories
+	 * and returns the corresponding assessments (valued image, picture of the day etc).
+	 * @param array $categories a list of human-readable category names.
+	 * @return array
+	 * FIXME categories do not work with Commons-hosted images due to bug 56598
+	 */
+	protected static function getAssessmentsAndRemoveFromCategories( &$categories ) {
+		$assessments = array();
+		foreach ( $categories as $i => $category ) {
+			foreach ( self::$assessmentCategories as $assessmentType => $regexp ) {
+				if ( preg_match( $regexp, $category ) ) {
+					$assessments[] = $assessmentType;
+					unset( $categories[$i] );
+				}
+			}
+		}
+		$categories = array_merge( $categories ); // renumber to avoid holes in array
+		return array_unique($assessments); // potd/poty can happen multiple times
 	}
 
 	/**
