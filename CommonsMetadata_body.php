@@ -54,6 +54,18 @@ class CommonsMetadata {
 	public static function onGetExtendedMetadata( &$combinedMeta, File $file, IContextSource $context, $singleLang, &$maxCache ) {
 		$lang = $context->getLanguage();
 
+		if ( isset( $combinedMeta['CommonsMedadataExtension'] ) ) {
+			// this is a file from a remote repo, and CommonsMedadata is installed on
+			// the remote as well. We assume data collected at the repo is superior
+			// to what we could collect here, so don't do anything.
+			return true;
+		} else {
+			$combinedMeta['CommonsMedadataExtension'] = array(
+				'value' => 1,
+				'source' => 'extension',
+			);
+		}
+
 		# Note: If this is a local file, there is no caching here.
 		# However, the results of this module have longer caching for local
 		# files to help compensate. For foreign files, this method is cached
