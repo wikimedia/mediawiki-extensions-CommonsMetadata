@@ -179,6 +179,7 @@ class CommonsMetadata_InformationParser {
 	private $curExtractionLang = '';
 	private $extractionLang;
 	private $langText = '';
+	private $allLangTexts = array();
 	private $curLangText = '';
 	private $fallbackLangs;
 	private $targetLang = false; // /< false for all, language code otherwise.
@@ -306,7 +307,7 @@ class CommonsMetadata_InformationParser {
 				}
 				// @todo May want to strip off the leading "<language>:" of the language
 				// tag if only extracting one language.
-				if ( $this->targetLang && $name === 'DIV' && isset( $attribs['CLASS'] ) && isset( $attribs['LANG'] ) ) {
+				if ( $name === 'DIV' && isset( $attribs['CLASS'] ) && isset( $attribs['LANG'] ) ) {
 					if ( preg_match( '/(?:^|\s)description(?:\s|$)/', $attribs['CLASS'] ) ) {
 						$this->state = self::STATE_CAPTURE_LANG;
 						$this->curExtractionLang = $attribs['LANG'];
@@ -461,12 +462,24 @@ class CommonsMetadata_InformationParser {
 				if ( $this->tdDepth <= 0 ) {
 					$this->state = self::STATE_INITIAL;
 					if ( $this->langText !== '' ) {
-						$this->finalProps[ $this->propName ] = Html::rawElement(
-							'span',
-							// FIXME dir too?
-							array( 'lang' => $this->extractionLang ),
-							$this->langText
-						);
+						if ( $this->targetLang ) {
+							$this->finalProps[ $this->propName ] = Html::rawElement(
+								'span',
+								// FIXME dir too?
+								array( 'lang' => $this->extractionLang ),
+								$this->langText
+							);
+						} else {
+							$this->finalProps[$this->propName]['_type'] = 'lang';
+							foreach ( $this->allLangTexts as $lang => $text ) {
+								$this->finalProps[$this->propName][$lang] = Html::rawElement(
+									'span',
+									// FIXME dir too?
+									array( 'lang' => $lang ),
+									$text
+								);
+							}
+						}
 					} else {
 						$this->finalProps[ $this->propName ] = $this->text;
 					}
@@ -488,6 +501,7 @@ class CommonsMetadata_InformationParser {
 
 				if ( $name === 'DIV' && $this->divDepth <= 0 ) {
 					// We are done the lang section
+					$this->allLangTexts[$this->curExtractionLang] = $this->curLangText;
 					$fallbacks = $this->getFallbacks();
 					if ( isset( $fallbacks[ $this->curExtractionLang ] ) ) {
 						$priority = $fallbacks[ $this->curExtractionLang ];
