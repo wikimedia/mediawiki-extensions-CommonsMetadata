@@ -33,6 +33,13 @@ $messages['ja'] = array(
 	'commonsmetadata-desc' => 'ウィキメディア・コモンズでよく使用されるテンプレートを使用している画像説明ページ内に格納されている情報を含められるように、画像情報 API モジュールののプロパティ「extmetadata」を拡張する',
 );
 
+/** Macedonian (македонски)
+ * @author Bjankuloski06
+ */
+$messages['mk'] = array(
+	'commonsmetadata-desc' => 'Го проширува својството за информирање „extmetadata“ во API-модул со информации што стојат на описните страници на сликите кои користат шаблони застапени на Ризницата',
+);
+
 /** Russian (русский)
  * @author Okras
  */
