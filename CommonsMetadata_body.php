@@ -80,27 +80,18 @@ class CommonsMetadata {
 		}
 
 		// For now only get the immediate categories
-		$cats = array_keys( $file->getOriginalTitle()->getParentCategories() );
+		$categories = self::getCategories( $file );
 
-		foreach ( $cats as $i => $cat ) {
-			$t = Title::newFromText( $cat );
-			$catName = strtolower( $t->getText() );
-
-			if ( isset( self::$licenses[$catName] ) ) {
-				$combinedMeta['License'] = array(
-					'value' => self::$licenses[$catName],
-					'source' => 'commons-categories',
-				);
-				$license = $i;
-			}
-		}
-
-		if ( isset( $license ) ) {
-			unset( $cats[$license] );
+		$licenses = self::getLicensesAndRemoveFromCategories( $categories );
+		if ( $licenses ) {
+			$combinedMeta['License'] = array(
+				'value' => $licenses[0],
+				'source' => 'commons-categories',
+			);
 		}
 
 		$combinedMeta['Categories'] = array(
-			'value' => implode( '|', $cats ),
+			'value' => implode( '|', $categories ),
 			'source' => 'commons-categories',
 		);
 
@@ -144,6 +135,38 @@ class CommonsMetadata {
 	}
 
 	/**
+	 * @param File $file
+	 * @return array list of category names in human-readable format
+	 */
+	protected static function getCategories( File $file ) {
+		$categories = array();
+		$rawCategories = array_keys( $file->getOriginalTitle()->getParentCategories() );
+		foreach ( $rawCategories as $rawCategoryName ) {
+			$title = Title::newFromText( $rawCategoryName );
+			$categoryName = strtolower( $title->getText() );
+			$categories[] = $categoryName;
+		}
+		return $categories;
+	}
+
+	/**
+	 * Matches category names to a category => license mapping, removes the matching categories
+	 * and returns the corresponding licenses.
+	 * @param array $categories a list of human-readable category names.
+	 * @return array
+	 */
+	protected static function getLicensesAndRemoveFromCategories( &$categories ) {
+		$licenses = array();
+		foreach ( $categories as $i => $category ) {
+			if ( isset( self::$licenses[$category] ) ) {
+				$licenses[] = self::$licenses[$category];
+				unset( $categories[$i] );
+			}
+		}
+		return array_merge( $licenses ); // renumber to avoid holes in array
+	}
+
+	/**
 	 * @param String|boolean $lang Language code or false for all langs.
 	 *
 	 * @throws MWException on invalid langcode
@@ -154,7 +177,6 @@ class CommonsMetadata {
 			throw new MWException( 'Invalid language code specified' );
 		}
 	}
-
 }
 
 /**
