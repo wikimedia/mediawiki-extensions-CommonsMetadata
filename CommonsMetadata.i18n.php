@@ -26,6 +26,20 @@ $messages['de'] = array(
 	'commonsmetadata-desc' => 'Erweitert die „extmetadata“-Eigenschaft des Bildinfo-API-Moduls zum Einbinden von Informationen, die in Bildbeschreibungsseiten gespeichert sind und gemeinsam benutzte Vorlagen auf Wikimedia Commons verwenden',
 );
 
+/** French (français)
+ * @author Gomoko
+ */
+$messages['fr'] = array(
+	'commonsmetadata-desc' => 'Étend la propriété « extmetadata » du module d’API info d’image pour inclure des informations stockées dans les pages de description de l’image qui utilisent les modèles courants de Wikimédia Communs.',
+);
+
+/** Italian (italiano)
+ * @author Beta16
+ */
+$messages['it'] = array(
+	'commonsmetadata-desc' => 'Estende le proprietà "extmetadata" del modulo API per le informazioni sulle immagini, per includere informazioni memorizzate nelle pagine di descrizione dell\'immagine che usano i template comunemente utilizzati su Wikimedia Commons',
+);
+
 /** Japanese (日本語)
  * @author Shirayuki
  */
