@@ -15,7 +15,7 @@ class CommonsMetadata {
 	 */
 	static $licenses = array(
 		'cc-by-1.0' => 'cc-by-1.0',
-		'cc-sa-1.0' => 'cc-sa-1.0',
+//		'cc-sa-1.0' => 'cc-sa-1.0', // no shortname
 		'cc-by-sa-1.0' => 'cc-by-sa-1.0',
 		'cc-by-2.0' => 'cc-by-2.0',
 		'cc-by-sa-2.0' => 'cc-by-sa-2.0',
@@ -26,8 +26,8 @@ class CommonsMetadata {
 		'cc-by-3.0' => 'cc-by-3.0',
 		'cc-by-sa-3.0' => 'cc-by-sa-3.0',
 		'cc-by-sa-3.0-migrated' => 'cc-by-sa-3.0',
-		'cc-pd' => 'cc-pd',
-		'cc-zero' => 'cc-zero',
+//		'cc-pd' => 'cc-pd', // no shortname
+		'cc0' => 'cc-zero',
 	);
 
 	/**
@@ -79,17 +79,18 @@ class CommonsMetadata {
 			$data = self::getMetadata( $descriptionText );
 		}
 
-		// For now only get the immediate categories
-		$categories = self::getCategories( $file );
-
-		$licenses = self::getLicensesAndRemoveFromCategories( $categories );
-		if ( $licenses ) {
-			$combinedMeta['License'] = array(
-				'value' => $licenses[0],
-				'source' => 'commons-categories',
-			);
+		if ( isset( $data['LicenseShortName'] ) ) {
+			$license = self::getLicenseFromShortname( $data['LicenseShortName'] );
+			if ( $license ) {
+				$combinedMeta['License'] = array(
+					'value' => $license,
+					'source' => 'commons-templates',
+				);
+			}
 		}
 
+		// For now only get the immediate categories
+		$categories = self::getCategories( $file );
 		$combinedMeta['Categories'] = array(
 			'value' => implode( '|', $categories ),
 			'source' => 'commons-categories',
@@ -154,6 +155,7 @@ class CommonsMetadata {
 	 * and returns the corresponding licenses.
 	 * @param array $categories a list of human-readable category names.
 	 * @return array
+	 * FIXME categories do not work with Commons-hosted images due to bug 56598
 	 */
 	protected static function getLicensesAndRemoveFromCategories( &$categories ) {
 		$licenses = array();
@@ -164,6 +166,20 @@ class CommonsMetadata {
 			}
 		}
 		return array_merge( $licenses ); // renumber to avoid holes in array
+	}
+
+	/**
+	 * Tries to identify the license based on its short name.
+	 * @param string $shortName
+	 * @return string|null one of the values from self::$licenses, or null if not recognized
+	 * @see https://commons.wikimedia.org/wiki/Commons:Machine-readable_data#Machine_readable_data_set_by_license_templates
+	 */
+	protected static function getLicenseFromShortname( $shortName ) {
+		$shortName = strtolower( $shortName );
+		if ( isset( self::$licenses[$shortName] ) ) {
+			return self::$licenses[$shortName];
+		}
+		return null;
 	}
 
 	/**
@@ -410,6 +426,7 @@ class CommonsMetadata_InformationParser {
 		$mapping = array(
 			'licensetpl_link' => 'LicenseUrl',
 			'licensetpl_long' => 'UsageTerms',
+			'licensetpl_short' => 'LicenseShortName',
 			'geo' => 'GPS', // Not final property name
 		);
 
