@@ -25,7 +25,7 @@ class CommonsMetadata {
 		'cc-by-sa-2.5' => 'cc-by-sa-2.5',
 		'cc-by-3.0' => 'cc-by-3.0',
 		'cc-by-sa-3.0' => 'cc-by-sa-3.0',
-		'cc-by-sa-3.0-migrated' => 'cc-by-sa-3.0',
+//		'cc-by-sa-3.0-migrated' => 'cc-by-sa-3.0', // no such shortname
 //		'cc-pd' => 'cc-pd', // no shortname
 		'cc0' => 'cc-zero',
 	);
@@ -175,7 +175,7 @@ class CommonsMetadata {
 	 * @see https://commons.wikimedia.org/wiki/Commons:Machine-readable_data#Machine_readable_data_set_by_license_templates
 	 */
 	protected static function getLicenseFromShortname( $shortName ) {
-		$shortName = strtolower( $shortName );
+		$shortName = strtolower( trim( $shortName ) );
 		if ( isset( self::$licenses[$shortName] ) ) {
 			return self::$licenses[$shortName];
 		}
