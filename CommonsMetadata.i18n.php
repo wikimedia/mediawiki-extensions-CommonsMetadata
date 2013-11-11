@@ -33,6 +33,13 @@ $messages['fr'] = array(
 	'commonsmetadata-desc' => 'Étend la propriété « extmetadata » du module d’API info d’image pour inclure des informations stockées dans les pages de description de l’image qui utilisent les modèles courants de Wikimédia Communs.',
 );
 
+/** Interlingua (interlingua)
+ * @author McDutchie
+ */
+$messages['ia'] = array(
+	'commonsmetadata-desc' => 'Extende le proprietate "extmetadate" del modulo de API "info de imagine" pro includer le information continite in paginas de description de imagine que usa le patronos commun de Wikimedia Commons.',
+);
+
 /** Italian (italiano)
  * @author Beta16
  */
