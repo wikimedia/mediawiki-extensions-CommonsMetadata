@@ -8,26 +8,15 @@
  */
 class CommonsMetadata {
 	/**
-	 * Mapping of license category names to message strings used in e.g.
-	 * UploadWizard (not yet centralized, big TODO item)
-	 *
-	 * Lowercase everything before checking against this array.
+	 * Nonstandard license name patterns used in categories/templates/shortnames
 	 */
-	static $licenses = array(
-		'cc-by-1.0' => 'cc-by-1.0',
-//		'cc-sa-1.0' => 'cc-sa-1.0', // no shortname
-		'cc-by-sa-1.0' => 'cc-by-sa-1.0',
-		'cc-by-2.0' => 'cc-by-2.0',
-		'cc-by-sa-2.0' => 'cc-by-sa-2.0',
-		'cc-by-2.1' => 'cc-by-2.1',
-		'cc-by-sa-2.1' => 'cc-by-sa-2.1',
-		'cc-by-2.5' => 'cc-by-2.5',
-		'cc-by-sa-2.5' => 'cc-by-sa-2.5',
-		'cc-by-3.0' => 'cc-by-3.0',
-		'cc-by-sa-3.0' => 'cc-by-sa-3.0',
-//		'cc-by-sa-3.0-migrated' => 'cc-by-sa-3.0', // no such shortname
-//		'cc-pd' => 'cc-pd', // no shortname
-		'cc0' => 'cc-zero',
+	static $licenseAliases = array(
+		'cc-by-sa-3.0-migrated' => 'cc-by-sa-3.0',
+		'cc-by-sa-3.0-migrated-with-disclaimers' => 'cc-by-sa-3.0',
+		'cc-by-sa-3.0-2.5-2.0-1.0' => 'cc-by-sa-3.0',
+		'cc-by-sa-2.5-2.0-1.0' => 'cc-by-sa-2.5',
+		'cc-by-2.0-stma' => 'cc-by-2.0',
+		'cc-by-sa-1.0+' => 'cc-by-sa-3.0',
 	);
 
 	/**
@@ -170,6 +159,17 @@ class CommonsMetadata {
 	}
 
 	/**
+	 * Hook to add unit tests
+	 * @param array $files
+	 * @return bool
+	 */
+	public static function onUnitTestsList( &$files ) {
+		$testDir = __DIR__ . DIRECTORY_SEPARATOR . 'tests' . DIRECTORY_SEPARATOR . 'phpunit';
+		$files = array_merge( $files, glob( $testDir . DIRECTORY_SEPARATOR . '*Test.php' ) );
+		return true;
+	}
+
+	/**
 	 * @param LocalFile $file
 	 * @return array list of category names in human-readable format
 	 */
@@ -195,9 +195,9 @@ class CommonsMetadata {
 	protected static function getLicensesAndRemoveFromCategories( &$categories ) {
 		$licenses = array();
 		foreach ( $categories as $i => $category ) {
-			$category = strtolower( $category );
-			if ( isset( self::$licenses[$category] ) ) {
-				$licenses[] = self::$licenses[$category];
+			$licenseData = self::parseLicenseString( $category );
+			if ( $licenseData ) {
+				$licenses[] = $licenseData['name'];
 				unset( $categories[$i] );
 			}
 		}
@@ -214,6 +214,7 @@ class CommonsMetadata {
 	protected static function getAssessmentsAndRemoveFromCategories( &$categories ) {
 		$assessments = array();
 		foreach ( $categories as $i => $category ) {
+
 			foreach ( self::$assessmentCategories as $assessmentType => $regexp ) {
 				if ( preg_match( $regexp . 'i', $category ) ) {
 					$assessments[] = $assessmentType;
@@ -236,10 +237,10 @@ class CommonsMetadata {
 	 */
 	protected static function filterShortnamesAndGetLicense( &$shortNames ) {
 		foreach ( $shortNames as $name ) {
-			$name = strtolower( trim( $name ) );
-			if ( isset( self::$licenses[$name] ) ) {
+			$licenseData = self::parseLicenseString( $name );
+			if ( $licenseData ) {
 				$shortNames = array( $name );
-				return self::$licenses[$name];
+				return $licenseData['name'];
 			}
 		}
 		return null;
@@ -255,6 +256,75 @@ class CommonsMetadata {
 			// Maybe do more strict isValidBuiltinCode?
 			throw new MWException( 'Invalid language code specified' );
 		}
+	}
+
+	/**
+	 * Takes a license string (could be a category name, template name etc)
+	 * and returns template information (or null if the license was not recognized).
+	 * Only handles CC licenses for now.
+	 * The returned array will have the following keys:
+	 * - family: e.g. cc, gfdl
+	 * - type: e.g. cc-by-sa
+	 * - version: e.g. 2.5
+	 * - region: e.g. nl
+	 * - name: all the above put together, e.g. cc-by-sa-2.5-nl
+	 * @param string $str
+	 * @return array|null
+	 */
+	public static function parseLicenseString( $str ) {
+		$data = array(
+			'family' => 'cc',
+			'type' => null,
+			'version' => null,
+			'region' => null,
+			'name' => null,
+		);
+
+		$str = strtolower( trim( $str ) );
+		if ( isset( self::$licenseAliases[$str] ) ) {
+			$str = self::$licenseAliases[$str];
+		}
+
+		// some special cases first
+		if ( in_array( $str, array( 'cc0', 'cc-pd' ), true ) ) {
+			$data['type'] = $data['name'] = $str;
+			return $data;
+		}
+
+		$parts = explode( '-', $str );
+		if ( $parts[0] != 'cc' ) {
+			return null;
+		}
+
+		for ( $i = 1; isset( $parts[$i] ) && in_array( $parts[$i], array( 'by', 'sa', 'nc', 'nd' ) ); $i++ ) {
+			if ( in_array( $parts[$i], array( 'nc', 'nd' ) ) ) {
+				// ignore non-free licenses
+				return null;
+			}
+		}
+		$data['type'] = implode( '-', array_slice( $parts, 0, $i ) );
+
+		if ( isset( $parts[$i] ) && is_numeric( $parts[$i] ) ) {
+			$data['version'] = $parts[$i];
+			$i++;
+		} else {
+			return null;
+		}
+
+		if ( isset( $parts[$i] ) && (
+			preg_match( '/^\w\w$/', $parts[$i] )
+			|| $parts[$i] == 'scotland'
+		) ) {
+			$data['region'] = $parts[$i];
+			$i++;
+		}
+
+		if ( $i != count( $parts ) ) {
+			return null;
+		}
+
+		$data['name'] = implode( '-', array_filter( array( $data['type'], $data['version'], $data['region'] ) ) );
+		return $data;
 	}
 }
 

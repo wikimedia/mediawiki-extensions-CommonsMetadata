@@ -30,3 +30,4 @@ $wgExtensionMessagesFiles['CommonsMetadata'] =  __DIR__ . '/CommonsMetadata.i18n
 
 $wgHooks['GetExtendedMetadata'][] = 'CommonsMetadata::onGetExtendedMetadata';
 $wgHooks['ValidateExtendedMetadataCache'][] = 'CommonsMetadata::onValidateExtendedMetadataCache';
+$wgHooks['UnitTestsList'][] = 'CommonsMetadata::onUnitTestsList';
