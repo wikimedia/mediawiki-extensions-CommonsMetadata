@@ -19,6 +19,13 @@ $messages['qqq'] = array(
 	'commonsmetadata-desc' => '{{desc}}',
 );
 
+/** Bikol Central (Bikol Central)
+ * @author Geopoet
+ */
+$messages['bcl'] = array(
+	'commonsmetadata-desc' => 'Minapanunod sa "extmetadata" na prap kan impormasyon nin imahe na modyul nin API na minabali kan impormasyon na pinagsaray sa mga mga pahina kan deskripsyon nin imahe na minagamit sa mga panguyog na pirme nang pinaggagamit sa Wikimedia Commons',
+);
+
 /** German (Deutsch)
  * @author Metalhead64
  */
@@ -80,4 +87,11 @@ $messages['ru'] = array(
  */
 $messages['uk'] = array(
 	'commonsmetadata-desc' => 'Розширює зовнішні метадані зображення API модуля, щоб  включати інформацію, яка зберігається в описових сторінках зображення, що використовують шаблони, які зазвичай використовуються на Вікісховищі',
+);
+
+/** Vietnamese (Tiếng Việt)
+ * @author Minh Nguyen
+ */
+$messages['vi'] = array(
+	'commonsmetadata-desc' => 'Mở rộng thuộc tính “extmetadata” của mô đun API thông tin hình ảnh để cung cấp thông tin từ các trang miêu tả tập tin bằng cách rút thông tin từ các bản mẫu phổ biến tại Wikimedia Commons',
 );
