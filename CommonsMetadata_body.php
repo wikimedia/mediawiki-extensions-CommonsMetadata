@@ -92,20 +92,21 @@ class CommonsMetadata {
 			$data = self::getMetadata( $descriptionText );
 		}
 
-		if ( isset( $data['LicenseShortName'] ) ) {
-			$license = self::filterShortnamesAndGetLicense( $data['LicenseShortName'] );
-			if ( $license ) {
-				$combinedMeta['License'] = array(
-					'value' => $license,
-					'source' => 'commons-templates',
-				);
-			}
+		$categories = array();
+		// getting categories for a ForeignAPIFile is not supported for now,
+		// but in that case the extended metadata should be available via
+		// $file->getExtendedMetadata, assuming CommonsMetadata is installed
+		// on the remote repository.
+		if ( $file instanceof LocalFile ) {
+			$categories = self::getCategories( $file );
 		}
 
-		// For now only get the immediate categories
-		$categories = self::getCategories( $file );
-
 		$assessments = self::getAssessmentsAndRemoveFromCategories( $categories );
+		$licenses = self::getLicensesAndRemoveFromCategories( $categories );
+		if ( !$licenses && isset( $data['LicenseShortName'] ) ) {
+			$license = self::filterShortnamesAndGetLicense( $data['LicenseShortName'] );
+			$licenses = array( $license );
+		}
 
 		$combinedMeta['Categories'] = array(
 			'value' => implode( '|', $categories ),
@@ -116,6 +117,13 @@ class CommonsMetadata {
 			'value' => implode('|', $assessments),
 			'source' => 'commons-categories',
 		);
+
+		if ( $licenses ) {
+			$combinedMeta['License'] = array(
+				'value' => $licenses[0],
+				'source' => 'commons-templates',
+			);
+		}
 
 		foreach( $data as $name => $value ) {
 			if ( in_array( $name, CommonsMetadata_InformationParser::$multivaluedProperties ) ) {
@@ -162,16 +170,18 @@ class CommonsMetadata {
 	}
 
 	/**
-	 * @param File $file
+	 * @param LocalFile $file
 	 * @return array list of category names in human-readable format
 	 */
-	protected static function getCategories( File $file ) {
+	protected static function getCategories( LocalFile $file ) {
+		$page = new WikiFilePage( $file->getOriginalTitle() );
+		$page->setFile( $file );
+
+		$categoryTitles = $page->getForeignCategories();
+
 		$categories = array();
-		$rawCategories = array_keys( $file->getOriginalTitle()->getParentCategories() );
-		foreach ( $rawCategories as $rawCategoryName ) {
-			$title = Title::newFromText( $rawCategoryName );
-			$categoryName = strtolower( $title->getText() );
-			$categories[] = $categoryName;
+		foreach ( $categoryTitles as $title ) {
+			$categories[] = $title->getText();
 		}
 		return $categories;
 	}
@@ -181,11 +191,11 @@ class CommonsMetadata {
 	 * and returns the corresponding licenses.
 	 * @param array $categories a list of human-readable category names.
 	 * @return array
-	 * FIXME categories do not work with Commons-hosted images due to bug 56598
 	 */
 	protected static function getLicensesAndRemoveFromCategories( &$categories ) {
 		$licenses = array();
 		foreach ( $categories as $i => $category ) {
+			$category = strtolower( $category );
 			if ( isset( self::$licenses[$category] ) ) {
 				$licenses[] = self::$licenses[$category];
 				unset( $categories[$i] );
@@ -200,13 +210,12 @@ class CommonsMetadata {
 	 * and returns the corresponding assessments (valued image, picture of the day etc).
 	 * @param array $categories a list of human-readable category names.
 	 * @return array
-	 * FIXME categories do not work with Commons-hosted images due to bug 56598
 	 */
 	protected static function getAssessmentsAndRemoveFromCategories( &$categories ) {
 		$assessments = array();
 		foreach ( $categories as $i => $category ) {
 			foreach ( self::$assessmentCategories as $assessmentType => $regexp ) {
-				if ( preg_match( $regexp, $category ) ) {
+				if ( preg_match( $regexp . 'i', $category ) ) {
 					$assessments[] = $assessmentType;
 					unset( $categories[$i] );
 				}
