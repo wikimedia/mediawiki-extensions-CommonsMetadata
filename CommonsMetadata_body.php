@@ -93,7 +93,7 @@ class CommonsMetadata {
 		}
 
 		if ( isset( $data['LicenseShortName'] ) ) {
-			$license = self::getLicenseFromShortname( $data['LicenseShortName'] );
+			$license = self::filterShortnamesAndGetLicense( $data['LicenseShortName'] );
 			if ( $license ) {
 				$combinedMeta['License'] = array(
 					'value' => $license,
@@ -118,6 +118,11 @@ class CommonsMetadata {
 		);
 
 		foreach( $data as $name => $value ) {
+			if ( in_array( $name, CommonsMetadata_InformationParser::$multivaluedProperties ) ) {
+				// the GetExtendedMetadata hook expects the property value to be a string,
+				// so we have to throw away all values but one here.
+				$value = end( $value );
+			}
 			$combinedMeta[ $name ] = array(
 				'value' => $value,
 				'source' => 'commons-desc-page'
@@ -213,14 +218,20 @@ class CommonsMetadata {
 
 	/**
 	 * Tries to identify the license based on its short name.
-	 * @param string $shortName
+	 * Will also rename all names but one from $shortName - this is done because the
+	 * GetExtendedMetadata hook expects the property value to be a string, so only one name
+	 * will be used anyway, and we want that one to match the license type.
+	 * @param array $shortNames
 	 * @return string|null one of the values from self::$licenses, or null if not recognized
 	 * @see https://commons.wikimedia.org/wiki/Commons:Machine-readable_data#Machine_readable_data_set_by_license_templates
 	 */
-	protected static function getLicenseFromShortname( $shortName ) {
-		$shortName = strtolower( trim( $shortName ) );
-		if ( isset( self::$licenses[$shortName] ) ) {
-			return self::$licenses[$shortName];
+	protected static function filterShortnamesAndGetLicense( &$shortNames ) {
+		foreach ( $shortNames as $name ) {
+			$name = strtolower( trim( $name ) );
+			if ( isset( self::$licenses[$name] ) ) {
+				$shortNames = array( $name );
+				return self::$licenses[$name];
+			}
 		}
 		return null;
 	}
@@ -247,6 +258,9 @@ class CommonsMetadata {
  * being "public" in order that the XMLParser can call them
  */
 class CommonsMetadata_InformationParser {
+	public static $multivaluedProperties = array(
+		'LicenseShortName',
+	);
 
 	private $xmlParser;
 	private $state = self::STATE_INITIAL;
@@ -510,22 +524,19 @@ class CommonsMetadata_InformationParser {
 					$this->spanDepth--;
 					if ( $this->spanDepth <= 0 ) {
 						$this->state = self::STATE_LICENSE;
-						$this->finalProps[$this->propName] = $this->text;
+						$this->addPropertyValue( $this->finalProps, $this->propName, $this->text );
 						if ( $this->propName === 'UsageTerms' ) {
-							if ( $this->text === 'Public domain' ) {
-								$this->finalProps['Copyrighted'] = 'False';
-							} else {
-								$this->finalProps['Copyrighted'] = 'True';
-							}
+							$copyrighted = ( $this->text === 'Public domain' ) ? 'False' : 'True';
+							$this->addPropertyValue( $this->finalProps, 'Copyrighted', $copyrighted );
 						} elseif ( $this->propName === 'GPS' ) {
 							$coord = explode( ';', $this->text );
 							if ( count( $coord ) === 2 &&
 								is_numeric( $coord[0] ) &&
 								is_numeric( $coord[1] )
 							) {
-								$this->finalProps['GPSLatitude'] = $coord[0];
-								$this->finalProps['GPSLongitude'] = $coord[1];
-								$this->finalProps['GPSMapDatum'] = 'WGS-84';
+								$this->addPropertyValue( $this->finalProps, 'GPSLatitude', $coord[0] );
+								$this->addPropertyValue( $this->finalProps, 'GPSLongitude', $coord[1] );
+								$this->addPropertyValue( $this->finalProps, 'GPSMapDatum', 'WGS-84' );
 								unset( $this->finalProps['GPS'] );
 							}
 							$this->state = self::STATE_INITIAL;
@@ -543,18 +554,19 @@ class CommonsMetadata_InformationParser {
 				}
 				if ( $this->tdDepth <= 0 ) {
 					$this->state = self::STATE_INITIAL;
+
 					if ( $this->langText !== '' ) {
 						if ( $this->targetLang ) {
-							$this->finalProps[ $this->propName ] = Html::rawElement(
+							$propValue = Html::rawElement(
 								'span',
 								// FIXME dir too?
 								array( 'lang' => $this->extractionLang ),
 								$this->langText
 							);
 						} else {
-							$this->finalProps[$this->propName]['_type'] = 'lang';
+							$propValue = array( '_type' => 'lang' );
 							foreach ( $this->allLangTexts as $lang => $text ) {
-								$this->finalProps[$this->propName][$lang] = Html::rawElement(
+								$propValue [$lang] = Html::rawElement(
 									'span',
 									// FIXME dir too?
 									array( 'lang' => $lang ),
@@ -563,8 +575,10 @@ class CommonsMetadata_InformationParser {
 							}
 						}
 					} else {
-						$this->finalProps[ $this->propName ] = $this->text;
+						$propValue = $this->text;
 					}
+					$this->addPropertyValue( $this->finalProps, $this->propName, $propValue );
+
 					$this->langText = '';
 					$this->extractionLang = '';
 					$this->text = '';
@@ -654,5 +668,20 @@ class CommonsMetadata_InformationParser {
 	 */
 	public function getError() {
 		return xml_get_current_byte_index( $this->xmlParser ) . ': ' . xml_error_string( xml_get_error_code( $this->xmlParser ));
+	}
+
+	/**
+	 * Checks configuration and decides whether to store a single value and override old ones or store an array of
+	 * values.
+	 * @param array $properties array used to collect the property values
+	 * @param string $name
+	 * @param string $value
+	 */
+	private function addPropertyValue( &$properties, $name, $value ) {
+		if ( in_array( $name, self::$multivaluedProperties ) ) {
+			$properties[$name][] = $value;
+		} else {
+			$properties[$name] = $value;
+		}
 	}
 }
