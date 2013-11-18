@@ -19,6 +19,13 @@ $messages['qqq'] = array(
 	'commonsmetadata-desc' => '{{desc}}',
 );
 
+/** Asturian (asturianu)
+ * @author Xuacu
+ */
+$messages['ast'] = array(
+	'commonsmetadata-desc' => 'Estiende la propiedá "extmetadata" del módulu de la API d\'información de la imaxe pa incluir información guardada nes páxines de descripción de la imaxe qu\'usen les plantíes usaes de vezu en Wikimedia Commons',
+);
+
 /** Bikol Central (Bikol Central)
  * @author Geopoet
  */
@@ -45,6 +52,13 @@ $messages['fr'] = array(
  */
 $messages['gl'] = array(
 	'commonsmetadata-desc' => 'Estende a propiedade "extmetadata" do módulo de información de imaxe da API para incluír información almacenada nas páxinas de descrición das imaxes que usan modelos comúns da Wikimedia Commons',
+);
+
+/** Hebrew (עברית)
+ * @author Amire80
+ */
+$messages['he'] = array(
+	'commonsmetadata-desc' => 'הרחבת המאפיין "extmetadara" של ה־API למידע על תמונות כך שיכלול את המידע שמאוחסן בדפי התיאור של התמונות שמשתמשים בתבניות הנפוצות בוויקישיתוף',
 );
 
 /** Interlingua (interlingua)
