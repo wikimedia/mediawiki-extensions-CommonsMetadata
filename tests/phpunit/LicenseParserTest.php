@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Gergő
- * Date: 2013.11.12.
- * Time: 16:56
- */
 
 class LicenseParserTest extends MediaWikiTestCase {
 	/**
