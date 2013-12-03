@@ -103,6 +103,13 @@ $messages['ml'] = array(
 	'commonsmetadata-desc' => 'വിക്കിമീഡിയ കോമൺസിലെ ചിത്രവിവരണ താളുകളിലെ ഫലകങ്ങളിൽ ഉപയോഗിച്ചിരിക്കുന്ന വിവരങ്ങൾ കൂടി ഉൾപ്പെടുത്തക്കവിധം ചിത്രവിവരണ എ.പി.ഐ. മോഡ്യൂളിലെ "extmetadata" സൗകര്യം വികസിപ്പിക്കുന്നു',
 );
 
+/** Dutch (Nederlands)
+ * @author Siebrand
+ */
+$messages['nl'] = array(
+	'commonsmetadata-desc' => 'Breidt de eigenschap "extmetadata" van de API-module voor afbeeldingengegevens uit met gegevens die zijn opgeslagen in de bestandsbeschrijvingspagina\'s die veel gebruikte sjablonen van Wikimedia Commons gebruiken',
+);
+
 /** Russian (русский)
  * @author Okras
  */
