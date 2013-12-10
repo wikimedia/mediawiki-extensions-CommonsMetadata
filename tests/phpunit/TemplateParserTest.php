@@ -1,10 +1,18 @@
 <?php
 
+use CommonsMetadata\TemplateParser;
+
 /**
- * @covers CommonsMetadata_TemplateParser
+ * @covers TemplateParser
  * @group Extensions/CommonsMetadata
  */
 class TemplateParserTest extends MediaWikiTestCase {
+	/**
+	 * Convenience switch for speed tests. When enabled, uses the old implementation of the template parser.
+	 * @var bool
+	 */
+	protected static $useOldParser = 0;
+
 	/**
 	 * Maps test names to filenames in the test subdirectory.
 	 * This array only exists to have a place where the intentions of test files can be conveniently commented.
@@ -33,7 +41,11 @@ class TemplateParserTest extends MediaWikiTestCase {
 		// coordinates
 		'coord' => 'File:Sydney_Tower_Panorama.jpg',
 		// complex HTML in the author field
-		'creator_template' => 'File:Elizabeth_I_George_Gower',
+		'creator_template' => 'File:Elizabeth_I_George_Gower.jpg',
+		// an image with many languages
+		'manylang' => 'File:Sikh_pilgrim_at_the_Golden_Temple_(Harmandir_Sahib)_in_Amritsar,_India.jpg',
+		// an image with a relatively long description
+		'big' => 'File:Askaris_im_Warschauer_Getto_-_1943.jpg',
 	);
 
 	/**
@@ -55,8 +67,7 @@ class TemplateParserTest extends MediaWikiTestCase {
 		$data = $this->parseTestHTML( 'simple' );
 		$this->assertFieldContainsString( 'ImageDescription', 'Sunrise', $data );
 
-		$parser = $this->getParser();
-		$parser->setLanguage( 'de' );
+		$parser = $this->getParser( 'de' );
 		$data = $this->parseTestHTML( 'simple', $parser );
 		$this->assertFieldContainsString( 'ImageDescription', 'Sunrise', $data );
 	}
@@ -69,8 +80,7 @@ class TemplateParserTest extends MediaWikiTestCase {
 		$data = $this->parseTestHTML( 'singlelang' );
 		$this->assertFieldContainsString( 'ImageDescription', 'Dala kyrka', $data );
 
-		$parser = $this->getParser();
-		$parser->setLanguage( 'de' );
+		$parser = $this->getParser( 'de' );
 		$data = $this->parseTestHTML( 'singlelang', $parser );
 		$this->assertFieldContainsString( 'ImageDescription', 'Dala kyrka', $data );
 	}
@@ -84,8 +94,7 @@ class TemplateParserTest extends MediaWikiTestCase {
 		$data = $this->parseTestHTML( 'no_english' );
 		$this->assertFieldContainsString( 'ImageDescription', 'Balkana', $data );
 
-		$parser = $this->getParser();
-		$parser->setLanguage( 'de' );
+		$parser = $this->getParser( 'de' );
 		$data = $this->parseTestHTML( 'no_english', $parser );
 		$this->assertFieldContainsString( 'ImageDescription', 'Balkana', $data );
 	}
@@ -109,22 +118,19 @@ class TemplateParserTest extends MediaWikiTestCase {
 		$this->assertFieldNotContainsString( 'ImageDescription', 'Rassemblement', $data );
 		$this->assertFieldNotContainsString( 'ImageDescription', 'Versammlung', $data );
 
-		$parser = $this->getParser();
-		$parser->setLanguage( 'fr' );
+		$parser = $this->getParser( 'fr' );
 		$data = $this->parseTestHTML( 'multilang', $parser );
 		$this->assertFieldNotContainsString( 'ImageDescription', 'Assembly', $data );
 		$this->assertFieldContainsString( 'ImageDescription', 'Rassemblement', $data );
 		$this->assertFieldNotContainsString( 'ImageDescription', 'Versammlung', $data );
 
-		$parser = $this->getParser();
-		$parser->setLanguage( 'de' );
+		$parser = $this->getParser( 'de' );
 		$data = $this->parseTestHTML( 'multilang', $parser );
 		$this->assertFieldNotContainsString( 'ImageDescription', 'Assembly', $data );
 		$this->assertFieldNotContainsString( 'ImageDescription', 'Rassemblement', $data );
 		$this->assertFieldContainsString( 'ImageDescription', 'Versammlung', $data );
 
-		$parser = $this->getParser();
-		$parser->setLanguage( 'nl' );
+		$parser = $this->getParser( 'nl' );
 		$data = $this->parseTestHTML( 'multilang', $parser );
 		$this->assertFieldContainsString( 'ImageDescription', 'Assembly', $data );
 		$this->assertFieldNotContainsString( 'ImageDescription', 'Rassemblement', $data );
@@ -135,8 +141,7 @@ class TemplateParserTest extends MediaWikiTestCase {
 	 * In multilang mode, all languages should be returned in an array.
 	 */
 	public function testMultilangModeInMultipleLanguages() {
-		$parser = $this->getParser();
-		$parser->setLanguage( false );
+		$parser = $this->getParser( false );
 		$data = $this->parseTestHTML( 'multilang', $parser );
 
 		$this->assertArrayHasKey( 'ImageDescription', $data );
@@ -152,8 +157,7 @@ class TemplateParserTest extends MediaWikiTestCase {
 	 * When there is only a single language in multilang mode, it should still be returned in an array.
 	 */
 	public function testMultilangModeInSingleLanguage() {
-		$parser = $this->getParser();
-		$parser->setLanguage( false );
+		$parser = $this->getParser( false );
 		$data = $this->parseTestHTML( 'singlelang', $parser );
 
 		$this->assertArrayHasKey( 'ImageDescription', $data );
@@ -173,8 +177,7 @@ class TemplateParserTest extends MediaWikiTestCase {
 	public function testMultilangModeWithoutLanguage() {
 		$this->markTestSkipped( 'bug 57846');
 
-		$parser = $this->getParser();
-		$parser->setLanguage( false );
+		$parser = $this->getParser( false );
 		$data = $this->parseTestHTML( 'simple', $parser );
 
 		$this->assertArrayHasKey( 'ImageDescription', $data );
@@ -192,7 +195,7 @@ class TemplateParserTest extends MediaWikiTestCase {
 	public function testLanguageNameNotPresent() {
 		$this->markTestSkipped( 'bug 57262' );
 
-		$data = $this->parseTestHTML( 'simple' );
+		$data = $this->parseTestHTML( 'singlelang' );
 		$this->assertFieldNotContainsString( 'ImageDescription', 'English', $data );
 	}
 
@@ -262,8 +265,7 @@ class TemplateParserTest extends MediaWikiTestCase {
 	 * Make sure non-ASCII characters are not garbled
 	 */
 	public function testUnicode() {
-		$parser = $this->getParser();
-		$parser->setLanguage( 'ja' );
+		$parser = $this->getParser( 'ja' );
 		$data = $this->parseTestHTML( 'japanese', $parser );
 
 		$this->assertFieldContainsString( 'ImageDescription', 'スーパーファミコン', $data );
@@ -278,6 +280,17 @@ class TemplateParserTest extends MediaWikiTestCase {
 		$this->assertFieldEquals( 'GPSLongitude', '151.20888888889', $data );
 	}
 
+	/**
+	 * Manually executed speed test to compare performance of the two parsers.
+	 */
+	public function _testParsingSpeed() {
+		for ( $i = 0; $i < 100; $i++ ) {
+			foreach ( self::$testHTMLFiles as $test => $_ ) {
+				$this->parseTestHTML( $test );
+			}
+		}
+	}
+
 
 	// -------------------- helpers --------------------
 
@@ -288,7 +301,7 @@ class TemplateParserTest extends MediaWikiTestCase {
 	 * @return string
 	 */
 	protected function getTestHTML( $name ) {
-		if ( !isset(self::$testHTMLFiles[$name] ) ) {
+		if ( !isset( self::$testHTMLFiles[$name] ) ) {
 			throw new \InvalidArgumentException( 'no HTML test named ' . $name );
 		}
 		$filename = dirname( __DIR__ ) . '/html/' . self::$testHTMLFiles[$name] . '.html';
@@ -303,7 +316,7 @@ class TemplateParserTest extends MediaWikiTestCase {
 	/**
 	 * Convenience method to parses a test file.
 	 * @param string $name
-	 * @param CommonsMetadata_InformationParser $parser
+	 * @param TemplateParser $parser
 	 * @return array metadata field => value
 	 */
 	protected function parseTestHTML( $name, $parser = null ) {
@@ -316,11 +329,31 @@ class TemplateParserTest extends MediaWikiTestCase {
 
 	/**
 	 * Convenience method to create a new parser.
+	 * @param string|bool $language language code for parser's language; false for multi-language mode
+	 * @return TemplateParser
+	 */
+	protected function getParser( $language = 'en' ) {
+		if ( self::$useOldParser ) {
+			return $this->getOldParser( $language );
+		}
+
+		$parser = new TemplateParser();
+		if ( $language === false ) {
+			$language = 'en';
+			$parser->setMultiLanguage( true );
+		}
+		$parser->setPriorityLanguages( array( $language ) );
+		return $parser;
+	}
+
+	/**
+	 * Use old parser, for speed tests.
+	 * @param string|bool $language language code for parser's language; false for multi-language mode
 	 * @return CommonsMetadata_TemplateParser
 	 */
-	protected function getParser() {
+	protected function getOldParser( $language = 'en' ) {
 		$parser = new CommonsMetadata_TemplateParser();
-		$parser->setLanguage( 'en' );
+		$parser->setLanguage( $language );
 		return $parser;
 	}
 
@@ -417,8 +450,8 @@ class TemplateParserTest extends MediaWikiTestCase {
 	 * @param string $message
 	 */
 	protected function assertLanguageArray( $array, $message = '' ) {
-		$this->assertInternalType( 'array', $array );
-		$this->assertArrayHasKey( '_type', $array );
-		$this->assertEquals( 'lang', $array['_type'] );
+		$this->assertInternalType( 'array', $array, $message );
+		$this->assertArrayHasKey( '_type', $array, $message );
+		$this->assertEquals( 'lang', $array['_type'], $message );
 	}
 }

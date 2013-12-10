@@ -26,7 +26,9 @@ $wgExtensionCredits['other'][] = array(
 );
 $wgAutoloadClasses['CommonsMetadata\HookHandler'] = __DIR__ . '/HookHandler.php';
 $wgAutoloadClasses['CommonsMetadata\DataCollector'] = __DIR__ . '/DataCollector.php';
-$wgAutoloadClasses['CommonsMetadata_TemplateParser'] = __DIR__ . '/TemplateParser.php';
+$wgAutoloadClasses['CommonsMetadata\DomNavigator'] = __DIR__ . '/DomNavigator.php';
+$wgAutoloadClasses['CommonsMetadata\TemplateParser'] = __DIR__ . '/TemplateParser.php';
+$wgAutoloadClasses['CommonsMetadata_TemplateParser'] = __DIR__ . '/TemplateParser_old.php';
 
 $wgExtensionMessagesFiles['CommonsMetadata'] =  __DIR__ . '/CommonsMetadata.i18n.php';
 

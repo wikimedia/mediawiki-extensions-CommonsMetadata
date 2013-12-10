@@ -2,6 +2,12 @@
 
 namespace CommonsMetadata;
 
+use Language;
+use File;
+use LocalFile;
+use ForeignAPIFile;
+use WikiFilePage;
+
 /**
  * Class to handle metadata collection and formatting, and manage more specific data extraction classes.
  */
@@ -33,7 +39,7 @@ class DataCollector {
 
 	/**
 	 * Language in which data should be collected. Can be null, which means collect all languages.
-	 * @var \Language
+	 * @var Language
 	 */
 	protected $language;
 
@@ -43,11 +49,11 @@ class DataCollector {
 	 */
 	protected $multiLang;
 
-	/** @var \CommonsMetadata_TemplateParser */
+	/** @var TemplateParser */
 	protected $templateParser;
 
 	/**
-	 * @param \Language $language
+	 * @param Language $language
 	 */
 	public function setLanguage( $language ) {
 		$this->language = $language;
@@ -61,9 +67,9 @@ class DataCollector {
 	}
 
 	/**
-	 * @param \CommonsMetadata_TemplateParser $templateParser
+	 * @param TemplateParser $templateParser
 	 */
-	public function setTemplateParser( \CommonsMetadata_TemplateParser $templateParser ) {
+	public function setTemplateParser( $templateParser ) {
 		$this->templateParser = $templateParser;
 	}
 
@@ -79,9 +85,9 @@ class DataCollector {
 	 * see the documentation for the extmetadata API.
 	 *
 	 * @param array $previousMetadata metadata collected so far; new metadata will be added to this array
-	 * @param \File $file
+	 * @param File $file
 	 */
-	public function collect( array &$previousMetadata, \File $file ) {
+	public function collect( array &$previousMetadata, File $file ) {
 		# Note: If this is a local file, there is no caching here.
 		# However, the results of this module have longer caching for local
 		# files to help compensate. For foreign files, this method is cached
@@ -89,8 +95,7 @@ class DataCollector {
 		# descriptionCacheExpiry (disabled on Wikimedia).
 		$descriptionText = $file->getDescriptionText( $this->language );
 
-		$languageCode = $this->multiLang ? false : $this->language->getCode();
-		$templateMetadata = $this->getTemplateMetadata( $descriptionText, $languageCode );
+		$templateMetadata = $this->templateParser->parsePage( $descriptionText );
 
 		$categories = $this->getCategories( $file, $previousMetadata );
 
@@ -132,28 +137,18 @@ class DataCollector {
 	}
 
 	/**
-	 * @param $doc String The html to parse
-	 * @param String|boolean $lang Language code or false for all langs.
-	 * @return Array The properties extracted from the page.
-	 */
-	protected function getTemplateMetadata( $doc, $lang = false ) {
-		$this->templateParser->setLanguage( $lang );
-		return $this->templateParser->parsePage( $doc );
-	}
-
-	/**
-	 * @param \File $file
+	 * @param File $file
 	 * @param array $data metadata passed to the onGetExtendedMetadata hook
 	 * @return array list of category names in human-readable format
 	 */
-	protected function getCategories( \File $file, array $data ) {
+	protected function getCategories( File $file, array $data ) {
 		$categories = array();
 
-		if ( $file instanceof \LocalFile ) {
+		if ( $file instanceof LocalFile ) {
 			// for local or shared DB files (which are also LocalFile subclasses)
 			// categories can be queried directly from the database
 
-			$page = new \WikiFilePage( $file->getOriginalTitle() );
+			$page = new WikiFilePage( $file->getOriginalTitle() );
 			$page->setFile( $file );
 
 			$categoryTitles = $page->getForeignCategories();
@@ -162,7 +157,7 @@ class DataCollector {
 				$categories[] = $title->getText();
 			}
 		} elseif (
-			$file instanceof \ForeignAPIFile
+			$file instanceof ForeignAPIFile
 			&& isset( $data['Categories'] )
 		) {
 			// getting categories for a ForeignAPIFile is not supported, but in case

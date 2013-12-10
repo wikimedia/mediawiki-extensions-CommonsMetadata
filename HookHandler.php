@@ -2,6 +2,8 @@
 
 namespace CommonsMetadata;
 
+use Language;
+
 /**
  * Hook handler
  */
@@ -41,7 +43,19 @@ class HookHandler {
 		}
 
 		$lang = $context->getLanguage();
-		$templateParser = new \CommonsMetadata_TemplateParser();
+
+		global $wgUseOldTemplateParser; // FIXME feature switch for convenient testing, will be removed once this is out of beta
+		if ( !isset( $wgUseOldTemplateParser ) ) {
+			$templateParser = new TemplateParser();
+			$templateParser->setMultiLanguage( !$singleLang );
+			$fallbacks = Language::getFallbacksFor( $lang->getCode() );
+			array_unshift( $fallbacks, $lang->getCode() );
+			$templateParser->setPriorityLanguages( $fallbacks );
+		} else {
+			$templateParser = new \CommonsMetadata_TemplateParser();
+			$templateParser->setLanguage( $singleLang ? $lang->getCode() : false );
+		}
+
 		$dataCollector = new DataCollector();
 		$dataCollector->setLanguage( $lang );
 		$dataCollector->setMultiLang( !$singleLang );
