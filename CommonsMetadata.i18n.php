@@ -130,3 +130,10 @@ $messages['uk'] = array(
 $messages['vi'] = array(
 	'commonsmetadata-desc' => 'Mở rộng thuộc tính “extmetadata” của mô đun API thông tin hình ảnh để cung cấp thông tin từ các trang miêu tả tập tin bằng cách rút thông tin từ các bản mẫu phổ biến tại Wikimedia Commons',
 );
+
+/** Simplified Chinese (中文（简体）‎)
+ * @author Yfdyh000
+ */
+$messages['zh-hans'] = array(
+	'commonsmetadata-desc' => '扩展图像信息API模块的 "extmetadata" prop，以包含存储在图像描述页、使用了位于维基共享资源的模板的信息',
+);
