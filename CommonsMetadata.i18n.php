@@ -34,10 +34,11 @@ $messages['bcl'] = array(
 );
 
 /** German (Deutsch)
+ * @author Kghbln
  * @author Metalhead64
  */
 $messages['de'] = array(
-	'commonsmetadata-desc' => 'Erweitert die „extmetadata“-Eigenschaft des Bildinfo-API-Moduls zum Einbinden von Informationen, die in Bildbeschreibungsseiten gespeichert sind und gemeinsam benutzte Vorlagen auf Wikimedia Commons verwenden',
+	'commonsmetadata-desc' => 'Reichert das Attribut „extmetadata“ des API-Moduls zu Bildinformationen um Informationen aus den Bildbeschreibungsvorlagen auf „Wikimedia Commons“ an',
 );
 
 /** Spanish (español)
