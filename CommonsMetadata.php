@@ -25,7 +25,7 @@ $wgExtensionCredits['other'][] = array(
 	'descriptionmsg' => 'commonsmetadata-desc',
 );
 $wgAutoloadClasses['CommonsMetadata'] = __DIR__ . '/CommonsMetadata_body.php';
-$wgAutoloadClasses['InformationParser'] = __DIR__ . '/CommonsMetadata_body.php';
+$wgAutoloadClasses['CommonsMetadata_InformationParser'] = __DIR__ . '/CommonsMetadata_body.php';
 $wgExtensionMessagesFiles['CommonsMetadata'] =  __DIR__ . '/CommonsMetadata.i18n.php';
 
 $wgHooks['GetExtendedMetadata'][] = 'CommonsMetadata::onGetExtendedMetadata';
