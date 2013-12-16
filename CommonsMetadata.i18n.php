@@ -41,6 +41,13 @@ $messages['de'] = array(
 	'commonsmetadata-desc' => 'Reichert das Attribut „extmetadata“ des API-Moduls zu Bildinformationen um Informationen aus den Bildbeschreibungsvorlagen auf „Wikimedia Commons“ an',
 );
 
+/** Swiss High German (Schweizer Hochdeutsch)
+ * @author Filzstift
+ */
+$messages['de-ch'] = array(
+	'commonsmetadata-desc' => 'Reichert das Attribut «extmetadata» des API-Moduls zu Bildinformationen um Informationen aus den Bildbeschreibungsvorlagen auf «Wikimedia Commons» an',
+);
+
 /** Spanish (español)
  * @author Fitoschido
  */
