@@ -76,6 +76,13 @@ $messages['he'] = array(
 	'commonsmetadata-desc' => 'הרחבת המאפיין "extmetadara" של ה־API למידע על תמונות כך שיכלול את המידע שמאוחסן בדפי התיאור של התמונות שמשתמשים בתבניות הנפוצות בוויקישיתוף',
 );
 
+/** Upper Sorbian (hornjoserbsce)
+ * @author Michawiki
+ */
+$messages['hsb'] = array(
+	'commonsmetadata-desc' => 'Rozšěrja kajkosć "extmetadata" API-modula wobrazowych informacijow wo informacije składowane na stronach wobrazoweho wopisanja, kotrež předłohi wužiwaja, kotrež su na Wikimedia Commons z wašnjom.',
+);
+
 /** Interlingua (interlingua)
  * @author McDutchie
  */
