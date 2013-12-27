@@ -1,9 +1,10 @@
 <?php
 
 /**
- * @covers CommonsMetadata_InformationParser
+ * @covers CommonsMetadata_TemplateParser
+ * @group Extensions/CommonsMetadata
  */
-class InformationParserTest extends MediaWikiTestCase {
+class TemplateParserTest extends MediaWikiTestCase {
 	/**
 	 * Maps test names to filenames in the test subdirectory.
 	 * This array only exists to have a place where the intentions of test files can be conveniently commented.
@@ -315,10 +316,10 @@ class InformationParserTest extends MediaWikiTestCase {
 
 	/**
 	 * Convenience method to create a new parser.
-	 * @return CommonsMetadata_InformationParser
+	 * @return CommonsMetadata_TemplateParser
 	 */
 	protected function getParser() {
-		$parser = new CommonsMetadata_InformationParser();
+		$parser = new CommonsMetadata_TemplateParser();
 		$parser->setLanguage( 'en' );
 		return $parser;
 	}

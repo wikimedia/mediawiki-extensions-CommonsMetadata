@@ -24,10 +24,12 @@ $wgExtensionCredits['other'][] = array(
 	'url' => '//www.mediawiki.org/wiki/Extension:CommonsMetadata',
 	'descriptionmsg' => 'commonsmetadata-desc',
 );
-$wgAutoloadClasses['CommonsMetadata'] = __DIR__ . '/CommonsMetadata_body.php';
-$wgAutoloadClasses['CommonsMetadata_InformationParser'] = __DIR__ . '/CommonsMetadata_body.php';
+$wgAutoloadClasses['CommonsMetadata\HookHandler'] = __DIR__ . '/HookHandler.php';
+$wgAutoloadClasses['CommonsMetadata\DataCollector'] = __DIR__ . '/DataCollector.php';
+$wgAutoloadClasses['CommonsMetadata_TemplateParser'] = __DIR__ . '/TemplateParser.php';
+
 $wgExtensionMessagesFiles['CommonsMetadata'] =  __DIR__ . '/CommonsMetadata.i18n.php';
 
-$wgHooks['GetExtendedMetadata'][] = 'CommonsMetadata::onGetExtendedMetadata';
-$wgHooks['ValidateExtendedMetadataCache'][] = 'CommonsMetadata::onValidateExtendedMetadataCache';
-$wgHooks['UnitTestsList'][] = 'CommonsMetadata::onUnitTestsList';
+$wgHooks['GetExtendedMetadata'][] = 'CommonsMetadata\HookHandler::onGetExtendedMetadata';
+$wgHooks['ValidateExtendedMetadataCache'][] = 'CommonsMetadata\HookHandler::onValidateExtendedMetadataCache';
+$wgHooks['UnitTestsList'][] = 'CommonsMetadata\HookHandler::onUnitTestsList';
