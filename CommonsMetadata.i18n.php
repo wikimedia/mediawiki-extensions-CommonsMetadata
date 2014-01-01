@@ -33,6 +33,13 @@ $messages['bcl'] = array(
 	'commonsmetadata-desc' => 'Minapanunod sa "extmetadata" na prap kan impormasyon nin imahe na modyul nin API na minabali kan impormasyon na pinagsaray sa mga mga pahina kan deskripsyon nin imahe na minagamit sa mga panguyog na pirme nang pinaggagamit sa Wikimedia Commons',
 );
 
+/** Breton (brezhoneg)
+ * @author Fulup
+ */
+$messages['br'] = array(
+	'commonsmetadata-desc' => 'Astenn a ra perzh "extmetadata" ar mollad titouroù skeudennoù API evit degas titouroù enrollet e pajennoù deskrivañ ar skeudenn a implij ar patromoù a reer ganto war Wikimedia Commons.',
+);
+
 /** German (Deutsch)
  * @author Kghbln
  * @author Metalhead64
@@ -53,6 +60,13 @@ $messages['de-ch'] = array(
  */
 $messages['es'] = array(
 	'commonsmetadata-desc' => 'Extiende la propiedad «extmetadata» del módulo de API de información de imagen para incluir datos guardados en las páginas de descripción de las imágenes que usan las plantillas más comunes de Wikimedia Commons',
+);
+
+/** Persian (فارسی)
+ * @author Armin1392
+ */
+$messages['fa'] = array(
+	'commonsmetadata-desc' => 'گسترش "اکستامتادیتا" ویژگی اطلاعات عکس بخش ای‌پی‌آی برای شامل کردن اطلاعات ذخیره شده در صفحات شرح عکسی که از الگوهای رایج استفاده شده در مدیاویکی همگانی، استفاده می‌شود.',
 );
 
 /** French (français)
@@ -102,6 +116,13 @@ $messages['it'] = array(
  */
 $messages['ja'] = array(
 	'commonsmetadata-desc' => 'ウィキメディア・コモンズでよく使用されるテンプレートを使用している画像説明ページ内に格納されている情報を含められるように、画像情報 API モジュールののプロパティ「extmetadata」を拡張する',
+);
+
+/** Luxembourgish (Lëtzebuergesch)
+ * @author Robby
+ */
+$messages['lb'] = array(
+	'commonsmetadata-desc' => "Erweidert d''extmetadata'-Eegeschaft vum API-Modul vun de Bildinformatioune fir Informatiounen aus de Bildbeschreiwungssäiten anzebannen, déi d'Schablounen benotzen déi op Wikimedia Commons benotzt ginn",
 );
 
 /** Macedonian (македонски)
