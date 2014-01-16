@@ -118,6 +118,13 @@ $messages['ja'] = array(
 	'commonsmetadata-desc' => 'ウィキメディア・コモンズでよく使用されるテンプレートを使用している画像説明ページ内に格納されている情報を含められるように、画像情報 API モジュールののプロパティ「extmetadata」を拡張する',
 );
 
+/** Korean (한국어)
+ * @author Priviet
+ */
+$messages['ko'] = array(
+	'commonsmetadata-desc' => '위키미디어 공용에서 자주 사용되는 틀을 사용하는 사진 설명 문성 저장된 정보를 포함하기 위해 "extmetadata" 사진 정보 API 모듈을 확장합니다',
+);
+
 /** Luxembourgish (Lëtzebuergesch)
  * @author Robby
  */
