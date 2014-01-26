@@ -153,6 +153,13 @@ $messages['nl'] = array(
 	'commonsmetadata-desc' => 'Breidt de eigenschap "extmetadata" van de API-module voor afbeeldingengegevens uit met gegevens die zijn opgeslagen in de bestandsbeschrijvingspagina\'s die veel gebruikte sjablonen van Wikimedia Commons gebruiken',
 );
 
+/** tarandíne (tarandíne)
+ * @author Joetaras
+ */
+$messages['roa-tara'] = array(
+	'commonsmetadata-desc' => "Estende 'a probbieta \"extmetadata\" d'u module API pe 'a 'mbormazione de l'immaggine pe 'ngludere 'mbormaziune reggistrate jndr'à le pàggene de descrizione de l'immaggine ca ause le template normalmende ausate sus a Uicchimedia Commons",
+);
+
 /** Russian (русский)
  * @author Okras
  */
