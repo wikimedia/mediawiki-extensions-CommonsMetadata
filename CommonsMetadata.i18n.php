@@ -167,6 +167,13 @@ $messages['ru'] = array(
 	'commonsmetadata-desc' => 'Передает свойство изображения «extmetadata» в API-модуль для включения информации, хранящейся на страницах описания изображений, которую используют шаблоны, часто используемые на Викискладе',
 );
 
+/** Swedish (svenska)
+ * @author Lokal Profil
+ */
+$messages['sv'] = array(
+	'commonsmetadata-desc' => 'Utökar "extmetadata" egenskapen i API-modulen för bildinformation med information som lagras på bildbeskrivningssidor som använder de mallar som ofta används på Wikimedia Commons.',
+);
+
 /** Ukrainian (українська)
  * @author Andriykopanytsia
  */
