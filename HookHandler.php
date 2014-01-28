@@ -59,7 +59,8 @@ class HookHandler {
 		$dataCollector = new DataCollector();
 		$dataCollector->setLanguage( $lang );
 		$dataCollector->setMultiLang( !$singleLang );
-		$dataCollector->setTemplateParser($templateParser);
+		$dataCollector->setTemplateParser( $templateParser );
+		$dataCollector->setLicenseParser( new LicenseParser() );
 
 		$dataCollector->collect( $combinedMeta, $file );
 
