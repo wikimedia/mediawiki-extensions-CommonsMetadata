@@ -12,17 +12,6 @@ use WikiFilePage;
  * Class to handle metadata collection and formatting, and manage more specific data extraction classes.
  */
 class DataCollector {
-	/**
-	 * Nonstandard license name patterns used in categories/templates/shortnames
-	 */
-	protected static $licenseAliases = array(
-		'cc-by-sa-3.0-migrated' => 'cc-by-sa-3.0',
-		'cc-by-sa-3.0-migrated-with-disclaimers' => 'cc-by-sa-3.0',
-		'cc-by-sa-3.0-2.5-2.0-1.0' => 'cc-by-sa-3.0',
-		'cc-by-sa-2.5-2.0-1.0' => 'cc-by-sa-2.5',
-		'cc-by-2.0-stma' => 'cc-by-2.0',
-		'cc-by-sa-1.0+' => 'cc-by-sa-3.0',
-	);
 
 	/**
 	 * Mapping of category names to assesment levels. Array keys are regexps which will be
@@ -52,6 +41,9 @@ class DataCollector {
 	/** @var TemplateParser */
 	protected $templateParser;
 
+	/** @var  LicenseParser */
+	protected $licenseParser;
+
 	/**
 	 * @param Language $language
 	 */
@@ -69,8 +61,15 @@ class DataCollector {
 	/**
 	 * @param TemplateParser $templateParser
 	 */
-	public function setTemplateParser( $templateParser ) {
+	public function setTemplateParser( TemplateParser $templateParser ) {
 		$this->templateParser = $templateParser;
+	}
+
+	/**
+	 * @param LicenseParser $licenseParser
+	 */
+	public function setLicenseParser( LicenseParser $licenseParser ) {
+		$this->licenseParser = $licenseParser;
 	}
 
 	/**
@@ -183,7 +182,7 @@ class DataCollector {
 	protected function getLicensesAndRemoveFromCategories( &$categories ) {
 		$licenses = array();
 		foreach ( $categories as $i => $category ) {
-			$licenseData = $this->parseLicenseString( $category );
+			$licenseData = $this->licenseParser->parseLicenseString( $category );
 			if ( $licenseData ) {
 				$licenses[] = $licenseData['name'];
 				unset( $categories[$i] );
@@ -225,7 +224,7 @@ class DataCollector {
 	 */
 	protected function filterShortnamesAndGetLicense( &$shortNames ) {
 		foreach ( $shortNames as $name ) {
-			$licenseData = $this->parseLicenseString( $name );
+			$licenseData = $this->licenseParser->parseLicenseString( $name );
 			if ( $licenseData ) {
 				$shortNames = array( $name );
 				return $licenseData['name'];
@@ -234,72 +233,4 @@ class DataCollector {
 		return null;
 	}
 
-	/**
-	 * Takes a license string (could be a category name, template name etc)
-	 * and returns template information (or null if the license was not recognized).
-	 * Only handles CC licenses for now.
-	 * The returned array will have the following keys:
-	 * - family: e.g. cc, gfdl
-	 * - type: e.g. cc-by-sa
-	 * - version: e.g. 2.5
-	 * - region: e.g. nl
-	 * - name: all the above put together, e.g. cc-by-sa-2.5-nl
-	 * @param string $str
-	 * @return array|null
-	 */
-	public function parseLicenseString( $str ) {
-		$data = array(
-			'family' => 'cc',
-			'type' => null,
-			'version' => null,
-			'region' => null,
-			'name' => null,
-		);
-
-		$str = strtolower( trim( $str ) );
-		if ( isset( self::$licenseAliases[$str] ) ) {
-			$str = self::$licenseAliases[$str];
-		}
-
-		// some special cases first
-		if ( in_array( $str, array( 'cc0', 'cc-pd' ), true ) ) {
-			$data['type'] = $data['name'] = $str;
-			return $data;
-		}
-
-		$parts = explode( '-', $str );
-		if ( $parts[0] != 'cc' ) {
-			return null;
-		}
-
-		for ( $i = 1; isset( $parts[$i] ) && in_array( $parts[$i], array( 'by', 'sa', 'nc', 'nd' ) ); $i++ ) {
-			if ( in_array( $parts[$i], array( 'nc', 'nd' ) ) ) {
-				// ignore non-free licenses
-				return null;
-			}
-		}
-		$data['type'] = implode( '-', array_slice( $parts, 0, $i ) );
-
-		if ( isset( $parts[$i] ) && is_numeric( $parts[$i] ) ) {
-			$data['version'] = $parts[$i];
-			$i++;
-		} else {
-			return null;
-		}
-
-		if ( isset( $parts[$i] ) && (
-			preg_match( '/^\w\w$/', $parts[$i] )
-			|| $parts[$i] == 'scotland'
-		) ) {
-			$data['region'] = $parts[$i];
-			$i++;
-		}
-
-		if ( $i != count( $parts ) ) {
-			return null;
-		}
-
-		$data['name'] = implode( '-', array_filter( array( $data['type'], $data['version'], $data['region'] ) ) );
-		return $data;
-	}
 }
