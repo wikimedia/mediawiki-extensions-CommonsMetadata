@@ -29,6 +29,7 @@ $wgAutoloadClasses['CommonsMetadata\DataCollector'] = __DIR__ . '/DataCollector.
 $wgAutoloadClasses['CommonsMetadata\DomNavigator'] = __DIR__ . '/DomNavigator.php';
 $wgAutoloadClasses['CommonsMetadata\TemplateParser'] = __DIR__ . '/TemplateParser.php';
 $wgAutoloadClasses['CommonsMetadata_TemplateParser'] = __DIR__ . '/TemplateParser_old.php';
+$wgAutoloadClasses['CommonsMetadata\LicenseParser'] = __DIR__ . '/LicenseParser.php';
 
 $wgExtensionMessagesFiles['CommonsMetadata'] =  __DIR__ . '/CommonsMetadata.i18n.php';
 
