@@ -40,6 +40,13 @@ $messages['br'] = array(
 	'commonsmetadata-desc' => 'Astenn a ra perzh "extmetadata" ar mollad titouroù skeudennoù API evit degas titouroù enrollet e pajennoù deskrivañ ar skeudenn a implij ar patromoù a reer ganto war Wikimedia Commons.',
 );
 
+/** Chechen (нохчийн)
+ * @author Умар
+ */
+$messages['ce'] = array(
+	'commonsmetadata-desc' => 'Суьртан «extmetadata» хьал API-модуле доккху суьртийн дийцаре агӀонашкахь болу хаам лато аьтту хуьлуьйту, кепаш лелош болу, Викигуламехь дукха лело',
+);
+
 /** German (Deutsch)
  * @author Kghbln
  * @author Metalhead64
