@@ -47,6 +47,13 @@ $messages['ce'] = array(
 	'commonsmetadata-desc' => 'Суьртан «extmetadata» хьал API-модуле доккху суьртийн дийцаре агӀонашкахь болу хаам лато аьтту хуьлуьйту, кепаш лелош болу, Викигуламехь дукха лело',
 );
 
+/** Czech (čeština)
+ * @author Mormegil
+ */
+$messages['cs'] = array(
+	'commonsmetadata-desc' => 'Rozšíří vlastnost „extmetadata“ v API modulu pro informace o obrázcích o informace uložené na popisných stránkách souborů, které používají šablony běžně užívané na Wikimedia Commons',
+);
+
 /** German (Deutsch)
  * @author Kghbln
  * @author Metalhead64
