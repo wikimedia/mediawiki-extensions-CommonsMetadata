@@ -58,6 +58,7 @@ class TemplateParser {
 		'fileinfotpl_src' => 'Credit',
 		'fileinfotpl_art_title' => 'ObjectName',
 		'fileinfotpl_book_title' => 'ObjectName',
+		'fileinfotpl_perm' => 'Permission',
 	);
 
 	/** @var array */

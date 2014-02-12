@@ -15,7 +15,7 @@ class HookHandler {
 	 * from what would be generated here.
 	 * @var float
 	 */
-	const VERSION = 1.1;
+	const VERSION = 1.2;
 
 	/**
 	 * Hook handler for extended metadata
@@ -29,8 +29,8 @@ class HookHandler {
 	 */
 	public static function onGetExtendedMetadata( &$combinedMeta, \File $file, \IContextSource $context, $singleLang, &$maxCache ) {
 		if (
-			isset( $combinedMeta['CommonsMetadataExtension'] )
-			&& $combinedMeta['CommonsMetadataExtension'] == self::VERSION
+			isset( $combinedMeta['CommonsMetadataExtension']['value'] )
+			&& $combinedMeta['CommonsMetadataExtension']['value'] == self::VERSION
 		) {
 			// This is a file from a remote API repo, and CommonsMetadata is installed on
 			// the remote as well, and generates the same metadata format. We have nothing to do.
