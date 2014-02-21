@@ -139,6 +139,13 @@ $messages['ko'] = array(
 	'commonsmetadata-desc' => '위키미디어 공용에서 자주 사용되는 틀을 사용하는 사진 설명 문성 저장된 정보를 포함하기 위해 "extmetadata" 사진 정보 API 모듈을 확장합니다',
 );
 
+/** Colognian (Ripoarisch)
+ * @author Purodha
+ */
+$messages['ksh'] = array(
+	'commonsmetadata-desc' => 'Deiht Aanjaabe övver Belder us Medijawikk <i lang="en" xml:lang="en">Commons</i> en de Beldereijeschaffte vum <i lang="en" xml:lang="en">API</i>-Befähl <code lang="en" xml:lang="en">extmetadata</code>, di en de Sigge met de Aanjabe övver Belder änthallde sin un doh de jewöhnlejje Schablohne bruche.',
+);
+
 /** Luxembourgish (Lëtzebuergesch)
  * @author Robby
  */
@@ -179,6 +186,13 @@ $messages['roa-tara'] = array(
  */
 $messages['ru'] = array(
 	'commonsmetadata-desc' => 'Передает свойство изображения «extmetadata» в API-модуль для включения информации, хранящейся на страницах описания изображений, которую используют шаблоны, часто используемые на Викискладе',
+);
+
+/** Scots (Scots)
+ * @author John Reid
+ */
+$messages['sco'] = array(
+	'commonsmetadata-desc' => 'Extends the "extmetadata" propertie o the eimage information API module tae incluide information stored in eimage description pages that uise the templates commynly uised oan Wikimedia Commyns',
 );
 
 /** Swedish (svenska)
