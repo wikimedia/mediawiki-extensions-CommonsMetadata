@@ -154,13 +154,52 @@ class TemplateParser {
 			$table = $domNavigator->closest( $labelField, 'table' );
 			$groupName = $table ? $table->getNodePath() : '-';
 
-			$data[$groupName][$fieldName] = $this->parseText( $domNavigator, $informationField );
+			$method = 'parseField' . $fieldName;
+
+			if ( !method_exists( $this, $method ) ) {
+				$method = 'parseText';
+			}
+
+			$data[$groupName][$fieldName] = $this->{$method}( $domNavigator, $informationField );
 		}
 		//return $this->arrayTranspose( $data );
 		// FIXME bug 57259 - for now select the first information template if there are more than one
 		return $data ? reset($data) : array();
 	}
 
+	/**
+	 * Parses the artist, which might be an hCard
+	 * @param DomNavigator $domNavigator
+	 * @param DOMNode $node
+	 * @returns string
+	 */
+	protected function parseFieldArtist( DomNavigator $domNavigator, DOMNode $node ) {
+		if ( $field = $this->extractHCardProperty(  $domNavigator, $node, 'fn' ) ) {
+			return $this->innerHtml( $field );
+		}
+
+		return $this->parseText( $domNavigator, $node );
+	}
+
+	/**
+	 * Extracts an hCard property from a DOMNode that contains an hCard
+	 * @param DomNavigator $domNavigator
+	 * @param DOMNode $node
+	 * @param string $property hCard property to be extracted
+	 * @return DOMNode
+	 */
+	protected function extractHCardProperty( DomNavigator $domNavigator, DOMNode $node, $property ) {
+		foreach ( $domNavigator->findElementsWithClass( '*', 'vcard', $node ) as $vcard ) {
+			foreach ( $domNavigator->findElementsWithClass( '*', $property, $vcard ) as $name ) {
+				return $name;
+			}
+		}
+	}
+
+	/**
+	 * @param DomNavigator $domNavigator
+	 * @return array
+	 */
 	protected function parseLicenses( DomNavigator $domNavigator ) {
 		$data = array();
 		foreach ( $domNavigator->findElementsWithClass( '*', 'licensetpl' ) as $licenseNode ) {
