@@ -214,10 +214,10 @@ class TemplateParserTest extends MediaWikiTestCase {
 	 * The template markup should not be present in the metadata.
 	 */
 	public function testHCard() {
-		$this->markTestSkipped( 'bug 57383' );
-
 		$data = $this->parseTestHTML( 'creator_template' );
-		$this->assertFieldEquals( 'Artist', 'George Gower', $data );
+		$this->assertFieldEquals( 'Artist',
+			'<bdi>After <a href="//en.wikipedia.org/wiki/George_Gower" class="extiw" title="en:George Gower">George Gower</a></bdi>',
+			$data );
 	}
 
 
