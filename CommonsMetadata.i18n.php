@@ -174,6 +174,13 @@ $messages['nl'] = array(
 	'commonsmetadata-desc' => 'Breidt de eigenschap "extmetadata" van de API-module voor afbeeldingengegevens uit met gegevens die zijn opgeslagen in de bestandsbeschrijvingspagina\'s die veel gebruikte sjablonen van Wikimedia Commons gebruiken',
 );
 
+/** Portuguese (português)
+ * @author Hamilton Abreu
+ */
+$messages['pt'] = array(
+	'commonsmetadata-desc' => 'Expande a propriedade "extmetadata" do módulo da API de informação sobre imagens, de forma a incluir informação armazenada nas páginas de descrição das imagens que usem as predefinições mais comuns da Wikimedia Commons.',
+);
+
 /** tarandíne (tarandíne)
  * @author Joetaras
  */
