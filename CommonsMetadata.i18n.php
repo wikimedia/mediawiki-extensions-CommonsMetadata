@@ -118,6 +118,13 @@ $messages['ia'] = array(
 	'commonsmetadata-desc' => 'Extende le proprietate "extmetadate" del modulo de API "info de imagine" pro includer le information continite in paginas de description de imagine que usa le patronos commun de Wikimedia Commons.',
 );
 
+/** Iloko (Ilokano)
+ * @author Lam-ang
+ */
+$messages['ilo'] = array(
+	'commonsmetadata-desc' => 'Mangipaatiddog ti "extmetadata" a tagikua ti pakaammo ti ladawan ti modulo ti API tapno mangiraman ti naipenpen a pakaammo kadagiti deskripsion ti panid ti ladawan a mangus-usar kadagiti plantilia a kadawyan nga inus-usar idiay Wikimedia Commons',
+);
+
 /** Italian (italiano)
  * @author Beta16
  */
