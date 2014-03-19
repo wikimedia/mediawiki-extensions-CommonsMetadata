@@ -22,11 +22,14 @@ class DataCollectorTest extends MediaWikiTestCase {
 	public function setUp() {
 		parent::setUp();
 
+		$language = $this->getMock( 'Language', array(), array(), '', false /* do not call constructor */ );
+
 		$this->templateParser = $this->getMock( 'CommonsMetadata\TemplateParser' );
 		$this->licenseParser = $this->getMock( 'CommonsMetadata\LicenseParser' );
 		$this->file = $this->getMock( 'File', array(), array(), '', false /* do not call constructor */ );
 
 		$this->dataCollector = new DataCollector();
+		$this->dataCollector->setLanguage( $language );
 		$this->dataCollector->setTemplateParser( $this->templateParser );
 		$this->dataCollector->setLicenseParser( $this->licenseParser );
 	}
