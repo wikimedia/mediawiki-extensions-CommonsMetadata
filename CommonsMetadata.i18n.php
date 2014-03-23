@@ -231,8 +231,9 @@ $messages['vi'] = array(
 );
 
 /** Simplified Chinese (中文（简体）‎)
+ * @author Xiaomingyan
  * @author Yfdyh000
  */
 $messages['zh-hans'] = array(
-	'commonsmetadata-desc' => '扩展图像信息API模块的 "extmetadata" prop，以包含存储在图像描述页、使用了位于维基共享资源的模板的信息',
+	'commonsmetadata-desc' => '扩展图像信息API模块的“extmetadata”属性，以包含存储在使用维基共享资源常用模板的图像说明页面的信息',
 );
