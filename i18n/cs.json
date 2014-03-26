@@ -1,0 +1,8 @@
+{
+    "@metadata": {
+        "authors": [
+            "Mormegil"
+        ]
+    },
+    "commonsmetadata-desc": "Rozšíří vlastnost „extmetadata“ v API modulu pro informace o obrázcích o informace uložené na popisných stránkách souborů, které používají šablony běžně užívané na Wikimedia Commons"
+}

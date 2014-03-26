@@ -1,0 +1,8 @@
+{
+    "@metadata": {
+        "authors": [
+            "Toliño"
+        ]
+    },
+    "commonsmetadata-desc": "Estende a propiedade \"extmetadata\" do módulo de información de imaxe da API para incluír información almacenada nas páxinas de descrición das imaxes que usan modelos comúns da Wikimedia Commons"
+}

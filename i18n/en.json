@@ -1,0 +1,6 @@
+{
+    "@metadata": {
+        "authors": []
+    },
+    "commonsmetadata-desc": "Extends the \"extmetadata\" property of the image information API module to include information stored in image description pages that use the templates commonly used on Wikimedia Commons"
+}

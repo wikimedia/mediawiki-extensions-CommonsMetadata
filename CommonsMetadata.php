@@ -24,6 +24,7 @@ $wgExtensionCredits['other'][] = array(
 	'url' => '//www.mediawiki.org/wiki/Extension:CommonsMetadata',
 	'descriptionmsg' => 'commonsmetadata-desc',
 );
+
 $wgAutoloadClasses['CommonsMetadata\HookHandler'] = __DIR__ . '/HookHandler.php';
 $wgAutoloadClasses['CommonsMetadata\DataCollector'] = __DIR__ . '/DataCollector.php';
 $wgAutoloadClasses['CommonsMetadata\DomNavigator'] = __DIR__ . '/DomNavigator.php';
@@ -31,6 +32,7 @@ $wgAutoloadClasses['CommonsMetadata\TemplateParser'] = __DIR__ . '/TemplateParse
 $wgAutoloadClasses['CommonsMetadata_TemplateParser'] = __DIR__ . '/TemplateParser_old.php';
 $wgAutoloadClasses['CommonsMetadata\LicenseParser'] = __DIR__ . '/LicenseParser.php';
 
+$wgMessagesDirs['CommonsMetadata'] = __DIR__ . '/i18n';
 $wgExtensionMessagesFiles['CommonsMetadata'] =  __DIR__ . '/CommonsMetadata.i18n.php';
 
 $wgHooks['GetExtendedMetadata'][] = 'CommonsMetadata\HookHandler::onGetExtendedMetadata';
