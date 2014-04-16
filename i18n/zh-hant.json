@@ -1,8 +1,8 @@
 {
-    "@metadata": {
-        "authors": [
-            "Liuxinyu970226"
-        ]
-    },
-    "commonsmetadata-desc": "拓展圖像資訊API模塊之「extmetadata」屬性以包括存儲於圖像描述頁之資訊，時常用於維基共享資源模板"
+	"@metadata": {
+		"authors": [
+			"Liuxinyu970226"
+		]
+	},
+	"commonsmetadata-desc": "拓展圖像資訊API模塊之「extmetadata」屬性以包括存儲於圖像描述頁之資訊，時常用於維基共享資源模板"
 }

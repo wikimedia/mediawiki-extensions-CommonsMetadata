@@ -1,8 +1,8 @@
 {
-    "@metadata": {
-        "authors": [
-            "Beta16"
-        ]
-    },
-    "commonsmetadata-desc": "Estende le proprietà \"extmetadata\" del modulo API per le informazioni sulle immagini, per includere informazioni memorizzate nelle pagine di descrizione dell'immagine che usano i template comunemente utilizzati su Wikimedia Commons"
+	"@metadata": {
+		"authors": [
+			"Beta16"
+		]
+	},
+	"commonsmetadata-desc": "Estende le proprietà \"extmetadata\" del modulo API per le informazioni sulle immagini, per includere informazioni memorizzate nelle pagine di descrizione dell'immagine che usano i template comunemente utilizzati su Wikimedia Commons"
 }

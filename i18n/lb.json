@@ -1,8 +1,8 @@
 {
-    "@metadata": {
-        "authors": [
-            "Robby"
-        ]
-    },
-    "commonsmetadata-desc": "Erweidert d''extmetadata'-Eegeschaft vum API-Modul vun de Bildinformatioune fir Informatiounen aus de Bildbeschreiwungssäiten anzebannen, déi d'Schablounen benotzen déi op Wikimedia Commons benotzt ginn"
+	"@metadata": {
+		"authors": [
+			"Robby"
+		]
+	},
+	"commonsmetadata-desc": "Erweidert d''extmetadata'-Eegeschaft vum API-Modul vun de Bildinformatioune fir Informatiounen aus de Bildbeschreiwungssäiten anzebannen, déi d'Schablounen benotzen déi op Wikimedia Commons benotzt ginn"
 }

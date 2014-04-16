@@ -1,8 +1,8 @@
 {
-    "@metadata": {
-        "authors": [
-            "Shirayuki"
-        ]
-    },
-    "commonsmetadata-desc": "ウィキメディア・コモンズでよく使用されるテンプレートを使用している画像説明ページ内に格納されている情報を含められるように、画像情報 API モジュールののプロパティ「extmetadata」を拡張する"
+	"@metadata": {
+		"authors": [
+			"Shirayuki"
+		]
+	},
+	"commonsmetadata-desc": "ウィキメディア・コモンズでよく使用されるテンプレートを使用している画像説明ページ内に格納されている情報を含められるように、画像情報 API モジュールののプロパティ「extmetadata」を拡張する"
 }

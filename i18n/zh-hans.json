@@ -1,9 +1,9 @@
 {
-    "@metadata": {
-        "authors": [
-            "Xiaomingyan",
-            "Yfdyh000"
-        ]
-    },
-    "commonsmetadata-desc": "扩展图像信息API模块的“extmetadata”属性，以包含存储在使用维基共享资源常用模板的图像说明页面的信息"
+	"@metadata": {
+		"authors": [
+			"Xiaomingyan",
+			"Yfdyh000"
+		]
+	},
+	"commonsmetadata-desc": "扩展图像信息API模块的“extmetadata”属性，以包含存储在使用维基共享资源常用模板的图像说明页面的信息"
 }

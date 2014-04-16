@@ -1,8 +1,8 @@
 {
-    "@metadata": {
-        "authors": [
-            "Xuacu"
-        ]
-    },
-    "commonsmetadata-desc": "Estiende la propiedá \"extmetadata\" del módulu de la API d'información de la imaxe pa incluir información guardada nes páxines de descripción de la imaxe qu'usen les plantíes usaes de vezu en Wikimedia Commons"
+	"@metadata": {
+		"authors": [
+			"Xuacu"
+		]
+	},
+	"commonsmetadata-desc": "Estiende la propiedá \"extmetadata\" del módulu de la API d'información de la imaxe pa incluir información guardada nes páxines de descripción de la imaxe qu'usen les plantíes usaes de vezu en Wikimedia Commons"
 }

@@ -1,8 +1,8 @@
 {
-    "@metadata": {
-        "authors": [
-            "Fitoschido"
-        ]
-    },
-    "commonsmetadata-desc": "Extiende la propiedad «extmetadata» del módulo de API de información de imagen para incluir datos guardados en las páginas de descripción de las imágenes que usan las plantillas más comunes de Wikimedia Commons"
+	"@metadata": {
+		"authors": [
+			"Fitoschido"
+		]
+	},
+	"commonsmetadata-desc": "Extiende la propiedad «extmetadata» del módulo de API de información de imagen para incluir datos guardados en las páginas de descripción de las imágenes que usan las plantillas más comunes de Wikimedia Commons"
 }

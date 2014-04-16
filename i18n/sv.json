@@ -1,8 +1,8 @@
 {
-    "@metadata": {
-        "authors": [
-            "Lokal Profil"
-        ]
-    },
-    "commonsmetadata-desc": "Utökar \"extmetadata\" egenskapen i API-modulen för bildinformation med information som lagras på bildbeskrivningssidor som använder de mallar som ofta används på Wikimedia Commons."
+	"@metadata": {
+		"authors": [
+			"Lokal Profil"
+		]
+	},
+	"commonsmetadata-desc": "Utökar \"extmetadata\" egenskapen i API-modulen för bildinformation med information som lagras på bildbeskrivningssidor som använder de mallar som ofta används på Wikimedia Commons."
 }

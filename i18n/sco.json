@@ -1,8 +1,8 @@
 {
-    "@metadata": {
-        "authors": [
-            "John Reid"
-        ]
-    },
-    "commonsmetadata-desc": "Extends the \"extmetadata\" propertie o the eemage information API module tae incluid information stored in the eemage descreeption pages that uise the templates commynlie uised oan Wikimedia Commons"
+	"@metadata": {
+		"authors": [
+			"John Reid"
+		]
+	},
+	"commonsmetadata-desc": "Extends the \"extmetadata\" propertie o the eemage information API module tae incluid information stored in the eemage descreeption pages that uise the templates commynlie uised oan Wikimedia Commons"
 }

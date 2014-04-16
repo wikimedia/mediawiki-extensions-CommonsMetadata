@@ -1,8 +1,8 @@
 {
-    "@metadata": {
-        "authors": [
-            "Gomoko"
-        ]
-    },
-    "commonsmetadata-desc": "Étend la propriété « extmetadata » du module d’API info d’image pour inclure des informations stockées dans les pages de description de l’image qui utilisent les modèles courants de Wikimédia Communs."
+	"@metadata": {
+		"authors": [
+			"Gomoko"
+		]
+	},
+	"commonsmetadata-desc": "Étend la propriété « extmetadata » du module d’API info d’image pour inclure des informations stockées dans les pages de description de l’image qui utilisent les modèles courants de Wikimédia Communs."
 }
