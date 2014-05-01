@@ -81,6 +81,15 @@ class DomNavigatorTest extends MediaWikiTestCase {
 		$this->assertNodeListTextEquals( array( '2' ), $nodes );
 	}
 
+	public function testMultipleElementNames() {
+		$navigator = new DomNavigator( '<div><span class="foo">1</span><div class="foo">2</div><span>3</span><p class="foo">4</p></p></div>' );
+		$nodes = $navigator->findElementsWithClass( '*', 'foo' );
+		$this->assertNodeListTextEquals( array( '1', '2', '4' ), $nodes );
+
+		$nodes = $navigator->findElementsWithClass( array( 'span', 'div' ), 'foo' );
+		$this->assertNodeListTextEquals( array( '1', '2' ), $nodes );
+	}
+
 	public function testFindElementsWithClassAndLang() {
 		$navigator = new DomNavigator( '<div><span lang="en">1</span><span class="foo">2</span><span lang="en" class="foo">3</span></div>' );
 		$nodes = $navigator->findElementsWithClassAndLang( 'span', 'foo' );

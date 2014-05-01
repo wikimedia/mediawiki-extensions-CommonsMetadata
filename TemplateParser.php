@@ -147,7 +147,7 @@ class TemplateParser {
 
 	protected function parseInformationFields( DomNavigator $domNavigator ) {
 		$data = array();
-		foreach ( $domNavigator->findElementsWithIdPrefix( 'td', 'fileinfotpl_' ) as $labelField ) {
+		foreach ( $domNavigator->findElementsWithIdPrefix( array( 'td', 'th' ), 'fileinfotpl_' ) as $labelField ) {
 			$id = $labelField->getAttribute( 'id' );
 			if ( !isset( self::$informationFieldClasses[$id] ) ) {
 				continue;
