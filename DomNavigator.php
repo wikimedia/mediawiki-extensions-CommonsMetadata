@@ -37,12 +37,13 @@ class DomNavigator {
 	/**
 	 * Returns a list of elements of the given type which have the given class.
 	 * (In other words, this is equivalent to the CSS selector 'element.class'.)
-	 * @param string $element HTML tag name (* to accept all)
+	 * @param string|array $element HTML tag name (* to accept all) or array of tag names
 	 * @param string $class
 	 * @param DOMNode $context if present, the method will only search inside this element
 	 * @return DOMNodeList|DOMElement[]
 	 */
 	public function findElementsWithClass( $element, $class, DOMNode $context = null ) {
+		$element = $this->handleElementOrList( $element );
 		$xpath = "./descendant-or-self::{$element}[contains(concat(' ', normalize-space(@class), ' '), ' $class ')]";
 		return $this->findByXpath( $xpath, $context );
 	}
@@ -50,12 +51,13 @@ class DomNavigator {
 	/**
 	 * Returns a list of elements of the given type which have the given class and any lang attribute.
 	 * (In other words, this is equivalent to the CSS selector 'element.class[lang]'.)
-	 * @param string $element HTML tag name (* to accept all)
+	 * @param string|array $element HTML tag name (* to accept all) or array of tag names
 	 * @param string $class
 	 * @param DOMNode $context if present, the method will only search inside this element
 	 * @return DOMNodeList|DOMElement[]
 	 */
 	public function findElementsWithClassAndLang( $element, $class, DOMNode $context = null ) {
+		$element = $this->handleElementOrList( $element );
 		$xpath = "./descendant-or-self::{$element}[@lang and contains(concat(' ', normalize-space(@class), ' '), ' $class ')]";
 		return $this->findByXpath( $xpath, $context );
 	}
@@ -64,12 +66,13 @@ class DomNavigator {
 	 * Returns a list of elements of the given type which have the given id.
 	 * (In other words, this is equivalent to the CSS selector 'element#id'.)
 	 * When there are multiple elements with this ID, all are returned.
-	 * @param string $element HTML tag name (* to accept all)
+	 * @param string|array $element HTML tag name (* to accept all) or array of tag names
 	 * @param string $id
 	 * @param DOMNode $context if present, the method will only search inside this element
 	 * @return DOMNodeList|DOMElement[]
 	 */
 	public function findElementsWithId( $element, $id, DOMNode $context = null ) {
+		$element = $this->handleElementOrList( $element );
 		$xpath = "./descendant-or-self::{$element}[@id='$id']";
 		return $this->findByXpath( $xpath, $context );
 	}
@@ -77,12 +80,13 @@ class DomNavigator {
 	/**
 	 * Returns a list of elements of the given type which have an id starting with the given prefix.
 	 * (In other words, this is equivalent to the CSS selector 'element[id^=prefix]'.)
-	 * @param string $element HTML tag name (* to accept all)
+	 * @param string|array $element HTML tag name (* to accept all) or array of tag names
 	 * @param string $idPrefix
 	 * @param DOMNode $context if present, the method will only search inside this element
 	 * @return DOMNodeList|DOMElement[]
 	 */
 	public function findElementsWithIdPrefix( $element, $idPrefix, DOMNode $context = null ) {
+		$element = $this->handleElementOrList( $element );
 		$xpath = "./descendant-or-self::{$element}[starts-with(@id, '$idPrefix')]";
 		return $this->findByXpath( $xpath, $context );
 	}
@@ -163,4 +167,19 @@ class DomNavigator {
 		}
 		return $nextSibling;
 	}
+
+	/**
+	 * Takes an element name or array of element names and returns an XPath expression which can
+	 * be used as an element name, but matches all of the provided elements.
+	 * @param string|array $elmementOrList
+	 * @return string
+	 */
+	protected function handleElementOrList( $elmementOrList ) {
+		if ( is_array( $elmementOrList ) ) {
+			return '*[' . implode( ' or ', array_map( function ( $el ) { return 'self::' . $el; }, $elmementOrList ) ) . ']';
+		} else {
+			return $elmementOrList;
+		}
+	}
+
 }
