@@ -21,31 +21,31 @@ class TemplateParserTest extends MediaWikiTestCase {
 	 */
 	protected static $testHTMLFiles = array(
 		// an image with no information template
-		'noinfo' => 'File:Pentacle_3.svg',
+		'noinfo' => 'File_Pentacle_3.svg',
 		// a fairly simple page with a basic information template (with no language markup) and a single CC license
-		'simple' => 'File:Sunrise_over_fishing_boats_in_Kerala.jpg',
+		'simple' => 'File_Sunrise_over_fishing_boats_in_Kerala.jpg',
 		// language markup, but some of the description (a WLM reference number) is outside it
-		'outside_lang' => 'File:Colonial_Williamsburg_(December,_2011)_-_Christmas_decorations_20.JPG',
+		'outside_lang' => 'File_Colonial_Williamsburg_(December,_2011)_-_Christmas_decorations_20.JPG',
 		// English description only
-		'singlelang' => 'File:Dala_Kyrka.JPG',
+		'singlelang' => 'File_Dala_Kyrka.JPG',
 		// non-English description only
-		'no_english' => 'File:Balkana,_januar_2012_(2).JPG',
+		'no_english' => 'File_Balkana,_januar_2012_(2).JPG',
 		// en/fr/de description
-		'multilang' => 'File:Sydney_Tower_Panorama.jpg',
+		'multilang' => 'File_Sydney_Tower_Panorama.jpg',
 		// complex non-ASCII characters
-		'japanese' => 'File:SFC_.gif',
+		'japanese' => 'File_SFC_.gif',
 		// an image with multiple licenses (GFDL + 2xCC)
-		'multilicense' => 'File:Pentacle_3.svg',
+		'multilicense' => 'File_Pentacle_3.svg',
 		// license template inside {{information}}
-		'embedded_license' => 'File:Thury_Grave_Wiener_Zentralfriedhof.jpg',
+		'embedded_license' => 'File_Thury_Grave_Wiener_Zentralfriedhof.jpg',
 		// coordinates
-		'coord' => 'File:Sydney_Tower_Panorama.jpg',
+		'coord' => 'File_Sydney_Tower_Panorama.jpg',
 		// complex HTML in the author field
-		'creator_template' => 'File:Elizabeth_I_George_Gower.jpg',
+		'creator_template' => 'File_Elizabeth_I_George_Gower.jpg',
 		// an image with many languages
-		'manylang' => 'File:Sikh_pilgrim_at_the_Golden_Temple_(Harmandir_Sahib)_in_Amritsar,_India.jpg',
+		'manylang' => 'File_Sikh_pilgrim_at_the_Golden_Temple_(Harmandir_Sahib)_in_Amritsar,_India.jpg',
 		// an image with a relatively long description
-		'big' => 'File:Askaris_im_Warschauer_Getto_-_1943.jpg',
+		'big' => 'File_Askaris_im_Warschauer_Getto_-_1943.jpg',
 	);
 
 	/**
