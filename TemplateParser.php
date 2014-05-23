@@ -12,15 +12,9 @@ use DOMElement;
  * https://commons.wikimedia.org/wiki/Commons:Machine-readable_data
  */
 class TemplateParser {
-	/**
-	 * Normally, if a property appears multiple times, the old value is overwritten.
-	 * For these properties, all values are returned in an array.
-	 * FIXME this is BC behavior, multivalued fields should be handled in a more clever way - bug 57259
-	 * @var array
-	 */
-	protected static $multivaluedProperties = array(
-		'LicenseShortName',
-	);
+	const COORDINATES_KEY = 'coordinates';
+	const LICENSES_KEY = 'licenses';
+	const INFORMATION_FIELDS_KEY = 'informationFields';
 
 	/**
 	 * HTML element class name => metadata field name mapping for license data.
@@ -77,15 +71,6 @@ class TemplateParser {
 	protected $multiLanguage = false;
 
 	/**
-	 * Normally, if a property appears multiple times, the old value is overwritten.
-	 * For these properties, all values are returned in an array.
-	 * @return array
-	 */
-	public function getMultivaluedProperties() {
-		return self::$multivaluedProperties;
-	}
-
-	/**
 	 * When parsing multi-language text, use the first available language from this array.
 	 * (Order matters - try to use the first element, if not available the second etc.)
 	 * When set to false, will return all languages.
@@ -118,12 +103,11 @@ class TemplateParser {
 
 		$domNavigator = new DomNavigator( $html );
 
-		$data = array();
-		$data += $this->parseCoordinates( $domNavigator );
-		$data += $this->parseInformationFields( $domNavigator );
-		$data += $this->parseLicenses( $domNavigator );
-
-		return $data;
+		return array(
+			self::COORDINATES_KEY => $this->parseCoordinates( $domNavigator ),
+			self::INFORMATION_FIELDS_KEY => $this->parseInformationFields( $domNavigator ),
+			self::LICENSES_KEY => $this->parseLicenses( $domNavigator ),
+		);
 	}
 
 	/**
@@ -134,17 +118,23 @@ class TemplateParser {
 	protected function parseCoordinates( DomNavigator $domNavigator ) {
 		$data = array();
 		foreach ( $domNavigator->findElementsWithClass( 'span', 'geo' ) as $geoNode ) {
+			$coordinateData = array();
 			$coords = explode( ';', trim( $geoNode->textContent ) );
 			if ( count( $coords ) == 2 && is_numeric( $coords[0] ) && is_numeric( $coords[1] ) ) {
-				$data['GPSLatitude'] = $coords[0];
-				$data['GPSLongitude'] = $coords[1];
-				$data['GPSMapDatum'] = 'WGS-84';
-				break; // multiple coordinates for a single image would not be meaningful, so we just return the first valid one
+				$coordinateData['GPSLatitude'] = $coords[0];
+				$coordinateData['GPSLongitude'] = $coords[1];
+				$coordinateData['GPSMapDatum'] = 'WGS-84';
 			}
+			$data[] = $coordinateData;
 		}
 		return $data;
 	}
 
+	/**
+	 * Parses the {{Information}} templates (and anything using the same metadata notation, like {{Artwork}})
+	 * @param DomNavigator $domNavigator
+	 * @return array an array if information(-like) templates: array( 0 => array( 'ImageDescription' => ... ) ... )
+	 */
 	protected function parseInformationFields( DomNavigator $domNavigator ) {
 		$data = array();
 		foreach ( $domNavigator->findElementsWithIdPrefix( array( 'td', 'th' ), 'fileinfotpl_' ) as $labelField ) {
@@ -171,9 +161,7 @@ class TemplateParser {
 
 			$data[$groupName][$fieldName] = $this->{$method}( $domNavigator, $informationField );
 		}
-		//return $this->arrayTranspose( $data );
-		// FIXME bug 57259 - for now select the first information template if there are more than one
-		return $data ? reset($data) : array();
+		return array_values( $data ); // using node paths to identify tables is an internal detail, hide it
 	}
 
 	/**
@@ -207,7 +195,7 @@ class TemplateParser {
 
 	/**
 	 * @param DomNavigator $domNavigator
-	 * @return array
+	 * @return array an array of licenses: array( 0 => array( 'LincenseShortName' => ... ) ... )
 	 */
 	protected function parseLicenses( DomNavigator $domNavigator ) {
 		$data = array();
@@ -218,18 +206,7 @@ class TemplateParser {
 			}
 			$data[] = $licenseData;
 		}
-		$data = $this->arrayTranspose( $data );
 
-		// FIXME for backwards compatibility / to make it easier to compare output with old parser
-		foreach ( $data as $fieldName => $value ) {
-			if ( empty( $value ) ) {
-				unset( $data[$fieldName] );
-			} elseif ( !in_array( $fieldName, self::getMultivaluedProperties() ) ) {
-				$data[$fieldName] = end( $value );
-			} else {
-				$data[$fieldName] = array_values( $value );
-			}
-		}
 		return $data;
 	}
 

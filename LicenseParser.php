@@ -41,12 +41,42 @@ class LicenseParser {
 	}
 
 	/**
+	 * Takes an array width license data and sorts it by license priority.
+	 * The sort is stable, and the input array is not changed.
+	 * The method will call $getLicenseStringCallback( $data[$key], $key ) and expect a license name.
+	 * @param array $data
+	 * @param callable $getLicenseStringCallback
+	 * @return array
+	 */
+	public function sortDataByLicensePriority( array $data, $getLicenseStringCallback ) {
+		$licensePriorities = array();
+		$i = 0;
+		foreach ( $data as $key => $value ) {
+			$license = $getLicenseStringCallback( $value, $key );
+			$licenseDetails = $this->parseLicenseString( $license );
+			$priority = $this->getLicensePriority( $licenseDetails );
+			$licensePriorities[$key] = array( $priority, $i );
+			$i++;
+		}
+
+		uksort( $data, function ( $a, $b ) use ( $licensePriorities ) {
+			if ( $licensePriorities[$a][0] === $licensePriorities[$b][0] ) { // equal priority, keep original order
+				return $licensePriorities[$a][1] - $licensePriorities[$b][1];
+			} else {
+				return $licensePriorities[$b][0] - $licensePriorities[$a][0]; // higher priority means smaller wrt sorting
+			}
+		} );
+
+		return $data;
+	}
+
+	/**
 	 * Takes a CC license string and returns template information.
 	 * @see parseLicenceString()
 	 * @param string $str
 	 * @return array|null
 	 */
-	public function parseCreativeCommonsLicenseString( $str ) {
+	protected function parseCreativeCommonsLicenseString( $str ) {
 		$data = array(
 			'family' => 'cc',
 			'type' => null,
@@ -118,4 +148,33 @@ class LicenseParser {
 		}
 		return null;
 	}
+
+	/**
+	 * Returns a priority value for this license. The license with the highest priority will be
+	 * returned in the GetExtendedMetadata hook.
+	 * @param array $licenseData data from LicenseParser::parseLicenseString()
+	 * @return int
+	 */
+	protected function getLicensePriority( $licenseData ) {
+		$priority = 0;
+		if ( isset( $licenseData[ 'family' ] ) ) {
+			if ( $licenseData[ 'family' ] === 'pd' ) {
+				$priority = 2000;
+			} elseif ( $licenseData[ 'family' ] === 'cc' ) {
+				// ignore non-free CC licenses for now; an image with such a license probably
+				// won't have a better license anyway
+				$priority += 1000;
+				if ( isset( $licenseData['type'] ) && $licenseData['type'] === 'cc-by' ) {
+					// prefer the less restrictive CC-BY over CC-BY-SA
+					$priority += 100;
+				}
+				if ( isset( $licenseData['version'] ) ) {
+					// prefer newer licenses
+					$priority += (int)( 10 * (float)$licenseData['version'] );
+				}
+			}
+		}
+		return $priority;
+	}
+
 }

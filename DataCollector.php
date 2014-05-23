@@ -91,45 +91,64 @@ class DataCollector {
 	public function collect( array &$previousMetadata, File $file ) {
 		$descriptionText = $this->getDescriptionText( $file, $this->language );
 
-		$templateMetadata = $this->templateParser->parsePage( $descriptionText );
-
 		$categories = $this->getCategories( $file, $previousMetadata );
+		$previousMetadata = array_merge( $previousMetadata, $this->getCategoryMetadata( $categories ) );
 
+		$templateData = $this->templateParser->parsePage( $descriptionText );
+		$previousMetadata = array_merge( $previousMetadata, $this->getTemplateMetadata( $templateData ) );
+	}
+
+	/**
+	 * @param array $categories
+	 * @return array
+	 */
+	protected function getCategoryMetadata( array $categories ) {
 		$assessments = $this->getAssessmentsAndRemoveFromCategories( $categories );
 		$licenses = $this->getLicensesAndRemoveFromCategories( $categories );
-		if ( !$licenses && isset( $templateMetadata['LicenseShortName'] ) ) {
-			$license = $this->filterShortnamesAndGetLicense( $templateMetadata['LicenseShortName'] );
-			$licenses = array( $license );
-		}
 
-		$previousMetadata['Categories'] = array(
-			'value' => implode( '|', $categories ),
-			'source' => 'commons-categories',
+		return array(
+			'Categories' => array(
+				'value' => implode( '|', $categories ),
+				'source' => 'commons-categories',
+			),
+			'Assessments' => array(
+				'value' => implode('|', $assessments),
+				'source' => 'commons-categories',
+			),
 		);
+	}
 
-		$previousMetadata['Assessments'] = array(
-			'value' => implode('|', $assessments),
-			'source' => 'commons-categories',
-		);
+	/**
+	 * @param array $templateData
+	 * @return array
+	 */
+	protected function getTemplateMetadata( $templateData ) {
+		// GetExtendedMetadata does not handle multivalued fields, we need to select one of everything
+		$templateFields = array();
+		$templateFields = array_merge( $templateFields, $this->selectCoordinate( $templateData[TemplateParser::COORDINATES_KEY] ) );
+		$templateFields = array_merge( $templateFields, $this->selectInformationTemplate( $templateData[TemplateParser::INFORMATION_FIELDS_KEY] ) );
+		$templateFields = array_merge( $templateFields, $this->selectLicense( $templateData[TemplateParser::LICENSES_KEY] ) );
 
-		if ( $licenses ) {
-			$previousMetadata['License'] = array(
-				'value' => $licenses[0],
-				'source' => 'commons-templates',
-			);
-		}
-
-		foreach( $templateMetadata as $name => $value ) {
-			if ( in_array( $name, $this->templateParser->getMultivaluedProperties() ) ) {
-				// the GetExtendedMetadata hook expects the property value to be a string,
-				// so we have to throw away all values but one here.
-				$value = end( $value );
-			}
-			$previousMetadata[ $name ] = array(
+		$metadata = array();
+		foreach( $templateFields as $name => $value ) {
+			$metadata[ $name ] = array(
 				'value' => $value,
 				'source' => 'commons-desc-page'
 			);
 		}
+
+		// use short name to generate internal name used in i18n
+		if ( isset( $templateFields['LicenseShortName'] ) ) {
+			$licenseData = $this->licenseParser->parseLicenseString( $templateFields['LicenseShortName'] );
+			if ( isset( $licenseData['name'] ) ) {
+				$metadata['License'] = array(
+					'value' => $licenseData['name'],
+					'source' => 'commons-templates',
+				);
+			}
+		}
+
+		return $metadata;
 	}
 
 	/**
@@ -253,22 +272,41 @@ class DataCollector {
 	}
 
 	/**
-	 * Tries to identify the license based on its short name.
-	 * Will also rename all names but one from $shortName - this is done because the
-	 * GetExtendedMetadata hook expects the property value to be a string, so only one name
-	 * will be used anyway, and we want that one to match the license type.
-	 * @param array $shortNames
-	 * @return string|null something like 'cc-by-sa-3.0-nl', or null if not recognized
-	 * @see https://commons.wikimedia.org/wiki/Commons:Machine-readable_data#Machine_readable_data_set_by_license_templates
+	 * Receives the list of coordinates found by the template parser and selects which one to use.
+	 * @param array $coordinates an array of coordinates, each is an array of metdata fields in fieldname => value form
+	 * @return array an array of metdata fields in fieldname => value form
 	 */
-	protected function filterShortnamesAndGetLicense( &$shortNames ) {
-		foreach ( $shortNames as $name ) {
-			$licenseData = $this->licenseParser->parseLicenseString( $name );
-			if ( $licenseData ) {
-				$shortNames = array( $name );
-				return $licenseData['name'];
+	protected function selectCoordinate( $coordinates ) {
+		// multiple coordinates for a single image would not be meaningful, so we just return the first valid one
+		return $coordinates ? $coordinates[0] : array();
+	}
+
+	/**
+	 * Receives the list of information templates found by the template parser and selects which one to use.
+	 * @param array $informationTemplates an array of information templates , each is an array of metdata fields in fieldname => value form
+	 * @return array an array of metdata fields in fieldname => value form
+	 */
+	protected function selectInformationTemplate( $informationTemplates ) {
+		// FIXME we should figure out which is the real {{Information}} template (as opposed to
+		//       {{Artwork}} or {{Book}}) and return that. Usually it is the first one though.
+		return $informationTemplates ? $informationTemplates[0] : array();
+	}
+
+	/**
+	 * Receives the list of licenses found by the template parser and selects which one to use.
+	 * @param array $licenses an array of licenses, each is an array of metdata fields in fieldname => value form
+	 * @return array an array of metdata fields in fieldname => value form
+	 */
+	protected function selectLicense( $licenses ) {
+		$sortedLicenses = $this->licenseParser->sortDataByLicensePriority( $licenses, function ( $license ) {
+			if ( !isset( $license['LicenseShortName'] ) ) {
+				return null;
 			}
-		}
-		return null;
+			return $license['LicenseShortName'];
+		} );
+
+		// sortDataByLicensePriority puts things in right order but also rearranges the keys - we don't want that
+		$sortedLicenses = array_values( $sortedLicenses );
+		return $sortedLicenses ? $sortedLicenses[0] : array();
 	}
 }

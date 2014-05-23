@@ -3,7 +3,7 @@
 use CommonsMetadata\TemplateParser;
 
 /**
- * @covers TemplateParser
+ * @covers CommonsMetadata\TemplateParser
  * @group Extensions/CommonsMetadata
  */
 class TemplateParserTest extends MediaWikiTestCase {
@@ -65,11 +65,11 @@ class TemplateParserTest extends MediaWikiTestCase {
 	 */
 	public function testDescriptionWithoutLanguage() {
 		$data = $this->parseTestHTML( 'simple' );
-		$this->assertFieldContainsString( 'ImageDescription', 'Sunrise', $data );
+		$this->assertFieldContainsString( 'ImageDescription', 'Sunrise', $data, TemplateParser::INFORMATION_FIELDS_KEY );
 
 		$parser = $this->getParser( 'de' );
 		$data = $this->parseTestHTML( 'simple', $parser );
-		$this->assertFieldContainsString( 'ImageDescription', 'Sunrise', $data );
+		$this->assertFieldContainsString( 'ImageDescription', 'Sunrise', $data, TemplateParser::INFORMATION_FIELDS_KEY );
 	}
 
 	/**
@@ -78,11 +78,11 @@ class TemplateParserTest extends MediaWikiTestCase {
 	 */
 	public function testDescriptionInSingleLanguage() {
 		$data = $this->parseTestHTML( 'singlelang' );
-		$this->assertFieldContainsString( 'ImageDescription', 'Dala kyrka', $data );
+		$this->assertFieldContainsString( 'ImageDescription', 'Dala kyrka', $data, TemplateParser::INFORMATION_FIELDS_KEY );
 
 		$parser = $this->getParser( 'de' );
 		$data = $this->parseTestHTML( 'singlelang', $parser );
-		$this->assertFieldContainsString( 'ImageDescription', 'Dala kyrka', $data );
+		$this->assertFieldContainsString( 'ImageDescription', 'Dala kyrka', $data, TemplateParser::INFORMATION_FIELDS_KEY );
 	}
 
 	/**
@@ -92,11 +92,11 @@ class TemplateParserTest extends MediaWikiTestCase {
 	 */
 	public function testDescriptionInSingleNonFallbackLanguage() {
 		$data = $this->parseTestHTML( 'no_english' );
-		$this->assertFieldContainsString( 'ImageDescription', 'Balkana', $data );
+		$this->assertFieldContainsString( 'ImageDescription', 'Balkana', $data, TemplateParser::INFORMATION_FIELDS_KEY );
 
 		$parser = $this->getParser( 'de' );
 		$data = $this->parseTestHTML( 'no_english', $parser );
-		$this->assertFieldContainsString( 'ImageDescription', 'Balkana', $data );
+		$this->assertFieldContainsString( 'ImageDescription', 'Balkana', $data, TemplateParser::INFORMATION_FIELDS_KEY );
 	}
 
 	/**
@@ -104,8 +104,8 @@ class TemplateParserTest extends MediaWikiTestCase {
 	 */
 	public function testDescriptionOutsideLanguageTemplate() {
 		$data = $this->parseTestHTML( 'outside_lang' );
-		$this->assertFieldContainsString( 'ImageDescription', 'Williamsburg Historic District', $data );
-		$this->assertFieldNotContainsString( 'ImageDescription', 'This is an image of a place or building', $data );
+		$this->assertFieldContainsString( 'ImageDescription', 'Williamsburg Historic District', $data, TemplateParser::INFORMATION_FIELDS_KEY );
+		$this->assertFieldNotContainsString( 'ImageDescription', 'This is an image of a place or building', $data, TemplateParser::INFORMATION_FIELDS_KEY );
 	}
 
 	/**
@@ -114,27 +114,27 @@ class TemplateParserTest extends MediaWikiTestCase {
 	 */
 	public function testDescriptionInMultipleLanguages() {
 		$data = $this->parseTestHTML( 'multilang' ); // en/fr/de description
-		$this->assertFieldContainsString( 'ImageDescription', 'Assembly', $data );
-		$this->assertFieldNotContainsString( 'ImageDescription', 'Rassemblement', $data );
-		$this->assertFieldNotContainsString( 'ImageDescription', 'Versammlung', $data );
+		$this->assertFieldContainsString( 'ImageDescription', 'Assembly', $data, TemplateParser::INFORMATION_FIELDS_KEY );
+		$this->assertFieldNotContainsString( 'ImageDescription', 'Rassemblement', $data, TemplateParser::INFORMATION_FIELDS_KEY );
+		$this->assertFieldNotContainsString( 'ImageDescription', 'Versammlung', $data, TemplateParser::INFORMATION_FIELDS_KEY );
 
 		$parser = $this->getParser( 'fr' );
 		$data = $this->parseTestHTML( 'multilang', $parser );
-		$this->assertFieldNotContainsString( 'ImageDescription', 'Assembly', $data );
-		$this->assertFieldContainsString( 'ImageDescription', 'Rassemblement', $data );
-		$this->assertFieldNotContainsString( 'ImageDescription', 'Versammlung', $data );
+		$this->assertFieldNotContainsString( 'ImageDescription', 'Assembly', $data, TemplateParser::INFORMATION_FIELDS_KEY );
+		$this->assertFieldContainsString( 'ImageDescription', 'Rassemblement', $data, TemplateParser::INFORMATION_FIELDS_KEY );
+		$this->assertFieldNotContainsString( 'ImageDescription', 'Versammlung', $data, TemplateParser::INFORMATION_FIELDS_KEY );
 
 		$parser = $this->getParser( 'de' );
 		$data = $this->parseTestHTML( 'multilang', $parser );
-		$this->assertFieldNotContainsString( 'ImageDescription', 'Assembly', $data );
-		$this->assertFieldNotContainsString( 'ImageDescription', 'Rassemblement', $data );
-		$this->assertFieldContainsString( 'ImageDescription', 'Versammlung', $data );
+		$this->assertFieldNotContainsString( 'ImageDescription', 'Assembly', $data, TemplateParser::INFORMATION_FIELDS_KEY );
+		$this->assertFieldNotContainsString( 'ImageDescription', 'Rassemblement', $data, TemplateParser::INFORMATION_FIELDS_KEY );
+		$this->assertFieldContainsString( 'ImageDescription', 'Versammlung', $data, TemplateParser::INFORMATION_FIELDS_KEY );
 
 		$parser = $this->getParser( 'nl' );
 		$data = $this->parseTestHTML( 'multilang', $parser );
-		$this->assertFieldContainsString( 'ImageDescription', 'Assembly', $data );
-		$this->assertFieldNotContainsString( 'ImageDescription', 'Rassemblement', $data );
-		$this->assertFieldNotContainsString( 'ImageDescription', 'Versammlung', $data );
+		$this->assertFieldContainsString( 'ImageDescription', 'Assembly', $data, TemplateParser::INFORMATION_FIELDS_KEY );
+		$this->assertFieldNotContainsString( 'ImageDescription', 'Rassemblement', $data, TemplateParser::INFORMATION_FIELDS_KEY );
+		$this->assertFieldNotContainsString( 'ImageDescription', 'Versammlung', $data, TemplateParser::INFORMATION_FIELDS_KEY );
 	}
 
 	/**
@@ -144,6 +144,7 @@ class TemplateParserTest extends MediaWikiTestCase {
 		$parser = $this->getParser( false );
 		$data = $this->parseTestHTML( 'multilang', $parser );
 
+		$data = $this->getAndAssertTemplateData( $data, TemplateParser::INFORMATION_FIELDS_KEY );
 		$this->assertArrayHasKey( 'ImageDescription', $data );
 		$description = $data['ImageDescription'];
 		$this->assertLanguageArray( $description );
@@ -160,6 +161,7 @@ class TemplateParserTest extends MediaWikiTestCase {
 		$parser = $this->getParser( false );
 		$data = $this->parseTestHTML( 'singlelang', $parser );
 
+		$data = $this->getAndAssertTemplateData( $data, TemplateParser::INFORMATION_FIELDS_KEY );
 		$this->assertArrayHasKey( 'ImageDescription', $data );
 		$description = $data['ImageDescription'];
 		$this->assertLanguageArray( $description );
@@ -180,6 +182,7 @@ class TemplateParserTest extends MediaWikiTestCase {
 		$parser = $this->getParser( false );
 		$data = $this->parseTestHTML( 'simple', $parser );
 
+		$data = $this->getAndAssertTemplateData( $data, TemplateParser::INFORMATION_FIELDS_KEY );
 		$this->assertArrayHasKey( 'ImageDescription', $data );
 		$description = $data['ImageDescription'];
 		$this->assertLanguageArray( $description );
@@ -194,7 +197,7 @@ class TemplateParserTest extends MediaWikiTestCase {
 	 */
 	public function testLanguageNameNotPresent() {
 		$data = $this->parseTestHTML( 'singlelang' );
-		$this->assertFieldNotContainsString( 'ImageDescription', 'English', $data );
+		$this->assertFieldNotContainsString( 'ImageDescription', 'English', $data, TemplateParser::INFORMATION_FIELDS_KEY );
 	}
 
 	/**
@@ -202,7 +205,7 @@ class TemplateParserTest extends MediaWikiTestCase {
 	 */
 	public function testSimpleWrappersAreRemoved() {
 		$data = $this->parseTestHTML( 'simple' );
-		$this->assertFieldStartsWith( 'ImageDescription', 'Sunrise', $data );
+		$this->assertFieldStartsWith( 'ImageDescription', 'Sunrise', $data, TemplateParser::INFORMATION_FIELDS_KEY );
 	}
 
 	/**
@@ -213,7 +216,7 @@ class TemplateParserTest extends MediaWikiTestCase {
 		$data = $this->parseTestHTML( 'creator_template' );
 		$this->assertFieldEquals( 'Artist',
 			'<bdi>After <a href="//en.wikipedia.org/wiki/George_Gower" class="extiw" title="en:George Gower">George Gower</a></bdi>',
-			$data );
+			$data, TemplateParser::INFORMATION_FIELDS_KEY );
 	}
 
 
@@ -221,37 +224,37 @@ class TemplateParserTest extends MediaWikiTestCase {
 
 	public function testSingleLicense() {
 		$data = $this->parseTestHTML( 'simple' );
-		$this->assertFieldEquals( 'LicenseShortName', array( 'CC-BY-SA-3.0' ), $data );
+
+		$this->assertFieldEquals( 'LicenseShortName', 'CC-BY-SA-3.0', $data, TemplateParser::LICENSES_KEY );
 		// long name is called UsageTerms - bug 57847
-		$this->assertFieldEquals( 'UsageTerms', 'Creative Commons Attribution-Share Alike 3.0', $data );
-		$this->assertFieldEquals( 'LicenseUrl', 'http://creativecommons.org/licenses/by-sa/3.0', $data );
-		$this->assertFieldEquals( 'Copyrighted', 'True', $data );
+		$this->assertFieldEquals( 'UsageTerms', 'Creative Commons Attribution-Share Alike 3.0', $data, TemplateParser::LICENSES_KEY );
+		$this->assertFieldEquals( 'LicenseUrl', 'http://creativecommons.org/licenses/by-sa/3.0', $data, TemplateParser::LICENSES_KEY );
+		$this->assertFieldEquals( 'Copyrighted', 'True', $data, TemplateParser::LICENSES_KEY );
 	}
 
 	public function testMultiLicense() {
 		$data = $this->parseTestHTML( 'multilicense' );
-		$this->assertFieldEquals( 'LicenseShortName', array( 'GFDL', 'CC-BY-SA-2.5', 'CC-BY-SA-3.0' ), $data );
-		$this->markTestSkipped( 'bug 57259' );
-		$this->assertFieldEquals( 'UsageTerms', array (
-			'GNU Free Documentation License',
-			'Creative Commons Attribution-Share Alike 2.5',
-			'Creative Commons Attribution-Share Alike 3.0',
-		), $data );
-		$this->assertFieldEquals( 'LicenseUrl', array(
-			'http://www.gnu.org/copyleft/fdl.html',
-			'http://creativecommons.org/licenses/by-sa/2.5',
-			'http://creativecommons.org/licenses/by-sa/3.0',
-		), $data );
-		$this->assertFieldEquals( 'Copyrighted', array(
-			'True',
-			'True',
-			'True',
-		), $data );
+
+		$this->assertFieldEquals( 'LicenseShortName', 'GFDL', $data, TemplateParser::LICENSES_KEY, 0 );
+		$this->assertFieldEquals( 'LicenseShortName', 'CC-BY-SA-3.0', $data, TemplateParser::LICENSES_KEY, 1 );
+		$this->assertFieldEquals( 'LicenseShortName', 'CC-BY-SA-2.5', $data, TemplateParser::LICENSES_KEY, 2 );
+
+		$this->assertFieldEquals( 'UsageTerms', 'GNU Free Documentation License', $data, TemplateParser::LICENSES_KEY, 0 );
+		$this->assertFieldEquals( 'UsageTerms', 'Creative Commons Attribution-Share Alike 3.0', $data, TemplateParser::LICENSES_KEY, 1 );
+		$this->assertFieldEquals( 'UsageTerms', 'Creative Commons Attribution-Share Alike 2.5', $data, TemplateParser::LICENSES_KEY, 2 );
+
+		$this->assertFieldEquals( 'LicenseUrl', 'http://www.gnu.org/copyleft/fdl.html', $data, TemplateParser::LICENSES_KEY, 0 );
+		$this->assertFieldEquals( 'LicenseUrl', 'http://creativecommons.org/licenses/by-sa/3.0/', $data, TemplateParser::LICENSES_KEY, 1 );
+		$this->assertFieldEquals( 'LicenseUrl', 'http://creativecommons.org/licenses/by-sa/2.5', $data, TemplateParser::LICENSES_KEY, 2 );
+
+		$this->assertFieldEquals( 'Copyrighted', 'True', $data, TemplateParser::LICENSES_KEY, 0 );
+		$this->assertFieldEquals( 'Copyrighted', 'True', $data, TemplateParser::LICENSES_KEY, 1 );
+		$this->assertFieldEquals( 'Copyrighted', 'True', $data, TemplateParser::LICENSES_KEY, 2 );
 	}
 
 	public function testLicenseTemplateInsideInformationTemplate() {
 		$data = $this->parseTestHTML( 'embedded_license' );
-		$this->assertFieldEquals( 'LicenseShortName', array( 'Public domain' ), $data );
+		$this->assertFieldEquals( 'LicenseShortName', 'Public domain', $data, TemplateParser::LICENSES_KEY );
 	}
 
 
@@ -264,7 +267,7 @@ class TemplateParserTest extends MediaWikiTestCase {
 		$parser = $this->getParser( 'ja' );
 		$data = $this->parseTestHTML( 'japanese', $parser );
 
-		$this->assertFieldContainsString( 'ImageDescription', 'スーパーファミコン', $data );
+		$this->assertFieldContainsString( 'ImageDescription', 'スーパーファミコン', $data, TemplateParser::INFORMATION_FIELDS_KEY );
 	}
 
 	/**
@@ -272,8 +275,8 @@ class TemplateParserTest extends MediaWikiTestCase {
 	 */
 	public function testCoordinates() {
 		$data = $this->parseTestHTML( 'coord' );
-		$this->assertFieldEquals( 'GPSLatitude', '-33.870455555556', $data );
-		$this->assertFieldEquals( 'GPSLongitude', '151.20888888889', $data );
+		$this->assertFieldEquals( 'GPSLatitude', '-33.870455555556', $data, TemplateParser::COORDINATES_KEY );
+		$this->assertFieldEquals( 'GPSLongitude', '151.20888888889', $data, TemplateParser::COORDINATES_KEY );
 	}
 
 	/**
@@ -358,9 +361,12 @@ class TemplateParserTest extends MediaWikiTestCase {
 	 * @param string $key field name
 	 * @param string $expected expected value
 	 * @param array $data data returned by the parser
+	 * @param string $type one of the TemplateParser::*_KEY constants
+	 * @param int $position template position wrt templates of the same type
 	 * @param string $message
 	 */
-	protected function assertFieldEquals( $key, $expected, $data, $message = '') {
+	protected function assertFieldEquals( $key, $expected, $data, $type, $position = 0, $message = '') {
+		$data = $this->getAndAssertTemplateData( $data, $type, $position );
 		$this->assertArrayHasKey( $key, $data, $message );
 		$actual = $data[$key];
 		if ( is_array( $actual ) && is_array( $expected) ) {
@@ -399,13 +405,29 @@ class TemplateParserTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * Asserts that $data contains at least $position templates of type $type, and returns the one
+	 * at $position.
+	 * @param array $data
+	 * @param string $type one of the TemplateParser::*_KEY constants
+	 * @param int $position template position wrt templates of the same type
+	 */
+	protected function getAndAssertTemplateData( $data, $type, $position = 0 ) {
+		$this->assertArrayHasKey( $type, $data, "No $type type in template data" );
+		$this->assertArrayHasKey( $position, $data[$type], "No position $position for template type $type in data" );
+		return $data[$type][$position];
+	}
+
+	/**
 	 * Substring assertion for a metadata field returned by the parser.
 	 * @param string $key field name
 	 * @param string $expectedSubstring expected value
 	 * @param array $data data returned by the parser
+	 * @param string $type one of the TemplateParser::*_KEY constants
+	 * @param int $position template position wrt templates of the same type
 	 * @param string $message
 	 */
-	protected function assertFieldContainsString( $key, $expectedSubstring, $data, $message = '' ) {
+	protected function assertFieldContainsString( $key, $expectedSubstring, $data, $type, $position = 0, $message = '' ) {
+		$data = $this->getAndAssertTemplateData( $data, $type, $position );
 		$this->assertArrayHasKey( $key, $data, $message );
 		$actualString = $data[$key];
 		$this->assertInternalType( 'string', $actualString, $message );
@@ -417,9 +439,12 @@ class TemplateParserTest extends MediaWikiTestCase {
 	 * @param string $key field name
 	 * @param string $expectedSubstring expected value
 	 * @param array $data data returned by the parser
+	 * @param string $type one of the TemplateParser::*_KEY constants
+	 * @param int $position template position wrt templates of the same type
 	 * @param string $message
 	 */
-	protected function assertFieldNotContainsString( $key, $expectedSubstring, $data, $message = '' ) {
+	protected function assertFieldNotContainsString( $key, $expectedSubstring, $data, $type, $position = 0, $message = '' ) {
+		$data = $this->getAndAssertTemplateData( $data, $type, $position );
 		$this->assertArrayHasKey( $key, $data, $message );
 		$actualString = $data[$key];
 		$this->assertInternalType( 'string', $actualString, $message );
@@ -431,9 +456,12 @@ class TemplateParserTest extends MediaWikiTestCase {
 	 * @param string $key field name
 	 * @param string $expectedPrefix expected value
 	 * @param array $data data returned by the parser
+	 * @param string $type one of the TemplateParser::*_KEY constants
+	 * @param int $position template position wrt templates of the same type
 	 * @param string $message
 	 */
-	protected function assertFieldStartsWith( $key, $expectedPrefix, $data, $message = '' ) {
+	protected function assertFieldStartsWith( $key, $expectedPrefix, $data, $type, $position = 0, $message = '' ) {
+		$data = $this->getAndAssertTemplateData( $data, $type, $position );
 		$this->assertArrayHasKey( $key, $data, $message );
 		$actual = $data[$key];
 		$this->assertStringStartsWith( $expectedPrefix, $actual, $message );

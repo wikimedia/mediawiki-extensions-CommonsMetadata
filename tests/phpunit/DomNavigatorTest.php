@@ -3,7 +3,7 @@
 use CommonsMetadata\DomNavigator;
 
 /**
- * @covers DomQuery
+ * @covers CommonsMetadata\DomNavigator
  * @group Extensions/CommonsMetadata
  */
 class DomNavigatorTest extends MediaWikiTestCase {
