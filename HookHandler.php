@@ -44,17 +44,11 @@ class HookHandler {
 
 		$lang = $context->getLanguage();
 
-		global $wgUseOldTemplateParser; // FIXME feature switch for convenient testing, will be removed once this is out of beta
-		if ( !isset( $wgUseOldTemplateParser ) ) {
-			$templateParser = new TemplateParser();
-			$templateParser->setMultiLanguage( !$singleLang );
-			$fallbacks = Language::getFallbacksFor( $lang->getCode() );
-			array_unshift( $fallbacks, $lang->getCode() );
-			$templateParser->setPriorityLanguages( $fallbacks );
-		} else {
-			$templateParser = new \CommonsMetadata_TemplateParser();
-			$templateParser->setLanguage( $singleLang ? $lang->getCode() : false );
-		}
+		$templateParser = new TemplateParser();
+		$templateParser->setMultiLanguage( !$singleLang );
+		$fallbacks = Language::getFallbacksFor( $lang->getCode() );
+		array_unshift( $fallbacks, $lang->getCode() );
+		$templateParser->setPriorityLanguages( $fallbacks );
 
 		$dataCollector = new DataCollector();
 		$dataCollector->setLanguage( $lang );
