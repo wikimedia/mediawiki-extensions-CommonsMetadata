@@ -164,7 +164,7 @@ class DataCollector {
 		# via parser cache, and possibly a second cache depending on
 		# descriptionCacheExpiry (disabled on Wikimedia).
 
-		if ( get_class( $file ) == 'LocalFile' ) {
+		if ( get_class( $file ) == 'LocalFile' || get_class( $file ) == 'LocalFileMock' ) {
 			// LocalFile gets the text in a different way, and ends up with different output
 			// (specifically, relative instead of absolute URLs). There is no proper way to
 			// influence this process (see the end of Title::getLocalURL for details), so
@@ -201,7 +201,11 @@ class DataCollector {
 	protected function getCategories( File $file, array $data ) {
 		$categories = array();
 
-		if ( $file instanceof LocalFile ) {
+		if ( is_a( $file, 'LocalFileMock') || is_a( $file, 'ForeignDBFileMock') ) {
+			// with all the hard-coded dependencies, mocking categoriy retrieval properly is
+			// pretty much impossible
+			return $file->mockedCategories;
+		} elseif ( $file instanceof LocalFile ) {
 			// for local or shared DB files (which are also LocalFile subclasses)
 			// categories can be queried directly from the database
 
