@@ -24,7 +24,7 @@ class TemplateParser {
 		'licensetpl_short' => 'LicenseShortName',
 		'licensetpl_long' => 'UsageTerms',
 		// 'licensetpl_attr_req',
-		// 'licensetpl_attr',
+		'licensetpl_attr' => 'Attribution',
 		// 'licensetpl_link_req',
 		'licensetpl_link' => 'LicenseUrl',
 	);
@@ -53,6 +53,7 @@ class TemplateParser {
 		'fileinfotpl_art_title' => 'ObjectName',
 		'fileinfotpl_book_title' => 'ObjectName',
 		'fileinfotpl_perm' => 'Permission',
+		'fileinfotpl_credit' => 'Attribution',
 	);
 
 	/**
