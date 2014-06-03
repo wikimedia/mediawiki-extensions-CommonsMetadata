@@ -302,6 +302,10 @@ class DataCollector {
 	 * @return array an array of metdata fields in fieldname => value form
 	 */
 	protected function selectLicense( $licenses ) {
+		if ( empty( $licenses ) ) {
+			return array();
+		}
+
 		$sortedLicenses = $this->licenseParser->sortDataByLicensePriority( $licenses, function ( $license ) {
 			if ( !isset( $license['LicenseShortName'] ) ) {
 				return null;
