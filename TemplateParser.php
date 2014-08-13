@@ -120,10 +120,10 @@ class TemplateParser {
 		$data = array();
 		foreach ( $domNavigator->findElementsWithClass( 'span', 'geo' ) as $geoNode ) {
 			$coordinateData = array();
-			$coords = explode( ';', trim( $geoNode->textContent ) );
+			$coords = explode( ';', $geoNode->textContent );
 			if ( count( $coords ) == 2 && is_numeric( $coords[0] ) && is_numeric( $coords[1] ) ) {
-				$coordinateData['GPSLatitude'] = $coords[0];
-				$coordinateData['GPSLongitude'] = $coords[1];
+				$coordinateData['GPSLatitude'] = trim( $coords[0] );
+				$coordinateData['GPSLongitude'] = trim( $coords[1] );
 				$coordinateData['GPSMapDatum'] = 'WGS-84';
 			}
 			$data[] = $coordinateData;
