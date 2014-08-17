@@ -169,7 +169,7 @@ class TemplateParser {
 	 * Parses the artist, which might be an hCard
 	 * @param DomNavigator $domNavigator
 	 * @param DOMNode $node
-	 * @returns string
+	 * @return string
 	 */
 	protected function parseFieldArtist( DomNavigator $domNavigator, DOMNode $node ) {
 		if ( $field = $this->extractHCardProperty(  $domNavigator, $node, 'fn' ) ) {
