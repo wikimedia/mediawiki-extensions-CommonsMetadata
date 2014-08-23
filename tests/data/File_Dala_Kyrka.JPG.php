@@ -17,7 +17,7 @@ return array (
 		),
 	'ImageDescription' =>
 		array (
-			'value' => ' Dala kyrka, mot väg',
+			'value' => 'Dala kyrka, mot väg',
 			'source' => 'commons-desc-page',
 		),
 	'Credit' =>
