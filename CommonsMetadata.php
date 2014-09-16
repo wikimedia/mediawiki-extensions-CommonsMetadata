@@ -25,6 +25,12 @@ $wgExtensionCredits['other'][] = array(
 	'descriptionmsg' => 'commonsmetadata-desc',
 );
 
+/**
+ * Set tracking categories on file pages where description, author, source or license cannot be parsed
+ * @var bool
+ */
+$wgCommonsMetadataSetTrackingCategories = false;
+
 $wgAutoloadClasses['CommonsMetadata\HookHandler'] = __DIR__ . '/HookHandler.php';
 $wgAutoloadClasses['CommonsMetadata\DataCollector'] = __DIR__ . '/DataCollector.php';
 $wgAutoloadClasses['CommonsMetadata\DomNavigator'] = __DIR__ . '/DomNavigator.php';
@@ -36,4 +42,11 @@ $wgExtensionMessagesFiles['CommonsMetadata'] =  __DIR__ . '/CommonsMetadata.i18n
 
 $wgHooks['GetExtendedMetadata'][] = 'CommonsMetadata\HookHandler::onGetExtendedMetadata';
 $wgHooks['ValidateExtendedMetadataCache'][] = 'CommonsMetadata\HookHandler::onValidateExtendedMetadataCache';
+$wgHooks['ContentAlterParserOutput'][] = 'CommonsMetadata\HookHandler::onContentAlterParserOutput';
 $wgHooks['UnitTestsList'][] = 'CommonsMetadata\HookHandler::onUnitTestsList';
+
+
+$wgTrackingCategories[] = 'commonsmetadata-trackingcategory-no-license';
+$wgTrackingCategories[] = 'commonsmetadata-trackingcategory-no-description';
+$wgTrackingCategories[] = 'commonsmetadata-trackingcategory-no-author';
+$wgTrackingCategories[] = 'commonsmetadata-trackingcategory-no-source';

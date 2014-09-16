@@ -99,6 +99,38 @@ class DataCollector {
 	}
 
 	/**
+	 * Checks for the presence of metadata needed for attributing the file (author, source, license)
+	 * and returns a list of keys corresponding to problems.
+	 * @param string $descriptionText HTML code of the file description
+	 * @return array one or more of the following keys:
+	 *  - no-license - failed to detect a license
+	 *  - no-description - failed to detect any image description
+	 *  - no-author - failed to detect author name or a custom attribution text
+	 *  - no-source - failed to detect the source of the image or a custom attribution text
+	 */
+	public function verifyAttributionMetadata( $descriptionText ) {
+		$problems = array();
+		$templateData = $this->templateParser->parsePage( $descriptionText );
+		$licenseData = $this->selectLicense( $templateData[TemplateParser::LICENSES_KEY] );
+		$informationData = $this->selectInformationTemplate( $templateData[TemplateParser::INFORMATION_FIELDS_KEY] );
+
+		if ( !$licenseData || empty( $licenseData['LicenseShortName'] ) ) {
+			$problems[] = 'no-license';
+		}
+		if ( !$informationData || empty( $informationData['ImageDescription'] ) ) {
+			$problems[] = 'no-description';
+		}
+		if ( !$informationData || empty( $informationData['Artist'] ) && empty( $informationData['Attribution'] ) ) {
+			$problems[] = 'no-author';
+		}
+		if ( !$informationData || empty( $informationData['Credit'] ) && empty( $informationData['Attribution'] ) ) {
+			$problems[] = 'no-source';
+		}
+
+		return $problems;
+	}
+
+	/**
 	 * @param array $categories
 	 * @return array
 	 */
