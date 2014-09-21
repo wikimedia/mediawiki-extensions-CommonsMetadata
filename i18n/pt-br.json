@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"OTAVIO1981"
+		]
+	},
+	"commonsmetadata-desc": "Expande a propriedade \"extmetadata\" do módulo da API de informação sobre imagens, de forma a incluir informação armazenada nas páginas de descrição das imagens que usem as predefinições mais comuns da Wikimedia Commons."
+}
