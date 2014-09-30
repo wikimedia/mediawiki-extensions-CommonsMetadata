@@ -84,6 +84,36 @@ class HookHandler {
 	}
 
 	/**
+	 * Check HTML output of a file page to see if it has all the basic metadata, and add tracking categories
+	 * if it does not.
+	 * @param \Content $content
+	 * @param \Title $title
+	 * @param \ParserOutput $parserOutput
+	 * @return bool this hook handler always returns true.
+	 */
+	public static function onContentAlterParserOutput( $content, $title, $parserOutput ) {
+		global $wgCommonsMetadataSetTrackingCategories;
+
+		if (
+			!$wgCommonsMetadataSetTrackingCategories
+			|| !$title->inNamespace( NS_FILE )
+			|| $content->getModel() !== CONTENT_MODEL_WIKITEXT
+		) {
+			return true;
+		}
+
+		$language = $content->getContentHandler()->getPageViewLanguage( $title, $content );
+		$dataCollector = self::getDataCollector( $language, true );
+
+		$categoryKeys = $dataCollector->verifyAttributionMetadata( $parserOutput->getText() );
+		foreach ( $categoryKeys as $key ) {
+			$parserOutput->addTrackingCategory( 'commonsmetadata-trackingcategory-' . $key, $title );
+		}
+
+		return true;
+	}
+
+	/**
 	 * Hook to add unit tests
 	 * @param array $files
 	 * @return bool
@@ -92,5 +122,25 @@ class HookHandler {
 		$testDir = __DIR__ . DIRECTORY_SEPARATOR . 'tests' . DIRECTORY_SEPARATOR . 'phpunit';
 		$files = array_merge( $files, glob( $testDir . DIRECTORY_SEPARATOR . '*Test.php' ) );
 		return true;
+	}
+
+	/**
+	 * @param Language $lang
+	 * @param bool $singleLang
+	 */
+	private static function getDataCollector( Language $lang, $singleLang ) {
+		$templateParser = new TemplateParser();
+		$templateParser->setMultiLanguage( !$singleLang );
+		$fallbacks = Language::getFallbacksFor( $lang->getCode() );
+		array_unshift( $fallbacks, $lang->getCode() );
+		$templateParser->setPriorityLanguages( $fallbacks );
+
+		$dataCollector = new DataCollector();
+		$dataCollector->setLanguage( $lang );
+		$dataCollector->setMultiLang( !$singleLang );
+		$dataCollector->setTemplateParser( $templateParser );
+		$dataCollector->setLicenseParser( new LicenseParser() );
+
+		return $dataCollector;
 	}
 }
