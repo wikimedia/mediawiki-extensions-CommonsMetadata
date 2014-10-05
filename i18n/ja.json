@@ -4,5 +4,9 @@
 			"Shirayuki"
 		]
 	},
-	"commonsmetadata-desc": "ウィキメディア・コモンズでよく使用されるテンプレートを使用している画像説明ページ内に格納されている情報を含められるように、画像情報 API モジュールののプロパティ「extmetadata」を拡張する"
+	"commonsmetadata-desc": "ウィキメディア・コモンズでよく使用されるテンプレートを使用している画像説明ページ内に格納されている情報を含められるように、画像情報 API モジュールののプロパティ「extmetadata」を拡張する",
+	"commonsmetadata-trackingcategory-no-license": "機械的に読み取れるライセンスがないファイル",
+	"commonsmetadata-trackingcategory-no-description": "機械的に読み取れる解説がないファイル",
+	"commonsmetadata-trackingcategory-no-author": "機械的に読み取れる作者がないファイル",
+	"commonsmetadata-trackingcategory-no-source": "機械的に読み取れる出典がないファイル"
 }
