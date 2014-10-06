@@ -8,11 +8,11 @@
 	},
 	"commonsmetadata-desc": "扩展图像信息API模块的“extmetadata”属性，以包含存储在使用维基共享资源常用模板的图像说明页面的信息",
 	"commonsmetadata-trackingcategory-no-license": "没有机器可读许可证的文件",
-	"commonsmetadata-trackingcategory-no-license-desc": "此文件没有任何[https://commons.wikimedia.org/wiki/Commons:Machine-readable_data 机器可读的]授权模板。",
+	"commonsmetadata-trackingcategory-no-license-desc": "此文件没有任何[https://commons.wikimedia.org/wiki/Special:MyLanguage/Commons:Machine-readable_data 机器可读的]授权模板。",
 	"commonsmetadata-trackingcategory-no-description": "没有机器可读描述的文件",
-	"commonsmetadata-trackingcategory-no-description-desc": "此文件没有任何[https://commons.wikimedia.org/wiki/Commons:Machine-readable_data 机器可读的]信息模板，或未填写描述字段。",
+	"commonsmetadata-trackingcategory-no-description-desc": "此文件没有任何[https://commons.wikimedia.org/wiki/Special:MyLanguage/Commons:Machine-readable_data 机器可读的]信息模板，或未填写描述字段。",
 	"commonsmetadata-trackingcategory-no-author": "没有机器可读作者的文件",
-	"commonsmetadata-trackingcategory-no-author-desc": "此文件没有任何[https://commons.wikimedia.org/wiki/Commons:Machine-readable_data 机器可读的]信息模板，或未填写作者字段。",
+	"commonsmetadata-trackingcategory-no-author-desc": "此文件没有任何[https://commons.wikimedia.org/wiki/Special:MyLanguage/Commons:Machine-readable_data 机器可读的]信息模板，或未填写作者字段。",
 	"commonsmetadata-trackingcategory-no-source": "没有机器可读来源的文件",
-	"commonsmetadata-trackingcategory-no-source-desc": "此文件没有任何[https://commons.wikimedia.org/wiki/Commons:Machine-readable_data 机器可读的]信息模板，或未填写来源字段。"
+	"commonsmetadata-trackingcategory-no-source-desc": "此文件没有任何[https://commons.wikimedia.org/wiki/Special:MyLanguage/Commons:Machine-readable_data 机器可读的]信息模板，或未填写来源字段。"
 }

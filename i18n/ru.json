@@ -7,11 +7,11 @@
 	},
 	"commonsmetadata-desc": "Передает свойство изображения «extmetadata» в API-модуль для включения информации, хранящейся на страницах описания изображений, которую используют шаблоны, часто используемые на Викискладе",
 	"commonsmetadata-trackingcategory-no-license": "Файлы без машиночитаемой лицензии",
-	"commonsmetadata-trackingcategory-no-license-desc": "Файл не имеет [https://commons.wikimedia.org/wiki/Commons:Machine-readable_data machine-readable] шаблона лицензии.",
+	"commonsmetadata-trackingcategory-no-license-desc": "Файл не имеет [https://commons.wikimedia.org/wiki/Special:MyLanguage/Commons:Machine-readable_data machine-readable] шаблона лицензии.",
 	"commonsmetadata-trackingcategory-no-description": "Файлы без машиночитаемого описания",
-	"commonsmetadata-trackingcategory-no-description-desc": "Файл не имеет [https://commons.wikimedia.org/wiki/Commons:Machine-readable_data machine-readable] шаблона информации, или его поле описания не заполнено.",
+	"commonsmetadata-trackingcategory-no-description-desc": "Файл не имеет [https://commons.wikimedia.org/wiki/Special:MyLanguage/Commons:Machine-readable_data machine-readable] шаблона информации, или его поле описания не заполнено.",
 	"commonsmetadata-trackingcategory-no-author": "Файлы без машиночитаемого автора",
-	"commonsmetadata-trackingcategory-no-author-desc": "Файл не имеет [https://commons.wikimedia.org/wiki/Commons:Machine-readable_data machine-readable] шаблона информации, или его поле автора не заполнено.",
+	"commonsmetadata-trackingcategory-no-author-desc": "Файл не имеет [https://commons.wikimedia.org/wiki/Special:MyLanguage/Commons:Machine-readable_data machine-readable] шаблона информации, или его поле автора не заполнено.",
 	"commonsmetadata-trackingcategory-no-source": "Файлы без машиночитаемого источника",
-	"commonsmetadata-trackingcategory-no-source-desc": "Файл не имеет [https://commons.wikimedia.org/wiki/Commons:Machine-readable_data machine-readable] шаблона информации, или его поле источника не заполнено."
+	"commonsmetadata-trackingcategory-no-source-desc": "Файл не имеет [https://commons.wikimedia.org/wiki/Special:MyLanguage/Commons:Machine-readable_data machine-readable] шаблона информации, или его поле источника не заполнено."
 }

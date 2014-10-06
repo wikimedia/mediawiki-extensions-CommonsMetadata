@@ -6,6 +6,6 @@
 		]
 	},
 	"commonsmetadata-desc": "Expande a propriedade \"extmetadata\" do módulo da API de informação sobre imagens, de forma a incluir informação armazenada nas páginas de descrição das imagens que usem as predefinições mais comuns da Wikimedia Commons.",
-	"commonsmetadata-trackingcategory-no-license-desc": "O arquivo não tem nenhuma [https://commons.wikimedia.org/wiki/Commons:Machine-readable_data machine-readable] template de licença.",
+	"commonsmetadata-trackingcategory-no-license-desc": "O arquivo não tem nenhuma [https://commons.wikimedia.org/wiki/Special:MyLanguage/Commons:Machine-readable_data machine-readable] template de licença.",
 	"commonsmetadata-trackingcategory-no-source": "Arquivos sem nenhuma fonte legível para máquinas"
 }
