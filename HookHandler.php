@@ -2,7 +2,7 @@
 
 namespace CommonsMetadata;
 
-use Language;
+use Language, RepoGroup;
 
 /**
  * Hook handler
@@ -98,6 +98,7 @@ class HookHandler {
 			!$wgCommonsMetadataSetTrackingCategories
 			|| !$title->inNamespace( NS_FILE )
 			|| $content->getModel() !== CONTENT_MODEL_WIKITEXT
+			|| !RepoGroup::singleton()->getLocalRepo()->findFile( $title, array( 'ignoreRedirect' => true ) )
 		) {
 			return true;
 		}
