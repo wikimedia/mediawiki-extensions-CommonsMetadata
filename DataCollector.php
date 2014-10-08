@@ -157,9 +157,18 @@ class DataCollector {
 	protected function getTemplateMetadata( $templateData ) {
 		// GetExtendedMetadata does not handle multivalued fields, we need to select one of everything
 		$templateFields = array();
-		$templateFields = array_merge( $templateFields, $this->selectCoordinate( $templateData[TemplateParser::COORDINATES_KEY] ) );
-		$templateFields = array_merge( $templateFields, $this->selectInformationTemplate( $templateData[TemplateParser::INFORMATION_FIELDS_KEY] ) );
-		$templateFields = array_merge( $templateFields, $this->selectLicense( $templateData[TemplateParser::LICENSES_KEY] ) );
+
+		if ( isset( $templateData[TemplateParser::COORDINATES_KEY] ) ) {
+			$templateFields = array_merge( $templateFields, $this->selectCoordinate( $templateData[TemplateParser::COORDINATES_KEY] ) );
+		}
+
+		if ( isset( $templateData[TemplateParser::INFORMATION_FIELDS_KEY] ) ) {
+			$templateFields = array_merge( $templateFields, $this->selectInformationTemplate( $templateData[TemplateParser::INFORMATION_FIELDS_KEY] ) );
+		}
+
+		if ( isset( $templateData[TemplateParser::LICENSES_KEY] ) ) {
+			$templateFields = array_merge( $templateFields, $this->selectLicense( $templateData[TemplateParser::LICENSES_KEY] ) );
+		}
 
 		$metadata = array();
 		foreach( $templateFields as $name => $value ) {
