@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Pikne"
+		]
+	},
+	"commonsmetadata-desc": "Laiendab API pilditeabe mooduli omadust \"extmetadata\", et hõlmata piltide kirjelduslehekülgedel talletatud teave. Kasutatakse malle, mille kasutamine on Wikimedia Commonsis levinud.",
+	"commonsmetadata-trackingcategory-no-license": "Masinloetava litsentsita failid",
+	"commonsmetadata-trackingcategory-no-license-desc": "Failil pole ühtegi [https://commons.wikimedia.org/wiki/Special:MyLanguage/Commons:Machine-readable_data masinloetavat] litsentsimalli.",
+	"commonsmetadata-trackingcategory-no-description": "Masinloetava kirjelduseta failid",
+	"commonsmetadata-trackingcategory-no-description-desc": "Failil pole [https://commons.wikimedia.org/wiki/Special:MyLanguage/Commons:Machine-readable_data masinloetavat] teabemalli või kirjelduse väli on mallis täitmata.",
+	"commonsmetadata-trackingcategory-no-author": "Masinloetava autorita failid",
+	"commonsmetadata-trackingcategory-no-author-desc": "Failil pole [https://commons.wikimedia.org/wiki/Special:MyLanguage/Commons:Machine-readable_data masinloetavat] teabemalli või autori väli on mallis täitmata.",
+	"commonsmetadata-trackingcategory-no-source": "Masinloetava allikata failid",
+	"commonsmetadata-trackingcategory-no-source-desc": "Failil pole [https://commons.wikimedia.org/wiki/Special:MyLanguage/Commons:Machine-readable_data masinloetavat] teabemalli või allika väli on mallis täitmata."
+}
