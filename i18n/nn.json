@@ -1,0 +1,16 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jeblad"
+		]
+	},
+	"commonsmetadata-desc": "Utvidar API-modulens \"extmetadata\" egenskaper for biletinformasjon til å inkludere informasjon frå filsida for dei mest brukte malane på Wikimedia Commons",
+	"commonsmetadata-trackingcategory-no-license": "Filer uten maskinlesbar lisens",
+	"commonsmetadata-trackingcategory-no-license-desc": "Fila har ikkje [https://commons.wikimedia.org/wiki/Special:MyLanguage/Commons:Machine-readable_data maskinlesbar] lisensmal.",
+	"commonsmetadata-trackingcategory-no-description": "Filer uten maskinlesbar beskriving",
+	"commonsmetadata-trackingcategory-no-description-desc": "Fila har ikkje [https://commons.wikimedia.org/wiki/Special:MyLanguage/Commons:Machine-readable_data maskinlesbar] infomal, eller så er ikkje feltet for beskriving fylt ut.",
+	"commonsmetadata-trackingcategory-no-author": "Filer uten maskinlesbar opphavsmann",
+	"commonsmetadata-trackingcategory-no-author-desc": "Fila har ikkje [https://commons.wikimedia.org/wiki/Special:MyLanguage/Commons:Machine-readable_data maskinlesbar] infomal, eller så er ikkje feltet for opphavsmann fylt ut.",
+	"commonsmetadata-trackingcategory-no-source": "Filer uten maskinlesbar kjelde",
+	"commonsmetadata-trackingcategory-no-source-desc": "Fila har ikkje [https://commons.wikimedia.org/wiki/Special:MyLanguage/Commons:Machine-readable_data maskinlesbar] infomal, eller så er ikkje feltet for kjelde fylt ut."
+}
