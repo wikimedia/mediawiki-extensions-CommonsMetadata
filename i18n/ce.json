@@ -4,5 +4,6 @@
 			"Умар"
 		]
 	},
-	"commonsmetadata-desc": "Суьртан «extmetadata» хьал API-модуле доккху суьртийн дийцаре агӀонашкахь болу хаам лато аьтту хуьлуьйту, кепаш лелош болу, Викигуламехь дукха лело"
+	"commonsmetadata-desc": "Суьртан «extmetadata» хьал API-модуле доккху суьртийн дийцаре агӀонашкахь болу хаам лато аьтту хуьлуьйту, кепаш лелош болу, Викигуламехь дукха лело",
+	"commonsmetadata-trackingcategory-no-author-desc": "Файлан яц [{{MediaWiki:Commonsmetadata-doc-url}} machine-readable] хааман кеп, я цуна авторан меттиг юьзна яц."
 }
