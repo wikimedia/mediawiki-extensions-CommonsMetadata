@@ -51,7 +51,6 @@ class TemplateParser {
 		# of source than "Source" does.
 		'fileinfotpl_src' => 'Credit',
 		'fileinfotpl_art_title' => 'ObjectName',
-		'fileinfotpl_book_title' => 'ObjectName',
 		'fileinfotpl_perm' => 'Permission',
 		'fileinfotpl_credit' => 'Attribution',
 	);

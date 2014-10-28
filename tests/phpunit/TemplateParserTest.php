@@ -2,6 +2,8 @@
 
 use CommonsMetadata\TemplateParser;
 
+require_once __DIR__ . "/ParserTestHelper.php";
+
 /**
  * @covers CommonsMetadata\TemplateParser
  * @group Extensions/CommonsMetadata
@@ -176,6 +178,16 @@ class TemplateParserTest extends MediaWikiTestCase {
 		$this->assertFieldEquals( 'Artist',
 			'<bdi>After <a href="//en.wikipedia.org/wiki/George_Gower" class="extiw" title="en:George Gower">George Gower</a></bdi>',
 			$data, TemplateParser::INFORMATION_FIELDS_KEY );
+	}
+
+	/**
+	 * Some templates (such as {{Photograph}}) have a title field
+	 */
+	public function testTitle() {
+		$data = $this->parseTestHTML( 'title' );
+		$this->assertFieldEquals( 'ObjectName', '<span class="fn"><span style="font-size:0.9em">German: '
+			. '<i>Askaris, die mit eingesetzt waren</i></span><span style="font-weight:bold"><br>'
+			. '<i>Askaris used during the operation</i></span></span>', $data, TemplateParser::INFORMATION_FIELDS_KEY );
 	}
 
 
