@@ -34,6 +34,10 @@ class ParserTestHelper {
 		'manylang' => 'File_Sikh_pilgrim_at_the_Golden_Temple_(Harmandir_Sahib)_in_Amritsar,_India.jpg',
 		// an image with a relatively long description
 		'big' => 'File_Askaris_im_Warschauer_Getto_-_1943.jpg',
+		// information-like template with a title field
+		'title' => 'File_Askaris_im_Warschauer_Getto_-_1943.jpg',
+		// Book + Photograph templates
+		'book' => 'File_Askaris_im_Warschauer_Getto_-_1943.jpg',
 	);
 
 	/**
