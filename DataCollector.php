@@ -109,8 +109,12 @@ class DataCollector {
 	 *  - no-source - failed to detect the source of the image or a custom attribution text
 	 */
 	public function verifyAttributionMetadata( $descriptionText ) {
-		$problems = array();
 		$templateData = $this->templateParser->parsePage( $descriptionText );
+		if ( !$templateData ) {
+			return array( 'no-license', 'no-description', 'no-author', 'no-source' );
+		}
+
+		$problems = array();
 		$licenseData = $this->selectLicense( $templateData[TemplateParser::LICENSES_KEY] );
 		$informationData = $this->selectInformationTemplate( $templateData[TemplateParser::INFORMATION_FIELDS_KEY] );
 
