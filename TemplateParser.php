@@ -23,10 +23,11 @@ class TemplateParser {
 	protected static $licenseFieldClasses = array(
 		'licensetpl_short' => 'LicenseShortName',
 		'licensetpl_long' => 'UsageTerms',
-		// 'licensetpl_attr_req',
+		'licensetpl_attr_req' => 'AttributionRequired',
 		'licensetpl_attr' => 'Attribution',
 		// 'licensetpl_link_req',
 		'licensetpl_link' => 'LicenseUrl',
+		'licensetpl_nonfree' => 'NonFree',
 	);
 
 	/**
