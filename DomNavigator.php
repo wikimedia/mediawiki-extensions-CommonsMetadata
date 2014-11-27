@@ -49,6 +49,19 @@ class DomNavigator {
 	}
 
 	/**
+	 * Returns a list of elements of the given type which have a class starting with the given string.
+	 * @param string|array $element HTML tag name (* to accept all) or array of tag names
+	 * @param string $classPrefix
+	 * @param DOMNode $context if present, the method will only search inside this element
+	 * @return DOMNodeList|DOMElement[]
+	 */
+	public function findElementsWithClassPrefix( $element, $classPrefix, DOMNode $context = null ) {
+		$element = $this->handleElementOrList( $element );
+		$xpath = "./descendant-or-self::{$element}[contains(concat(' ', normalize-space(@class)), ' $classPrefix')]";
+		return $this->findByXpath( $xpath, $context );
+	}
+
+	/**
 	 * Returns a list of elements of the given type which have the given class and any lang attribute.
 	 * (In other words, this is equivalent to the CSS selector 'element.class[lang]'.)
 	 * @param string|array $element HTML tag name (* to accept all) or array of tag names
@@ -104,6 +117,26 @@ class DomNavigator {
 		$nodeClasses = explode( ' ', $node->getAttribute( 'class' ) );
 		$testClasses = explode( ' ', $classes );
 		return !array_diff( $testClasses, $nodeClasses );
+	}
+
+	/**
+	 * Returns the first class matching a prefix.
+	 * @param DOMNode $node
+	 * @param string $classPrefix
+	 * @return string|null
+	 */
+	public function getFirstClassWithPrefix( DOMNode $node, $classPrefix ) {
+		if ( ! $node instanceof \DOMElement ) {
+			return null;
+		}
+		$classes = explode( ' ', $node->getAttribute( 'class' ) );
+		foreach ( $classes as $class ) {
+			$length = strlen( $classPrefix );
+			if ( substr( $class, 0, $length ) === $classPrefix ) {
+				return $class;
+			}
+		}
+		return null;
 	}
 
 	/**

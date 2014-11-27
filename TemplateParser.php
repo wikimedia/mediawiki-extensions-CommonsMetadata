@@ -31,7 +31,7 @@ class TemplateParser {
 	);
 
 	/**
-	 * HTML element id => metadata field name mapping for information template data.
+	 * HTML element class/id => metadata field name mapping for information template data.
 	 * @var array
 	 */
 	protected static $informationFieldClasses = array(
@@ -54,6 +54,31 @@ class TemplateParser {
 		'fileinfotpl_art_title' => 'ObjectName',
 		'fileinfotpl_perm' => 'Permission',
 		'fileinfotpl_credit' => 'Attribution',
+	);
+
+	/**
+	 * Classnames identifying {{Information}}-like templates, ordered from highest to lowest
+	 * priority. Higher priority means that template is more likely to be about the image
+	 * (as opposed to e.g. some object visible on the image), data in higher-priority templates
+	 * will be preferred. The classes should be on the <table> element (for templates using the
+	 * deprecated id-based fieldname markup) or on the same element which has the "fileinfotpl"
+	 * class (for templates with the class-based markup).
+	 * @var array
+	 */
+	protected static $infoTemplateClasses = array(
+		'fileinfotpl-type-photograph',
+		'fileinfotpl-type-information',
+		'fileinfotpl-type-artwork',
+	);
+
+	/**
+	 * Blacklist for templates which should not have handled like {{Information}} even if they have
+	 * fields matching $informationFieldClasses. Elements of this array refere to the same kind of
+	 * classnames as $infoTemplateClasses.
+	 * @var array
+	 */
+	protected static $infoTemplateBlacklist = array(
+		'fileinfotpl-type-book',
 	);
 
 	/**
@@ -137,32 +162,97 @@ class TemplateParser {
 	 * @return array an array if information(-like) templates: array( 0 => array( 'ImageDescription' => ... ) ... )
 	 */
 	protected function parseInformationFields( DomNavigator $domNavigator ) {
+		$attributePrefix = 'fileinfotpl_';
 		$data = array();
-		foreach ( $domNavigator->findElementsWithIdPrefix( array( 'td', 'th' ), 'fileinfotpl_' ) as $labelField ) {
-			$id = $labelField->getAttribute( 'id' );
-			if ( !isset( self::$informationFieldClasses[$id] ) ) {
-				continue;
-			}
-			$fieldName = self::$informationFieldClasses[$id];
-
+		foreach ( $domNavigator->findElementsWithIdPrefix( array( 'td', 'th' ), $attributePrefix ) as $labelField ) {
 			$informationField = $domNavigator->nextElementSibling( $labelField );
 			if ( !$informationField ) {
 				continue;
 			}
+			$id = $labelField->getAttribute( 'id' );
+			$group = $domNavigator->closest( $informationField, 'table' );
+			$this->parseInformationField( $domNavigator, $informationField, $group, $id, $data );
+		}
+		foreach ( $domNavigator->findElementsWithClass( '*', 'fileinfotpl' ) as $group ) {
+			foreach ( $domNavigator->findElementsWithClassPrefix( '*', $attributePrefix, $group ) as $informationField ) {
+				$class = $domNavigator->getFirstClassWithPrefix( $informationField, $attributePrefix );
+				$this->parseInformationField( $domNavigator, $informationField, $group, $class, $data );
+			}
+		}
 
-			// group fields coming from the same template
-			$table = $domNavigator->closest( $labelField, 'table' );
-			$groupName = $table ? $table->getNodePath() : '-';
+		$this->sortInformationGroups( $data );
+		return array_values( $data ); // using node paths to identify tables is an internal detail, hide it
+	}
 
-			$method = 'parseField' . $fieldName;
+	/**
+	 * Helper function for the inner loop of parseInformationFields
+	 * @param DomNavigator $domNavigator
+	 * @param DOMElement $informationField the node holding the data
+	 * @param DOMElement|null $group the top node containing all fields of this type; expected (but not
+	 *  required) to have one of the $informationFieldClasses.
+	 * @param string $idOrClass id or class identifying the field, per $informationFieldClasses
+	 *  Node is ignored if this is not a key of $informationFieldClasses. Also ignored if this is null.
+	 * @param array $data
+	 */
+	protected function parseInformationField( DomNavigator $domNavigator, DOMElement $informationField, $group, $idOrClass, array &$data ) {
+		if ( !isset( self::$informationFieldClasses[$idOrClass] ) ) {
+			return;
+		}
+		$fieldName = self::$informationFieldClasses[$idOrClass];
 
-			if ( !method_exists( $this, $method ) ) {
-				$method = 'parseContents';
+		// group fields coming from the same template
+		$groupName = $groupType = '-';
+		if ( $group ) {
+			$groupName = $group->getNodePath();
+			$groupType = $domNavigator->getFirstClassWithPrefix( $group, 'fileinfotpl-type-' ) ?: '-';
+		}
+
+		if ( in_array( $groupType, self::$infoTemplateBlacklist ) ) {
+			return;
+		}
+
+		if ( isset ( $data[$groupName][$fieldName] ) ) {
+			// don't parse the same field multiple times if it has both id and classes; also
+			// ignore a second field of the same type in the same template
+			return;
+		}
+
+		$method = 'parseField' . $fieldName;
+		if ( !method_exists( $this, $method ) ) {
+			$method = 'parseContents';
+		}
+
+		$data[$groupName][$fieldName] = $this->{$method}( $domNavigator, $informationField );
+		$data[$groupName]['_type'] = $groupType;
+	}
+
+	/**
+	 * Sorts info template data groups according to $informationFieldClasses, highest priority first.
+	 * Also removes the _type helper keys.
+	 * @param array $data info template data, as returned by parseInformationFields()
+	 */
+	protected function sortInformationGroups( array &$data ) {
+		$infoTemplateClasses = self::$infoTemplateClasses; // PHP 5.3 does not like class references in closures
+
+		uasort( $data, function ( $template1, $template2 ) use ( $infoTemplateClasses ) {
+			$priority1 = array_search( $template1['_type'], $infoTemplateClasses );
+			$priority2 = array_search( $template2['_type'], $infoTemplateClasses );
+
+			// preserve the order of unknown templates; known precedes unknown
+			if ( $priority2 === false ) {
+				return -1;
+			} else if ( $priority1 === false) {
+				return 1;
 			}
 
-			$data[$groupName][$fieldName] = $this->{$method}( $domNavigator, $informationField );
+			// $pri1 is smaller -> $template1['_type'] comes first in
+			// $informationFieldClasses -> should return negative so $template1 comes first
+			return $priority1 - $priority2;
+		} );
+
+		foreach ( $data as &$group ) {
+			unset( $group['_type'] );
 		}
-		return array_values( $data ); // using node paths to identify tables is an internal detail, hide it
 	}
 
 	/**

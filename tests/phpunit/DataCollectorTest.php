@@ -144,6 +144,24 @@ class DataCollectorTest extends MediaWikiTestCase {
 		$this->assertMetadataValue( 'License', 'quux.name', $templateData );
 	}
 
+	public function testGetTemplateMetadataForMultipleInfoTemplates() {
+		$getTemplateMetadataMethod = new ReflectionMethod( $this->dataCollector, 'getTemplateMetadata' );
+		$getTemplateMetadataMethod->setAccessible( true );
+
+		$template1 = array( 'Artist' => 'a1', 'Foo' => 'x' );
+		$template2 = array( 'Artist' => 'a2', 'Bar' => 'y' );
+		$templateData = $getTemplateMetadataMethod->invokeArgs( $this->dataCollector, array( array(
+			TemplateParser::COORDINATES_KEY => array(),
+			TemplateParser::INFORMATION_FIELDS_KEY => array( $template1, $template2 ),
+			TemplateParser::LICENSES_KEY => array(),
+		) ) );
+
+		$this->assertMetadataValue( 'Artist', 'a1', $templateData );
+		$this->assertMetadataValue( 'Foo', 'x', $templateData );
+		$this->assertArrayNotHasKey( 'Bar', $templateData );
+		$this->assertMetadataValue( 'AuthorCount', 2, $templateData );
+	}
+
 	/*------------------------------- Helpers --------------------------*/
 
 	protected function assertMetadataValue( $field, $expected, $metadata, $message = '' ) {

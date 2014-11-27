@@ -332,13 +332,26 @@ class DataCollector {
 
 	/**
 	 * Receives the list of information templates found by the template parser and selects which one to use.
+	 * Also collects all the authors to make sure attribution requirements are honored.
 	 * @param array $informationTemplates an array of information templates , each is an array of metdata fields in fieldname => value form
 	 * @return array an array of metdata fields in fieldname => value form
 	 */
 	protected function selectInformationTemplate( $informationTemplates ) {
-		// FIXME we should figure out which is the real {{Information}} template (as opposed to
-		//       {{Artwork}} or {{Book}}) and return that. Usually it is the first one though.
-		return $informationTemplates ? $informationTemplates[0] : array();
+		if ( !$informationTemplates ) {
+			return array();
+		}
+
+		$authorCount = 0;
+		foreach ( $informationTemplates as $template ) {
+			if ( isset( $template['Artist'] ) ) {
+				$authorCount++;
+			}
+		}
+
+		if ( $authorCount > 1 ) {
+			$informationTemplates[0]['AuthorCount'] = $authorCount;
+		}
+		return $informationTemplates[0];
 	}
 
 	/**

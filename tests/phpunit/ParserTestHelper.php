@@ -38,6 +38,10 @@ class ParserTestHelper {
 		'title' => 'File_Askaris_im_Warschauer_Getto_-_1943.jpg',
 		// Book + Photograph templates
 		'book' => 'File_Askaris_im_Warschauer_Getto_-_1943.jpg',
+		// new format for {{Information}} fields
+		'infotpl_class' => 'File_Fourth_Doctor.jpg',
+		// {{Artwork}} + {{Photograph}}
+		'multiple_infotpl' => 'File_Bust_of_Wilhelmine_of_Bayreuth.jpg',
 	);
 
 	/**
