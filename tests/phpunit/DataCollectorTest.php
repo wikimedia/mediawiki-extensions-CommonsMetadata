@@ -185,6 +185,88 @@ class DataCollectorTest extends MediaWikiTestCase {
 		$this->assertMetadataValue( 'AuthorCount', 2, $templateData );
 	}
 
+	/*-------------------- verifyAttributionMetadata tests -------------*/
+
+	public function testVerifyAttributionMetadata() {
+		$this->templateParser->expects( $this->once() )->method( 'parsePage' )
+			->will( $this->returnValue( array(
+				TemplateParser::INFORMATION_FIELDS_KEY => array( array(
+					'ImageDescription' => 'blah',
+					'Artist' => 'blah blah',
+					'Credit' => 'blah blah blah',
+				) ),
+				TemplateParser::LICENSES_KEY => array( array( 'LicenseShortName' => 'quux' ) ),
+			) ) );
+		$this->licenseParser->expects( $this->any() )->method( 'parseLicenseString' )
+			->will( $this->returnValue( null ) );
+
+		$problems = $this->dataCollector->verifyAttributionMetadata( '' );
+		$this->assertEmpty( $problems );
+	}
+
+	public function testVerifyAttributionMetadataWithAttribution() {
+		$this->templateParser->expects( $this->once() )->method( 'parsePage' )
+			->will( $this->returnValue( array(
+				TemplateParser::INFORMATION_FIELDS_KEY => array( array(
+					'ImageDescription' => 'blah',
+					'Attribution' => 'blah blah',
+				) ),
+				TemplateParser::LICENSES_KEY => array( array( 'LicenseShortName' => 'quux' ) ),
+			) ) );
+		$this->licenseParser->expects( $this->any() )->method( 'parseLicenseString' )
+			->will( $this->returnValue( null ) );
+
+		$problems = $this->dataCollector->verifyAttributionMetadata( '' );
+		$this->assertEmpty( $problems );
+	}
+
+	public function testVerifyWithEmptyMetadata() {
+		$this->templateParser->expects( $this->once() )->method( 'parsePage' )
+			->will( $this->returnValue( array(
+				TemplateParser::COORDINATES_KEY => array(),
+				TemplateParser::INFORMATION_FIELDS_KEY => array(),
+				TemplateParser::LICENSES_KEY => array(),
+				TemplateParser::DELETION_KEY => array(),
+			) ) );
+		$this->licenseParser->expects( $this->any() )->method( 'parseLicenseString' )
+			->will( $this->returnValue( null ) );
+
+		$problems = $this->dataCollector->verifyAttributionMetadata( '' );
+
+		$this->assertContains( 'no-license', $problems );
+		$this->assertContains( 'no-description', $problems );
+		$this->assertContains( 'no-author', $problems );
+		$this->assertContains( 'no-source', $problems );
+	}
+
+	public function testVerifyWithNoMetadata() {
+		$this->templateParser->expects( $this->once() )->method( 'parsePage' )
+			->will( $this->returnValue( array() ) );
+		$this->licenseParser->expects( $this->any() )->method( 'parseLicenseString' )
+			->will( $this->returnValue( null ) );
+
+		$problems = $this->dataCollector->verifyAttributionMetadata( '' );
+
+		$this->assertContains( 'no-license', $problems );
+		$this->assertContains( 'no-description', $problems );
+		$this->assertContains( 'no-author', $problems );
+		$this->assertContains( 'no-source', $problems );
+	}
+
+	public function testVerifyWithMissingMetadata() {
+		$this->templateParser->expects( $this->once() )->method( 'parsePage' )
+			->will( $this->returnValue( null ) );
+		$this->licenseParser->expects( $this->any() )->method( 'parseLicenseString' )
+			->will( $this->returnValue( null ) );
+
+		$problems = $this->dataCollector->verifyAttributionMetadata( '' );
+
+		$this->assertContains( 'no-license', $problems );
+		$this->assertContains( 'no-description', $problems );
+		$this->assertContains( 'no-author', $problems );
+		$this->assertContains( 'no-source', $problems );
+	}
+
 	/*------------------------------- Helpers --------------------------*/
 
 	protected function assertMetadataValue( $field, $expected, $metadata, $message = '' ) {
