@@ -15,6 +15,7 @@ class TemplateParser {
 	const COORDINATES_KEY = 'coordinates';
 	const LICENSES_KEY = 'licenses';
 	const INFORMATION_FIELDS_KEY = 'informationFields';
+	const DELETION_KEY = 'deletion';
 
 	/**
 	 * HTML element class name => metadata field name mapping for license data.
@@ -129,11 +130,12 @@ class TemplateParser {
 
 		$domNavigator = new DomNavigator( $html );
 
-		return array(
+		return array_filter( array(
 			self::COORDINATES_KEY => $this->parseCoordinates( $domNavigator ),
 			self::INFORMATION_FIELDS_KEY => $this->parseInformationFields( $domNavigator ),
 			self::LICENSES_KEY => $this->parseLicenses( $domNavigator ),
-		);
+			self::DELETION_KEY => $this->parseNuke( $domNavigator ),
+		) );
 	}
 
 	/**
@@ -315,6 +317,30 @@ class TemplateParser {
 			}
 		}
 		return $data;
+	}
+
+	/**
+	 * Parse and return deletion reason from the {{Nuke}} template
+	 * ( https://commons.wikimedia.org/wiki/Template:Nuke )
+	 * @param DomNavigator $domNavigator
+	 * @return array()
+	 */
+	protected function parseNuke( DomNavigator $domNavigator ) {
+		$deletions = array();
+
+		foreach ( $domNavigator->findElementsWithClass( '*', 'nuke' ) as $nukeNode ) {
+			$nukeLink = $nukeNode->firstChild;
+			if ( $nukeLink && $nukeLink->hasAttribute( 'href' ) ) {
+				$urlBits = wfParseUrl( $nukeLink->getAttribute( 'href' ) );
+				if ( isset( $urlBits['query'] ) ) {
+					$params = wfCgiToArray( $urlBits['query'] );
+					if ( isset( $params['action'] ) && $params['action'] === 'delete' && isset( $params['wpReason'] ) ) {
+						$deletions[] = array( 'DeletionReason' => $params['wpReason'] );
+					}
+				};
+			}
+		}
+		return $deletions;
 	}
 
 	/**
