@@ -110,24 +110,25 @@ class DataCollector {
 	 */
 	public function verifyAttributionMetadata( $descriptionText ) {
 		$templateData = $this->templateParser->parsePage( $descriptionText );
-		if ( !$templateData ) {
-			return array( 'no-license', 'no-description', 'no-author', 'no-source' );
+		$problems = $licenseData = $informationData = array();
+
+		if ( isset( $templateData[TemplateParser::LICENSES_KEY] ) ) {
+			$licenseData = $this->selectLicense( $templateData[TemplateParser::LICENSES_KEY] );
+		}
+		if ( isset( $templateData[TemplateParser::INFORMATION_FIELDS_KEY] ) ) {
+			$informationData = $this->selectInformationTemplate( $templateData[TemplateParser::INFORMATION_FIELDS_KEY] );
 		}
 
-		$problems = array();
-		$licenseData = $this->selectLicense( $templateData[TemplateParser::LICENSES_KEY] );
-		$informationData = $this->selectInformationTemplate( $templateData[TemplateParser::INFORMATION_FIELDS_KEY] );
-
-		if ( !$licenseData || empty( $licenseData['LicenseShortName'] ) ) {
+		if ( empty( $licenseData['LicenseShortName'] ) ) {
 			$problems[] = 'no-license';
 		}
-		if ( !$informationData || empty( $informationData['ImageDescription'] ) ) {
+		if ( empty( $informationData['ImageDescription'] ) ) {
 			$problems[] = 'no-description';
 		}
-		if ( !$informationData || empty( $informationData['Artist'] ) && empty( $informationData['Attribution'] ) ) {
+		if ( empty( $informationData['Artist'] ) && empty( $informationData['Attribution'] ) ) {
 			$problems[] = 'no-author';
 		}
-		if ( !$informationData || empty( $informationData['Credit'] ) && empty( $informationData['Attribution'] ) ) {
+		if ( empty( $informationData['Credit'] ) && empty( $informationData['Attribution'] ) ) {
 			$problems[] = 'no-source';
 		}
 
@@ -172,6 +173,10 @@ class DataCollector {
 
 		if ( isset( $templateData[TemplateParser::LICENSES_KEY] ) ) {
 			$templateFields = array_merge( $templateFields, $this->selectLicense( $templateData[TemplateParser::LICENSES_KEY] ) );
+		}
+
+		if ( isset( $templateData[TemplateParser::DELETION_KEY] ) ) {
+			$templateFields = array_merge( $templateFields, $this->selectDeletionReason( $templateData[TemplateParser::DELETION_KEY] ) );
 		}
 
 		$metadata = array();
@@ -374,5 +379,17 @@ class DataCollector {
 		// sortDataByLicensePriority puts things in right order but also rearranges the keys - we don't want that
 		$sortedLicenses = array_values( $sortedLicenses );
 		return $sortedLicenses ? $sortedLicenses[0] : array();
+	}
+
+	/**
+	 * Receives the list of deletion requests on a file page and flattens them
+	 * @param array $deletions
+	 * @return array a metadata key-value list; currently the only key is DeletionReason
+	 */
+	protected function selectDeletionReason( $deletions ) {
+		if ( empty( $deletions ) ) {
+			return array();
+		}
+		return $deletions[0];
 	}
 }

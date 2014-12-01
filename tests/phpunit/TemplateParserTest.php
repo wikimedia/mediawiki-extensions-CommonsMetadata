@@ -271,6 +271,17 @@ class TemplateParserTest extends MediaWikiTestCase {
 	}
 
 	/**
+	 * Test deletion reason etraction from the {{Nuke}} template
+	 */
+	public function testNuke() {
+		$data = $this->parseTestHTML( 'deletion' );
+		$this->assertFieldEquals( 'DeletionReason', '[[Commons:Deletion requests/File:Kerameikos October 2012 15.JPG]]: '
+			. 'As far as I know tourist signs as all road signs are not in the public domain. '
+			. '--[[User:G.dallorto|User:G.dallorto]] ([[User talk:G.dallorto|<span class="signature-talk">talk</span>]]) '
+			. '00:25, 16 November 2014 (UTC)', $data, TemplateParser::DELETION_KEY );
+	}
+
+	/**
 	 * Manually executed speed test to compare performance of the two parsers.
 	 */
 	public function _testParsingSpeed() {

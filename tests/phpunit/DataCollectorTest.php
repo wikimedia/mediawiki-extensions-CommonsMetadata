@@ -40,13 +40,40 @@ class DataCollectorTest extends MediaWikiTestCase {
 
 	/*------------------------------- Format tests --------------------------*/
 
-	public function testNoMetadata() {
+	public function testEmptyMetadata() {
 		$this->templateParser->expects( $this->once() )->method( 'parsePage' )
 			->will( $this->returnValue( array(
 				TemplateParser::COORDINATES_KEY => array(),
 				TemplateParser::INFORMATION_FIELDS_KEY => array(),
 				TemplateParser::LICENSES_KEY => array(),
+				TemplateParser::DELETION_KEY => array(),
 			) ) );
+		$this->licenseParser->expects( $this->any() )->method( 'parseLicenseString' )
+			->will( $this->returnValue( null ) );
+		$metadata = array();
+
+		$this->dataCollector->collect( $metadata, $this->file );
+
+		$this->assertMetadataValue( 'Categories', '', $metadata );
+		$this->assertMetadataValue( 'Assessments', '', $metadata );
+	}
+
+	public function testNoMetadata() {
+		$this->templateParser->expects( $this->once() )->method( 'parsePage' )
+			->will( $this->returnValue( array() ) );
+		$this->licenseParser->expects( $this->any() )->method( 'parseLicenseString' )
+			->will( $this->returnValue( null ) );
+		$metadata = array();
+
+		$this->dataCollector->collect( $metadata, $this->file );
+
+		$this->assertMetadataValue( 'Categories', '', $metadata );
+		$this->assertMetadataValue( 'Assessments', '', $metadata );
+	}
+
+	public function testMissingMetadata() {
+		$this->templateParser->expects( $this->once() )->method( 'parsePage' )
+			->will( $this->returnValue( null ) );
 		$this->licenseParser->expects( $this->any() )->method( 'parseLicenseString' )
 			->will( $this->returnValue( null ) );
 		$metadata = array();
@@ -60,8 +87,6 @@ class DataCollectorTest extends MediaWikiTestCase {
 	public function testTemplateMetadataFormatForSingleValuedProperty() {
 		$this->templateParser->expects( $this->once() )->method( 'parsePage' )
 			->will( $this->returnValue( array(
-				TemplateParser::COORDINATES_KEY => array(),
-				TemplateParser::INFORMATION_FIELDS_KEY => array(),
 				TemplateParser::LICENSES_KEY => array(
 					array( 'UsageTerms' => 'foo' ),
 				),
@@ -78,8 +103,6 @@ class DataCollectorTest extends MediaWikiTestCase {
 	public function testTemplateMetadataFormatForMultiValuedProperty() {
 		$this->templateParser->expects( $this->once() )->method( 'parsePage' )
 			->will( $this->returnValue( array(
-				TemplateParser::COORDINATES_KEY => array(),
-				TemplateParser::INFORMATION_FIELDS_KEY => array(),
 				TemplateParser::LICENSES_KEY => array(
 					array( 'UsageTerms' => 'foo' ),
 				),
@@ -136,12 +159,14 @@ class DataCollectorTest extends MediaWikiTestCase {
 			TemplateParser::COORDINATES_KEY => array( array( 'Foo' => 'bar' ) ),
 			TemplateParser::INFORMATION_FIELDS_KEY => array( array( 'Baz' => 'boom' ) ),
 			TemplateParser::LICENSES_KEY => array( array( 'LicenseShortName' => 'quux' ) ),
+			TemplateParser::DELETION_KEY => array( array( 'DeletionReason' => 'quuux' ) ),
 		) ) );
 
 		$this->assertMetadataValue( 'Foo', 'bar', $templateData );
 		$this->assertMetadataValue( 'Baz', 'boom', $templateData );
 		$this->assertMetadataValue( 'LicenseShortName', 'quux', $templateData );
 		$this->assertMetadataValue( 'License', 'quux.name', $templateData );
+		$this->assertMetadataValue( 'DeletionReason', 'quuux', $templateData );
 	}
 
 	public function testGetTemplateMetadataForMultipleInfoTemplates() {
@@ -151,9 +176,7 @@ class DataCollectorTest extends MediaWikiTestCase {
 		$template1 = array( 'Artist' => 'a1', 'Foo' => 'x' );
 		$template2 = array( 'Artist' => 'a2', 'Bar' => 'y' );
 		$templateData = $getTemplateMetadataMethod->invokeArgs( $this->dataCollector, array( array(
-			TemplateParser::COORDINATES_KEY => array(),
 			TemplateParser::INFORMATION_FIELDS_KEY => array( $template1, $template2 ),
-			TemplateParser::LICENSES_KEY => array(),
 		) ) );
 
 		$this->assertMetadataValue( 'Artist', 'a1', $templateData );
