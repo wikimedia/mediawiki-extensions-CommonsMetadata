@@ -190,6 +190,26 @@ class TemplateParserTest extends MediaWikiTestCase {
 			. '<i>Askaris used during the operation</i></span></span>', $data, TemplateParser::INFORMATION_FIELDS_KEY );
 	}
 
+	/**
+	 * The old {{Information}} template format used ids on the preceding table cells, the new one
+	 * uses classes without any furter restriction.
+	 */
+	public function testClassBasedInfotemplate() {
+		$data = $this->parseTestHTML( 'infotpl_class' );
+		$this->assertFieldEquals( 'ImageDescription',
+			'Tom Baker as the <a href="//en.wikipedia.org/wiki/Fourth_Doctor" title="Fourth Doctor">Fourth Doctor</a> in Doctor Who.',
+			$data, TemplateParser::INFORMATION_FIELDS_KEY );
+	}
+
+	/**
+	 * Combination of multiple information templates, e.g. {{Artwork}} + {{Photograph}}
+	 */
+	public function testMultipleInfoTemplates() {
+		$data = $this->parseTestHTML( 'multiple_infotpl' );
+		$this->assertFieldEquals( 'Artist',
+			'<span class="fn value"><a href="//commons.wikimedia.org/wiki/User:El_Grafo" title="User:El Grafo">El Grafo</a></span>',
+			$data, TemplateParser::INFORMATION_FIELDS_KEY );
+	}
 
 	// -------------------- license tests --------------------
 

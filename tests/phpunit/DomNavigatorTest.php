@@ -26,6 +26,16 @@ class DomNavigatorTest extends MediaWikiTestCase {
 		$this->assertTrue( $navigator->hasClass( $node, 'foo baz' ) );
 	}
 
+	public function testGetFirstClassWithPrefix() {
+		$navigator = new DomNavigator( '<span class="foo bar baz boom"></span>' );
+		$node = $navigator->getByXpath( '//body/*' );
+		$this->assertEquals( 'bar', $navigator->getFirstClassWithPrefix( $node, 'ba' ) );
+		$this->assertEquals( 'foo', $navigator->getFirstClassWithPrefix( $node, 'fo' ) );
+		$this->assertEquals( 'boom', $navigator->getFirstClassWithPrefix( $node, 'boom' ) );
+		$this->assertNull( $navigator->getFirstClassWithPrefix( $node, 'zzap' ) );
+		$this->assertNull( $navigator->getFirstClassWithPrefix( $node, 'ar' ) );
+	}
+
 	public function testFindElementsWithClass() {
 		// one result
 		$navigator = new DomNavigator( '<div><span>1</span><span class="foo">2</span><span>3</span></div>' );
@@ -50,6 +60,23 @@ class DomNavigatorTest extends MediaWikiTestCase {
 		$navigator = new DomNavigator( '<div><span x="1"></span><span class="foo" x="2"><span class="foo" x="3"></span></span></div>' );
 		$nodes = $navigator->findElementsWithClass( 'span', 'foo' );
 		$this->assertNodeListAttributeEquals( 'x', array( '2', '3' ), $nodes );
+	}
+
+	public function testFindElementsWithClassPrefix() {
+		// one class
+		$navigator = new DomNavigator( '<div><span class="foo">1</span><span class="foobar">2</span><span class="barfoo">3</span></div>' );
+		$nodes = $navigator->findElementsWithClassPrefix( 'span', 'foo' );
+		$this->assertNodeListTextEquals( array( '1', '2' ), $nodes );
+
+		// more classes
+		$navigator = new DomNavigator( '<div><span class="baz foobar boom">1</span><span class="foobar baz">2</span><span class="baz foobar">3</span></div>' );
+		$nodes = $navigator->findElementsWithClassPrefix( 'span', 'foo' );
+		$this->assertNodeListTextEquals( array( '1', '2', '3' ), $nodes );
+
+		// more classes - negative
+		$navigator = new DomNavigator( '<div><span class="baz barfoo boom">1</span><span class="fo obar baz">2</span><span class="baz fo bar">3</span></div>' );
+		$nodes = $navigator->findElementsWithClassPrefix( 'span', 'foo' );
+		$this->assertNodeListTextEquals( array(), $nodes );
 	}
 
 	public function testTagNameSelector() {
@@ -133,7 +160,7 @@ class DomNavigatorTest extends MediaWikiTestCase {
 		$this->assertNull( $closest );
 	}
 
-	public function nextSiblingTest() {
+	public function testNextSibling() {
 		$navigator = new DomNavigator( '<div><span>1</span><span id="foo">2</span><span>3</span><span>4</span></div>' );
 		$node = $navigator->getByXpath( "//*[@id = 'foo']" );
 		$nextSibling = $navigator->nextElementSibling( $node );
