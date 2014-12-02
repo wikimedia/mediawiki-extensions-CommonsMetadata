@@ -31,6 +31,18 @@ $wgExtensionCredits['other'][] = array(
  */
 $wgCommonsMetadataSetTrackingCategories = false;
 
+/**
+ * Normally, when CommonsMetadata processes a file from a foreign image repository
+ * (such as InstantCommons) and that repository has the same version of CommonsMetadata
+ * installed, the local extension will reuse the output of the remote one instead of processing
+ * the file page text directly. If this flag is set to true, the local extension will always
+ * calculate the metadata from scratch. This is intended for use in testing/development setups.
+ *
+ * This does NOT disable local metadata caching.
+ * @var bool
+ */
+$wgCommonsMetadataForceRecalculate = false;
+
 $wgAutoloadClasses['CommonsMetadata\HookHandler'] = __DIR__ . '/HookHandler.php';
 $wgAutoloadClasses['CommonsMetadata\DataCollector'] = __DIR__ . '/DataCollector.php';
 $wgAutoloadClasses['CommonsMetadata\DomNavigator'] = __DIR__ . '/DomNavigator.php';

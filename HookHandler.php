@@ -28,9 +28,12 @@ class HookHandler {
 	 * @return bool this hook handler always returns true.
 	 */
 	public static function onGetExtendedMetadata( &$combinedMeta, \File $file, \IContextSource $context, $singleLang, &$maxCache ) {
+		global $wgCommonsMetadataForceRecalculate;
+
 		if (
 			isset( $combinedMeta['CommonsMetadataExtension']['value'] )
 			&& $combinedMeta['CommonsMetadataExtension']['value'] == self::VERSION
+			&& !$wgCommonsMetadataForceRecalculate
 		) {
 			// This is a file from a remote API repo, and CommonsMetadata is installed on
 			// the remote as well, and generates the same metadata format. We have nothing to do.
