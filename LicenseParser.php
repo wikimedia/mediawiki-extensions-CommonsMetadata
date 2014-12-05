@@ -140,7 +140,7 @@ class LicenseParser {
 	 */
 	protected function parsePublicDomainLicenseString( $str ) {
 		// A very simple approach, but should work most of the time with licence shortnames.
-		if ( strtolower( $str ) === 'public domain' ) {
+		if ( strtolower( $str ) === 'public domain' || strtolower( $str ) === 'pd' ) {
 			return array(
 				'family' => 'pd',
 				'name' => 'pd',
