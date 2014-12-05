@@ -2,12 +2,17 @@
 	"@metadata": {
 		"authors": [
 			"Priviet",
-			"Namoroka"
+			"Namoroka",
+			"Kwj2772"
 		]
 	},
 	"commonsmetadata-desc": "위키미디어 공용에서 자주 사용되는 틀을 사용하는 사진 설명 문성 저장된 정보를 포함하기 위해 \"extmetadata\" 사진 정보 API 모듈을 확장합니다",
 	"commonsmetadata-trackingcategory-no-license": "기계가 읽을 수 있는 저작권이 없는 파일",
+	"commonsmetadata-trackingcategory-no-license-desc": "[{{MediaWiki:Commonsmetadata-doc-url}} 기계가 판독 가능]한 라이선스 틀이 없는 파일입니다.",
 	"commonsmetadata-trackingcategory-no-description": "기계가 읽을 수 있는 설명이 없는 파일",
+	"commonsmetadata-trackingcategory-no-description-desc": "[{{MediaWiki:Commonsmetadata-doc-url}} 기계가 판독 가능]한 파일 정보 틀이 없거나, 설명이 기재되지 않은 파일입니다.",
 	"commonsmetadata-trackingcategory-no-author": "기계가 읽을 수 있는 저자가 없는 파일",
-	"commonsmetadata-trackingcategory-no-source": "기계가 읽을 수 있는 출처가 없는 파일"
+	"commonsmetadata-trackingcategory-no-author-desc": "[{{MediaWiki:Commonsmetadata-doc-url}} 기계가 판독 가능]한 파일 정보 틀이 없거나, 저작자가 기재되지 않은 파일입니다.",
+	"commonsmetadata-trackingcategory-no-source": "기계가 읽을 수 있는 출처가 없는 파일",
+	"commonsmetadata-trackingcategory-no-source-desc": "[{{MediaWiki:Commonsmetadata-doc-url}} 기계가 판독 가능]한 파일 정보 틀이 없거나, 출처가 기재되지 않은 파일입니다."
 }
