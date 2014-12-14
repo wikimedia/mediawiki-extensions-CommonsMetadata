@@ -119,16 +119,22 @@ class DataCollector {
 			$informationData = $this->selectInformationTemplate( $templateData[TemplateParser::INFORMATION_FIELDS_KEY] );
 		}
 
-		if ( empty( $licenseData['LicenseShortName'] ) ) {
+		if ( !isset( $licenseData['LicenseShortName'] ) || $licenseData['LicenseShortName'] === '' ) {
 			$problems[] = 'no-license';
 		}
-		if ( empty( $informationData['ImageDescription'] ) ) {
+		if ( !isset( $informationData['ImageDescription'] ) || $informationData['ImageDescription'] === '' ) {
 			$problems[] = 'no-description';
 		}
-		if ( empty( $informationData['Artist'] ) && empty( $informationData['Attribution'] ) ) {
+		if (
+			( !isset( $informationData['Artist'] ) || $informationData['Artist'] === '' )
+			&& ( !isset( $informationData['Attribution'] ) || $informationData['Attribution'] === '' )
+		) {
 			$problems[] = 'no-author';
 		}
-		if ( empty( $informationData['Credit'] ) && empty( $informationData['Attribution'] ) ) {
+		if (
+			( !isset( $informationData['Credit'] ) || $informationData['Credit'] === '' )
+			&& ( !isset( $informationData['Attribution'] ) || $informationData['Attribution'] === '' )
+		) {
 			$problems[] = 'no-source';
 		}
 
@@ -341,7 +347,7 @@ class DataCollector {
 	 * @param array $informationTemplates an array of information templates , each is an array of metdata fields in fieldname => value form
 	 * @return array an array of metdata fields in fieldname => value form
 	 */
-	protected function selectInformationTemplate( $informationTemplates ) {
+	protected function selectInformationTemplate( array $informationTemplates ) {
 		if ( !$informationTemplates ) {
 			return array();
 		}
@@ -364,8 +370,8 @@ class DataCollector {
 	 * @param array $licenses an array of licenses, each is an array of metdata fields in fieldname => value form
 	 * @return array an array of metdata fields in fieldname => value form
 	 */
-	protected function selectLicense( $licenses ) {
-		if ( empty( $licenses ) ) {
+	protected function selectLicense( array $licenses ) {
+		if ( !$licenses ) {
 			return array();
 		}
 
@@ -386,8 +392,8 @@ class DataCollector {
 	 * @param array $deletions
 	 * @return array a metadata key-value list; currently the only key is DeletionReason
 	 */
-	protected function selectDeletionReason( $deletions ) {
-		if ( empty( $deletions ) ) {
+	protected function selectDeletionReason( array $deletions ) {
+		if ( !$deletions ) {
 			return array();
 		}
 		return $deletions[0];
