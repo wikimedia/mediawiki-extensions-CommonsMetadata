@@ -61,6 +61,14 @@ class LicenseParserTest extends MediaWikiTestCase {
 		$this->assertLicenseNameEquals( 'cc-by-sa-1.0', $data );
 	}
 
+	public function testNormalCCLicenseWithSpaces() {
+		$licenseString = 'CC BY-SA 1.0';
+		$data = $this->licenseParser->parseLicenseString( $licenseString );
+		$this->assertLicenseFamilyEquals( 'cc', $data );
+		$this->assertLicenseTypeEquals( 'cc-by-sa', $data );
+		$this->assertLicenseNameEquals( 'cc-by-sa-1.0', $data );
+	}
+
 	public function testCCSALicense() {
 		$licenseString = 'CC-SA-1.0';
 		$data = $this->licenseParser->parseLicenseString( $licenseString );

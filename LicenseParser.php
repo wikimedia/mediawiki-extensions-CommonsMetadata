@@ -96,7 +96,7 @@ class LicenseParser {
 			return $data;
 		}
 
-		$parts = explode( '-', $str );
+		$parts = preg_split( '/[- ]/', $str );
 		if ( $parts[0] != 'cc' ) {
 			return null;
 		}
