@@ -8,7 +8,7 @@
 return array (
 	'DateTimeOriginal' =>
 		array (
-			'value' => '<time class="dtstart" datetime="2009-02-18">18 February 2009</time>' . "\xc2\xa0" . '(according to <a href="//en.wikipedia.org/wiki/Exchangeable_image_file_format" class="extiw" title="en:Exchangeable image file format">EXIF</a> data)',
+			'value' => '2009-02-18',
 			'source' => 'commons-desc-page',
 		),
 	'License' =>

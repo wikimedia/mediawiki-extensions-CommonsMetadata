@@ -140,6 +140,12 @@ class DomNavigatorTest extends MediaWikiTestCase {
 		$this->assertNodeListTextEquals( array( '1', '2' ), $nodes );
 	}
 
+	public function testFindElementsWithAttribute() {
+		$navigator = new DomNavigator( '<span class="foo">1</span><span class>2</span><span id="bar">3</span>' );
+		$nodes = $navigator->findElementsWithAttribute( 'span', 'class' );
+		$this->assertNodeListTextEquals( array( '1', '2' ), $nodes );
+	}
+
 	public function testClosest() {
 		$navigator = new DomNavigator( '<span><ul id="a"><li id="b"><span id="c"><b></b></span></li></ul></span>' );
 		$node = $navigator->getByXpath( "//*[@id = 'c']" );

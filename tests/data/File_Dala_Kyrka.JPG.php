@@ -7,7 +7,7 @@
 return array (
 	'DateTimeOriginal' =>
 		array (
-			'value' => '<time class="dtstart" datetime="2013-10-27">27 October 2013</time>, 10:27:44',
+			'value' => '2013-10-27',
 			'source' => 'commons-desc-page',
 		),
 	'License' =>

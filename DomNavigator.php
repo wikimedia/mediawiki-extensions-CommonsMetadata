@@ -105,6 +105,21 @@ class DomNavigator {
 	}
 
 	/**
+	 * Returns a list of elements of the given type which have the given attribute with any value.
+	 * (In other words, this is equivalent to the CSS selector 'element[attribute]'.)
+	 * When there are multiple elements with this attribute, all are returned.
+	 * @param string|array $element HTML tag name (* to accept all) or array of tag names
+	 * @param string $attribute
+	 * @param DOMNode $context if present, the method will only search inside this element
+	 * @return DOMNodeList|DOMElement[]
+	 */
+	public function findElementsWithAttribute( $element, $attribute, DOMNode $context = null ) {
+		$element = $this->handleElementOrList( $element );
+		$xpath = "./descendant-or-self::{$element}[@{$attribute}]";
+		return $this->findByXpath( $xpath, $context );
+	}
+
+	/**
 	 * Returns true if the node has all the specified classes.
 	 * @param DOMNode $node
 	 * @param string $classes one or more class names (separated with space)

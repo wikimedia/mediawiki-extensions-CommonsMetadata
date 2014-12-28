@@ -272,6 +272,21 @@ class TemplateParser {
 	}
 
 	/**
+	 * Parses the DateTimeOriginal - finds <time> tag and returns the value of datetime attribute
+	 * @param DomNavigator $domNavigator
+	 * @param DOMNode $node
+	 * @return string
+	 */
+	protected function parseFieldDateTimeOriginal( DomNavigator $domNavigator, DOMNode $node ) {
+		$nodes = $domNavigator->findElementsWithAttribute( 'time', 'datetime', $node );
+		foreach ( $nodes as $time ) {
+			return $time->getAttribute( 'datetime' );
+		}
+
+		return $this->parseContents( $domNavigator, $node );
+	}
+
+	/**
 	 * Extracts an hCard property from a DOMNode that contains an hCard
 	 * @param DomNavigator $domNavigator
 	 * @param DOMNode $node
