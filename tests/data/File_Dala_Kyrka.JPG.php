@@ -7,7 +7,7 @@
 return array (
 	'DateTimeOriginal' =>
 		array (
-			'value' => '2013-10-27',
+			'value' => '2013-10-27 10:27:44',
 			'source' => 'commons-desc-page',
 		),
 	'License' =>

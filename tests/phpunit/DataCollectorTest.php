@@ -116,6 +116,16 @@ class DataCollectorTest extends MediaWikiTestCase {
 		$this->assertMetadataValue( 'UsageTerms', 'foo', $metadata );
 	}
 
+	public function testMetadataTimestampNormalization() {
+		$metadata = array( 'DateTime' => array( 'value' => '2014:12:08 16:04:26' ),
+			'DateTimeOriginal' => array( 'value' => '2014:12:08 16:04:26' ) );
+
+		$this->dataCollector->collect( $metadata, $this->file );
+
+		$this->assertMetadataValue( 'DateTime', '2014-12-08 16:04:26', $metadata );
+		$this->assertMetadataValue( 'DateTimeOriginal', '2014-12-08 16:04:26', $metadata );
+	}
+
 	/*------------------------------- Logic tests --------------------------*/
 
 	public function testGetCategoryMetadata() {

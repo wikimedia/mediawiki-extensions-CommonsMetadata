@@ -89,6 +89,8 @@ class DataCollector {
 	 * @param File $file
 	 */
 	public function collect( array &$previousMetadata, File $file ) {
+		$this->normalizeMetadataTimestamps( $previousMetadata );
+
 		$descriptionText = $this->getDescriptionText( $file, $this->language );
 
 		$categories = $this->getCategories( $file, $previousMetadata );
@@ -397,5 +399,21 @@ class DataCollector {
 			return array();
 		}
 		return $deletions[0];
+	}
+
+	/**
+	 * Normalizes the metadata to wfTimestamp()'s TS_DB format
+	 * @param array $metadata
+	 */
+	protected function normalizeMetadataTimestamps( array &$metadata ) {
+		$fieldsToNormalize = array( 'DateTime', 'DateTimeOriginal' );
+		foreach( $fieldsToNormalize as $field ) {
+			if ( isset( $metadata[$field] ) && isset( $metadata[$field]['value'] ) ) {
+				$parsedTs = wfTimestamp( TS_DB, $metadata[$field]['value'] );
+				if ( $parsedTs ) {
+					$metadata[$field]['value'] = $parsedTs;
+				}
+			}
+		}
 	}
 }
