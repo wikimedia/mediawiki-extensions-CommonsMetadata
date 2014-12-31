@@ -211,6 +211,22 @@ class TemplateParserTest extends MediaWikiTestCase {
 			$data, TemplateParser::INFORMATION_FIELDS_KEY );
 	}
 
+	/**
+	 * Test use of blacklisted templates e.g. {{Book}}
+	 * Ignore such templates unless they are the only ones present
+	 */
+	public function testBlacklistedTemplates() {
+		// {{Book}} should be ignored when other templates ( {{Photograph}} + {{Artwork}} ) are present
+		$data = $this->parseTestHTML( 'book' );
+		$this->assertEquals( 2, count( $data[TemplateParser::INFORMATION_FIELDS_KEY] ) );
+		$this->assertFieldEquals( 'DateTimeOriginal', '1943-04-19', $data, TemplateParser::INFORMATION_FIELDS_KEY );
+
+		// {{Book}} should be used when it is the only info template present
+		$data = $this->parseTestHTML( 'book2' );
+		$this->assertEquals( 1, count( $data[TemplateParser::INFORMATION_FIELDS_KEY] ) );
+		$this->assertFieldEquals( 'DateTimeOriginal', '1885-1890', $data, TemplateParser::INFORMATION_FIELDS_KEY );
+	}
+
 	// -------------------- license tests --------------------
 
 	public function testSingleLicense() {
