@@ -182,6 +182,7 @@ class TemplateParser {
 			}
 		}
 
+		$this->pruneInfoTemplateData( $data );
 		$this->sortInformationGroups( $data );
 		return array_values( $data ); // using node paths to identify tables is an internal detail, hide it
 	}
@@ -207,10 +208,6 @@ class TemplateParser {
 		if ( $group ) {
 			$groupName = $group->getNodePath();
 			$groupType = $domNavigator->getFirstClassWithPrefix( $group, 'fileinfotpl-type-' ) ?: '-';
-		}
-
-		if ( in_array( $groupType, self::$infoTemplateBlacklist ) ) {
-			return;
 		}
 
 		if ( isset ( $data[$groupName][$fieldName] ) ) {
@@ -254,6 +251,19 @@ class TemplateParser {
 
 		foreach ( $data as &$group ) {
 			unset( $group['_type'] );
+		}
+	}
+
+	/**
+	 * Prunes template data
+	 * Removes blacklisted templates if they are not alone
+	 * @param array $data info template data
+	 */
+	protected function pruneInfoTemplateData( array &$data ) {
+		foreach ( $data as $key => &$group ) {
+			if ( in_array( $group['_type'], self::$infoTemplateBlacklist ) && count( $data ) !== 1 ) {
+				unset( $data[$key] );
+			}
 		}
 	}
 
