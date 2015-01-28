@@ -23,6 +23,7 @@ $wgExtensionCredits['other'][] = array(
 	'author' => 'Brian Wolff',
 	'url' => '//www.mediawiki.org/wiki/Extension:CommonsMetadata',
 	'descriptionmsg' => 'commonsmetadata-desc',
+	'license-name' => 'GPL-2.0+',
 );
 
 /**
