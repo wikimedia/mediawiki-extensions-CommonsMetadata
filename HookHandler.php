@@ -2,7 +2,7 @@
 
 namespace CommonsMetadata;
 
-use Language, RepoGroup;
+use IContextSource, Language, RepoGroup, File, Content, Title, ParserOutput;
 
 /**
  * Hook handler
@@ -20,14 +20,14 @@ class HookHandler {
 	/**
 	 * Hook handler for extended metadata
 	 *
-	 * @param $combinedMeta Array Metadata so far
-	 * @param $file \File The file object in question
-	 * @param $context \IContextSource context. Used to select language
-	 * @param $singleLang Boolean Get only target language, or all translations
-	 * @param &$maxCache Integer How many seconds to cache the result
-	 * @return bool this hook handler always returns true.
+	 * @param array $combinedMeta Metadata so far
+	 * @param File $file The file object in question
+	 * @param IContextSource $context Context. Used to select language
+	 * @param bool $singleLang Get only target language, or all translations
+	 * @param int &$maxCache How many seconds to cache the result
+	 * @return bool This hook handler always returns true
 	 */
-	public static function onGetExtendedMetadata( &$combinedMeta, \File $file, \IContextSource $context, $singleLang, &$maxCache ) {
+	public static function onGetExtendedMetadata( &$combinedMeta, File $file, IContextSource $context, $singleLang, &$maxCache ) {
 		global $wgCommonsMetadataForceRecalculate;
 
 		if (
@@ -74,11 +74,11 @@ class HookHandler {
 	/**
 	 * Hook to check if cache is stale
 	 *
-	 * @param $timestamp String Timestamp of when cache taken
-	 * @param $file \File The file metadata is for
-	 * @return boolean Is metadata still valid
+	 * @param string $timestamp Timestamp of when cache taken
+	 * @param File $file The file metadata is for
+	 * @return bool Is metadata still valid
 	 */
-	public static function onValidateExtendedMetadataCache( $timestamp, $file ) {
+	public static function onValidateExtendedMetadataCache( $timestamp, File $file ) {
 		return // use cached value if...
 			!$file->isLocal() // file is remote (we don't know when remote updates happen, so we always cache, with a short TTL)
 			|| $file->getTitle()->getTouched() === false // or we don't know when the file was last updated
@@ -89,12 +89,12 @@ class HookHandler {
 	/**
 	 * Check HTML output of a file page to see if it has all the basic metadata, and add tracking categories
 	 * if it does not.
-	 * @param \Content $content
-	 * @param \Title $title
-	 * @param \ParserOutput $parserOutput
+	 * @param Content $content
+	 * @param Title $title
+	 * @param ParserOutput $parserOutput
 	 * @return bool this hook handler always returns true.
 	 */
-	public static function onContentAlterParserOutput( $content, $title, $parserOutput ) {
+	public static function onContentAlterParserOutput( Content $content, Title $title, ParserOutput $parserOutput ) {
 		global $wgCommonsMetadataSetTrackingCategories;
 
 		if (
@@ -131,6 +131,7 @@ class HookHandler {
 	/**
 	 * @param Language $lang
 	 * @param bool $singleLang
+	 * @return DataCollector
 	 */
 	private static function getDataCollector( Language $lang, $singleLang ) {
 		$templateParser = new TemplateParser();
