@@ -61,10 +61,9 @@ class HookHandler {
 
 		$dataCollector->collect( $combinedMeta, $file );
 
-		if ( !$file->isLocal() ) {
-			// Foreign files don't have explicit cache purging
-			// In theory, if this became an issue, we could do
-			// a db query to the foreign wiki to look at page_touched.
+		if ( !$file->getDescriptionTouched() ) {
+			// Not all files provide the last update time of the description.
+			// If that's the case, just cache blindly for a shorter period.
 			$maxCache = 60 * 60 * 12;
 		}
 
@@ -80,9 +79,8 @@ class HookHandler {
 	 */
 	public static function onValidateExtendedMetadataCache( $timestamp, File $file ) {
 		return // use cached value if...
-			!$file->isLocal() // file is remote (we don't know when remote updates happen, so we always cache, with a short TTL)
-			|| $file->getTitle()->getTouched() === false // or we don't know when the file was last updated
-			|| wfTimestamp( TS_UNIX, $file->getTitle()->getTouched() ) // or last update was before we cached it
+			!$file->getDescriptionTouched() // we don't know when the file was last updated
+			|| wfTimestamp( TS_UNIX, $file->getDescriptionTouched() ) // or last update was before we cached it
 				<= wfTimestamp( TS_UNIX, $timestamp );
 	}
 

@@ -114,6 +114,9 @@ class ParserTestHelper {
 		$file->expects( $this->testCase->any() )
 			->method( 'getDescriptionText' )
 			->will( $this->testCase->returnValue( $description ) );
+		$file->expects( $this->testCase->any() )
+			->method( 'getDescriptionTouched' )
+			->will( $this->testCase->returnValue( time() ) );
 		$file->mockedCategories = $categories;
 		return $file;
 	}
@@ -132,6 +135,9 @@ class ParserTestHelper {
 		$file->expects( $this->testCase->any() )
 			->method( 'getDescriptionText' )
 			->will( $this->testCase->returnValue( $description ) );
+		$file->expects( $this->testCase->any() )
+			->method( 'getDescriptionTouched' )
+			->will( $this->testCase->returnValue( time() ) );
 		return $file;
 	}
 
@@ -151,6 +157,9 @@ class ParserTestHelper {
 		$file->expects( $this->testCase->any() )
 			->method( 'getDescriptionText' )
 			->will( $this->testCase->returnValue( $description ) );
+		$file->expects( $this->testCase->any() )
+			->method( 'getDescriptionTouched' )
+			->will( $this->testCase->returnValue( false ) );
 		$file->mockedCategories = $categories;
 		return $file;
 	}
