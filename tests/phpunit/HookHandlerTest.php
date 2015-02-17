@@ -47,8 +47,8 @@ class HookHandlerTest extends PHPUnit_Framework_TestCase {
 
 		HookHandler::onGetExtendedMetadata( $metadata, $file, $context, true, $maxCache );
 
-		// cache interval is 12 hours for all remote files
-		$this->assertEquals( 3600 * 12, $maxCache );
+		// cache interval was not changed
+		$this->assertEquals( 3600, $maxCache );
 
 		// metdata from other sources is kept but overwritten on conflict
 		$this->assertArrayHasKey( 'OldKey', $metadata );
