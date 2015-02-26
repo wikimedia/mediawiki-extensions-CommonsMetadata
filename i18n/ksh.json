@@ -4,5 +4,9 @@
 			"Purodha"
 		]
 	},
-	"commonsmetadata-desc": "Deiht Aanjaabe övver Belder us Medijawikk <i lang=\"en\" xml:lang=\"en\">Commons</i> en de Beldereijeschaffte vum <i lang=\"en\" xml:lang=\"en\">API</i>-Befähl <code lang=\"en\" xml:lang=\"en\">extmetadata</code>, di en de Sigge met de Aanjabe övver Belder änthallde sin un doh de jewöhnlejje Schablohne bruche."
+	"commonsmetadata-desc": "Deiht Aanjaabe övver Belder us Medijawikk <i lang=\"en\" xml:lang=\"en\">Commons</i> en de Beldereijeschaffte vum <i lang=\"en\" xml:lang=\"en\">API</i>-Befähl <code lang=\"en\" xml:lang=\"en\">extmetadata</code>, di en de Sigge met de Aanjabe övver Belder änthallde sin un doh de jewöhnlejje Schablohne bruche.",
+	"commonsmetadata-trackingcategory-no-license": "Datteije der ohne en Aanjab övver en Lezänz, di en Maschihn och verwände künnt",
+	"commonsmetadata-trackingcategory-no-description": "Datteije der ohne en Beschriehvong, di en Maschihn och verwände künnt",
+	"commonsmetadata-trackingcategory-no-author": "Datteije der ohne en Aanjab övver der Maacher, di en Maschihn och verwände künnt",
+	"commonsmetadata-trackingcategory-no-source": "Datteije der ohne en Aanjab övver en Quäll, di en Maschihn och verwände künnt"
 }
