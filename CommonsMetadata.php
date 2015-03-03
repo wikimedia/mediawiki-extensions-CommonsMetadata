@@ -17,6 +17,11 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 # http://www.gnu.org/copyleft/gpl.html
 
+/**
+ * This PHP entry point is deprecated. Please use wfLoadExtension() and the extension.json file instead.
+ * See https://www.mediawiki.org/wiki/Manual:Extension_registration for more details.
+ */
+
 $wgExtensionCredits['other'][] = array(
 	'path' => __FILE__,
 	'name' => 'CommonsMetadata',
