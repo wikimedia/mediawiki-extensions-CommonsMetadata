@@ -1,12 +1,12 @@
 <?php
 
-use CommonsMetadata\DomNavigator;
+namespace CommonsMetadata;
 
 /**
  * @covers CommonsMetadata\DomNavigator
  * @group Extensions/CommonsMetadata
  */
-class DomNavigatorTest extends MediaWikiTestCase {
+class DomNavigatorTest extends \MediaWikiTestCase {
 	public function testHasClass() {
 		$navigator = new DomNavigator( '<span class="foo"></span>' );
 		$node = $navigator->getByXpath( '//body/*' );
@@ -188,10 +188,10 @@ class DomNavigatorTest extends MediaWikiTestCase {
 	/**
 	 * Asserts the text of nodes in a result set agains strings in an array.
 	 * @param array $expected
-	 * @param DOMElement[]|DomNodeList $nodes
+	 * @param \DomNodeList $nodes
 	 * @param string $message
 	 */
-	protected function assertNodeListTextEquals( array $expected, DOMNodeList $nodes, $message = '' ) {
+	protected function assertNodeListTextEquals( array $expected, \DOMNodeList $nodes, $message = '' ) {
 		$this->assertEquals( count( $expected ) , $nodes->length );
 		foreach ( $expected as $i => $text ) {
 			$this->assertEquals( $text, $nodes->item( $i )->textContent, $message ?: "Failed to assert that text of node $i equals '$text'" );
@@ -202,10 +202,10 @@ class DomNavigatorTest extends MediaWikiTestCase {
 	 * Asserts a given attribute of nodes in a result set agains strings in an array.
 	 * @param string $attributeName
 	 * @param array $expected
-	 * @param DOMElement[]|DomNodeList $nodes
+	 * @param \DomNodeList $nodes
 	 * @param string $message
 	 */
-	protected function assertNodeListAttributeEquals( $attributeName, array $expected, DOMNodeList $nodes, $message = '' ) {
+	protected function assertNodeListAttributeEquals( $attributeName, array $expected, \DOMNodeList $nodes, $message = '' ) {
 		$this->assertEquals( count( $expected ) , $nodes->length );
 		foreach ( $expected as $i => $attr ) {
 			$node = $nodes->item( $i );

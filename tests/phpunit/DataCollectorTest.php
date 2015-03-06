@@ -1,23 +1,22 @@
 <?php
 
-use CommonsMetadata\DataCollector;
-use CommonsMetadata\TemplateParser;
+namespace CommonsMetadata;
 
 /**
  * @covers CommonsMetadata\DataCollector
  * @group Extensions/CommonsMetadata
  */
-class DataCollectorTest extends MediaWikiTestCase {
-	/** @var PHPUnit_Framework_MockObject_MockObject */
+class DataCollectorTest extends \MediaWikiTestCase {
+	/** @var \PHPUnit_Framework_MockObject_MockObject */
 	protected $templateParser;
 
-	/** @var PHPUnit_Framework_MockObject_MockObject */
+	/** @var \PHPUnit_Framework_MockObject_MockObject */
 	protected $licenseParser;
 
 	/** @var DataCollector */
 	protected $dataCollector;
 
-	/** @var PHPUnit_Framework_MockObject_MockObject */
+	/** @var \PHPUnit_Framework_MockObject_MockObject */
 	protected $file;
 
 	public function setUp() {
@@ -129,7 +128,7 @@ class DataCollectorTest extends MediaWikiTestCase {
 	/*------------------------------- Logic tests --------------------------*/
 
 	public function testGetCategoryMetadata() {
-		$getCategoryMetadataMethod = new ReflectionMethod( $this->dataCollector, 'getCategoryMetadata' );
+		$getCategoryMetadataMethod = new \ReflectionMethod( $this->dataCollector, 'getCategoryMetadata' );
 		$getCategoryMetadataMethod->setAccessible( true );
 
 		$categories = array( 'Foo', 'Bar', 'Pictures of the year (2012)', 'Pictures of the day (2012)', 'CC-BY-SA-2.0' );
@@ -153,7 +152,7 @@ class DataCollectorTest extends MediaWikiTestCase {
 	}
 
 	public function testGetTemplateMetadata() {
-		$getTemplateMetadataMethod = new ReflectionMethod( $this->dataCollector, 'getTemplateMetadata' );
+		$getTemplateMetadataMethod = new \ReflectionMethod( $this->dataCollector, 'getTemplateMetadata' );
 		$getTemplateMetadataMethod->setAccessible( true );
 
 		$this->licenseParser->expects( $this->any() )
@@ -180,7 +179,7 @@ class DataCollectorTest extends MediaWikiTestCase {
 	}
 
 	public function testGetTemplateMetadataForMultipleInfoTemplates() {
-		$getTemplateMetadataMethod = new ReflectionMethod( $this->dataCollector, 'getTemplateMetadata' );
+		$getTemplateMetadataMethod = new \ReflectionMethod( $this->dataCollector, 'getTemplateMetadata' );
 		$getTemplateMetadataMethod->setAccessible( true );
 
 		$template1 = array( 'Artist' => 'a1', 'Foo' => 'x' );

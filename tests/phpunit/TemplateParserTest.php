@@ -1,6 +1,6 @@
 <?php
 
-use CommonsMetadata\TemplateParser;
+namespace CommonsMetadata;
 
 require_once __DIR__ . "/ParserTestHelper.php";
 
@@ -8,7 +8,7 @@ require_once __DIR__ . "/ParserTestHelper.php";
  * @covers CommonsMetadata\TemplateParser
  * @group Extensions/CommonsMetadata
  */
-class TemplateParserTest extends MediaWikiTestCase {
+class TemplateParserTest extends \MediaWikiTestCase {
 	/**
 	 * Make sure there are no errors when common HTML structures are missing.
 	 */

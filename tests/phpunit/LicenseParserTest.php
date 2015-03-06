@@ -1,12 +1,12 @@
 <?php
 
-use CommonsMetadata\LicenseParser;
+namespace CommonsMetadata;
 
 /**
  * @covers CommonsMetadata\LicenseParser
  * @group Extensions/CommonsMetadata
  */
-class LicenseParserTest extends MediaWikiTestCase {
+class LicenseParserTest extends \MediaWikiTestCase {
 	/** @var LicenseParser */
 	protected $licenseParser;
 
@@ -266,7 +266,7 @@ class LicenseParserTest extends MediaWikiTestCase {
 	}
 
 	protected function assertLicenseHasGreaterPriority( $greaterLicenseData, $smallerLicenseData ) {
-		$getLicensePriorityMethod = new ReflectionMethod( $this->licenseParser, 'getLicensePriority' );
+		$getLicensePriorityMethod = new \ReflectionMethod( $this->licenseParser, 'getLicensePriority' );
 		$getLicensePriorityMethod->setAccessible( true );
 		$greaterLicensePriority = $getLicensePriorityMethod->invokeArgs( $this->licenseParser, array( $greaterLicenseData ) );
 		$smallerLicensePriority = $getLicensePriorityMethod->invokeArgs( $this->licenseParser, array( $smallerLicenseData ) );

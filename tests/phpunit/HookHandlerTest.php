@@ -1,6 +1,6 @@
 <?php
 
-use CommonsMetadata\HookHandler;
+namespace CommonsMetadata;
 
 require_once __DIR__ . "/ParserTestHelper.php";
 
@@ -8,7 +8,7 @@ require_once __DIR__ . "/ParserTestHelper.php";
  * @covers CommonsMetadata\HookHandler
  * @group Extensions/CommonsMetadata
  */
-class HookHandlerTest extends PHPUnit_Framework_TestCase {
+class HookHandlerTest extends \PHPUnit_Framework_TestCase {
 	/** @var ParserTestHelper */
 	protected $parserTestHelper;
 

@@ -1,5 +1,7 @@
 <?php
 
+namespace CommonsMetadata;
+
 class ParserTestHelper {
 	/**
 	 * Maps test names to filenames in the test subdirectory.
@@ -49,12 +51,12 @@ class ParserTestHelper {
 	);
 
 	/**
-	 * @var PHPUnit_Framework_TestCase
+	 * @var \PHPUnit_Framework_TestCase
 	 */
 	protected $testCase;
 
 	/**
-	 * @param PHPUnit_Framework_TestCase $testCase
+	 * @param \PHPUnit_Framework_TestCase $testCase
 	 */
 	public function setTestCase( $testCase ) {
 		$this->testCase = $testCase;
@@ -82,7 +84,7 @@ class ParserTestHelper {
 	/**
 	 * Loads an expected metadata test result.
 	 * @param $name
-	 * @throws InvalidArgumentException
+	 * @throws \InvalidArgumentException
 	 * @return array
 	 */
 	public function getMetadata( $name ) {
@@ -101,7 +103,7 @@ class ParserTestHelper {
 	/**
 	 * @param string $description file page text
 	 * @param string[] $categories list of category names, without namespace
-	 * @return LocalFile
+	 * @return \LocalFile
 	 */
 	public function getLocalFile( $description, $categories ) {
 		$file = $this->testCase->getMockBuilder( 'LocalFile' )
@@ -123,7 +125,7 @@ class ParserTestHelper {
 
 	/**
 	 * @param string $description file page text
-	 * @return ForeignAPIFile
+	 * @return \ForeignAPIFile
 	 */
 	public function getForeignApiFile( $description ) {
 		$file = $this->testCase->getMockBuilder( 'ForeignAPIFile' )
@@ -144,7 +146,7 @@ class ParserTestHelper {
 	/**
 	 * @param string $description file page text
 	 * @param string[] $categories list of category names, without namespace
-	 * @return ForeignDBFile
+	 * @return \ForeignDBFile
 	 */
 	public function getForeignDbFile( $description, $categories ) {
 		$file = $this->testCase->getMockBuilder( 'ForeignDbFile' )
@@ -166,10 +168,10 @@ class ParserTestHelper {
 
 	/**
 	 * @param string $languageCode
-	 * @return IContextSource
+	 * @return \IContextSource
 	 */
 	public function getContext( $languageCode ) {
-		$language = Language::factory( $languageCode );
+		$language = \Language::factory( $languageCode );
 		$context = $this->testCase->getMockBuilder( 'IContextSource' )
 			->disableOriginalConstructor()
 			->getMock();
