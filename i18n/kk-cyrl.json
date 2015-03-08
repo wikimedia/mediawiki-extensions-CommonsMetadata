@@ -5,7 +5,7 @@
 		]
 	},
 	"commonsmetadata-trackingcategory-no-license": "Лицензиясы машинамен оқылмаған файлдар",
-	"commonsmetadata-trackingcategory-no-description": "Машинамен сипатталмаған файлдар",
+	"commonsmetadata-trackingcategory-no-description": "Машиналық сипаттамасы жоқ файлдар",
 	"commonsmetadata-trackingcategory-no-author": "Авторы машинамен оқылмаған файлдар",
-	"commonsmetadata-trackingcategory-no-source": "Қайнары машинамен оқылмаған файлдар"
+	"commonsmetadata-trackingcategory-no-source": "Қайнары машинамен оқылатын файлдар"
 }
