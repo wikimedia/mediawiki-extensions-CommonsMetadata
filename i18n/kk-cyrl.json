@@ -1,11 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Нұрлан Рахымжанов"
+			"Нұрлан Рахымжанов",
+			"Arystanbek"
 		]
 	},
-	"commonsmetadata-trackingcategory-no-license": "Лицензиясы машинамен оқылмаған файлдар",
-	"commonsmetadata-trackingcategory-no-description": "Машиналық сипаттамасы жоқ файлдар",
-	"commonsmetadata-trackingcategory-no-author": "Авторы машинамен оқылмаған файлдар",
-	"commonsmetadata-trackingcategory-no-source": "Қайнары машинамен оқылатын файлдар"
+	"commonsmetadata-trackingcategory-no-license": "Машинамен оқылмайтын лицензиялы файлдар",
+	"commonsmetadata-trackingcategory-no-description": "Сипаттамасы машинамен оқылмайтын файлдар",
+	"commonsmetadata-trackingcategory-no-author": "Авторы машинамен оқылмайтын файлдар",
+	"commonsmetadata-trackingcategory-no-source": "Қайнары машинамен оқылмайтын файлдар"
 }
