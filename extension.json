@@ -40,5 +40,6 @@
 		"commonsmetadata-trackingcategory-no-description",
 		"commonsmetadata-trackingcategory-no-author",
 		"commonsmetadata-trackingcategory-no-source"
-	]
+	],
+	"manifest_version": 1
 }
