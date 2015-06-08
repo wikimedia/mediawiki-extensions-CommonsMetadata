@@ -172,7 +172,7 @@ class DataCollector {
 		$templateFields = array();
 
 		if ( isset( $templateData[TemplateParser::COORDINATES_KEY] ) ) {
-			$templateFields = array_merge( $templateFields, $this->selectCoordinate( $templateData[TemplateParser::COORDINATES_KEY] ) );
+			$templateFields = array_merge( $templateFields, $this->selectFirst( $templateData[TemplateParser::COORDINATES_KEY] ) );
 		}
 
 		if ( isset( $templateData[TemplateParser::INFORMATION_FIELDS_KEY] ) ) {
@@ -184,7 +184,11 @@ class DataCollector {
 		}
 
 		if ( isset( $templateData[TemplateParser::DELETION_KEY] ) ) {
-			$templateFields = array_merge( $templateFields, $this->selectDeletionReason( $templateData[TemplateParser::DELETION_KEY] ) );
+			$templateFields = array_merge( $templateFields, $this->selectFirst( $templateData[TemplateParser::DELETION_KEY] ) );
+		}
+
+		if ( isset( $templateData[TemplateParser::RESTRICTIONS_KEY] ) ) {
+			$templateFields = array_merge( $templateFields, $this->selectFirst( $templateData[TemplateParser::RESTRICTIONS_KEY] ) );
 		}
 
 		$metadata = array();
@@ -334,13 +338,13 @@ class DataCollector {
 	}
 
 	/**
-	 * Receives the list of coordinates found by the template parser and selects which one to use.
-	 * @param array $coordinates an array of coordinates, each is an array of metdata fields in fieldname => value form
-	 * @return array an array of metdata fields in fieldname => value form
+	 * Receives a list of metadata arrays and selects the first one to use.
+	 * @param array $arrays an array of arrays of metdata fields in fieldname => value form
+	 * @return array an array of metadata fields in fieldname => value form
 	 */
-	protected function selectCoordinate( $coordinates ) {
-		// multiple coordinates for a single image would not be meaningful, so we just return the first valid one
-		return $coordinates ? $coordinates[0] : array();
+	protected function selectFirst( $arrays ) {
+		// multiple metadata values for the same fields on the same image would not make much sense, so use the first value
+		return $arrays ? $arrays[0] : array();
 	}
 
 	/**
@@ -387,18 +391,6 @@ class DataCollector {
 		// sortDataByLicensePriority puts things in right order but also rearranges the keys - we don't want that
 		$sortedLicenses = array_values( $sortedLicenses );
 		return $sortedLicenses ? $sortedLicenses[0] : array();
-	}
-
-	/**
-	 * Receives the list of deletion requests on a file page and flattens them
-	 * @param array $deletions
-	 * @return array a metadata key-value list; currently the only key is DeletionReason
-	 */
-	protected function selectDeletionReason( array $deletions ) {
-		if ( !$deletions ) {
-			return array();
-		}
-		return $deletions[0];
 	}
 
 	/**

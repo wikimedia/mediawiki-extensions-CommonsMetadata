@@ -46,6 +46,7 @@ class DataCollectorTest extends \MediaWikiTestCase {
 				TemplateParser::INFORMATION_FIELDS_KEY => array(),
 				TemplateParser::LICENSES_KEY => array(),
 				TemplateParser::DELETION_KEY => array(),
+				TemplateParser::RESTRICTIONS_KEY => array(),
 			) ) );
 		$this->licenseParser->expects( $this->any() )->method( 'parseLicenseString' )
 			->will( $this->returnValue( null ) );

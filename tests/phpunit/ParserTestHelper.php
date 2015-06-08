@@ -48,6 +48,8 @@ class ParserTestHelper {
 		'multiple_infotpl' => 'File_Bust_of_Wilhelmine_of_Bayreuth.jpg',
 		// file marked for deletion
 		'deletion' => 'File_Kerameikos_October_2012_15.JPG',
+		// file with restrictions e.g. trademarked
+		'restrict' => 'File_Logo_NIKE.svg',
 	);
 
 	/**

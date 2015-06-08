@@ -287,6 +287,14 @@ class TemplateParserTest extends \MediaWikiTestCase {
 	}
 
 	/**
+	 * Test restriction extraction from templates such as {{Trademarked}} etc.
+	 */
+	public function testRestrictions() {
+		$data = $this->parseTestHTML( 'restrict' );
+		$this->assertFieldEquals( 'Restrictions', 'trademarked', $data, TemplateParser::RESTRICTIONS_KEY );
+	}
+
+	/**
 	 * Test deletion reason etraction from the {{Nuke}} template
 	 */
 	public function testNuke() {

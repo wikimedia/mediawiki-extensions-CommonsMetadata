@@ -16,6 +16,7 @@ class TemplateParser {
 	const LICENSES_KEY = 'licenses';
 	const INFORMATION_FIELDS_KEY = 'informationFields';
 	const DELETION_KEY = 'deletion';
+	const RESTRICTIONS_KEY = 'restrictions';
 
 	/**
 	 * HTML element class name => metadata field name mapping for license data.
@@ -135,6 +136,7 @@ class TemplateParser {
 			self::INFORMATION_FIELDS_KEY => $this->parseInformationFields( $domNavigator ),
 			self::LICENSES_KEY => $this->parseLicenses( $domNavigator ),
 			self::DELETION_KEY => $this->parseNuke( $domNavigator ),
+			self::RESTRICTIONS_KEY => $this->parseRestrictions( $domNavigator ),
 		) );
 	}
 
@@ -366,6 +368,26 @@ class TemplateParser {
 			}
 		}
 		return $deletions;
+	}
+
+	/**
+	 * Parses file restrictions i.e. trademark, insignia, etc.
+	 * @param DomNavigator $domNavigator
+	 * @return array
+	 */
+	protected function parseRestrictions( DomNavigator $domNavigator ) {
+		$restrictionPrefix = 'restriction-';
+		$restrictions = array();
+		foreach ( $domNavigator->findElementsWithClassPrefix( '*', $restrictionPrefix ) as $element ) {
+			$classes = explode( ' ', $element->getAttribute( 'class' ) );
+			foreach ( $classes as $class ) {
+				if ( strpos( $class, $restrictionPrefix ) === 0 ) {
+					$restrictionType = substr( $class, strlen( $restrictionPrefix ) );
+					$restrictions[] = $restrictionType;
+				}
+			}
+		}
+		return array( array( 'Restrictions' => implode( '|', array_unique( $restrictions ) ) ) );
 	}
 
 	/**
