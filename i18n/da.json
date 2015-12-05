@@ -5,6 +5,7 @@
 		]
 	},
 	"commonsmetadata-trackingcategory-no-license": "Filer uden nogen maskinlæsbar licens",
+	"commonsmetadata-trackingcategory-no-license-desc": "Filen ikke har nogen [{{MediaWiki:Commonsmetadata-doc-url}} maskinlæsbar] licensskabelon.",
 	"commonsmetadata-trackingcategory-no-description": "Filer uden nogen maskinlæsbar beskrivelse",
 	"commonsmetadata-trackingcategory-no-author": "Filer uden nogen maskinlæsbar ophavsmand",
 	"commonsmetadata-trackingcategory-no-source": "Filer uden nogen maskinlæsbar kilde"
