@@ -3,16 +3,17 @@
 		"authors": [
 			"OTAVIO1981",
 			"Ptrke",
-			"Araceletorres"
+			"Araceletorres",
+			"TheEduGobi"
 		]
 	},
-	"commonsmetadata-desc": "Expande a propriedade \"extmetadata\" do módulo da API de informação sobre imagens, de forma a incluir informação armazenada nas páginas de descrição das imagens que usem as predefinições mais comuns da Wikimedia Commons.",
+	"commonsmetadata-desc": "Amplia a propriedade \"extmetadata\" do módulo da API de informações de imagem para incluir informações armazenadas nas páginas de descrição das imagens que usem as predefinições geralmente usadas no Wikimedia Commons",
 	"commonsmetadata-trackingcategory-no-license": "Arquivos sem nenhuma licença legível para máquinas",
-	"commonsmetadata-trackingcategory-no-license-desc": "O arquivo não tem nenhuma [{{MediaWiki:Commonsmetadata-doc-url}} machine-readable] template de licença.",
-	"commonsmetadata-trackingcategory-no-description": "Arquivos sem nenhuma descrição legível para máquinas",
-	"commonsmetadata-trackingcategory-no-description-desc": "O arquivo não possui nenhum modelo de informação [{{MediaWiki:Commonsmetadata-doc-url}} legível por máquina] ou o campo de descrição não está preenchido.",
-	"commonsmetadata-trackingcategory-no-author": "Arquivos sem nenhum autor legível para máquinas",
-	"commonsmetadata-trackingcategory-no-author-desc": "O arquivo não possui nenhum modelo de informação [{{MediaWiki:Commonsmetadata-doc-url}} legível por máquina] ou o campo de autor não está preenchido.",
-	"commonsmetadata-trackingcategory-no-source": "Arquivos sem nenhuma fonte legível para máquinas",
-	"commonsmetadata-trackingcategory-no-source-desc": "O arquivo não possui nenhum modelo de informação [{{MediaWiki:Commonsmetadata-doc-url}} legível por máquina] ou o campo de fonte não está preenchido."
+	"commonsmetadata-trackingcategory-no-license-desc": "O arquivo não tem nenhuma predefinição [{{MediaWiki:Commonsmetadata-doc-url}} legível para máquinas] de licença.",
+	"commonsmetadata-trackingcategory-no-description": "Arquivos sem descrição legível para máquinas",
+	"commonsmetadata-trackingcategory-no-description-desc": "O arquivo não possui nenhum modelo de informações [{{MediaWiki:Commonsmetadata-doc-url}} legível para máquinas] ou o campo de descrição não está preenchido.",
+	"commonsmetadata-trackingcategory-no-author": "Arquivos sem autor legível para máquinas",
+	"commonsmetadata-trackingcategory-no-author-desc": "O arquivo não possui nenhum modelo de informações [{{MediaWiki:Commonsmetadata-doc-url}} legível para máquinas] ou o campo de autoria não está preenchido.",
+	"commonsmetadata-trackingcategory-no-source": "Arquivos sem fonte legível para máquinas",
+	"commonsmetadata-trackingcategory-no-source-desc": "O arquivo não possui nenhum modelo de informações [{{MediaWiki:Commonsmetadata-doc-url}} legível para máquinas] ou o campo de fontes não está preenchido."
 }
