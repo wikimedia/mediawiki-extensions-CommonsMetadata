@@ -283,6 +283,14 @@ class TemplateParser {
 		return $this->parseContents( $domNavigator, $node );
 	}
 
+	protected function parseFieldCredit( DomNavigator $domNavigator, DOMNode $node ) {
+		if ( $field = $this->extractHCardProperty(  $domNavigator, $node, 'fn' ) ) {
+			return $this->cleanedInnerHtml( $field );
+		}
+
+		return $this->parseContents( $domNavigator, $node );
+	}
+
 	/**
 	 * Parses the DateTimeOriginal - finds <time> tag and returns the value of datetime attribute
 	 * @param DomNavigator $domNavigator
