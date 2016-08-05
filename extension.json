@@ -14,9 +14,6 @@
 		],
 		"ContentAlterParserOutput": [
 			"CommonsMetadata\\HookHandler::onContentAlterParserOutput"
-		],
-		"UnitTestsList": [
-			"CommonsMetadata\\HookHandler::onUnitTestsList"
 		]
 	},
 	"MessagesDirs": {
