@@ -11,5 +11,6 @@
 	"commonsmetadata-trackingcategory-no-description-desc": "Файл ня мае [{{MediaWiki:Commonsmetadata-doc-url}} машыначытэльнага] інфармацыйнага шаблёну або ў ім не запоўненае поле апісаньня.",
 	"commonsmetadata-trackingcategory-no-author": "Файлы без машыначытэльнага аўтарства",
 	"commonsmetadata-trackingcategory-no-author-desc": "Файл ня мае [{{MediaWiki:Commonsmetadata-doc-url}} машыначытэльнага] інфармацыйнага шаблёну або ў ім не запоўненае поле аўтара.",
+	"commonsmetadata-trackingcategory-no-source": "Файлы без машыначытэльнай крыніцы",
 	"commonsmetadata-trackingcategory-no-source-desc": "Файл ня мае [{{MediaWiki:Commonsmetadata-doc-url}} машыначытэльнага] інфармацыйнага шаблёну або ў ім не запоўненае поле крыніцы."
 }
