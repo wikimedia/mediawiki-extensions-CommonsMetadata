@@ -2,7 +2,13 @@
 
 namespace CommonsMetadata;
 
-use IContextSource, Language, RepoGroup, File, Content, Title, ParserOutput;
+use Content;
+use File;
+use IContextSource;
+use Language;
+use ParserOutput;
+use RepoGroup;
+use Title;
 
 /**
  * Hook handler
