@@ -5,17 +5,20 @@ namespace CommonsMetadata;
 class ParserTestHelper {
 	/**
 	 * Maps test names to filenames in the test subdirectory.
-	 * This array only exists to have a place where the intentions of test files can be conveniently commented.
+	 * This array only exists to have a place where the intentions of test files
+	 * can be conveniently commented.
 	 * Files have been saved from the Commons images of the same name via action=render.
 	 * @var array name => filename
 	 */
 	public static $testHTMLFiles = array(
 		// an image with no information template
 		'noinfo' => 'File_Pentacle_3.svg',
-		// a fairly simple page with a basic information template (with no language markup) and a single CC license
+		// a fairly simple page with a basic information template (with no language markup) and
+		// a single CC license
 		'simple' => 'File_Sunrise_over_fishing_boats_in_Kerala.jpg',
 		// language markup, but some of the description (a WLM reference number) is outside it
-		'outside_lang' => 'File_Colonial_Williamsburg_(December,_2011)_-_Christmas_decorations_20.JPG',
+		'outside_lang' =>
+			'File_Colonial_Williamsburg_(December,_2011)_-_Christmas_decorations_20.JPG',
 		// English description only
 		'singlelang' => 'File_Dala_Kyrka.JPG',
 		// non-English description only
@@ -33,7 +36,8 @@ class ParserTestHelper {
 		// complex HTML in the author field
 		'creator_template' => 'File_Elizabeth_I_George_Gower.jpg',
 		// an image with many languages
-		'manylang' => 'File_Sikh_pilgrim_at_the_Golden_Temple_(Harmandir_Sahib)_in_Amritsar,_India.jpg',
+		'manylang' =>
+			'File_Sikh_pilgrim_at_the_Golden_Temple_(Harmandir_Sahib)_in_Amritsar,_India.jpg',
 		// an image with a relatively long description
 		'big' => 'File_Askaris_im_Warschauer_Getto_-_1943.jpg',
 		// information-like template with a title field
@@ -65,7 +69,7 @@ class ParserTestHelper {
 	}
 
 	/**
-	 * Loads a test file (usually the saved output of action=render for some image description page).
+	 * Loads a test file (usually the saved output of action=render for some image description page)
 	 * @param string $name
 	 * @throws \InvalidArgumentException
 	 * @return string

@@ -193,15 +193,25 @@ class LicenseParserTest extends \MediaWikiTestCase {
 	}
 
 	public function testSortDataByLicensePriority() {
-		$licenses = array( 'gfdl', 'public domain', null, 'cc-by-sa-2.0', 'cc-by-2.0', 'cc-by-sa-3.5', 'cc-by-3.5', 'foobar' );
-		$expectedSortedLicenses = array( 'public domain', 'cc-by-3.5', 'cc-by-2.0', 'cc-by-sa-3.5', 'cc-by-sa-2.0', 'gfdl', null, 'foobar' );
-		$actualSortedLicenses = $this->licenseParser->sortDataByLicensePriority( $licenses, function ( $v ) { return $v; } );
+		$licenses = array( 'gfdl', 'public domain', null, 'cc-by-sa-2.0', 'cc-by-2.0',
+			'cc-by-sa-3.5', 'cc-by-3.5', 'foobar' );
+		$expectedSortedLicenses = array( 'public domain', 'cc-by-3.5', 'cc-by-2.0', 'cc-by-sa-3.5',
+			'cc-by-sa-2.0', 'gfdl', null, 'foobar' );
+		$actualSortedLicenses = $this->licenseParser->sortDataByLicensePriority( $licenses,
+			function ( $v ) {
+				return $v;
+			}
+		);
 		$this->assertArrayEquals( $expectedSortedLicenses, $actualSortedLicenses, true );
 
 		// test that array keys are kept
 		$licenses = array( 'a' => 'cc-by-2.0', 'b' => 'cc-by-3.5' );
 		$expectedSortedLicenses = array( 'b' => 'cc-by-3.5', 'a' => 'cc-by-2.0' );
-		$actualSortedLicenses = $this->licenseParser->sortDataByLicensePriority( $licenses, function ( $v ) { return $v; }  );
+		$actualSortedLicenses = $this->licenseParser->sortDataByLicensePriority( $licenses,
+			function ( $v ) {
+				return $v;
+			}
+		);
 		$this->assertArrayEquals( $expectedSortedLicenses, $actualSortedLicenses, true, true );
 
 		// test with the same data structure that's used by the collector
@@ -219,12 +229,14 @@ class LicenseParserTest extends \MediaWikiTestCase {
 			),
 		);
 		$expectedSortOrder = array( 2, 1, 0 );
-		$sortedLicenseData = $this->licenseParser->sortDataByLicensePriority( $licenseData, function ( $license ) {
-			if ( !isset( $license['LicenseShortName'] ) ) {
-				return null;
+		$sortedLicenseData = $this->licenseParser->sortDataByLicensePriority( $licenseData,
+			function ( $license ) {
+				if ( !isset( $license['LicenseShortName'] ) ) {
+					return null;
+				}
+				return $license['LicenseShortName'];
 			}
-			return $license['LicenseShortName'];
-		} );
+		);
 		$this->assertArrayEquals( $licenseData, $sortedLicenseData, false, true );
 		$this->assertArrayEquals( $expectedSortOrder, array_keys( $sortedLicenseData ), true );
 	}
@@ -266,10 +278,13 @@ class LicenseParserTest extends \MediaWikiTestCase {
 	}
 
 	protected function assertLicenseHasGreaterPriority( $greaterLicenseData, $smallerLicenseData ) {
-		$getLicensePriorityMethod = new \ReflectionMethod( $this->licenseParser, 'getLicensePriority' );
+		$getLicensePriorityMethod = new \ReflectionMethod(
+			$this->licenseParser, 'getLicensePriority' );
 		$getLicensePriorityMethod->setAccessible( true );
-		$greaterLicensePriority = $getLicensePriorityMethod->invokeArgs( $this->licenseParser, array( $greaterLicenseData ) );
-		$smallerLicensePriority = $getLicensePriorityMethod->invokeArgs( $this->licenseParser, array( $smallerLicenseData ) );
+		$greaterLicensePriority = $getLicensePriorityMethod->invokeArgs(
+			$this->licenseParser, array( $greaterLicenseData ) );
+		$smallerLicensePriority = $getLicensePriorityMethod->invokeArgs(
+			$this->licenseParser, array( $smallerLicenseData ) );
 		$this->assertGreaterThan( $smallerLicensePriority, $greaterLicensePriority );
 	}
 }

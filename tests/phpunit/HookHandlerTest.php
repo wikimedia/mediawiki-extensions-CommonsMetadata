@@ -21,7 +21,8 @@ class HookHandlerTest extends \PHPUnit_Framework_TestCase {
 		$description = 'foo';
 		$categories = array( 'Bar', 'Baz' );
 
-		$metadata = array( 'OldKey' => 'OldValue', 'Categories' => array( 'value' => 'I_will_be_overwritten' ) );
+		$metadata = array( 'OldKey' => 'OldValue',
+			'Categories' => array( 'value' => 'I_will_be_overwritten' ) );
 		$maxCache = 3600;
 		$file = $this->parserTestHelper->getLocalFile( $description, $categories );
 		$context = $this->parserTestHelper->getContext( 'en' );
@@ -40,7 +41,8 @@ class HookHandlerTest extends \PHPUnit_Framework_TestCase {
 	public function testForeignApiFile() {
 		$description = 'foo';
 
-		$metadata = array( 'OldKey' => 'OldValue', 'Categories' => array( 'value' => 'I_will_remain' ) );
+		$metadata = array( 'OldKey' => 'OldValue',
+			'Categories' => array( 'value' => 'I_will_remain' ) );
 		$maxCache = 3600;
 		$file = $this->parserTestHelper->getForeignApiFile( $description );
 		$context = $this->parserTestHelper->getContext( 'en' );
@@ -60,7 +62,8 @@ class HookHandlerTest extends \PHPUnit_Framework_TestCase {
 		$description = 'foo';
 		$categories = array( 'Bar', 'Baz' );
 
-		$metadata = array( 'OldKey' => 'OldValue', 'Categories' => array( 'value' => 'I_will_be_overwritten' ) );
+		$metadata = array( 'OldKey' => 'OldValue',
+			'Categories' => array( 'value' => 'I_will_be_overwritten' ) );
 		$maxCache = 3600;
 		$file = $this->parserTestHelper->getForeignDbFile( $description, $categories );
 		$context = $this->parserTestHelper->getContext( 'en' );
@@ -94,7 +97,8 @@ class HookHandlerTest extends \PHPUnit_Framework_TestCase {
 		$expectedMetadata = $this->parserTestHelper->getMetadata( $testName );
 		foreach ( $expectedMetadata as $key => $val ) {
 			$this->assertArrayHasKey( $key, $actualMetadata, "Field $key missing from metadata" );
-			$this->assertEquals( $expectedMetadata[$key], $actualMetadata[$key], "Value for field $key does not match" );
+			$this->assertEquals( $expectedMetadata[$key], $actualMetadata[$key],
+				"Value for field $key does not match" );
 		}
 	}
 

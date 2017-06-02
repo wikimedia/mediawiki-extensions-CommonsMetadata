@@ -22,14 +22,16 @@ class DataCollectorTest extends \MediaWikiTestCase {
 	public function setUp() {
 		parent::setUp();
 
-		$language = $this->getMock( 'Language', array(), array(), '', false /* do not call constructor */ );
+		$language = $this->getMock(
+			'Language', array(), array(), '', false /* do not call constructor */ );
 
 		$this->templateParser = $this->getMock( 'CommonsMetadata\TemplateParser' );
 		$this->licenseParser = $this->getMock( 'CommonsMetadata\LicenseParser' );
 		$this->licenseParser->expects( $this->any() )
 			->method( 'sortDataByLicensePriority' )
 			->will( $this->returnArgument( 0 ) );
-		$this->file = $this->getMock( 'File', array(), array(), '', false /* do not call constructor */ );
+		$this->file = $this->getMock(
+			'File', array(), array(), '', false /* do not call constructor */ );
 
 		$this->dataCollector = new DataCollector();
 		$this->dataCollector->setLanguage( $language );
@@ -129,10 +131,12 @@ class DataCollectorTest extends \MediaWikiTestCase {
 	/*------------------------------- Logic tests --------------------------*/
 
 	public function testGetCategoryMetadata() {
-		$getCategoryMetadataMethod = new \ReflectionMethod( $this->dataCollector, 'getCategoryMetadata' );
+		$getCategoryMetadataMethod = new \ReflectionMethod(
+			$this->dataCollector, 'getCategoryMetadata' );
 		$getCategoryMetadataMethod->setAccessible( true );
 
-		$categories = array( 'Foo', 'Bar', 'Pictures of the year (2012)', 'Pictures of the day (2012)', 'CC-BY-SA-2.0' );
+		$categories = array( 'Foo', 'Bar',
+			'Pictures of the year (2012)', 'Pictures of the day (2012)', 'CC-BY-SA-2.0' );
 
 		$this->licenseParser->expects( $this->any() )
 			->method( 'parseLicenseString' )
@@ -146,14 +150,16 @@ class DataCollectorTest extends \MediaWikiTestCase {
 				) ),
 			) ) );
 
-		$categoryData = $getCategoryMetadataMethod->invokeArgs( $this->dataCollector, array( $categories ) );
+		$categoryData = $getCategoryMetadataMethod->invokeArgs(
+			$this->dataCollector, array( $categories ) );
 
 		$this->assertMetadataValue( 'Categories', 'Foo|Bar', $categoryData );
 		$this->assertMetadataValue( 'Assessments', 'poty|potd', $categoryData );
 	}
 
 	public function testGetTemplateMetadata() {
-		$getTemplateMetadataMethod = new \ReflectionMethod( $this->dataCollector, 'getTemplateMetadata' );
+		$getTemplateMetadataMethod = new \ReflectionMethod(
+			$this->dataCollector, 'getTemplateMetadata' );
 		$getTemplateMetadataMethod->setAccessible( true );
 
 		$this->licenseParser->expects( $this->any() )
@@ -180,7 +186,8 @@ class DataCollectorTest extends \MediaWikiTestCase {
 	}
 
 	public function testGetTemplateMetadataForMultipleInfoTemplates() {
-		$getTemplateMetadataMethod = new \ReflectionMethod( $this->dataCollector, 'getTemplateMetadata' );
+		$getTemplateMetadataMethod = new \ReflectionMethod(
+			$this->dataCollector, 'getTemplateMetadata' );
 		$getTemplateMetadataMethod->setAccessible( true );
 
 		$template1 = array( 'Artist' => 'a1', 'Foo' => 'x' );
