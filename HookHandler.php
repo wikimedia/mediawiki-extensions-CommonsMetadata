@@ -33,7 +33,9 @@ class HookHandler {
 	 * @param int &$maxCache How many seconds to cache the result
 	 * @return bool This hook handler always returns true
 	 */
-	public static function onGetExtendedMetadata( &$combinedMeta, File $file, IContextSource $context, $singleLang, &$maxCache ) {
+	public static function onGetExtendedMetadata(
+		&$combinedMeta, File $file, IContextSource $context, $singleLang, &$maxCache
+	) {
 		global $wgCommonsMetadataForceRecalculate;
 
 		if (
@@ -85,27 +87,32 @@ class HookHandler {
 	 */
 	public static function onValidateExtendedMetadataCache( $timestamp, File $file ) {
 		return // use cached value if...
-			!$file->getDescriptionTouched() // we don't know when the file was last updated
-			|| wfTimestamp( TS_UNIX, $file->getDescriptionTouched() ) // or last update was before we cached it
+			// we don't know when the file was last updated
+			!$file->getDescriptionTouched()
+			// or last update was before we cached it
+			|| wfTimestamp( TS_UNIX, $file->getDescriptionTouched() )
 				<= wfTimestamp( TS_UNIX, $timestamp );
 	}
 
 	/**
-	 * Check HTML output of a file page to see if it has all the basic metadata, and add tracking categories
-	 * if it does not.
+	 * Check HTML output of a file page to see if it has all the basic metadata, and
+	 * add tracking categories if it does not.
 	 * @param Content $content
 	 * @param Title $title
 	 * @param ParserOutput $parserOutput
 	 * @return bool this hook handler always returns true.
 	 */
-	public static function onContentAlterParserOutput( Content $content, Title $title, ParserOutput $parserOutput ) {
+	public static function onContentAlterParserOutput(
+		Content $content, Title $title, ParserOutput $parserOutput
+	) {
 		global $wgCommonsMetadataSetTrackingCategories;
 
 		if (
 			!$wgCommonsMetadataSetTrackingCategories
 			|| !$title->inNamespace( NS_FILE )
 			|| $content->getModel() !== CONTENT_MODEL_WIKITEXT
-			|| !RepoGroup::singleton()->getLocalRepo()->findFile( $title, array( 'ignoreRedirect' => true ) )
+			|| !RepoGroup::singleton()->getLocalRepo()->findFile(
+				$title, array( 'ignoreRedirect' => true ) )
 		) {
 			return true;
 		}
@@ -115,7 +122,8 @@ class HookHandler {
 
 		$categoryKeys = $dataCollector->verifyAttributionMetadata( $parserOutput->getText() );
 		foreach ( $categoryKeys as $key ) {
-			$parserOutput->addTrackingCategory( 'commonsmetadata-trackingcategory-' . $key, $title );
+			$parserOutput->addTrackingCategory(
+				'commonsmetadata-trackingcategory-' . $key, $title );
 		}
 
 		return true;

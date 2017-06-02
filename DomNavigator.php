@@ -9,7 +9,8 @@ use DOMElement;
 use DOMNodeList;
 
 /**
- * A very simple wrapper to DOMDocument to make it easy to traverse nodes which match simple CSS selectors.
+ * A very simple wrapper to DOMDocument to make it easy to traverse nodes which match
+ * simple CSS selectors.
  */
 class DomNavigator {
 	/**
@@ -44,12 +45,14 @@ class DomNavigator {
 	 */
 	public function findElementsWithClass( $element, $class, DOMNode $context = null ) {
 		$element = $this->handleElementOrList( $element );
-		$xpath = "./descendant-or-self::{$element}[contains(concat(' ', normalize-space(@class), ' '), ' $class ')]";
+		$xpath = "./descendant-or-self::{$element}" .
+			"[contains(concat(' ', normalize-space(@class), ' '), ' $class ')]";
 		return $this->findByXpath( $xpath, $context );
 	}
 
 	/**
-	 * Returns a list of elements of the given type which have a class starting with the given string.
+	 * Returns a list of elements of the given type which have a class starting with the given
+	 * string.
 	 * @param string|array $element HTML tag name (* to accept all) or array of tag names
 	 * @param string $classPrefix
 	 * @param DOMNode $context if present, the method will only search inside this element
@@ -57,13 +60,14 @@ class DomNavigator {
 	 */
 	public function findElementsWithClassPrefix( $element, $classPrefix, DOMNode $context = null ) {
 		$element = $this->handleElementOrList( $element );
-		$xpath = "./descendant-or-self::{$element}[contains(concat(' ', normalize-space(@class)), ' $classPrefix')]";
+		$xpath = "./descendant-or-self::{$element}" .
+			"[contains(concat(' ', normalize-space(@class)), ' $classPrefix')]";
 		return $this->findByXpath( $xpath, $context );
 	}
 
 	/**
-	 * Returns a list of elements of the given type which have the given class and any lang attribute.
-	 * (In other words, this is equivalent to the CSS selector 'element.class[lang]'.)
+	 * Returns a list of elements of the given type which have the given class and any lang
+	 * attribute. (In other words, this is equivalent to the CSS selector 'element.class[lang]'.)
 	 * @param string|array $element HTML tag name (* to accept all) or array of tag names
 	 * @param string $class
 	 * @param DOMNode $context if present, the method will only search inside this element
@@ -71,7 +75,8 @@ class DomNavigator {
 	 */
 	public function findElementsWithClassAndLang( $element, $class, DOMNode $context = null ) {
 		$element = $this->handleElementOrList( $element );
-		$xpath = "./descendant-or-self::{$element}[@lang and contains(concat(' ', normalize-space(@class), ' '), ' $class ')]";
+		$xpath = "./descendant-or-self::{$element}" .
+			"[@lang and contains(concat(' ', normalize-space(@class), ' '), ' $class ')]";
 		return $this->findByXpath( $xpath, $context );
 	}
 
@@ -155,7 +160,8 @@ class DomNavigator {
 	}
 
 	/**
-	 * Returns the closest ancestor of the given node, which is of the given type (like jQuery.closest())
+	 * Returns the closest ancestor of the given node, which is of the given type
+	 * (like jQuery.closest())
 	 * @param DOMNode $node
 	 * @param string $element HTML tag name
 	 * @return DOMElement|null
@@ -224,7 +230,8 @@ class DomNavigator {
 	 */
 	protected function handleElementOrList( $elmementOrList ) {
 		if ( is_array( $elmementOrList ) ) {
-			return '*[' . implode( ' or ', array_map( function ( $el ) { return 'self::' . $el; }, $elmementOrList ) ) . ']';
+			return '*[' . implode( ' or ', array_map(
+				function ( $el ) { return 'self::' . $el; }, $elmementOrList ) ) . ']';
 		} else {
 			return $elmementOrList;
 		}

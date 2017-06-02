@@ -11,7 +11,8 @@ use WikiFilePage;
 use ScopedCallback;
 
 /**
- * Class to handle metadata collection and formatting, and manage more specific data extraction classes.
+ * Class to handle metadata collection and formatting, and manage more specific data extraction
+ * classes.
  */
 class DataCollector {
 
@@ -75,7 +76,8 @@ class DataCollector {
 	}
 
 	/**
-	 * Collects metadata from a file, and adds it to a metadata array. The array has the following format:
+	 * Collects metadata from a file, and adds it to a metadata array.
+	 * The array has the following format:
 	 *
 	 * '<metadata field name>' => array(
 	 *     'value' => '<value>',
@@ -85,7 +87,8 @@ class DataCollector {
 	 * For fields with multiple values and/or in multiple languages the format is more complex;
 	 * see the documentation for the extmetadata API.
 	 *
-	 * @param array $previousMetadata metadata collected so far; new metadata will be added to this array
+	 * @param array $previousMetadata metadata collected so far;
+	 *   new metadata will be added to this array
 	 * @param File $file
 	 */
 	public function collect( array &$previousMetadata, File $file ) {
@@ -94,10 +97,12 @@ class DataCollector {
 		$descriptionText = $this->getDescriptionText( $file, $this->language );
 
 		$categories = $this->getCategories( $file, $previousMetadata );
-		$previousMetadata = array_merge( $previousMetadata, $this->getCategoryMetadata( $categories ) );
+		$previousMetadata = array_merge( $previousMetadata,
+			$this->getCategoryMetadata( $categories ) );
 
 		$templateData = $this->templateParser->parsePage( $descriptionText );
-		$previousMetadata = array_merge( $previousMetadata, $this->getTemplateMetadata( $templateData ) );
+		$previousMetadata = array_merge( $previousMetadata,
+			$this->getTemplateMetadata( $templateData ) );
 	}
 
 	/**
@@ -118,24 +123,29 @@ class DataCollector {
 			$licenseData = $this->selectLicense( $templateData[TemplateParser::LICENSES_KEY] );
 		}
 		if ( isset( $templateData[TemplateParser::INFORMATION_FIELDS_KEY] ) ) {
-			$informationData = $this->selectInformationTemplate( $templateData[TemplateParser::INFORMATION_FIELDS_KEY] );
+			$informationData = $this->selectInformationTemplate(
+				$templateData[TemplateParser::INFORMATION_FIELDS_KEY] );
 		}
 
-		if ( !isset( $licenseData['LicenseShortName'] ) || $licenseData['LicenseShortName'] === '' ) {
+		if ( !isset( $licenseData['LicenseShortName'] )
+			|| $licenseData['LicenseShortName'] === ''
+		) {
 			$problems[] = 'no-license';
 		}
-		if ( !isset( $informationData['ImageDescription'] ) || $informationData['ImageDescription'] === '' ) {
+		if ( !isset( $informationData['ImageDescription'] )
+			|| $informationData['ImageDescription'] === ''
+		) {
 			$problems[] = 'no-description';
 		}
 		if (
-			( !isset( $informationData['Artist'] ) || $informationData['Artist'] === '' )
-			&& ( !isset( $informationData['Attribution'] ) || $informationData['Attribution'] === '' )
+			( !isset( $informationData['Artist'] ) || $informationData['Artist'] === '' ) &&
+			( !isset( $informationData['Attribution'] ) || $informationData['Attribution'] === '' )
 		) {
 			$problems[] = 'no-author';
 		}
 		if (
-			( !isset( $informationData['Credit'] ) || $informationData['Credit'] === '' )
-			&& ( !isset( $informationData['Attribution'] ) || $informationData['Attribution'] === '' )
+			( !isset( $informationData['Credit'] ) || $informationData['Credit'] === '' ) &&
+			( !isset( $informationData['Attribution'] ) || $informationData['Attribution'] === '' )
 		) {
 			$problems[] = 'no-source';
 		}
@@ -168,27 +178,33 @@ class DataCollector {
 	 * @return array
 	 */
 	protected function getTemplateMetadata( $templateData ) {
-		// GetExtendedMetadata does not handle multivalued fields, we need to select one of everything
+		// GetExtendedMetadata does not handle multivalued fields,
+		// we need to select one of everything
 		$templateFields = array();
 
 		if ( isset( $templateData[TemplateParser::COORDINATES_KEY] ) ) {
-			$templateFields = array_merge( $templateFields, $this->selectFirst( $templateData[TemplateParser::COORDINATES_KEY] ) );
+			$templateFields = array_merge( $templateFields,
+				$this->selectFirst( $templateData[TemplateParser::COORDINATES_KEY] ) );
 		}
 
 		if ( isset( $templateData[TemplateParser::INFORMATION_FIELDS_KEY] ) ) {
-			$templateFields = array_merge( $templateFields, $this->selectInformationTemplate( $templateData[TemplateParser::INFORMATION_FIELDS_KEY] ) );
+			$templateFields = array_merge( $templateFields, $this->selectInformationTemplate(
+				$templateData[TemplateParser::INFORMATION_FIELDS_KEY] ) );
 		}
 
 		if ( isset( $templateData[TemplateParser::LICENSES_KEY] ) ) {
-			$templateFields = array_merge( $templateFields, $this->selectLicense( $templateData[TemplateParser::LICENSES_KEY] ) );
+			$templateFields = array_merge( $templateFields,
+				$this->selectLicense( $templateData[TemplateParser::LICENSES_KEY] ) );
 		}
 
 		if ( isset( $templateData[TemplateParser::DELETION_KEY] ) ) {
-			$templateFields = array_merge( $templateFields, $this->selectFirst( $templateData[TemplateParser::DELETION_KEY] ) );
+			$templateFields = array_merge( $templateFields,
+				$this->selectFirst( $templateData[TemplateParser::DELETION_KEY] ) );
 		}
 
 		if ( isset( $templateData[TemplateParser::RESTRICTIONS_KEY] ) ) {
-			$templateFields = array_merge( $templateFields, $this->selectFirst( $templateData[TemplateParser::RESTRICTIONS_KEY] ) );
+			$templateFields = array_merge( $templateFields,
+				$this->selectFirst( $templateData[TemplateParser::RESTRICTIONS_KEY] ) );
 		}
 
 		$metadata = array();
@@ -201,7 +217,8 @@ class DataCollector {
 
 		// use short name to generate internal name used in i18n
 		if ( isset( $templateFields['LicenseShortName'] ) ) {
-			$licenseData = $this->licenseParser->parseLicenseString( $templateFields['LicenseShortName'] );
+			$licenseData = $this->licenseParser->parseLicenseString(
+				$templateFields['LicenseShortName'] );
 			if ( isset( $licenseData['name'] ) ) {
 				$metadata['License'] = array(
 					'value' => $licenseData['name'],
@@ -231,20 +248,24 @@ class DataCollector {
 			// (specifically, relative instead of absolute URLs). There is no proper way to
 			// influence this process (see the end of Title::getLocalURL for details), so
 			// we mess with one of the hooks.
-			// The ScopedCallback object will unmess it once this method returns and the object is destructed.
+			// The ScopedCallback object will unmess it once this method returns and the object
+			// is destructed.
 
 			global $wgHooks;
 			$makeAbsolute = function( Title $title, &$url, $query ) {
 				global $wgServer, $wgRequest;
 				if (
-					substr( $url, 0, 1 ) === '/' && substr( $url, 1, 2 ) !== '/' // relative URL
-					&& $wgRequest->getVal( 'action' ) != 'render' // for action=render $wgServer will be added in getLocalURL
+					// relative URL
+					substr( $url, 0, 1 ) === '/' && substr( $url, 1, 2 ) !== '/'
+					// for action=render $wgServer will be added in getLocalURL
+					&& $wgRequest->getVal( 'action' ) != 'render'
 				) {
 					$url = $wgServer . $url;
 				}
 				return true;
 			};
-			$wgHooks['GetLocalURL::Internal']['CommonsMetadata::getDescriptionText'] = $makeAbsolute;
+			$wgHooks['GetLocalURL::Internal']['CommonsMetadata::getDescriptionText'] =
+				$makeAbsolute;
 
 			$sc = new ScopedCallback( function() {
 				global $wgHooks;
@@ -290,7 +311,8 @@ class DataCollector {
 			// when they are invoked.
 			$categories = explode( '|', $data['Categories']['value'] );
 		} else {
-			// out of luck - file is probably from a ForeignAPIRepo with CommonsMetadata not installed there
+			// out of luck - file is probably from a ForeignAPIRepo
+			// with CommonsMetadata not installed there
 			wfDebug( 'CommonsMetadata: cannot read category data' );
 		}
 
@@ -343,14 +365,16 @@ class DataCollector {
 	 * @return array an array of metadata fields in fieldname => value form
 	 */
 	protected function selectFirst( $arrays ) {
-		// multiple metadata values for the same fields on the same image would not make much sense, so use the first value
+		// multiple metadata values for the same fields on the same image would not make much sense,
+		// so use the first value
 		return $arrays ? $arrays[0] : array();
 	}
 
 	/**
-	 * Receives the list of information templates found by the template parser and selects which one to use.
-	 * Also collects all the authors to make sure attribution requirements are honored.
-	 * @param array $informationTemplates an array of information templates , each is an array of metdata fields in fieldname => value form
+	 * Receives the list of information templates found by the template parser and selects which one
+	 * to use. Also collects all the authors to make sure attribution requirements are honored.
+	 * @param array $informationTemplates an array of information templates,
+	 *   each is an array of metdata fields in fieldname => value form
 	 * @return array an array of metdata fields in fieldname => value form
 	 */
 	protected function selectInformationTemplate( array $informationTemplates ) {
@@ -373,7 +397,8 @@ class DataCollector {
 
 	/**
 	 * Receives the list of licenses found by the template parser and selects which one to use.
-	 * @param array $licenses an array of licenses, each is an array of metdata fields in fieldname => value form
+	 * @param array $licenses an array of licenses, each is an array of metdata fields
+	 *   in fieldname => value form
 	 * @return array an array of metdata fields in fieldname => value form
 	 */
 	protected function selectLicense( array $licenses ) {
@@ -381,14 +406,17 @@ class DataCollector {
 			return array();
 		}
 
-		$sortedLicenses = $this->licenseParser->sortDataByLicensePriority( $licenses, function ( $license ) {
-			if ( !isset( $license['LicenseShortName'] ) ) {
-				return null;
+		$sortedLicenses = $this->licenseParser->sortDataByLicensePriority( $licenses,
+			function ( $license ) {
+				if ( !isset( $license['LicenseShortName'] ) ) {
+					return null;
+				}
+				return $license['LicenseShortName'];
 			}
-			return $license['LicenseShortName'];
-		} );
+		);
 
-		// sortDataByLicensePriority puts things in right order but also rearranges the keys - we don't want that
+		// sortDataByLicensePriority puts things in right order but also rearranges the keys
+		// - we don't want that
 		$sortedLicenses = array_values( $sortedLicenses );
 		return $sortedLicenses ? $sortedLicenses[0] : array();
 	}

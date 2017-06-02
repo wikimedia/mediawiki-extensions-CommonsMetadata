@@ -43,7 +43,7 @@ class LicenseParser {
 	/**
 	 * Takes an array width license data and sorts it by license priority.
 	 * The sort is stable, and the input array is not changed.
-	 * The method will call $getLicenseStringCallback( $data[$key], $key ) and expect a license name.
+	 * The method will call $getLicenseStringCallback( $data[$key], $key ) and expect a license name
 	 * @param array $data
 	 * @param callable $getLicenseStringCallback
 	 * @return array
@@ -60,10 +60,12 @@ class LicenseParser {
 		}
 
 		uksort( $data, function ( $a, $b ) use ( $licensePriorities ) {
-			if ( $licensePriorities[$a][0] === $licensePriorities[$b][0] ) { // equal priority, keep original order
+			// equal priority, keep original order
+			if ( $licensePriorities[$a][0] === $licensePriorities[$b][0] ) {
 				return $licensePriorities[$a][1] - $licensePriorities[$b][1];
 			} else {
-				return $licensePriorities[$b][0] - $licensePriorities[$a][0]; // higher priority means smaller wrt sorting
+				// higher priority means smaller wrt sorting
+				return $licensePriorities[$b][0] - $licensePriorities[$a][0];
 			}
 		} );
 
@@ -101,7 +103,10 @@ class LicenseParser {
 			return null;
 		}
 
-		for ( $i = 1; isset( $parts[$i] ) && in_array( $parts[$i], array( 'by', 'sa', 'nc', 'nd' ) ); $i++ ) {
+		for ( $i = 1;
+			isset( $parts[$i] ) && in_array( $parts[$i], array( 'by', 'sa', 'nc', 'nd' ) );
+			$i++
+		) {
 			if ( in_array( $parts[$i], array( 'nc', 'nd' ) ) ) {
 				// ignore non-free licenses
 				return null;
@@ -128,7 +133,8 @@ class LicenseParser {
 			return null;
 		}
 
-		$data['name'] = implode( '-', array_filter( array( $data['type'], $data['version'], $data['region'] ) ) );
+		$data['name'] = implode( '-',
+			array_filter( array( $data['type'], $data['version'], $data['region'] ) ) );
 		return $data;
 	}
 
