@@ -10,7 +10,7 @@ class ParserTestHelper {
 	 * Files have been saved from the Commons images of the same name via action=render.
 	 * @var array name => filename
 	 */
-	public static $testHTMLFiles = array(
+	public static $testHTMLFiles = [
 		// an image with no information template
 		'noinfo' => 'File_Pentacle_3.svg',
 		// a fairly simple page with a basic information template (with no language markup) and
@@ -54,7 +54,7 @@ class ParserTestHelper {
 		'deletion' => 'File_Kerameikos_October_2012_15.JPG',
 		// file with restrictions e.g. trademarked
 		'restrict' => 'File_Logo_NIKE.svg',
-	);
+	];
 
 	/**
 	 * @var \PHPUnit_Framework_TestCase
@@ -102,7 +102,7 @@ class ParserTestHelper {
 		if ( !file_exists( $filename ) ) {
 			throw new \InvalidArgumentException( 'no metadata file named ' . $filename );
 		}
-		$metadata = require( $filename );
+		$metadata = require $filename;
 		return $metadata;
 	}
 

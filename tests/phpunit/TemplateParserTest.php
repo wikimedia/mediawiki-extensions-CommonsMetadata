@@ -17,7 +17,6 @@ class TemplateParserTest extends \MediaWikiTestCase {
 		$this->assertEmpty( $data );
 	}
 
-
 	// -------------------- description tests --------------------
 
 	/**
@@ -134,7 +133,7 @@ class TemplateParserTest extends \MediaWikiTestCase {
 		$this->assertLanguageArray( $description );
 
 		unset( $description['_type'] );
-		$this->assertArrayEquals( array( 'en', 'fr', 'de' ), array_keys( $description ) );
+		$this->assertArrayEquals( [ 'en', 'fr', 'de' ], array_keys( $description ) );
 		$this->assertStringContains( 'Rassemblement', $description['fr'] );
 	}
 
@@ -163,7 +162,7 @@ class TemplateParserTest extends \MediaWikiTestCase {
 	 * We do not assert anything about what the language key is - several choices might make sense.
 	 */
 	public function testMultilangModeWithoutLanguage() {
-		$this->markTestSkipped( 'bug 57846');
+		$this->markTestSkipped( 'bug 57846' );
 
 		$parser = $this->getParser( false );
 		$data = $this->parseTestHTML( 'simple', $parser );
@@ -312,7 +311,6 @@ class TemplateParserTest extends \MediaWikiTestCase {
 			TemplateParser::LICENSES_KEY );
 	}
 
-
 	// -------------------- misc tests --------------------
 
 	/**
@@ -372,7 +370,6 @@ class TemplateParserTest extends \MediaWikiTestCase {
 
 	// -------------------- helpers --------------------
 
-
 	/**
 	 * Convenience method to parses a test file.
 	 * @param string $name
@@ -400,7 +397,7 @@ class TemplateParserTest extends \MediaWikiTestCase {
 			$language = 'en';
 			$parser->setMultiLanguage( true );
 		}
-		$parser->setPriorityLanguages( array( $language ) );
+		$parser->setPriorityLanguages( [ $language ] );
 		return $parser;
 	}
 
@@ -419,7 +416,7 @@ class TemplateParserTest extends \MediaWikiTestCase {
 		$data = $this->getAndAssertTemplateData( $data, $type, $position );
 		$this->assertArrayHasKey( $key, $data, $message );
 		$actual = $data[$key];
-		if ( is_array( $actual ) && is_array( $expected) ) {
+		if ( is_array( $actual ) && is_array( $expected ) ) {
 			$this->assertArrayEquals( $expected, $actual, $message );
 		} else {
 			$this->assertEquals( $expected, $actual, $message );

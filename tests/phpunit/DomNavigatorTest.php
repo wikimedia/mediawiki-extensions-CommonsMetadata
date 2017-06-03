@@ -41,23 +41,23 @@ class DomNavigatorTest extends \MediaWikiTestCase {
 		$navigator = new DomNavigator(
 			'<div><span>1</span><span class="foo">2</span><span>3</span></div>' );
 		$nodes = $navigator->findElementsWithClass( 'span', 'foo' );
-		$this->assertNodeListTextEquals( array( '2' ), $nodes );
+		$this->assertNodeListTextEquals( [ '2' ], $nodes );
 
 		// more results
 		$navigator = new DomNavigator(
 			'<div><span>1</span><span class="foo">2</span><span class="foo">3</span></div>' );
 		$nodes = $navigator->findElementsWithClass( 'span', 'foo' );
-		$this->assertNodeListTextEquals( array( '2', '3' ), $nodes );
+		$this->assertNodeListTextEquals( [ '2', '3' ], $nodes );
 
 		// multiple classes
 		$navigator = new DomNavigator(
 			'<div><span>1</span><span class="foo bar baz">2</span><span>3</span></div>' );
 		$nodes = $navigator->findElementsWithClass( 'span', 'foo' );
-		$this->assertNodeListTextEquals( array( '2' ), $nodes );
+		$this->assertNodeListTextEquals( [ '2' ], $nodes );
 		$nodes = $navigator->findElementsWithClass( 'span', 'bar' );
-		$this->assertNodeListTextEquals( array( '2' ), $nodes );
+		$this->assertNodeListTextEquals( [ '2' ], $nodes );
 		$this->assertEquals( 1, $nodes->length );
-		$this->assertNodeListTextEquals( array( '2' ), $nodes );
+		$this->assertNodeListTextEquals( [ '2' ], $nodes );
 
 		// results nested into each other
 		$navigator = new DomNavigator(
@@ -65,7 +65,7 @@ class DomNavigatorTest extends \MediaWikiTestCase {
 				'<span class="foo" x="3"></span></span></div>'
 		);
 		$nodes = $navigator->findElementsWithClass( 'span', 'foo' );
-		$this->assertNodeListAttributeEquals( 'x', array( '2', '3' ), $nodes );
+		$this->assertNodeListAttributeEquals( 'x', [ '2', '3' ], $nodes );
 	}
 
 	public function testFindElementsWithClassPrefix() {
@@ -75,7 +75,7 @@ class DomNavigatorTest extends \MediaWikiTestCase {
 				'<span class="barfoo">3</span></div>'
 		);
 		$nodes = $navigator->findElementsWithClassPrefix( 'span', 'foo' );
-		$this->assertNodeListTextEquals( array( '1', '2' ), $nodes );
+		$this->assertNodeListTextEquals( [ '1', '2' ], $nodes );
 
 		// more classes
 		$navigator = new DomNavigator(
@@ -83,7 +83,7 @@ class DomNavigatorTest extends \MediaWikiTestCase {
 				'<span class="baz foobar">3</span></div>'
 		);
 		$nodes = $navigator->findElementsWithClassPrefix( 'span', 'foo' );
-		$this->assertNodeListTextEquals( array( '1', '2', '3' ), $nodes );
+		$this->assertNodeListTextEquals( [ '1', '2', '3' ], $nodes );
 
 		// more classes - negative
 		$navigator = new DomNavigator(
@@ -91,17 +91,17 @@ class DomNavigatorTest extends \MediaWikiTestCase {
 				'<span class="baz fo bar">3</span></div>'
 		);
 		$nodes = $navigator->findElementsWithClassPrefix( 'span', 'foo' );
-		$this->assertNodeListTextEquals( array(), $nodes );
+		$this->assertNodeListTextEquals( [], $nodes );
 	}
 
 	public function testTagNameSelector() {
 		$navigator = new DomNavigator(
 			'<div><span class="foo">1</span><div class="foo">2</div><span>3</span></div>' );
 		$nodes = $navigator->findElementsWithClass( 'span', 'foo' );
-		$this->assertNodeListTextEquals( array( '1' ), $nodes );
+		$this->assertNodeListTextEquals( [ '1' ], $nodes );
 
 		$nodes = $navigator->findElementsWithClass( '*', 'foo' );
-		$this->assertNodeListTextEquals( array( '1', '2' ), $nodes );
+		$this->assertNodeListTextEquals( [ '1', '2' ], $nodes );
 	}
 
 	public function testContext() {
@@ -110,13 +110,13 @@ class DomNavigatorTest extends \MediaWikiTestCase {
 				'<span class="bar"><span class="foo">2</span></span></div>'
 		);
 		$nodes = $navigator->findElementsWithClass( 'span', 'foo' );
-		$this->assertNodeListTextEquals( array( '1', '2' ), $nodes );
+		$this->assertNodeListTextEquals( [ '1', '2' ], $nodes );
 
 		$nodes = $navigator->findElementsWithClass( 'span', 'bar' );
 		$this->assertEquals( 1, $nodes->length );
 		$context = $nodes->item( 0 );
 		$nodes = $navigator->findElementsWithClass( 'span', 'foo', $context );
-		$this->assertNodeListTextEquals( array( '2' ), $nodes );
+		$this->assertNodeListTextEquals( [ '2' ], $nodes );
 	}
 
 	public function testContextItselfIsFound() {
@@ -125,7 +125,7 @@ class DomNavigatorTest extends \MediaWikiTestCase {
 		$nodes = $navigator->findElementsWithClass( 'span', 'foo' );
 		$context = $nodes->item( 0 );
 		$nodes = $navigator->findElementsWithClass( 'span', 'foo', $context );
-		$this->assertNodeListTextEquals( array( '2' ), $nodes );
+		$this->assertNodeListTextEquals( [ '2' ], $nodes );
 	}
 
 	public function testMultipleElementNames() {
@@ -134,10 +134,10 @@ class DomNavigatorTest extends \MediaWikiTestCase {
 				'<span>3</span><p class="foo">4</p></p></div>'
 		);
 		$nodes = $navigator->findElementsWithClass( '*', 'foo' );
-		$this->assertNodeListTextEquals( array( '1', '2', '4' ), $nodes );
+		$this->assertNodeListTextEquals( [ '1', '2', '4' ], $nodes );
 
-		$nodes = $navigator->findElementsWithClass( array( 'span', 'div' ), 'foo' );
-		$this->assertNodeListTextEquals( array( '1', '2' ), $nodes );
+		$nodes = $navigator->findElementsWithClass( [ 'span', 'div' ], 'foo' );
+		$this->assertNodeListTextEquals( [ '1', '2' ], $nodes );
 	}
 
 	public function testFindElementsWithClassAndLang() {
@@ -146,12 +146,12 @@ class DomNavigatorTest extends \MediaWikiTestCase {
 				'<span lang="en" class="foo">3</span></div>'
 		);
 		$nodes = $navigator->findElementsWithClassAndLang( 'span', 'foo' );
-		$this->assertNodeListTextEquals( array( '3' ), $nodes );
+		$this->assertNodeListTextEquals( [ '3' ], $nodes );
 
 		$navigator = new DomNavigator(
 			'<div><span lang="en" class="foo">1</span><span lang="de" class="foo">2</span></div>' );
 		$nodes = $navigator->findElementsWithClassAndLang( 'span', 'foo' );
-		$this->assertNodeListTextEquals( array( '1', '2' ), $nodes );
+		$this->assertNodeListTextEquals( [ '1', '2' ], $nodes );
 	}
 
 	public function testFindElementsWithId() {
@@ -159,7 +159,7 @@ class DomNavigatorTest extends \MediaWikiTestCase {
 		$navigator = new DomNavigator(
 			'<div><span>1</span><span id="foo">2</span><span id="foo">3</span></div>' );
 		$nodes = $navigator->findElementsWithId( 'span', 'foo' );
-		$this->assertNodeListTextEquals( array( '2', '3' ), $nodes );
+		$this->assertNodeListTextEquals( [ '2', '3' ], $nodes );
 	}
 
 	public function testFindElementsWithIdPrefix() {
@@ -168,14 +168,14 @@ class DomNavigatorTest extends \MediaWikiTestCase {
 				'<span id="barfoo">3</span></div><span>4</span>'
 		);
 		$nodes = $navigator->findElementsWithIdPrefix( 'span', 'foo' );
-		$this->assertNodeListTextEquals( array( '1', '2' ), $nodes );
+		$this->assertNodeListTextEquals( [ '1', '2' ], $nodes );
 	}
 
 	public function testFindElementsWithAttribute() {
 		$navigator = new DomNavigator(
 			'<span class="foo">1</span><span class>2</span><span id="bar">3</span>' );
 		$nodes = $navigator->findElementsWithAttribute( 'span', 'class' );
-		$this->assertNodeListTextEquals( array( '1', '2' ), $nodes );
+		$this->assertNodeListTextEquals( [ '1', '2' ], $nodes );
 	}
 
 	public function testClosest() {
@@ -229,7 +229,7 @@ class DomNavigatorTest extends \MediaWikiTestCase {
 	protected function assertNodeListTextEquals(
 		array $expected, \DOMNodeList $nodes, $message = ''
 	) {
-		$this->assertEquals( count( $expected ) , $nodes->length );
+		$this->assertEquals( count( $expected ), $nodes->length );
 		foreach ( $expected as $i => $text ) {
 			$this->assertEquals( $text, $nodes->item( $i )->textContent,
 				$message ?: "Failed to assert that text of node $i equals '$text'"
@@ -247,7 +247,7 @@ class DomNavigatorTest extends \MediaWikiTestCase {
 	protected function assertNodeListAttributeEquals(
 		$attributeName, array $expected, \DOMNodeList $nodes, $message = ''
 	) {
-		$this->assertEquals( count( $expected ) , $nodes->length );
+		$this->assertEquals( count( $expected ), $nodes->length );
 		foreach ( $expected as $i => $attr ) {
 			$node = $nodes->item( $i );
 			$this->assertInstanceOf( 'DOMElement', $node );
