@@ -12,14 +12,14 @@ class LicenseParser {
 	/**
 	 * Nonstandard license name patterns used in categories/templates/shortnames
 	 */
-	public static $licenseAliases = array(
+	public static $licenseAliases = [
 		'cc-by-sa-3.0-migrated' => 'cc-by-sa-3.0',
 		'cc-by-sa-3.0-migrated-with-disclaimers' => 'cc-by-sa-3.0',
 		'cc-by-sa-3.0-2.5-2.0-1.0' => 'cc-by-sa-3.0',
 		'cc-by-sa-2.5-2.0-1.0' => 'cc-by-sa-2.5',
 		'cc-by-2.0-stma' => 'cc-by-2.0',
 		'cc-by-sa-1.0+' => 'cc-by-sa-3.0',
-	);
+	];
 
 	/**
 	 * Takes a CC license string (could be a category name, template name etc)
@@ -49,13 +49,13 @@ class LicenseParser {
 	 * @return array
 	 */
 	public function sortDataByLicensePriority( array $data, $getLicenseStringCallback ) {
-		$licensePriorities = array();
+		$licensePriorities = [];
 		$i = 0;
 		foreach ( $data as $key => $value ) {
 			$license = $getLicenseStringCallback( $value, $key );
 			$licenseDetails = $this->parseLicenseString( $license );
 			$priority = $this->getLicensePriority( $licenseDetails );
-			$licensePriorities[$key] = array( $priority, $i );
+			$licensePriorities[$key] = [ $priority, $i ];
 			$i++;
 		}
 
@@ -79,13 +79,13 @@ class LicenseParser {
 	 * @return array|null
 	 */
 	protected function parseCreativeCommonsLicenseString( $str ) {
-		$data = array(
+		$data = [
 			'family' => 'cc',
 			'type' => null,
 			'version' => null,
 			'region' => null,
 			'name' => null,
-		);
+		];
 
 		$str = strtolower( trim( $str ) );
 		if ( isset( self::$licenseAliases[$str] ) ) {
@@ -93,7 +93,7 @@ class LicenseParser {
 		}
 
 		// some special cases first
-		if ( in_array( $str, array( 'cc0', 'cc-pd' ), true ) ) {
+		if ( in_array( $str, [ 'cc0', 'cc-pd' ], true ) ) {
 			$data['type'] = $data['name'] = $str;
 			return $data;
 		}
@@ -103,11 +103,13 @@ class LicenseParser {
 			return null;
 		}
 
+		// @codingStandardsIgnoreStart
 		for ( $i = 1;
 			isset( $parts[$i] ) && in_array( $parts[$i], array( 'by', 'sa', 'nc', 'nd' ) );
 			$i++
 		) {
-			if ( in_array( $parts[$i], array( 'nc', 'nd' ) ) ) {
+		// @codingStandardsIgnoreEnd
+			if ( in_array( $parts[$i], [ 'nc', 'nd' ] ) ) {
 				// ignore non-free licenses
 				return null;
 			}
@@ -134,7 +136,7 @@ class LicenseParser {
 		}
 
 		$data['name'] = implode( '-',
-			array_filter( array( $data['type'], $data['version'], $data['region'] ) ) );
+			array_filter( [ $data['type'], $data['version'], $data['region'] ] ) );
 		return $data;
 	}
 
@@ -147,10 +149,10 @@ class LicenseParser {
 	protected function parsePublicDomainLicenseString( $str ) {
 		// A very simple approach, but should work most of the time with licence shortnames.
 		if ( strtolower( $str ) === 'public domain' || strtolower( $str ) === 'pd' ) {
-			return array(
+			return [
 				'family' => 'pd',
 				'name' => 'pd',
-			);
+			];
 		}
 		return null;
 	}

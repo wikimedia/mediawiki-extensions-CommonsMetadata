@@ -21,13 +21,13 @@ class DataCollector {
 	 * matched case-insensitively against category names; the first match is returned.
 	 * @var array
 	 */
-	protected static $assessmentCategories = array(
+	protected static $assessmentCategories = [
 		'poty' => '/^pictures of the year \(.*\)/',
 		'potd' => '/^pictures of the day \(.*\)/',
 		'featured' => '/^featured (pictures|sounds) on wikimedia commons/',
 		'quality' => '/^quality images/',
 		'valued' => '/^valued images/',
-	);
+	];
 
 	/**
 	 * Language in which data should be collected. Can be null, which means collect all languages.
@@ -117,7 +117,7 @@ class DataCollector {
 	 */
 	public function verifyAttributionMetadata( $descriptionText ) {
 		$templateData = $this->templateParser->parsePage( $descriptionText );
-		$problems = $licenseData = $informationData = array();
+		$problems = $licenseData = $informationData = [];
 
 		if ( isset( $templateData[TemplateParser::LICENSES_KEY] ) ) {
 			$licenseData = $this->selectLicense( $templateData[TemplateParser::LICENSES_KEY] );
@@ -161,16 +161,16 @@ class DataCollector {
 		$assessments = $this->getAssessmentsAndRemoveFromCategories( $categories );
 		$licenses = $this->getLicensesAndRemoveFromCategories( $categories );
 
-		return array(
-			'Categories' => array(
+		return [
+			'Categories' => [
 				'value' => implode( '|', $categories ),
 				'source' => 'commons-categories',
-			),
-			'Assessments' => array(
-				'value' => implode('|', $assessments),
+			],
+			'Assessments' => [
+				'value' => implode( '|', $assessments ),
 				'source' => 'commons-categories',
-			),
-		);
+			],
+		];
 	}
 
 	/**
@@ -180,7 +180,7 @@ class DataCollector {
 	protected function getTemplateMetadata( $templateData ) {
 		// GetExtendedMetadata does not handle multivalued fields,
 		// we need to select one of everything
-		$templateFields = array();
+		$templateFields = [];
 
 		if ( isset( $templateData[TemplateParser::COORDINATES_KEY] ) ) {
 			$templateFields = array_merge( $templateFields,
@@ -207,12 +207,12 @@ class DataCollector {
 				$this->selectFirst( $templateData[TemplateParser::RESTRICTIONS_KEY] ) );
 		}
 
-		$metadata = array();
-		foreach( $templateFields as $name => $value ) {
-			$metadata[ $name ] = array(
+		$metadata = [];
+		foreach ( $templateFields as $name => $value ) {
+			$metadata[ $name ] = [
 				'value' => $value,
 				'source' => 'commons-desc-page'
-			);
+			];
 		}
 
 		// use short name to generate internal name used in i18n
@@ -220,10 +220,10 @@ class DataCollector {
 			$licenseData = $this->licenseParser->parseLicenseString(
 				$templateFields['LicenseShortName'] );
 			if ( isset( $licenseData['name'] ) ) {
-				$metadata['License'] = array(
+				$metadata['License'] = [
 					'value' => $licenseData['name'],
 					'source' => 'commons-templates',
-				);
+				];
 			}
 		}
 
@@ -282,9 +282,9 @@ class DataCollector {
 	 * @return array list of category names in human-readable format
 	 */
 	protected function getCategories( File $file, array $data ) {
-		$categories = array();
+		$categories = [];
 
-		if ( is_a( $file, 'LocalFileMock') || is_a( $file, 'ForeignDBFileMock') ) {
+		if ( is_a( $file, 'LocalFileMock' ) || is_a( $file, 'ForeignDBFileMock' ) ) {
 			// with all the hard-coded dependencies, mocking categoriy retrieval properly is
 			// pretty much impossible
 			return $file->mockedCategories;
@@ -326,7 +326,7 @@ class DataCollector {
 	 * @return array
 	 */
 	protected function getLicensesAndRemoveFromCategories( &$categories ) {
-		$licenses = array();
+		$licenses = [];
 		foreach ( $categories as $i => $category ) {
 			$licenseData = $this->licenseParser->parseLicenseString( $category );
 			if ( $licenseData ) {
@@ -345,7 +345,7 @@ class DataCollector {
 	 * @return array
 	 */
 	protected function getAssessmentsAndRemoveFromCategories( &$categories ) {
-		$assessments = array();
+		$assessments = [];
 		foreach ( $categories as $i => $category ) {
 
 			foreach ( self::$assessmentCategories as $assessmentType => $regexp ) {
@@ -356,7 +356,7 @@ class DataCollector {
 			}
 		}
 		$categories = array_merge( $categories ); // renumber to avoid holes in array
-		return array_unique($assessments); // potd/poty can happen multiple times
+		return array_unique( $assessments ); // potd/poty can happen multiple times
 	}
 
 	/**
@@ -367,7 +367,7 @@ class DataCollector {
 	protected function selectFirst( $arrays ) {
 		// multiple metadata values for the same fields on the same image would not make much sense,
 		// so use the first value
-		return $arrays ? $arrays[0] : array();
+		return $arrays ? $arrays[0] : [];
 	}
 
 	/**
@@ -379,7 +379,7 @@ class DataCollector {
 	 */
 	protected function selectInformationTemplate( array $informationTemplates ) {
 		if ( !$informationTemplates ) {
-			return array();
+			return [];
 		}
 
 		$authorCount = 0;
@@ -403,7 +403,7 @@ class DataCollector {
 	 */
 	protected function selectLicense( array $licenses ) {
 		if ( !$licenses ) {
-			return array();
+			return [];
 		}
 
 		$sortedLicenses = $this->licenseParser->sortDataByLicensePriority( $licenses,
@@ -418,7 +418,7 @@ class DataCollector {
 		// sortDataByLicensePriority puts things in right order but also rearranges the keys
 		// - we don't want that
 		$sortedLicenses = array_values( $sortedLicenses );
-		return $sortedLicenses ? $sortedLicenses[0] : array();
+		return $sortedLicenses ? $sortedLicenses[0] : [];
 	}
 
 	/**
@@ -426,8 +426,8 @@ class DataCollector {
 	 * @param array $metadata
 	 */
 	protected function normalizeMetadataTimestamps( array &$metadata ) {
-		$fieldsToNormalize = array( 'DateTime', 'DateTimeOriginal' );
-		foreach( $fieldsToNormalize as $field ) {
+		$fieldsToNormalize = [ 'DateTime', 'DateTimeOriginal' ];
+		foreach ( $fieldsToNormalize as $field ) {
 			if ( isset( $metadata[$field] ) && isset( $metadata[$field]['value'] ) ) {
 				$parsedTs = wfTimestamp( TS_DB, $metadata[$field]['value'] );
 				if ( $parsedTs ) {

@@ -47,10 +47,10 @@ class HookHandler {
 			// the remote as well, and generates the same metadata format. We have nothing to do.
 			return true;
 		} else {
-			$combinedMeta['CommonsMetadataExtension'] = array(
+			$combinedMeta['CommonsMetadataExtension'] = [
 				'value' => self::VERSION,
 				'source' => 'extension',
-			);
+			];
 		}
 
 		$lang = $context->getLanguage();
@@ -112,7 +112,7 @@ class HookHandler {
 			|| !$title->inNamespace( NS_FILE )
 			|| $content->getModel() !== CONTENT_MODEL_WIKITEXT
 			|| !RepoGroup::singleton()->getLocalRepo()->findFile(
-				$title, array( 'ignoreRedirect' => true ) )
+				$title, [ 'ignoreRedirect' => true ] )
 		) {
 			return true;
 		}

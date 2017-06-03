@@ -167,14 +167,14 @@ class DomNavigator {
 	 * @return DOMElement|null
 	 */
 	public function closest( DOMNode $node, $element ) {
-		while ( ! $node instanceof DOMElement || $node->nodeName !== $element ) {
+		while ( !$node instanceof DOMElement || $node->nodeName !== $element ) {
 			if ( $node->parentNode instanceof DOMNode ) {
 				$node = $node->parentNode;
 			} else {
 				return null;
 			}
 		}
-		return  $node;
+		return $node;
 	}
 
 	/**
@@ -188,7 +188,7 @@ class DomNavigator {
 		if ( $results === false ) {
 			$error = libxml_get_last_error();
 			$logMessage = sprintf( 'HTML parsing error: %s (%s) at line %s, columnt %s',
-				$error->message, $error->code, $error->line, $error->column);
+				$error->message, $error->code, $error->line, $error->column );
 			wfDebugLog( 'CommonsMetadata', $logMessage );
 			return new DOMNodeList();
 		}
@@ -231,7 +231,11 @@ class DomNavigator {
 	protected function handleElementOrList( $elmementOrList ) {
 		if ( is_array( $elmementOrList ) ) {
 			return '*[' . implode( ' or ', array_map(
-				function ( $el ) { return 'self::' . $el; }, $elmementOrList ) ) . ']';
+				function ( $el ) {
+					return 'self::' . $el;
+				},
+				$elmementOrList
+			) ) . ']';
 		} else {
 			return $elmementOrList;
 		}
