@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ruleset>
-	<rule ref="vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
+	<rule ref="./vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
 		<exclude name="PSR2.Methods.MethodDeclaration.Underscore"/>
+		<exclude name="MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName"/>
+		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment"/>
+		<exclude name="MediaWiki.Commenting.FunctionComment"/>
 	</rule>
 	<file>.</file>
 	<arg name="extensions" value="php,php5,inc"/>

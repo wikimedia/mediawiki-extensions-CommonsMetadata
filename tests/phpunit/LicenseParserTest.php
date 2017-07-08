@@ -241,8 +241,6 @@ class LicenseParserTest extends \MediaWikiTestCase {
 		$this->assertArrayEquals( $expectedSortOrder, array_keys( $sortedLicenseData ), true );
 	}
 
-	/**********************************************************************/
-
 	protected function assertLicenseIsRecognized( $licenseData ) {
 		$this->assertNotNull( $licenseData );
 	}

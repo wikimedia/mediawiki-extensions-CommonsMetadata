@@ -252,7 +252,7 @@ class DataCollector {
 			// is destructed.
 
 			global $wgHooks;
-			$makeAbsolute = function( Title $title, &$url, $query ) {
+			$makeAbsolute = function ( Title $title, &$url, $query ) {
 				global $wgServer, $wgRequest;
 				if (
 					// relative URL
@@ -267,7 +267,7 @@ class DataCollector {
 			$wgHooks['GetLocalURL::Internal']['CommonsMetadata::getDescriptionText'] =
 				$makeAbsolute;
 
-			$sc = new ScopedCallback( function() {
+			$sc = new ScopedCallback( function () {
 				global $wgHooks;
 				unset( $wgHooks['GetLocalURL::Internal']['CommonsMetadata::getDescriptionText'] );
 			} );
@@ -347,7 +347,6 @@ class DataCollector {
 	protected function getAssessmentsAndRemoveFromCategories( &$categories ) {
 		$assessments = [];
 		foreach ( $categories as $i => $category ) {
-
 			foreach ( self::$assessmentCategories as $assessmentType => $regexp ) {
 				if ( preg_match( $regexp . 'i', $category ) ) {
 					$assessments[] = $assessmentType;
