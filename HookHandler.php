@@ -26,7 +26,7 @@ class HookHandler {
 	/**
 	 * Hook handler for extended metadata
 	 *
-	 * @param array $combinedMeta Metadata so far
+	 * @param array &$combinedMeta Metadata so far
 	 * @param File $file The file object in question
 	 * @param IContextSource $context Context. Used to select language
 	 * @param bool $singleLang Get only target language, or all translations

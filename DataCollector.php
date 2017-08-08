@@ -55,7 +55,7 @@ class DataCollector {
 	}
 
 	/**
-	 * @param boolean $multiLang
+	 * @param bool $multiLang
 	 */
 	public function setMultiLang( $multiLang ) {
 		$this->multiLang = $multiLang;
@@ -87,7 +87,7 @@ class DataCollector {
 	 * For fields with multiple values and/or in multiple languages the format is more complex;
 	 * see the documentation for the extmetadata API.
 	 *
-	 * @param array $previousMetadata metadata collected so far;
+	 * @param array &$previousMetadata metadata collected so far;
 	 *   new metadata will be added to this array
 	 * @param File $file
 	 */
@@ -322,7 +322,7 @@ class DataCollector {
 	/**
 	 * Matches category names to a category => license mapping, removes the matching categories
 	 * and returns the corresponding licenses.
-	 * @param array $categories a list of human-readable category names.
+	 * @param array &$categories a list of human-readable category names.
 	 * @return array
 	 */
 	protected function getLicensesAndRemoveFromCategories( &$categories ) {
@@ -341,7 +341,7 @@ class DataCollector {
 	/**
 	 * Matches category names to a category => assessment mapping, removes the matching categories
 	 * and returns the corresponding assessments (valued image, picture of the day etc).
-	 * @param array $categories a list of human-readable category names.
+	 * @param array &$categories a list of human-readable category names.
 	 * @return array
 	 */
 	protected function getAssessmentsAndRemoveFromCategories( &$categories ) {
@@ -422,7 +422,7 @@ class DataCollector {
 
 	/**
 	 * Normalizes the metadata to wfTimestamp()'s TS_DB format
-	 * @param array $metadata
+	 * @param array &$metadata
 	 */
 	protected function normalizeMetadataTimestamps( array &$metadata ) {
 		$fieldsToNormalize = [ 'DateTime', 'DateTimeOriginal' ];

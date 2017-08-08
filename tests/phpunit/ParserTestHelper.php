@@ -89,7 +89,7 @@ class ParserTestHelper {
 
 	/**
 	 * Loads an expected metadata test result.
-	 * @param $name
+	 * @param string $name
 	 * @throws \InvalidArgumentException
 	 * @return array
 	 */
