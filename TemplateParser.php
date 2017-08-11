@@ -225,7 +225,7 @@ class TemplateParser {
 				$domNavigator->getFirstClassWithPrefix( $group, 'fileinfotpl-type-' ) ?: '-';
 		}
 
-		if ( isset ( $data[$groupName][$fieldName] ) ) {
+		if ( isset( $data[$groupName][$fieldName] ) ) {
 			// don't parse the same field multiple times if it has both id and classes; also
 			// ignore a second field of the same type in the same template
 			return;
