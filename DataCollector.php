@@ -8,7 +8,7 @@ use File;
 use LocalFile;
 use ForeignAPIFile;
 use WikiFilePage;
-use ScopedCallback;
+use Wikimedia\ScopedCallback;
 
 /**
  * Class to handle metadata collection and formatting, and manage more specific data extraction
