@@ -379,7 +379,7 @@ class TemplateParser {
 	 * Parse and return deletion reason from the {{Nuke}} template
 	 * ( https://commons.wikimedia.org/wiki/Template:Nuke )
 	 * @param DomNavigator $domNavigator
-	 * @return array()
+	 * @return array
 	 */
 	protected function parseNuke( DomNavigator $domNavigator ) {
 		$deletions = [];
