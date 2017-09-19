@@ -2,10 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Gomoko",
-			"JackPotte"
+			"JackPotte",
+			"VIGNERON"
 		]
 	},
-	"commonsmetadata-desc": "Étend la propriété « extmetadata » du module d’API info d’image pour inclure des informations stockées dans les pages de description de l’image qui utilisent les modèles courants de Wikimédia Communs.",
+	"commonsmetadata-desc": "Étend la propriété « extmetadata » du module d’API information d’image pour inclure des informations stockées dans les pages de description de l’image qui utilisent les modèles courants de Wikimedia Commons.",
 	"commonsmetadata-trackingcategory-no-license": "Fichiers sans licence lisible par une machine",
 	"commonsmetadata-trackingcategory-no-license-desc": "Le fichier n’a aucun modèle de licence [{{MediaWiki:Commonsmetadata-doc-url}} lisible par une machine].",
 	"commonsmetadata-trackingcategory-no-description": "Fichiers sans description lisible par une machine",
