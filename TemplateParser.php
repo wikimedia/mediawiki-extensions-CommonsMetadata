@@ -2,7 +2,6 @@
 
 namespace CommonsMetadata;
 
-use DOMNodeList;
 use DOMNode;
 use DOMElement;
 
