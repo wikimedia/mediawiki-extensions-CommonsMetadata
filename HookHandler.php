@@ -111,8 +111,29 @@ class HookHandler {
 			!$wgCommonsMetadataSetTrackingCategories
 			|| !$title->inNamespace( NS_FILE )
 			|| $content->getModel() !== CONTENT_MODEL_WIKITEXT
-			|| !RepoGroup::singleton()->getLocalRepo()->findFile(
-				$title, [ 'ignoreRedirect' => true ] )
+		) {
+			return true;
+		}
+
+		/*
+		 * We also need to check if the file can be found. This is pretty straightforward, except
+		 * for when a file gets moved: the old & new file details are cached, and cache is purged
+		 * later on, in a DeferredUpdate.
+		 * We could just `$repo->findFile( $title, [ 'ignoreRedirect' => true, 'latest' => true ] )`
+		 * to force it to always check the database, but apart from file moves, the data in cache
+		 * (if any) is usually just fine.
+		 * Instead, we'll:
+		 * * first test if `$title->isRedirect()`, to weed out the old (now renamed) title
+		 * * attempt to fetch from cache, which should usually be fine
+		 * * then fallback to DB, for files that have just been renamed
+		 */
+		$repo = RepoGroup::singleton()->getLocalRepo();
+		if (
+			$title->isRedirect()
+			|| (
+				!$repo->findFile( $title, [ 'ignoreRedirect' => true ] )
+				&& !$repo->findFile( $title, [ 'ignoreRedirect' => true, 'latest' => true ] )
+			)
 		) {
 			return true;
 		}
