@@ -155,7 +155,7 @@ class ParserTestHelper {
 	 * @return \ForeignDBFile
 	 */
 	public function getForeignDbFile( $description, $categories ) {
-		$file = $this->testCase->getMockBuilder( 'ForeignDbFile' )
+		$file = $this->testCase->getMockBuilder( 'ForeignDBFile' )
 			->setMockClassName( 'ForeignDBFileMock' )
 			->disableOriginalConstructor()
 			->getMock();
