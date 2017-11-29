@@ -417,7 +417,20 @@ class DataCollector {
 		// sortDataByLicensePriority puts things in right order but also rearranges the keys
 		// - we don't want that
 		$sortedLicenses = array_values( $sortedLicenses );
-		return $sortedLicenses ? $sortedLicenses[0] : [];
+
+		if ( !$sortedLicenses ) {
+			return [];
+		}
+
+		// T131896 - if any license template is marked nonfree, the image is probably nonfree
+		foreach ( $sortedLicenses as $license ) {
+			if ( !empty( $license['NonFree'] ) ) {
+				$sortedLicenses[0]['NonFree'] = $license['NonFree'];
+				break;
+			}
+		}
+
+		return $sortedLicenses[0];
 	}
 
 	/**

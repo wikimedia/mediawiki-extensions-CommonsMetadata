@@ -202,6 +202,30 @@ class DataCollectorTest extends \MediaWikiTestCase {
 		$this->assertMetadataValue( 'AuthorCount', 2, $templateData );
 	}
 
+	public function testNonfreeFlag() {
+		// T131896 - NonFree flag cannot be overwritten
+		$getTemplateMetadataMethod = new \ReflectionMethod( $this->dataCollector, 'getTemplateMetadata' );
+		$getTemplateMetadataMethod->setAccessible( true );
+
+		$template1 = [ 'LicenseShortName' => 'Fair Use' ];
+		$template2 = [ 'LicenseShortName' => 'Fair Use', 'NonFree' => '1' ];
+
+		$templateData = $getTemplateMetadataMethod->invokeArgs( $this->dataCollector, [ [
+			TemplateParser::LICENSES_KEY => [ $template1 ],
+		] ] );
+		$this->assertArrayNotHasKey( 'NonFree', $templateData );
+
+		$templateData = $getTemplateMetadataMethod->invokeArgs( $this->dataCollector, [ [
+			TemplateParser::LICENSES_KEY => [ $template1, $template2 ],
+		] ] );
+		$this->assertMetadataValue( 'NonFree', '1', $templateData );
+
+		$templateData = $getTemplateMetadataMethod->invokeArgs( $this->dataCollector, [ [
+			TemplateParser::LICENSES_KEY => [ $template2, $template1 ],
+		] ] );
+		$this->assertMetadataValue( 'NonFree', '1', $templateData );
+	}
+
 	/*-------------------- verifyAttributionMetadata tests -------------*/
 
 	public function testVerifyAttributionMetadata() {
