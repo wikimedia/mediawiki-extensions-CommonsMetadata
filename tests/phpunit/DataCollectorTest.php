@@ -2,6 +2,9 @@
 
 namespace CommonsMetadata;
 
+use ParserOutput;
+use Title;
+
 /**
  * @covers CommonsMetadata\DataCollector
  * @group Extensions/CommonsMetadata
@@ -241,7 +244,7 @@ class DataCollectorTest extends \MediaWikiTestCase {
 		$this->licenseParser->expects( $this->any() )->method( 'parseLicenseString' )
 			->will( $this->returnValue( null ) );
 
-		$problems = $this->dataCollector->verifyAttributionMetadata( '' );
+		$problems = $this->dataCollector->verifyAttributionMetadata( new ParserOutput(), $this->file );
 		$this->assertEmpty( $problems );
 	}
 
@@ -257,7 +260,7 @@ class DataCollectorTest extends \MediaWikiTestCase {
 		$this->licenseParser->expects( $this->any() )->method( 'parseLicenseString' )
 			->will( $this->returnValue( null ) );
 
-		$problems = $this->dataCollector->verifyAttributionMetadata( '' );
+		$problems = $this->dataCollector->verifyAttributionMetadata( new ParserOutput(), $this->file );
 		$this->assertEmpty( $problems );
 	}
 
@@ -272,7 +275,7 @@ class DataCollectorTest extends \MediaWikiTestCase {
 		$this->licenseParser->expects( $this->any() )->method( 'parseLicenseString' )
 			->will( $this->returnValue( null ) );
 
-		$problems = $this->dataCollector->verifyAttributionMetadata( '' );
+		$problems = $this->dataCollector->verifyAttributionMetadata( new ParserOutput(), $this->file );
 
 		$this->assertContains( 'no-license', $problems );
 		$this->assertContains( 'no-description', $problems );
@@ -286,7 +289,7 @@ class DataCollectorTest extends \MediaWikiTestCase {
 		$this->licenseParser->expects( $this->any() )->method( 'parseLicenseString' )
 			->will( $this->returnValue( null ) );
 
-		$problems = $this->dataCollector->verifyAttributionMetadata( '' );
+		$problems = $this->dataCollector->verifyAttributionMetadata( new ParserOutput(), $this->file );
 
 		$this->assertContains( 'no-license', $problems );
 		$this->assertContains( 'no-description', $problems );
@@ -300,12 +303,46 @@ class DataCollectorTest extends \MediaWikiTestCase {
 		$this->licenseParser->expects( $this->any() )->method( 'parseLicenseString' )
 			->will( $this->returnValue( null ) );
 
-		$problems = $this->dataCollector->verifyAttributionMetadata( '' );
+		$problems = $this->dataCollector->verifyAttributionMetadata( new ParserOutput(), $this->file );
 
 		$this->assertContains( 'no-license', $problems );
 		$this->assertContains( 'no-description', $problems );
 		$this->assertContains( 'no-author', $problems );
 		$this->assertContains( 'no-source', $problems );
+	}
+
+	public function testVerifyPatentProvided() {
+		$title = Title::newFromText( '3dpatent', NS_TEMPLATE );
+		$parserOutput = new ParserOutput();
+		$parserOutput->addTemplate( $title, 1, 1 );
+
+		$parserTestHelper = new ParserTestHelper();
+		$parserTestHelper->setTestCase( $this );
+		$file = $parserTestHelper->getLocalFile( '3D file with patent template', [], 'application/sla' );
+
+		$problems = $this->dataCollector->verifyAttributionMetadata( $parserOutput, $file );
+
+		$this->assertNotContains( 'no-patent', $problems );
+	}
+
+	public function testVerifyPatentMissing() {
+		$parserTestHelper = new ParserTestHelper();
+		$parserTestHelper->setTestCase( $this );
+		$file = $parserTestHelper->getLocalFile( '3D file w/o patent template', [], 'application/sla' );
+
+		$problems = $this->dataCollector->verifyAttributionMetadata( new ParserOutput(), $file );
+
+		$this->assertContains( 'no-patent', $problems );
+	}
+
+	public function testVerifyNoPatentNeeded() {
+		$parserTestHelper = new ParserTestHelper();
+		$parserTestHelper->setTestCase( $this );
+		$file = $parserTestHelper->getLocalFile( 'Not 3D = no patent needed', [], 'image/jpeg' );
+
+		$problems = $this->dataCollector->verifyAttributionMetadata( new ParserOutput(), $file );
+
+		$this->assertNotContains( 'no-patent', $problems );
 	}
 
 	/*------------------------------- Helpers --------------------------*/

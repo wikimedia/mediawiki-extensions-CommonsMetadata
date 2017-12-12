@@ -109,9 +109,10 @@ class ParserTestHelper {
 	/**
 	 * @param string $description file page text
 	 * @param string[] $categories list of category names, without namespace
+	 * @param string $mime mimetype of the image
 	 * @return \LocalFile
 	 */
-	public function getLocalFile( $description, $categories ) {
+	public function getLocalFile( $description, $categories, $mime = 'image/jpeg' ) {
 		$file = $this->testCase->getMockBuilder( 'LocalFile' )
 			->setMockClassName( 'LocalFileMock' )
 			->disableOriginalConstructor()
@@ -125,6 +126,9 @@ class ParserTestHelper {
 		$file->expects( $this->testCase->any() )
 			->method( 'getDescriptionTouched' )
 			->will( $this->testCase->returnValue( time() ) );
+		$file->expects( $this->testCase->any() )
+			->method( 'getMimeType' )
+			->will( $this->testCase->returnValue( $mime ) );
 		$file->mockedCategories = $categories;
 		return $file;
 	}

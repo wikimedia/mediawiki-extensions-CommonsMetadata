@@ -7,6 +7,7 @@ use Title;
 use File;
 use LocalFile;
 use ForeignAPIFile;
+use ParserOutput;
 use WikiFilePage;
 use Wikimedia\ScopedCallback;
 
@@ -108,14 +109,18 @@ class DataCollector {
 	/**
 	 * Checks for the presence of metadata needed for attributing the file (author, source, license)
 	 * and returns a list of keys corresponding to problems.
-	 * @param string $descriptionText HTML code of the file description
+	 * @param ParserOutput $parserOutput
+	 * @param File $file
 	 * @return array one or more of the following keys:
 	 *  - no-license - failed to detect a license
 	 *  - no-description - failed to detect any image description
 	 *  - no-author - failed to detect author name or a custom attribution text
 	 *  - no-source - failed to detect the source of the image or a custom attribution text
 	 */
-	public function verifyAttributionMetadata( $descriptionText ) {
+	public function verifyAttributionMetadata( ParserOutput $parserOutput, File $file ) {
+		// HTML code of the file description
+		$descriptionText = $parserOutput->getText();
+
 		$templateData = $this->templateParser->parsePage( $descriptionText );
 		$problems = $licenseData = $informationData = [];
 
@@ -148,6 +153,16 @@ class DataCollector {
 			( !isset( $informationData['Attribution'] ) || $informationData['Attribution'] === '' )
 		) {
 			$problems[] = 'no-source';
+		}
+
+		// Certain uploads (3D objects) need a patent license
+		$templates = $parserOutput->getTemplates();
+		$templates = isset( $templates[NS_TEMPLATE] ) ? $templates[NS_TEMPLATE] : [];
+		if (
+			!array_key_exists( '3dpatent', $templates ) &&
+			$file->getMimeType() === 'application/sla'
+		) {
+			$problems[] = 'no-patent';
 		}
 
 		return $problems;
@@ -396,9 +411,9 @@ class DataCollector {
 
 	/**
 	 * Receives the list of licenses found by the template parser and selects which one to use.
-	 * @param array $licenses an array of licenses, each is an array of metdata fields
+	 * @param array $licenses an array of licenses, each is an array of metadata fields
 	 *   in fieldname => value form
-	 * @return array an array of metdata fields in fieldname => value form
+	 * @return array an array of metadata fields in fieldname => value form
 	 */
 	protected function selectLicense( array $licenses ) {
 		if ( !$licenses ) {

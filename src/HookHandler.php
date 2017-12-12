@@ -128,20 +128,21 @@ class HookHandler {
 		 * * then fallback to DB, for files that have just been renamed
 		 */
 		$repo = RepoGroup::singleton()->getLocalRepo();
-		if (
-			$title->isRedirect()
-			|| (
-				!$repo->findFile( $title, [ 'ignoreRedirect' => true ] )
-				&& !$repo->findFile( $title, [ 'ignoreRedirect' => true, 'latest' => true ] )
-			)
-		) {
+		if ( $title->isRedirect() ) {
 			return true;
+		}
+		$file = $repo->findFile( $title, [ 'ignoreRedirect' => true ] );
+		if ( $file === false ) {
+			$file = $repo->findFile( $title, [ 'ignoreRedirect' => true, 'latest' => true ] );
+			if ( $file === false ) {
+				return true;
+			}
 		}
 
 		$language = $content->getContentHandler()->getPageViewLanguage( $title, $content );
 		$dataCollector = self::getDataCollector( $language, true );
 
-		$categoryKeys = $dataCollector->verifyAttributionMetadata( $parserOutput->getText() );
+		$categoryKeys = $dataCollector->verifyAttributionMetadata( $parserOutput, $file );
 		foreach ( $categoryKeys as $key ) {
 			$parserOutput->addTrackingCategory(
 				'commonsmetadata-trackingcategory-' . $key, $title );

@@ -82,7 +82,7 @@ class HookHandlerTest extends \PHPUnit_Framework_TestCase {
 	/*----------------------------------------------------------*/
 
 	/**
-	 * @dataProvider provideDesctiptionData
+	 * @dataProvider provideDescriptionData
 	 * @param string $testName a test name from ParserTestHelper::$testHTMLFiles
 	 */
 	public function testDescription( $testName ) {
@@ -102,7 +102,7 @@ class HookHandlerTest extends \PHPUnit_Framework_TestCase {
 		}
 	}
 
-	public function provideDesctiptionData() {
+	public function provideDescriptionData() {
 		return [
 			[ 'noinfo' ],
 			[ 'simple' ],
