@@ -5,6 +5,9 @@
 	"descriptionmsg": "commonsmetadata-desc",
 	"license-name": "GPL-2.0+",
 	"type": "other",
+	"requires": {
+		"MediaWiki": ">= 1.31.0"
+	},
 	"Hooks": {
 		"GetExtendedMetadata": [
 			"CommonsMetadata\\HookHandler::onGetExtendedMetadata"
@@ -25,12 +28,8 @@
 		"CommonsMetadataForceRecalculate": false,
 		"CommonsMetadataSetTrackingCategories": false
 	},
-	"AutoloadClasses": {
-		"CommonsMetadata\\HookHandler": "HookHandler.php",
-		"CommonsMetadata\\DataCollector": "DataCollector.php",
-		"CommonsMetadata\\DomNavigator": "DomNavigator.php",
-		"CommonsMetadata\\TemplateParser": "TemplateParser.php",
-		"CommonsMetadata\\LicenseParser": "LicenseParser.php"
+	"AutoloadNamespaces": {
+		"CommonsMetadata\\": "src/"
 	},
 	"TrackingCategories": [
 		"commonsmetadata-trackingcategory-no-license",
