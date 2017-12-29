@@ -35,8 +35,7 @@ class LicenseParser {
 	 * @return array|null
 	 */
 	public function parseLicenseString( $str ) {
-		return
-			$this->parseCreativeCommonsLicenseString( $str )
+		return $this->parseCreativeCommonsLicenseString( $str )
 			?: $this->parsePublicDomainLicenseString( $str );
 	}
 
