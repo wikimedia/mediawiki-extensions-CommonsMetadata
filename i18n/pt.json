@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Hamilton Abreu",
-			"Vitorvicentevalente"
+			"Vitorvicentevalente",
+			"Athena in Wonderland"
 		]
 	},
 	"commonsmetadata-desc": "Expande a propriedade \"extmetadata\" do módulo da API de informação sobre imagens, de forma a incluir informação armazenada nas páginas de descrição das imagens que usem as predefinições mais comuns da wiki Wikimedia Commons.",
@@ -13,5 +14,7 @@
 	"commonsmetadata-trackingcategory-no-author": "Ficheiros sem autor legível por computador",
 	"commonsmetadata-trackingcategory-no-author-desc": "O ficheiro não tem nenhuma predefinição de informação [{{MediaWiki:Commonsmetadata-doc-url}} legível por computador] ou o campo do autor não está preenchido.",
 	"commonsmetadata-trackingcategory-no-source": "Ficheiros sem fonte legível por computador",
-	"commonsmetadata-trackingcategory-no-source-desc": "O ficheiro não possui nenhuma predefinição de informação [{{MediaWiki:Commonsmetadata-doc-url}} legível por computador] ou o campo da fonte não está preenchido."
+	"commonsmetadata-trackingcategory-no-source-desc": "O ficheiro não possui nenhuma predefinição de informação [{{MediaWiki:Commonsmetadata-doc-url}} legível por computador] ou o campo da fonte não está preenchido.",
+	"commonsmetadata-trackingcategory-no-patent": "Ficheiros sem patente legível por computador",
+	"commonsmetadata-trackingcategory-no-patent-desc": "O ficheiro não tem nenhuma predefinição de patente [{{MediaWiki:Commonsmetadata-doc-url}} legível por computador]."
 }
