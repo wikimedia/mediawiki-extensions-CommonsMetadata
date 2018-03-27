@@ -102,12 +102,11 @@ class LicenseParser {
 			return null;
 		}
 
-		// @codingStandardsIgnoreStart
-		for ( $i = 1;
-			isset( $parts[$i] ) && in_array( $parts[$i], array( 'by', 'sa', 'nc', 'nd' ) );
-			$i++
-		) {
-		// @codingStandardsIgnoreEnd
+		$countParts = count( $parts );
+		for ( $i = 1; $i < $countParts; $i++ ) {
+			if ( !in_array( $parts[$i], [ 'by', 'sa', 'nc', 'nd' ] ) ) {
+				break;
+			}
 			if ( in_array( $parts[$i], [ 'nc', 'nd' ] ) ) {
 				// ignore non-free licenses
 				return null;
@@ -115,22 +114,23 @@ class LicenseParser {
 		}
 		$data['type'] = implode( '-', array_slice( $parts, 0, $i ) );
 
-		if ( isset( $parts[$i] ) && is_numeric( $parts[$i] ) ) {
+		if ( $i < $countParts && is_numeric( $parts[$i] ) ) {
 			$data['version'] = $parts[$i];
 			$i++;
 		} else {
 			return null;
 		}
 
-		if ( isset( $parts[$i] ) && (
+		if ( $i < $countParts && (
 				preg_match( '/^\w\w$/', $parts[$i] )
 				|| $parts[$i] == 'scotland'
-			) ) {
+			)
+		) {
 			$data['region'] = $parts[$i];
 			$i++;
 		}
 
-		if ( $i != count( $parts ) ) {
+		if ( $i != $countParts ) {
 			return null;
 		}
 
