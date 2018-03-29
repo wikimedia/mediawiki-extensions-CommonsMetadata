@@ -2,7 +2,6 @@
 <ruleset>
 	<rule ref="./vendor/mediawiki/mediawiki-codesniffer/MediaWiki">
 		<exclude name="MediaWiki.Commenting.FunctionComment.MissingDocumentationProtected" />
-		<exclude name="MediaWiki.Commenting.FunctionComment.MissingParamComment" />
 		<exclude name="PSR2.Methods.MethodDeclaration.Underscore"/>
 		<exclude name="MediaWiki.NamingConventions.LowerCamelFunctionsName.FunctionName"/>
 		<exclude name="MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment"/>
