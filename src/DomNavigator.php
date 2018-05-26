@@ -40,7 +40,7 @@ class DomNavigator {
 	 * (In other words, this is equivalent to the CSS selector 'element.class'.)
 	 * @param string|array $element HTML tag name (* to accept all) or array of tag names
 	 * @param string $class
-	 * @param DOMNode $context if present, the method will only search inside this element
+	 * @param DOMNode|null $context if present, the method will only search inside this element
 	 * @return DOMNodeList|DOMElement[]
 	 */
 	public function findElementsWithClass( $element, $class, DOMNode $context = null ) {
@@ -55,7 +55,7 @@ class DomNavigator {
 	 * string.
 	 * @param string|array $element HTML tag name (* to accept all) or array of tag names
 	 * @param string $classPrefix
-	 * @param DOMNode $context if present, the method will only search inside this element
+	 * @param DOMNode|null $context if present, the method will only search inside this element
 	 * @return DOMNodeList|DOMElement[]
 	 */
 	public function findElementsWithClassPrefix( $element, $classPrefix, DOMNode $context = null ) {
@@ -70,7 +70,7 @@ class DomNavigator {
 	 * attribute. (In other words, this is equivalent to the CSS selector 'element.class[lang]'.)
 	 * @param string|array $element HTML tag name (* to accept all) or array of tag names
 	 * @param string $class
-	 * @param DOMNode $context if present, the method will only search inside this element
+	 * @param DOMNode|null $context if present, the method will only search inside this element
 	 * @return DOMNodeList|DOMElement[]
 	 */
 	public function findElementsWithClassAndLang( $element, $class, DOMNode $context = null ) {
@@ -86,7 +86,7 @@ class DomNavigator {
 	 * When there are multiple elements with this ID, all are returned.
 	 * @param string|array $element HTML tag name (* to accept all) or array of tag names
 	 * @param string $id
-	 * @param DOMNode $context if present, the method will only search inside this element
+	 * @param DOMNode|null $context if present, the method will only search inside this element
 	 * @return DOMNodeList|DOMElement[]
 	 */
 	public function findElementsWithId( $element, $id, DOMNode $context = null ) {
@@ -100,7 +100,7 @@ class DomNavigator {
 	 * (In other words, this is equivalent to the CSS selector 'element[id^=prefix]'.)
 	 * @param string|array $element HTML tag name (* to accept all) or array of tag names
 	 * @param string $idPrefix
-	 * @param DOMNode $context if present, the method will only search inside this element
+	 * @param DOMNode|null $context if present, the method will only search inside this element
 	 * @return DOMNodeList|DOMElement[]
 	 */
 	public function findElementsWithIdPrefix( $element, $idPrefix, DOMNode $context = null ) {
@@ -115,7 +115,7 @@ class DomNavigator {
 	 * When there are multiple elements with this attribute, all are returned.
 	 * @param string|array $element HTML tag name (* to accept all) or array of tag names
 	 * @param string $attribute
-	 * @param DOMNode $context if present, the method will only search inside this element
+	 * @param DOMNode|null $context if present, the method will only search inside this element
 	 * @return DOMNodeList|DOMElement[]
 	 */
 	public function findElementsWithAttribute( $element, $attribute, DOMNode $context = null ) {
@@ -180,7 +180,7 @@ class DomNavigator {
 	/**
 	 * Returns the nodes matching an XPath expression.
 	 * @param string $xpath
-	 * @param DOMNode $context
+	 * @param DOMNode|null $context
 	 * @return DOMNodeList|DOMNode[]
 	 */
 	public function findByXpath( $xpath, DOMNode $context = null ) {
@@ -198,7 +198,7 @@ class DomNavigator {
 	/**
 	 * Returns the first node matching an XPath expression, or null.
 	 * @param string $xpath
-	 * @param DOMNode $context
+	 * @param DOMNode|null $context
 	 * @return DOMNode|null
 	 */
 	public function getByXpath( $xpath, DOMNode $context = null ) {
