@@ -12,5 +12,7 @@
 	"commonsmetadata-trackingcategory-no-author": "Dagiti papeles nga awan iti mannurat a mabasa iti makina",
 	"commonsmetadata-trackingcategory-no-author-desc": "Ti papeles ket awan iti ania man a plantilia ti pakaammo a  [{{MediaWiki:Commonsmetadata-doc-url}} mabasa iti makina], wenno ti pagikanilan iti mannuratna ket saan a napunno.",
 	"commonsmetadata-trackingcategory-no-source": "Dagiti papeles nga awan iti taudan a mabasa iti makina",
-	"commonsmetadata-trackingcategory-no-source-desc": "Ti papeles ket awan iti ania man a plantilia ti pakaammo a   [{{MediaWiki:Commonsmetadata-doc-url}} mabasa iti makina], wenno ti pagikabilan iti taudanna ket saan a napunno."
+	"commonsmetadata-trackingcategory-no-source-desc": "Ti papeles ket awan iti ania man a plantilia ti pakaammo a   [{{MediaWiki:Commonsmetadata-doc-url}} mabasa iti makina], wenno ti pagikabilan iti taudanna ket saan a napunno.",
+	"commonsmetadata-trackingcategory-no-patent": "Dagiti papeles nga awan iti patente a mabasa iti makina",
+	"commonsmetadata-trackingcategory-no-patent-desc": "Ti papeles ket awanan iti plantilia ti patente a [{{MediaWiki:Commonsmetadata-doc-url}} mabasa iti makina]."
 }
