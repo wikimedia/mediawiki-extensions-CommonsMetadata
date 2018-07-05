@@ -13,5 +13,6 @@
 	"commonsmetadata-trackingcategory-no-author": "Filer utan maskinlesbar opphavsperson",
 	"commonsmetadata-trackingcategory-no-author-desc": "Fila har ikkje [{{MediaWiki:Commonsmetadata-doc-url}} maskinlesbar] infomal, eller så er ikkje feltet for opphavsperson fylt ut.",
 	"commonsmetadata-trackingcategory-no-source": "Filer utan maskinlesbar kjelde",
-	"commonsmetadata-trackingcategory-no-source-desc": "Fila har ikkje [{{MediaWiki:Commonsmetadata-doc-url}} maskinlesbar] infomal, eller så er ikkje feltet for kjelde fylt ut."
+	"commonsmetadata-trackingcategory-no-source-desc": "Fila har ikkje [{{MediaWiki:Commonsmetadata-doc-url}} maskinlesbar] infomal, eller så er ikkje feltet for kjelde fylt ut.",
+	"commonsmetadata-trackingcategory-no-patent": "Filer utan maskinlesbar patent"
 }
