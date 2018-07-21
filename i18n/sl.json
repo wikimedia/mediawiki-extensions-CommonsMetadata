@@ -1,0 +1,17 @@
+{
+	"@metadata": {
+		"authors": [
+			"Janezdrilc"
+		]
+	},
+	"commonsmetadata-trackingcategory-no-license": "Datoteke brez strojno čitljivega dovoljenja",
+	"commonsmetadata-trackingcategory-no-license-desc": "Ta datoteka nima nobene [{{MediaWiki:Commonsmetadata-doc-url}} strojno čitljive] predloge o dovoljenju.",
+	"commonsmetadata-trackingcategory-no-description": "Datoteke brez strojno čitljivega opisa",
+	"commonsmetadata-trackingcategory-no-description-desc": "Ta datoteka nima nobene [{{MediaWiki:Commonsmetadata-doc-url}} strojno čitljive] predloge o informacijah ali pa ji manjka podatek z opisom.",
+	"commonsmetadata-trackingcategory-no-author": "Datoteke brez strojno čitljivega avtorja",
+	"commonsmetadata-trackingcategory-no-author-desc": "Ta datoteka nima nobene [{{MediaWiki:Commonsmetadata-doc-url}} strojno čitljive] predloge o informacijah ali pa ji manjka podatek o avtorju.",
+	"commonsmetadata-trackingcategory-no-source": "Datoteke brez strojno čitljivega vira",
+	"commonsmetadata-trackingcategory-no-source-desc": "Ta datoteka nima nobene [{{MediaWiki:Commonsmetadata-doc-url}} strojno čitljive] predloge o informacijah ali pa ji manjka podatek o viru.",
+	"commonsmetadata-trackingcategory-no-patent": "Datoteke brez strojno čitljivega patenta",
+	"commonsmetadata-trackingcategory-no-patent-desc": "Ta datoteka nima nobene [{{MediaWiki:Commonsmetadata-doc-url}} strojno čitljive] predloge o patentu."
+}
