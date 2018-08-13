@@ -12,5 +12,7 @@
 	"commonsmetadata-trackingcategory-no-author": "File senze 'n'autore leggibbile d'a maghene",
 	"commonsmetadata-trackingcategory-no-author-desc": "'U file non ge tène nisicune template de 'mbormazione [{{MediaWiki:Commonsmetadata-doc-url}} leggibbile d'a maghene], o 'l'autore sue non g'ha state anghiute.",
 	"commonsmetadata-trackingcategory-no-source": "File senze 'na sorgende leggibbile d'a maghene",
-	"commonsmetadata-trackingcategory-no-source-desc": "'U file non ge tène nisicune template de 'mbormazione [{{MediaWiki:Commonsmetadata-doc-url}} leggibbile d'a maghene], o 'a sorgende soje non g'ha state anghiute."
+	"commonsmetadata-trackingcategory-no-source-desc": "'U file non ge tène nisicune template de 'mbormazione [{{MediaWiki:Commonsmetadata-doc-url}} leggibbile d'a maghene], o 'a sorgende soje non g'ha state anghiute.",
+	"commonsmetadata-trackingcategory-no-patent": "File senze 'na licenze leggibbile d'a maghene",
+	"commonsmetadata-trackingcategory-no-patent-desc": "'U file non ge tène nisicune template de licenze [{{MediaWiki:Commonsmetadata-doc-url}} leggibbile d'a maghene]."
 }
