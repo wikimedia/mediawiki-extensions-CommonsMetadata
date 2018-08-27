@@ -16,5 +16,5 @@
 	"commonsmetadata-trackingcategory-no-source": "Ficheiros sen orixe lexible por máquina",
 	"commonsmetadata-trackingcategory-no-source-desc": "O ficheiro non ten ningún modelo de información [{{MediaWiki:Commonsmetadata-doc-url}} lexible por máquina] ou o seu campo de orixe non está cuberto.",
 	"commonsmetadata-trackingcategory-no-patent": "Ficheiros sen patente lexible por máquina",
-	"commonsmetadata-trackingcategory-no-patent-desc": "O ficheiro non ten un modelo de licenza [{{MediaWiki:Commonsmetadata-doc-url}} lexible por ordenador]"
+	"commonsmetadata-trackingcategory-no-patent-desc": "O ficheiro non ten un modelo de patente [{{MediaWiki:Commonsmetadata-doc-url}} lexible por máquina]"
 }
