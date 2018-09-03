@@ -12,5 +12,7 @@
 	"commonsmetadata-trackingcategory-no-author": "Tập tin thiếu tác giả đọc được bằng máy",
 	"commonsmetadata-trackingcategory-no-author-desc": "Tập tin này không có bản mẫu thông tin [{{MediaWiki:Commonsmetadata-doc-url}} đọc được bằng máy], hoặc trường tác giả của nó chưa được điền vào.",
 	"commonsmetadata-trackingcategory-no-source": "Tập tin thiếu nguồn gốc đọc được bằng máy",
-	"commonsmetadata-trackingcategory-no-source-desc": "Tập tin này không có bản mẫu thông tin [{{MediaWiki:Commonsmetadata-doc-url}} đọc được bằng máy], hoặc trường nguồn gốc của nó chưa được điền vào."
+	"commonsmetadata-trackingcategory-no-source-desc": "Tập tin này không có bản mẫu thông tin [{{MediaWiki:Commonsmetadata-doc-url}} đọc được bằng máy], hoặc trường nguồn gốc của nó chưa được điền vào.",
+	"commonsmetadata-trackingcategory-no-patent": "Tập tin thiếu bằng sáng chế đọc được bằng máy",
+	"commonsmetadata-trackingcategory-no-patent-desc": "Tập tin này không có bản mẫu bằng sáng chế nào [{{MediaWiki:Commonsmetadata-doc-url}} đọc được bằng máy]."
 }
