@@ -4,6 +4,14 @@
 			"Joao Xavier"
 		]
 	},
+	"commonsmetadata-trackingcategory-no-license": "Arkivi sen permisi lektebla per mashini",
+	"commonsmetadata-trackingcategory-no-license-desc": "L'arkivo havas nula shablono pri permiso [{{MediaWiki:Commonsmetadata-doc-url}} lektebla automatale].",
+	"commonsmetadata-trackingcategory-no-description": "Arkivi sen permisi lektebla per mashini",
+	"commonsmetadata-trackingcategory-no-description-desc": "La pagino havas nula shablono [{{MediaWiki:Commonsmetadata-doc-url}} lektebla automatale], o ne existas skribita informo pri lua autoro.",
 	"commonsmetadata-trackingcategory-no-author": "Arkivi sen autoro lektebla da mashini",
-	"commonsmetadata-trackingcategory-no-author-desc": "La pagino havas nula shablono [{{MediaWiki:Commonsmetadata-doc-url}} lektebla automatale], o ne existas skribita informo pri lua autoro."
+	"commonsmetadata-trackingcategory-no-author-desc": "La pagino havas nula shablono [{{MediaWiki:Commonsmetadata-doc-url}} lektebla automatale], o ne existas skribita informo pri lua autoro.",
+	"commonsmetadata-trackingcategory-no-source": "Arkivi sen permisi lektebla per mashini",
+	"commonsmetadata-trackingcategory-no-source-desc": "La pagino havas nula shablono [{{MediaWiki:Commonsmetadata-doc-url}} lektebla automatale], o ne existas skribita informo pri lua autoro.",
+	"commonsmetadata-trackingcategory-no-patent": "Arkivi sen patento lektebla per mashini",
+	"commonsmetadata-trackingcategory-no-patent-desc": "L'arkivo havas nula shablono pri permiso [{{MediaWiki:Commonsmetadata-doc-url}} lektebla automatale]."
 }
