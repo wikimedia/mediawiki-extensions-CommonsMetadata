@@ -490,13 +490,7 @@ class TemplateParser {
 	 * @return string
 	 */
 	protected function toHtml( DOMNode $node ) {
-		// node parameter was added to saveHTML in 5.3.6
-		if ( version_compare( phpversion(), '5.3.6', '>=' ) ) {
-			return $node->ownerDocument->saveHTML( $node );
-		} else {
-			// uglier output; still better than nothing
-			return $node->ownerDocument->saveXML( $node );
-		}
+		return $node->ownerDocument->saveHTML( $node );
 	}
 
 	/**
