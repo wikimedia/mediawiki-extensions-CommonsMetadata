@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"KuboF"
+			"KuboF",
+			"YvesNevelsteen"
 		]
 	},
 	"commonsmetadata-trackingcategory-no-license": "Dosieroj sen maŝine legebla permesilo",
@@ -11,5 +12,7 @@
 	"commonsmetadata-trackingcategory-no-author": "Dosieroj sen maŝine legebla aŭtoro",
 	"commonsmetadata-trackingcategory-no-author-desc": "La dosiero havas neniun [{{MediaWiki:Commonsmetadata-doc-url}} maŝine legeblan] informo-ŝablonon aŭ ĝia kampo pri aŭtoro ne estas plenigita.",
 	"commonsmetadata-trackingcategory-no-source": "Dosieroj sen maŝine legebla fonto",
-	"commonsmetadata-trackingcategory-no-source-desc": "La dosiero havas neniun [{{MediaWiki:Commonsmetadata-doc-url}} maŝine legeblan] informo-ŝablonon aŭ ĝia kampo pri fonto ne estas plenigita."
+	"commonsmetadata-trackingcategory-no-source-desc": "La dosiero havas neniun [{{MediaWiki:Commonsmetadata-doc-url}} maŝine legeblan] informo-ŝablonon aŭ ĝia kampo pri fonto ne estas plenigita.",
+	"commonsmetadata-trackingcategory-no-patent": "Dosieroj sen maŝine legebla patento",
+	"commonsmetadata-trackingcategory-no-patent-desc": "La dosiero havas neniun [{{MediaWiki:Commonsmetadata-doc-url}} maŝine legeblan] informo-ŝablonon pri patento."
 }
