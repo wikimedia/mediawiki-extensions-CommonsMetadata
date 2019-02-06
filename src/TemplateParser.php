@@ -462,7 +462,7 @@ class TemplateParser {
 		$node = $node->cloneNode( true );
 		$languageNames = $domNavigator->findElementsWithClass( 'span', 'language', $node );
 		foreach ( $languageNames as $languageName ) {
-			if ( ! $node->isSameNode( $languageName->parentNode ) ) {
+			if ( !$node->isSameNode( $languageName->parentNode ) ) {
 				continue; // language names are direct children
 			}
 			$node->removeChild( $languageName );
@@ -508,7 +508,7 @@ class TemplateParser {
 	 * @return string
 	 */
 	protected function innerHtml( DOMNode $node ) {
-		if ( ! $node instanceof DOMElement ) {
+		if ( !$node instanceof DOMElement ) {
 			return $this->toHtml( $node );
 		}
 

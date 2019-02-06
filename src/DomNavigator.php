@@ -131,7 +131,7 @@ class DomNavigator {
 	 * @return bool
 	 */
 	public function hasClass( DOMNode $node, $classes ) {
-		if ( ! $node instanceof \DOMElement ) {
+		if ( !$node instanceof \DOMElement ) {
 			return false;
 		}
 		$nodeClasses = explode( ' ', $node->getAttribute( 'class' ) );
@@ -146,7 +146,7 @@ class DomNavigator {
 	 * @return string|null
 	 */
 	public function getFirstClassWithPrefix( DOMNode $node, $classPrefix ) {
-		if ( ! $node instanceof \DOMElement ) {
+		if ( !$node instanceof \DOMElement ) {
 			return null;
 		}
 		$classes = explode( ' ', $node->getAttribute( 'class' ) );
@@ -216,7 +216,7 @@ class DomNavigator {
 	 */
 	public function nextElementSibling( DOMElement $node ) {
 		$nextSibling = $node->nextSibling;
-		while ( $nextSibling && ! $nextSibling instanceof DOMElement ) {
+		while ( $nextSibling && !$nextSibling instanceof DOMElement ) {
 			$nextSibling = $nextSibling->nextSibling;
 		}
 		return $nextSibling;
