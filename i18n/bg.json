@@ -1,12 +1,18 @@
 {
 	"@metadata": {
 		"authors": [
-			"StanProg"
+			"StanProg",
+			"Ted Masters"
 		]
 	},
 	"commonsmetadata-trackingcategory-no-license": "Файлове без машинночетим лиценз",
+	"commonsmetadata-trackingcategory-no-license-desc": "Файлът не съдържа нито един шаблон с [{{MediaWiki:Commonsmetadata-doc-url}} машинночетим] лиценз.",
 	"commonsmetadata-trackingcategory-no-description": "Файлове без машинночетимо описание",
+	"commonsmetadata-trackingcategory-no-description-desc": "Файлът не съдържа нито един шаблон с [{{MediaWiki:Commonsmetadata-doc-url}} машинночетима] информация или полето за описание не е попълнено.",
 	"commonsmetadata-trackingcategory-no-author": "Файлове без машинночетим автор",
+	"commonsmetadata-trackingcategory-no-author-desc": "Файлът не съдържа нито един шаблон с [{{MediaWiki:Commonsmetadata-doc-url}} машинночетима] информация или полето за автор не е попълнено.",
 	"commonsmetadata-trackingcategory-no-source": "Файлове без машинночетим източник",
-	"commonsmetadata-trackingcategory-no-patent": "Файлове без машинночетим патент"
+	"commonsmetadata-trackingcategory-no-source-desc": "Файлът не съдържа нито един шаблон с [{{MediaWiki:Commonsmetadata-doc-url}} машинночетима] информация или полето за източник не е попълнено.",
+	"commonsmetadata-trackingcategory-no-patent": "Файлове без машинночетим патент",
+	"commonsmetadata-trackingcategory-no-patent-desc": "Файлът не съдържа нито един шаблон с [{{MediaWiki:Commonsmetadata-doc-url}} машинночетим] патент."
 }
