@@ -157,7 +157,7 @@ class DataCollector {
 
 		// Certain uploads (3D objects) need a patent license
 		$templates = $parserOutput->getTemplates();
-		$templates = isset( $templates[NS_TEMPLATE] ) ? $templates[NS_TEMPLATE] : [];
+		$templates = $templates[NS_TEMPLATE] ?? [];
 		if (
 			!array_key_exists( '3dpatent', $templates ) &&
 			$file->getMimeType() === 'application/sla'
