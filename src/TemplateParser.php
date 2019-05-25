@@ -386,7 +386,7 @@ class TemplateParser {
 		foreach ( $domNavigator->findElementsWithClass( '*', 'nuke' ) as $nukeNode ) {
 			$nukeLink = $nukeNode->firstChild;
 			if ( $nukeLink
-				&& $nukeLink->nodeType === XML_ELEMENT_NODE && $nukeLink->hasAttribute( 'href' )
+				&& $nukeLink instanceof DOMElement && $nukeLink->hasAttribute( 'href' )
 			) {
 				$urlBits = wfParseUrl( $nukeLink->getAttribute( 'href' ) );
 				if ( isset( $urlBits['query'] ) ) {
