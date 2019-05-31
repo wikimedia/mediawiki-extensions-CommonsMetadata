@@ -45,7 +45,7 @@ class DataCollector {
 	/** @var TemplateParser */
 	protected $templateParser;
 
-	/** @var  LicenseParser */
+	/** @var LicenseParser */
 	protected $licenseParser;
 
 	/**
