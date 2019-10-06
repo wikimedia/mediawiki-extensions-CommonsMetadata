@@ -28,18 +28,14 @@ class DataCollectorTest extends \MediaWikiTestCase {
 	public function setUp() {
 		parent::setUp();
 
-		$language = $this->getMockBuilder( Language::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$language = $this->createMock( Language::class );
 
 		$this->templateParser = $this->createMock( \CommonsMetadata\TemplateParser::class );
 		$this->licenseParser = $this->createMock( \CommonsMetadata\LicenseParser::class );
 		$this->licenseParser->expects( $this->any() )
 			->method( 'sortDataByLicensePriority' )
 			->will( $this->returnArgument( 0 ) );
-		$this->file = $this->getMockBuilder( File::class )
-			->disableOriginalConstructor()
-			->getMock();
+		$this->file = $this->createMock( File::class );
 
 		$this->dataCollector = new DataCollector();
 		$this->dataCollector->setLanguage( $language );
