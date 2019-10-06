@@ -2,39 +2,44 @@
 
 namespace CommonsMetadata;
 
+use File;
+use Language;
 use ParserOutput;
+use PHPUnit\Framework\MockObject\MockObject;
 use Title;
 
 /**
- * @covers CommonsMetadata\DataCollector
+ * @covers \CommonsMetadata\DataCollector
  * @group Extensions/CommonsMetadata
  */
 class DataCollectorTest extends \MediaWikiTestCase {
-	/** @var \PHPUnit_Framework_MockObject_MockObject */
+	/** @var MockObject */
 	protected $templateParser;
 
-	/** @var \PHPUnit_Framework_MockObject_MockObject */
+	/** @var MockObject */
 	protected $licenseParser;
 
 	/** @var DataCollector */
 	protected $dataCollector;
 
-	/** @var \PHPUnit_Framework_MockObject_MockObject */
+	/** @var MockObject */
 	protected $file;
 
 	public function setUp() {
 		parent::setUp();
 
-		$language = $this->getMock(
-			'Language', [], [], '', false /* do not call constructor */ );
+		$language = $this->getMockBuilder( Language::class )
+			->disableOriginalConstructor()
+			->getMock();
 
-		$this->templateParser = $this->getMock( 'CommonsMetadata\TemplateParser' );
-		$this->licenseParser = $this->getMock( 'CommonsMetadata\LicenseParser' );
+		$this->templateParser = $this->createMock( \CommonsMetadata\TemplateParser::class );
+		$this->licenseParser = $this->createMock( \CommonsMetadata\LicenseParser::class );
 		$this->licenseParser->expects( $this->any() )
 			->method( 'sortDataByLicensePriority' )
 			->will( $this->returnArgument( 0 ) );
-		$this->file = $this->getMock(
-			'File', [], [], '', false /* do not call constructor */ );
+		$this->file = $this->getMockBuilder( File::class )
+			->disableOriginalConstructor()
+			->getMock();
 
 		$this->dataCollector = new DataCollector();
 		$this->dataCollector->setLanguage( $language );

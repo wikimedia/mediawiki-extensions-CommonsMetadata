@@ -3,7 +3,7 @@
 namespace CommonsMetadata;
 
 /**
- * @covers CommonsMetadata\LicenseParser
+ * @covers \CommonsMetadata\LicenseParser
  * @group Extensions/CommonsMetadata
  */
 class LicenseParserTest extends \MediaWikiTestCase {

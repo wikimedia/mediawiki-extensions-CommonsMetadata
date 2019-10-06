@@ -3,7 +3,7 @@
 namespace CommonsMetadata;
 
 /**
- * @covers CommonsMetadata\DomNavigator
+ * @covers \CommonsMetadata\DomNavigator
  * @group Extensions/CommonsMetadata
  */
 class DomNavigatorTest extends \MediaWikiTestCase {

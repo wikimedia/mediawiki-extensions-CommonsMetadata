@@ -2,6 +2,12 @@
 
 namespace CommonsMetadata;
 
+use ForeignAPIFile;
+use ForeignDBFile;
+use IContextSource;
+use LocalFile;
+use PHPUnit\Framework\TestCase;
+
 class ParserTestHelper {
 	/**
 	 * Maps test names to filenames in the test subdirectory.
@@ -57,12 +63,12 @@ class ParserTestHelper {
 	];
 
 	/**
-	 * @var \PHPUnit_Framework_TestCase
+	 * @var TestCase
 	 */
 	protected $testCase;
 
 	/**
-	 * @param \PHPUnit_Framework_TestCase $testCase
+	 * @param TestCase $testCase
 	 */
 	public function setTestCase( $testCase ) {
 		$this->testCase = $testCase;
@@ -110,10 +116,10 @@ class ParserTestHelper {
 	 * @param string $description file page text
 	 * @param string[] $categories list of category names, without namespace
 	 * @param string $mime mimetype of the image
-	 * @return \LocalFile
+	 * @return LocalFile
 	 */
 	public function getLocalFile( $description, $categories, $mime = 'image/jpeg' ) {
-		$file = $this->testCase->getMockBuilder( 'LocalFile' )
+		$file = $this->testCase->getMockBuilder( LocalFile::class )
 			->setMockClassName( 'LocalFileMock' )
 			->disableOriginalConstructor()
 			->getMock();
@@ -135,10 +141,10 @@ class ParserTestHelper {
 
 	/**
 	 * @param string $description file page text
-	 * @return \ForeignAPIFile
+	 * @return ForeignAPIFile
 	 */
 	public function getForeignApiFile( $description ) {
-		$file = $this->testCase->getMockBuilder( 'ForeignAPIFile' )
+		$file = $this->testCase->getMockBuilder( ForeignAPIFile::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$file->expects( $this->testCase->any() )
@@ -156,10 +162,10 @@ class ParserTestHelper {
 	/**
 	 * @param string $description file page text
 	 * @param string[] $categories list of category names, without namespace
-	 * @return \ForeignDBFile
+	 * @return ForeignDBFile
 	 */
 	public function getForeignDbFile( $description, $categories ) {
-		$file = $this->testCase->getMockBuilder( 'ForeignDBFile' )
+		$file = $this->testCase->getMockBuilder( ForeignDBFile::class )
 			->setMockClassName( 'ForeignDBFileMock' )
 			->disableOriginalConstructor()
 			->getMock();
@@ -178,11 +184,11 @@ class ParserTestHelper {
 
 	/**
 	 * @param string $languageCode
-	 * @return \IContextSource
+	 * @return IContextSource
 	 */
 	public function getContext( $languageCode ) {
 		$language = \Language::factory( $languageCode );
-		$context = $this->testCase->getMockBuilder( 'IContextSource' )
+		$context = $this->testCase->getMockBuilder( IContextSource::class )
 			->disableOriginalConstructor()
 			->getMock();
 		$context->expects( $this->testCase->any() )

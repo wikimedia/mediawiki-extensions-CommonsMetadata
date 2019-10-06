@@ -2,13 +2,15 @@
 
 namespace CommonsMetadata;
 
+use PHPUnit\Framework\TestCase;
+
 require_once __DIR__ . "/ParserTestHelper.php";
 
 /**
- * @covers CommonsMetadata\HookHandler
+ * @covers \CommonsMetadata\HookHandler
  * @group Extensions/CommonsMetadata
  */
-class HookHandlerTest extends \PHPUnit\Framework\TestCase {
+class HookHandlerTest extends TestCase {
 	/** @var ParserTestHelper */
 	protected $parserTestHelper;
 
