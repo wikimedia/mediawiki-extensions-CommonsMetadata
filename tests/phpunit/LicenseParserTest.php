@@ -10,7 +10,7 @@ class LicenseParserTest extends \MediaWikiTestCase {
 	/** @var LicenseParser */
 	protected $licenseParser;
 
-	public function setUp() {
+	public function setUp() : void {
 		parent::setUp();
 		$this->licenseParser = new LicenseParser();
 	}
