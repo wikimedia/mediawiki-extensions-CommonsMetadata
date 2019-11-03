@@ -206,7 +206,7 @@ class TemplateParser {
 	 *  not required) to have one of the $informationFieldClasses.
 	 * @param string $idOrClass id or class identifying the field, per $informationFieldClasses Node
 	 *  is ignored if this is not a key of $informationFieldClasses. Also ignored if this is null.
-	 * @param array &$data
+	 * @param array[] &$data
 	 */
 	protected function parseInformationField(
 		DomNavigator $domNavigator, DOMElement $informationField, $group, $idOrClass, array &$data
@@ -242,7 +242,7 @@ class TemplateParser {
 	/**
 	 * Sorts info template data groups according to $informationFieldClasses, highest priority first
 	 * Also removes the _type helper keys.
-	 * @param array &$data info template data, as returned by parseInformationFields()
+	 * @param array[] &$data info template data, as returned by parseInformationFields()
 	 */
 	protected function sortInformationGroups( array &$data ) {
 		// PHP 5.3 does not like class references in closures
@@ -272,7 +272,7 @@ class TemplateParser {
 	/**
 	 * Prunes template data
 	 * Removes blacklisted templates if they are not alone
-	 * @param array &$data info template data
+	 * @param array[] &$data info template data
 	 */
 	protected function pruneInfoTemplateData( array &$data ) {
 		foreach ( $data as $key => &$group ) {
