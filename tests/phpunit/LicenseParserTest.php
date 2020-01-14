@@ -250,7 +250,7 @@ class LicenseParserTest extends \MediaWikiTestCase {
 	}
 
 	protected function assertLicenseElementEquals( $expected, $element, $licenseData ) {
-		$this->assertInternalType( 'array', $licenseData );
+		$this->assertIsArray( $licenseData );
 		$this->assertArrayHasKey( $element, $licenseData );
 		$this->assertEquals( $expected, $licenseData[$element] );
 	}

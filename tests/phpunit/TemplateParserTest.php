@@ -480,7 +480,7 @@ class TemplateParserTest extends \MediaWikiTestCase {
 		$data = $this->getAndAssertTemplateData( $data, $type, $position );
 		$this->assertArrayHasKey( $key, $data, $message );
 		$actualString = $data[$key];
-		$this->assertInternalType( 'string', $actualString, $message );
+		$this->assertIsString( $actualString, $message );
 		$this->assertStringContains( $expectedSubstring, $actualString, $message );
 	}
 
@@ -499,7 +499,7 @@ class TemplateParserTest extends \MediaWikiTestCase {
 		$data = $this->getAndAssertTemplateData( $data, $type, $position );
 		$this->assertArrayHasKey( $key, $data, $message );
 		$actualString = $data[$key];
-		$this->assertInternalType( 'string', $actualString, $message );
+		$this->assertIsString( $actualString, $message );
 		$this->assertStringNotContains( $expectedSubstring, $actualString, $message );
 	}
 
@@ -528,7 +528,7 @@ class TemplateParserTest extends \MediaWikiTestCase {
 	 * @param string $message
 	 */
 	protected function assertLanguageArray( $array, $message = '' ) {
-		$this->assertInternalType( 'array', $array, $message );
+		$this->assertIsArray( $array, $message );
 		$this->assertArrayHasKey( '_type', $array, $message );
 		$this->assertEquals( 'lang', $array['_type'], $message );
 	}

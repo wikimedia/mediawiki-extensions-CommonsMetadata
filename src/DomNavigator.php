@@ -3,10 +3,10 @@
 namespace CommonsMetadata;
 
 use DOMDocument;
-use DOMXPath;
-use DOMNode;
 use DOMElement;
+use DOMNode;
 use DOMNodeList;
+use DOMXPath;
 
 /**
  * A very simple wrapper to DOMDocument to make it easy to traverse nodes which match

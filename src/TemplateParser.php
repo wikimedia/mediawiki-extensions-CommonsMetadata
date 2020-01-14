@@ -2,8 +2,8 @@
 
 namespace CommonsMetadata;
 
-use DOMNode;
 use DOMElement;
+use DOMNode;
 
 /**
  * Class to parse metadata from commons formatted wiki pages.
@@ -396,7 +396,7 @@ class TemplateParser {
 					) {
 						$deletions[] = [ 'DeletionReason' => $params['wpReason'] ];
 					}
-				};
+				}
 			}
 		}
 		return $deletions;

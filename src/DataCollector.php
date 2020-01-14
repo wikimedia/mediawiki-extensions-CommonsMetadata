@@ -2,12 +2,12 @@
 
 namespace CommonsMetadata;
 
-use Language;
-use Title;
 use File;
-use LocalFile;
 use ForeignAPIFile;
+use Language;
+use LocalFile;
 use ParserOutput;
+use Title;
 use WikiFilePage;
 use Wikimedia\ScopedCallback;
 
