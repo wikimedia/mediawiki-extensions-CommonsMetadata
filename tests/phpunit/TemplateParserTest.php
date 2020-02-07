@@ -434,7 +434,7 @@ class TemplateParserTest extends \MediaWikiTestCase {
 		if ( $message ) {
 			$newMessage .= "\n" . $message;
 		}
-		$this->assertNotSame( false, strpos( $actualString, $expectedSubstring ), $newMessage );
+		$this->assertStringContainsString( $expectedSubstring, $actualString, $newMessage );
 	}
 
 	/**
@@ -448,7 +448,7 @@ class TemplateParserTest extends \MediaWikiTestCase {
 		if ( $message ) {
 			$newMessage .= "\n" . $message;
 		}
-		$this->assertSame( false, strpos( $actualString, $expectedSubstring ), $newMessage );
+		$this->assertStringNotContainsString( $expectedSubstring, $actualString, $newMessage );
 	}
 
 	/**
