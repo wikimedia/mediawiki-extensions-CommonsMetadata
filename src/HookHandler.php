@@ -6,8 +6,8 @@ use Content;
 use File;
 use IContextSource;
 use Language;
+use MediaWiki\MediaWikiServices;
 use ParserOutput;
-use RepoGroup;
 use Title;
 
 /**
@@ -127,7 +127,7 @@ class HookHandler {
 		 * * attempt to fetch from cache, which should usually be fine
 		 * * then fallback to DB, for files that have just been renamed
 		 */
-		$repo = RepoGroup::singleton()->getLocalRepo();
+		$repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
 		if ( $title->isRedirect() ) {
 			return true;
 		}
