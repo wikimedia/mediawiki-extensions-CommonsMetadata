@@ -77,8 +77,8 @@ class ParserTestHelper {
 	/**
 	 * Loads a test file (usually the saved output of action=render for some image description page)
 	 * @param string $name
-	 * @throws \InvalidArgumentException
 	 * @return string
+	 * @throws \InvalidArgumentException
 	 */
 	public function getTestHTML( $name ) {
 		if ( !isset( self::$testHTMLFiles[$name] ) ) {
@@ -96,8 +96,8 @@ class ParserTestHelper {
 	/**
 	 * Loads an expected metadata test result.
 	 * @param string $name
-	 * @throws \InvalidArgumentException
 	 * @return array
+	 * @throws \InvalidArgumentException
 	 */
 	public function getMetadata( $name ) {
 		if ( !isset( self::$testHTMLFiles[$name] ) ) {
