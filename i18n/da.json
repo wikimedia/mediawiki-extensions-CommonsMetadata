@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Peter Alberti"
+			"Peter Alberti",
+			"Steenth"
 		]
 	},
 	"commonsmetadata-trackingcategory-no-license": "Filer uden nogen maskinlæsbar licens",
@@ -11,5 +12,6 @@
 	"commonsmetadata-trackingcategory-no-author": "Filer uden nogen maskinlæsbar ophavsmand",
 	"commonsmetadata-trackingcategory-no-author-desc": "Enten har filen ikke en [{{MediaWiki:Commonsmetadata-doc-url}} maskinlæsbar] informationsskabelon, eller dens felt for ophavsmand er ikke udfyldt.",
 	"commonsmetadata-trackingcategory-no-source": "Filer uden nogen maskinlæsbar kilde",
-	"commonsmetadata-trackingcategory-no-source-desc": "Enten har filen ikke en [{{MediaWiki:Commonsmetadata-doc-url}} maskinlæsbar] informationsskabelon, eller dens kilde er ikke udfyldt."
+	"commonsmetadata-trackingcategory-no-source-desc": "Enten har filen ikke en [{{MediaWiki:Commonsmetadata-doc-url}} maskinlæsbar] informationsskabelon, eller dens kilde er ikke udfyldt.",
+	"commonsmetadata-trackingcategory-no-patent": "Filer uden maskinlæsbar patent"
 }
