@@ -1,8 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Vriullop",
-			"Toniher"
+			"Toniher",
+			"Vriullop"
 		]
 	},
 	"commonsmetadata-desc": "Estén la propietat «extmetadata» del mòdul API d'informació d'imatges per incloure informació emmagatzemada en les pàgines de descripció d'imatges que utilitzen les plantilles normalment usades a Wikimedia Commons.",

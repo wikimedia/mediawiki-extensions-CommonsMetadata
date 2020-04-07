@@ -1,9 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
+			"Athena in Wonderland",
 			"Hamilton Abreu",
-			"Vitorvicentevalente",
-			"Athena in Wonderland"
+			"Vitorvicentevalente"
 		]
 	},
 	"commonsmetadata-desc": "Expande a propriedade \"extmetadata\" do módulo da API de informação sobre imagens, de forma a incluir informação armazenada nas páginas de descrição das imagens que usem as predefinições mais comuns da wiki Wikimedia Commons.",

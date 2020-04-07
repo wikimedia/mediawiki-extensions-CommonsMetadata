@@ -1,11 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"Ahonc",
 			"Andriykopanytsia",
 			"Olvin",
-			"Ата",
-			"Ahonc",
-			"Piramidion"
+			"Piramidion",
+			"Ата"
 		]
 	},
 	"commonsmetadata-desc": "Розповсюджує властивості зображення \"extmetadata\" до API модуля, щоб включити інформацію, яка зберігається на сторінках опису зображення, в шаблони, що зазвичай застосовані на Вікісховищі",

@@ -1,10 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Okras",
-			"Striking Blue",
 			"Kaganer",
-			"Mouse21"
+			"Mouse21",
+			"Okras",
+			"Striking Blue"
 		]
 	},
 	"commonsmetadata-desc": "Передает свойство изображения «extmetadata» в API-модуль для включения информации, хранящейся на страницах описания изображений, которую используют шаблоны, часто используемые на Викискладе",

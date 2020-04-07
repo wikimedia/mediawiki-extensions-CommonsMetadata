@@ -3,9 +3,9 @@
 		"authors": [
 			"Gomoko",
 			"JackPotte",
+			"Thibaut120094",
 			"VIGNERON",
-			"Wladek92",
-			"Thibaut120094"
+			"Wladek92"
 		]
 	},
 	"commonsmetadata-desc": "Étend la propriété « extmetadata » du module d’API information d’image pour inclure des informations stockées dans les pages de description de l’image qui utilisent les modèles courants de Wikimedia Commons",

@@ -1,9 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Toliño",
+			"Banjo",
 			"Elisardojm",
-			"Banjo"
+			"Toliño"
 		]
 	},
 	"commonsmetadata-desc": "Estende a propiedade \"extmetadata\" do módulo da API de información da imaxe para incluír información almacenada nas páxinas de descrición das imaxes que usan modelos comúns da Wikimedia Commons",

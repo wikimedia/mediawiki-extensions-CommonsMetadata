@@ -1,8 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Violetanka",
-			"BaRaN6161 TURK"
+			"BaRaN6161 TURK",
+			"Violetanka"
 		]
 	},
 	"commonsmetadata-desc": "Resim bilgileri API modülünün \"extmetadata\" özelliğini, Wikimedia Commons’da yaygın olarak kullanılan şablonları kullanan resim açıklama sayfalarında depolanan bilgileri içerecek şekilde genişletir.",
