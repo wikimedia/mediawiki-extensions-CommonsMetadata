@@ -12,5 +12,7 @@
 	"commonsmetadata-trackingcategory-no-author": "Géppel nem olvasható szerzőjű fájlok",
 	"commonsmetadata-trackingcategory-no-author-desc": "A fájl nem tartalmaz [{{MediaWiki:Commonsmetadata-doc-url}} géppel olvasható] információs sablont, vagy a szerző mező nincs kitöltve.",
 	"commonsmetadata-trackingcategory-no-source": "Géppel nem olvasható forrású fájlok",
-	"commonsmetadata-trackingcategory-no-source-desc": "A fájl nem tartalmaz [{{MediaWiki:Commonsmetadata-doc-url}} géppel olvasható] információs sablont, vagy a forrás mező nincs kitöltve."
+	"commonsmetadata-trackingcategory-no-source-desc": "A fájl nem tartalmaz [{{MediaWiki:Commonsmetadata-doc-url}} géppel olvasható] információs sablont, vagy a forrás mező nincs kitöltve.",
+	"commonsmetadata-trackingcategory-no-patent": "Géppel nem olvasható szabadalmú fájlok",
+	"commonsmetadata-trackingcategory-no-patent-desc": "A fájl nem tartalmaz [{{MediaWiki:Commonsmetadata-doc-url}} géppel olvasható] szabadalomsablont."
 }
