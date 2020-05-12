@@ -19,8 +19,12 @@
 		]
 	},
 	"config": {
-		"CommonsMetadataForceRecalculate": false,
-		"CommonsMetadataSetTrackingCategories": false
+		"CommonsMetadataForceRecalculate": {
+			"value": false
+		},
+		"CommonsMetadataSetTrackingCategories": {
+			"value": false
+		}
 	},
 	"AutoloadNamespaces": {
 		"CommonsMetadata\\": "src/"
@@ -32,5 +36,5 @@
 		"commonsmetadata-trackingcategory-no-source",
 		"commonsmetadata-trackingcategory-no-patent"
 	],
-	"manifest_version": 1
+	"manifest_version": 2
 }
