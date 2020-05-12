@@ -20,9 +20,11 @@
 	},
 	"config": {
 		"CommonsMetadataForceRecalculate": {
+			"description": "Force calculation of metadata even when the image is from a foreign repository which would provide it. This is meant for local development.",
 			"value": false
 		},
 		"CommonsMetadataSetTrackingCategories": {
+			"description": "Add tracking categories to file pages lacking fundamental metadata like author or license.",
 			"value": false
 		}
 	},
