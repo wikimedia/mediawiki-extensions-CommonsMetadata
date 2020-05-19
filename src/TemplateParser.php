@@ -11,11 +11,11 @@ use DOMNode;
  * https://commons.wikimedia.org/wiki/Commons:Machine-readable_data
  */
 class TemplateParser {
-	const COORDINATES_KEY = 'coordinates';
-	const LICENSES_KEY = 'licenses';
-	const INFORMATION_FIELDS_KEY = 'informationFields';
-	const DELETION_KEY = 'deletion';
-	const RESTRICTIONS_KEY = 'restrictions';
+	public const COORDINATES_KEY = 'coordinates';
+	public const LICENSES_KEY = 'licenses';
+	public const INFORMATION_FIELDS_KEY = 'informationFields';
+	public const DELETION_KEY = 'deletion';
+	public const RESTRICTIONS_KEY = 'restrictions';
 
 	/**
 	 * HTML element class name => metadata field name mapping for license data.

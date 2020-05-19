@@ -21,7 +21,7 @@ class HookHandler {
 	 * from what would be generated here.
 	 * @var float
 	 */
-	const VERSION = 1.2;
+	private const VERSION = 1.2;
 
 	/**
 	 * Hook handler for extended metadata
