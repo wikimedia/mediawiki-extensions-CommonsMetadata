@@ -256,7 +256,7 @@ class TemplateParserTest extends \MediaWikiTestCase {
 
 		// {{Book}} should be used when it is the only info template present
 		$data = $this->parseTestHTML( 'book2' );
-		$this->assertEquals( 1, count( $data[TemplateParser::INFORMATION_FIELDS_KEY] ) );
+		$this->assertSame( 1, count( $data[TemplateParser::INFORMATION_FIELDS_KEY] ) );
 		$this->assertFieldEquals( 'DateTimeOriginal', '1885-1890', $data,
 			TemplateParser::INFORMATION_FIELDS_KEY );
 	}

@@ -56,7 +56,7 @@ class DomNavigatorTest extends \MediaWikiTestCase {
 		$this->assertNodeListTextEquals( [ '2' ], $nodes );
 		$nodes = $navigator->findElementsWithClass( 'span', 'bar' );
 		$this->assertNodeListTextEquals( [ '2' ], $nodes );
-		$this->assertEquals( 1, $nodes->length );
+		$this->assertSame( 1, $nodes->length );
 		$this->assertNodeListTextEquals( [ '2' ], $nodes );
 
 		// results nested into each other
@@ -113,7 +113,7 @@ class DomNavigatorTest extends \MediaWikiTestCase {
 		$this->assertNodeListTextEquals( [ '1', '2' ], $nodes );
 
 		$nodes = $navigator->findElementsWithClass( 'span', 'bar' );
-		$this->assertEquals( 1, $nodes->length );
+		$this->assertSame( 1, $nodes->length );
 		$context = $nodes->item( 0 );
 		$nodes = $navigator->findElementsWithClass( 'span', 'foo', $context );
 		$this->assertNodeListTextEquals( [ '2' ], $nodes );
