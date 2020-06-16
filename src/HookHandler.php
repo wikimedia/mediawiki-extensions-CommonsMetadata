@@ -2,12 +2,17 @@
 
 namespace CommonsMetadata;
 
+use CommonsMetadata\Hooks\SkinAfterBottomScriptsHandler;
 use Content;
+use DerivativeContext;
 use File;
+use FormatMetadata;
 use IContextSource;
 use Language;
+use LocalRepo;
 use MediaWiki\MediaWikiServices;
 use ParserOutput;
+use Skin;
 use Title;
 
 /**
@@ -170,5 +175,71 @@ class HookHandler {
 		$dataCollector->setLicenseParser( new LicenseParser() );
 
 		return $dataCollector;
+	}
+
+	/**
+	 * Injects an inline JSON-LD script schema with image license info.
+	 *
+	 * See https://phabricator.wikimedia.org/T254039. This only adds the script
+	 * to File pages.
+	 *
+	 * @param Skin $skin
+	 * @param string &$html
+	 *
+	 * @return bool Always true.
+	 */
+	public static function onSkinAfterBottomScripts( Skin $skin, &$html ) {
+		$title = $skin->getOutput()->getTitle();
+		$isFilePage = $title->inNamespace( NS_FILE );
+
+		if (
+			!$title ||
+			!$title->exists() ||
+			!$isFilePage
+		) {
+			return true;
+		}
+
+		$localRepo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
+
+		// Get and prepare FormatMetadata object.
+		$format = new FormatMetadata;
+		$context = new DerivativeContext( $format->getContext() );
+		// Language doesn't matter so just use en to improve performance.
+		$format->setSingleLanguage( true );
+		$context->setLanguage( 'en' );
+		$format->setContext( $context );
+
+		// Get URL for public domain page from config.
+		$config = MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'CommonsMetadata' );
+		$publicDomainPageUrl = $config->get( 'CommonsMetadataPublicDomainPageUrl' );
+
+		$handler = new SkinAfterBottomScriptsHandler( $format, $publicDomainPageUrl );
+
+		$hooksObject = new self();
+		$html .= $hooksObject->doSkinAfterBottomScripts(
+			$localRepo,
+			$handler,
+			$title
+		);
+
+		return true;
+	}
+
+	/**
+	 * Get schema script html (or empty string).
+	 *
+	 * @param LocalRepo $localRepo
+	 * @param SkinAfterBottomScriptsHandler $handler
+	 * @param Title $title
+	 * @return string
+	 */
+	public function doSkinAfterBottomScripts(
+		LocalRepo $localRepo,
+		SkinAfterBottomScriptsHandler $handler,
+		Title $title
+	) {
+		$file = $localRepo->newFile( $title );
+		return $handler->getSchemaElement( $title, $file );
 	}
 }

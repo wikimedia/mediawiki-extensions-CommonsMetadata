@@ -11,12 +11,16 @@
 	"Hooks": {
 		"GetExtendedMetadata": "CommonsMetadata\\HookHandler::onGetExtendedMetadata",
 		"ValidateExtendedMetadataCache": "CommonsMetadata\\HookHandler::onValidateExtendedMetadataCache",
-		"ContentAlterParserOutput": "CommonsMetadata\\HookHandler::onContentAlterParserOutput"
+		"ContentAlterParserOutput": "CommonsMetadata\\HookHandler::onContentAlterParserOutput",
+		"SkinAfterBottomScripts": "CommonsMetadata\\HookHandler::onSkinAfterBottomScripts"
 	},
 	"MessagesDirs": {
 		"CommonsMetadata": [
 			"i18n"
 		]
+	},
+	"ConfigRegistry": {
+		"CommonsMetadata": "GlobalVarConfig::newInstance"
 	},
 	"config": {
 		"CommonsMetadataForceRecalculate": {
@@ -26,6 +30,10 @@
 		"CommonsMetadataSetTrackingCategories": {
 			"description": "Add tracking categories to file pages lacking fundamental metadata like author or license.",
 			"value": false
+		},
+		"CommonsMetadataPublicDomainPageUrl": {
+			"description": "Link used for `license` attribute in schema.org script for Files in the public domain.",
+			"value": "https://commons.wikimedia.org/wiki/Help:Public_domain"
 		}
 	},
 	"AutoloadNamespaces": {

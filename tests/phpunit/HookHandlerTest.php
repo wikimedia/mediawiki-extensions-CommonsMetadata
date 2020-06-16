@@ -2,7 +2,11 @@
 
 namespace CommonsMetadata;
 
+use CommonsMetadata\Hooks\SkinAfterBottomScriptsHandler;
+use File;
+use LocalRepo;
 use PHPUnit\Framework\TestCase;
+use Title;
 
 require_once __DIR__ . "/ParserTestHelper.php";
 
@@ -123,5 +127,54 @@ class HookHandlerTest extends TestCase {
 		$this->assertArrayHasKey( $field, $metadata );
 		$this->assertArrayHasKey( 'value', $metadata[$field] );
 		$this->assertEquals( $expected, $metadata[$field]['value'] );
+	}
+
+	/*----------------------------------------------------------*/
+
+	public function testDoSkinAfterBottomScripts() {
+		$url = 'https://commons.wikimedia.org/image/0/0f/Schema_test.jpg';
+		$title = $this->getMockTitle( $url );
+		$localRepo = $this->getMockLocalRepo( $title );
+
+		$handler = $this->createMock( SkinAfterBottomScriptsHandler::class );
+		$handler->expects( $this->once() )
+			->method( 'getSchemaElement' )
+			->with( $title, $localRepo->newFile( $title ) )
+			->will( $this->returnValue( 'Script with URL: ' . $localRepo->newFile( $title )->getFullUrl() ) );
+
+		$expected = 'Script with URL: ' . $url;
+		$hooksObject = new HookHandler();
+		$actual = $hooksObject->doSkinAfterBottomScripts( $localRepo, $handler, $title );
+		$this->assertEquals( $expected, $actual );
+	}
+
+	/**
+	 * @param Title $title
+	 * @return LocalRepo
+	 */
+	private function getMockLocalRepo( $title ) {
+		$file = $this->createMock( File::class );
+		$file->expects( $this->any() )
+			->method( 'getFullUrl' )
+			->will( $this->returnValue( $title->getFullUrl() ) );
+
+		$localRepo = $this->createMock( LocalRepo::class );
+		$localRepo->expects( $this->any() )
+			->method( 'newFile' )
+			->will( $this->returnValue( $file ) );
+
+		return $localRepo;
+	}
+
+	/**
+	 * @param string $fullUrl
+	 * @return Title
+	 */
+	private function getMockTitle( $fullUrl ) {
+		$mock = $this->createMock( Title::class );
+		$mock->expects( $this->any() )
+			->method( 'getFullUrl' )
+			->will( $this->returnValue( $fullUrl ) );
+		return $mock;
 	}
 }
