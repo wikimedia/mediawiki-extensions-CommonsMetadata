@@ -1,14 +1,14 @@
 {
-	"name": "commonsmetadata",
-	"version": "0.0.0",
 	"private": true,
-	"description": "Build tools for the CommonsMetadata extension.",
 	"scripts": {
 		"test": "grunt test"
 	},
 	"devDependencies": {
+		"eslint-config-wikimedia": "0.17.0",
 		"grunt": "1.3.0",
 		"grunt-banana-checker": "0.9.0",
-		"grunt-jsonlint": "2.0.0"
+		"grunt-eslint": "23.0.0",
+		"grunt-stylelint": "0.15.0",
+		"stylelint-config-wikimedia": "0.10.1"
 	}
 }
