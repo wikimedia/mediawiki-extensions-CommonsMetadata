@@ -1,11 +1,13 @@
 {
 	"@metadata": {
 		"authors": [
-			"Aefgh39622"
+			"Aefgh39622",
+			"Patsagorn Y."
 		]
 	},
 	"commonsmetadata-trackingcategory-no-license": "ไฟล์ที่ไม่มีสัญญาอนุญาตที่เครื่องอ่านได้",
 	"commonsmetadata-trackingcategory-no-description": "ไฟล์ที่ไม่มีคำอธิบายที่เครื่องอ่านได้",
 	"commonsmetadata-trackingcategory-no-author": "ไฟล์ที่ไม่มีเจ้าของที่เครื่องอ่านได้",
-	"commonsmetadata-trackingcategory-no-source": "ไฟล์ที่ไม่มีต้นฉบับที่เครื่องอ่านได้"
+	"commonsmetadata-trackingcategory-no-source": "ไฟล์ที่ไม่มีต้นฉบับที่เครื่องอ่านได้",
+	"commonsmetadata-trackingcategory-no-patent": "ไฟล์ที่ไม่มีสิทธิบัตรที่เครื่องอ่านได้"
 }
