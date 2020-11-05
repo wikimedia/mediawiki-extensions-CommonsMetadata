@@ -455,7 +455,15 @@ class DataCollector {
 	protected function normalizeMetadataTimestamps( array &$metadata ) {
 		$fieldsToNormalize = [ 'DateTime', 'DateTimeOriginal' ];
 		foreach ( $fieldsToNormalize as $field ) {
-			if ( isset( $metadata[$field] ) && isset( $metadata[$field]['value'] ) ) {
+			if (
+				isset( $metadata[$field] ) &&
+				isset( $metadata[$field]['value'] ) &&
+				// Multilang values can get down here, which are arrays with
+				// '_type' => 'lang'.  We don't want to pass an array to
+				// wfTimestamp: it won't work and will annoy PHP.
+				// @phan-suppress-next-line PhanTypeArraySuspicious
+				!isset( $metadata[$field]['value']['_type'] )
+			) {
 				$parsedTs = wfTimestamp( TS_DB, $metadata[$field]['value'] );
 				if ( $parsedTs ) {
 					$metadata[$field]['value'] = $parsedTs;

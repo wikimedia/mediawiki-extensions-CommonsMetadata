@@ -80,6 +80,37 @@ class TemplateParserTest extends \MediaWikiTestCase {
 	}
 
 	/**
+	 * Check handling of multilanguage date fields.
+	 */
+	public function testDateInMultipleLanguages() {
+		$parser = $this->getParser( false );
+		$data = $this->parseTestHTML( 'multilang_date', $parser ); // en/de dates
+		$dataCollector = new DataCollector();
+		$dataCollector->setTemplateParser( $parser );
+		$dataCollector->setLicenseParser( new LicenseParser() );
+
+		$getTemplateMetadataMethod = new \ReflectionMethod(
+			$dataCollector, 'getTemplateMetadata' );
+		$getTemplateMetadataMethod->setAccessible( true );
+		$normalizeTimestampsMethod = new \ReflectionMethod(
+			$dataCollector, 'normalizeMetadataTimestamps' );
+		$normalizeTimestampsMethod->setAccessible( true );
+
+		$data = $getTemplateMetadataMethod->invokeArgs( $dataCollector, [ $data ] );
+		# ensure that normalizeMetadataTimestamps doesn't crash on this
+		# multilang DataTimeOriginal value
+		$normalizeTimestampsMethod->invokeArgs( $dataCollector, [ &$data ] );
+
+		$this->assertArrayHasKey( 'DateTimeOriginal', $data );
+		$this->assertArrayEquals(
+			[ 'value', 'source' ], array_keys( $data['DateTimeOriginal'] )
+		);
+		$this->assertArrayEquals(
+			[ 'de','en','_type' ], array_keys( $data['DateTimeOriginal']['value'] )
+		);
+	}
+
+	/**
 	 * When there are multiple language template in the description, all of it should
 	 * be returned, regardless of user language.
 	 */

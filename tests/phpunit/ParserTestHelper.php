@@ -31,6 +31,8 @@ class ParserTestHelper {
 		'no_english' => 'File_Balkana,_januar_2012_(2).JPG',
 		// en/fr/de description
 		'multilang' => 'File_Sydney_Tower_Panorama.jpg',
+		// en/de date (T267033)
+		'multilang_date' => 'File_Indischer_Maler_des_6._Jahrhunderts_001.jpg',
 		// complex non-ASCII characters
 		'japanese' => 'File_SFC_.gif',
 		// an image with multiple licenses (GFDL + 2xCC)
