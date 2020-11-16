@@ -11,5 +11,7 @@
 	"commonsmetadata-trackingcategory-no-author": "Skrár með engan vélar-lesanlegan höfund",
 	"commonsmetadata-trackingcategory-no-author-desc": "Skráin hefur ekki upplýsingasnið sem er [{{MediaWiki:Commonsmetadata-doc-url}} lesanlegt af vélum], eða höfundar reiturinn er ekki fylltur út.",
 	"commonsmetadata-trackingcategory-no-source": "Skrár með engan vélar-lesanlegan uppruna",
-	"commonsmetadata-trackingcategory-no-source-desc": "Skráin hefur ekki upplýsingasnið sem er [{{MediaWiki:Commonsmetadata-doc-url}} lesanlegt af vélum], eða uppruna reiturinn er ekki fylltur út."
+	"commonsmetadata-trackingcategory-no-source-desc": "Skráin hefur ekki upplýsingasnið sem er [{{MediaWiki:Commonsmetadata-doc-url}} lesanlegt af vélum], eða uppruna reiturinn er ekki fylltur út.",
+	"commonsmetadata-trackingcategory-no-patent": "Skrár með ekkert vélar-lesanlegt einkaleyfi",
+	"commonsmetadata-trackingcategory-no-patent-desc": "Skráin er ekki með [{{MediaWiki:Commonsmetadata-doc-url}} vélar-lesanlegt] einkaleyfis snið."
 }
