@@ -219,7 +219,7 @@ class TemplateParser {
 		// group fields coming from the same template
 		$groupName = $groupType = '-';
 		if ( $group ) {
-			$groupName = $group->getNodePath();
+			$groupName = $group->getNodePath() ?? '-';
 			$groupType =
 				$domNavigator->getFirstClassWithPrefix( $group, 'fileinfotpl-type-' ) ?: '-';
 		}
