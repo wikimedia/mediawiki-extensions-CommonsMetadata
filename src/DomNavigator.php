@@ -26,12 +26,17 @@ class DomNavigator {
 		// libxml mutilates UTF-8 chars unless they are encoded as entities
 		$html = mb_convert_encoding( $html, 'HTML-ENTITIES', 'UTF-8' );
 
-		$oldLoaderState = libxml_disable_entity_loader( true );
+		$oldLoaderState = false;
+		if ( LIBXML_VERSION < 20900 ) {
+			$oldLoaderState = libxml_disable_entity_loader( true );
+		}
 		$oldHandlerState = libxml_use_internal_errors( true );
 		$dom = new DOMDocument();
 		$dom->loadHTML( $html );
 		$this->domx = new DOMXPath( $dom );
-		libxml_disable_entity_loader( $oldLoaderState );
+		if ( LIBXML_VERSION < 20900 ) {
+			libxml_disable_entity_loader( $oldLoaderState );
+		}
 		libxml_use_internal_errors( $oldHandlerState );
 	}
 
