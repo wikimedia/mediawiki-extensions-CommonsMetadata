@@ -6,9 +6,11 @@
  */
 
 class ForeignDBFileMock extends ForeignDBFile {
+	/** @var string[] */
 	public $mockedCategories = [];
 }
 
 class LocalFileMock extends LocalFile {
+	/** @var string[] */
 	public $mockedCategories = [];
 }

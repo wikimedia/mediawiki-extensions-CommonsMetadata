@@ -10,7 +10,7 @@ namespace CommonsMetadata;
 class LicenseParser {
 
 	/**
-	 * Nonstandard license name patterns used in categories/templates/shortnames
+	 * @var string[] Nonstandard license name patterns used in categories/templates/shortnames
 	 */
 	public static $licenseAliases = [
 		'cc-by-sa-3.0-migrated' => 'cc-by-sa-3.0',

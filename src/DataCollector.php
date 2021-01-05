@@ -294,7 +294,7 @@ class DataCollector {
 	/**
 	 * @param File $file
 	 * @param array $data metadata passed to the onGetExtendedMetadata hook
-	 * @return array list of category names in human-readable format
+	 * @return string[] list of category names in human-readable format
 	 */
 	protected function getCategories( File $file, array $data ) {
 		$categories = [];

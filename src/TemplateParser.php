@@ -299,6 +299,11 @@ class TemplateParser {
 		return $this->parseContents( $domNavigator, $node );
 	}
 
+	/**
+	 * @param DomNavigator $domNavigator
+	 * @param DOMNode $node
+	 * @return string
+	 */
 	protected function parseFieldCredit( DomNavigator $domNavigator, DOMNode $node ) {
 		$field = $this->extractHCardProperty( $domNavigator, $node, 'fn' );
 		if ( $field ) {
