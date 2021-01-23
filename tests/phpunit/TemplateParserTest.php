@@ -404,7 +404,7 @@ class TemplateParserTest extends \MediaWikiTestCase {
 	/**
 	 * Convenience method to parses a test file.
 	 * @param string $name
-	 * @param TemplateParser $parser
+	 * @param TemplateParser|null $parser
 	 * @return array metadata field => value
 	 */
 	protected function parseTestHTML( $name, $parser = null ) {
@@ -488,6 +488,7 @@ class TemplateParserTest extends \MediaWikiTestCase {
 	 * @param array $data
 	 * @param string $type one of the TemplateParser::*_KEY constants
 	 * @param int $position template position wrt templates of the same type
+	 * @return array
 	 */
 	protected function getAndAssertTemplateData( $data, $type, $position = 0 ) {
 		$this->assertArrayHasKey( $type, $data, "No $type type in template data" );

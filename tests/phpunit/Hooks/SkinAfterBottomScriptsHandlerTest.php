@@ -167,7 +167,7 @@ class SkinAfterBottomScriptsHandlerTest extends \MediaWikiTestCase {
 	}
 
 	/**
-	 * @param array $extmetadata
+	 * @param array $extendedMetadata
 	 * @return FormatMetadata
 	 */
 	private function getMockFormat( $extendedMetadata = [] ) {
