@@ -281,13 +281,13 @@ class TemplateParserTest extends \MediaWikiTestCase {
 		// {{Book}} should be ignored when other templates
 		// ( {{Photograph}} + {{Artwork}} ) are present
 		$data = $this->parseTestHTML( 'book' );
-		$this->assertEquals( 2, count( $data[TemplateParser::INFORMATION_FIELDS_KEY] ) );
+		$this->assertCount( 2, $data[TemplateParser::INFORMATION_FIELDS_KEY] );
 		$this->assertFieldEquals( 'DateTimeOriginal', '1943-04-19', $data,
 			TemplateParser::INFORMATION_FIELDS_KEY );
 
 		// {{Book}} should be used when it is the only info template present
 		$data = $this->parseTestHTML( 'book2' );
-		$this->assertSame( 1, count( $data[TemplateParser::INFORMATION_FIELDS_KEY] ) );
+		$this->assertCount( 1, $data[TemplateParser::INFORMATION_FIELDS_KEY] );
 		$this->assertFieldEquals( 'DateTimeOriginal', '1885-1890', $data,
 			TemplateParser::INFORMATION_FIELDS_KEY );
 	}
