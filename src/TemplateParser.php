@@ -73,12 +73,12 @@ class TemplateParser {
 	];
 
 	/**
-	 * Blacklist for templates which should not have handled like {{Information}} even if they have
-	 * fields matching $informationFieldClasses. Elements of this array refere to the same kind of
+	 * List for templates which should not have handled like {{Information}} even if they have
+	 * fields matching $informationFieldClasses. Elements of this array refer to the same kind of
 	 * classnames as $infoTemplateClasses.
 	 * @var array
 	 */
-	protected static $infoTemplateBlacklist = [
+	protected static $infoTemplateExclusion = [
 		'fileinfotpl-type-book',
 	];
 
@@ -276,7 +276,7 @@ class TemplateParser {
 	 */
 	protected function pruneInfoTemplateData( array &$data ) {
 		foreach ( $data as $key => &$group ) {
-			if ( in_array( $group['_type'], self::$infoTemplateBlacklist )
+			if ( in_array( $group['_type'], self::$infoTemplateExclusion )
 				&& count( $data ) !== 1
 			) {
 				unset( $data[$key] );

@@ -274,10 +274,10 @@ class TemplateParserTest extends \MediaWikiTestCase {
 	}
 
 	/**
-	 * Test use of blacklisted templates e.g. {{Book}}
+	 * Test use of excluded templates e.g. {{Book}}
 	 * Ignore such templates unless they are the only ones present
 	 */
-	public function testBlacklistedTemplates() {
+	public function testExcludedTemplates() {
 		// {{Book}} should be ignored when other templates
 		// ( {{Photograph}} + {{Artwork}} ) are present
 		$data = $this->parseTestHTML( 'book' );
