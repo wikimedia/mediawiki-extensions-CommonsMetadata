@@ -236,7 +236,7 @@ class DomNavigator {
 	protected function handleElementOrList( $elmementOrList ) {
 		if ( is_array( $elmementOrList ) ) {
 			return '*[' . implode( ' or ', array_map(
-				function ( $el ) {
+				static function ( $el ) {
 					return 'self::' . $el;
 				},
 				$elmementOrList

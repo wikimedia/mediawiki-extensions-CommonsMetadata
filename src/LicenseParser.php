@@ -58,7 +58,7 @@ class LicenseParser {
 			$i++;
 		}
 
-		uksort( $data, function ( $a, $b ) use ( $licensePriorities ) {
+		uksort( $data, static function ( $a, $b ) use ( $licensePriorities ) {
 			// equal priority, keep original order
 			if ( $licensePriorities[$a][0] === $licensePriorities[$b][0] ) {
 				return $licensePriorities[$a][1] - $licensePriorities[$b][1];

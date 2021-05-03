@@ -248,7 +248,7 @@ class TemplateParser {
 		// PHP 5.3 does not like class references in closures
 		$infoTemplateClasses = self::$infoTemplateClasses;
 
-		uasort( $data, function ( $template1, $template2 ) use ( $infoTemplateClasses ) {
+		uasort( $data, static function ( $template1, $template2 ) use ( $infoTemplateClasses ) {
 			$priority1 = array_search( $template1['_type'], $infoTemplateClasses );
 			$priority2 = array_search( $template2['_type'], $infoTemplateClasses );
 

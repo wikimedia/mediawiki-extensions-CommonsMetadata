@@ -198,7 +198,7 @@ class LicenseParserTest extends \MediaWikiTestCase {
 		$expectedSortedLicenses = [ 'public domain', 'cc-by-3.5', 'cc-by-2.0', 'cc-by-sa-3.5',
 			'cc-by-sa-2.0', 'gfdl', null, 'foobar' ];
 		$actualSortedLicenses = $this->licenseParser->sortDataByLicensePriority( $licenses,
-			function ( $v ) {
+			static function ( $v ) {
 				return $v;
 			}
 		);
@@ -208,7 +208,7 @@ class LicenseParserTest extends \MediaWikiTestCase {
 		$licenses = [ 'a' => 'cc-by-2.0', 'b' => 'cc-by-3.5' ];
 		$expectedSortedLicenses = [ 'b' => 'cc-by-3.5', 'a' => 'cc-by-2.0' ];
 		$actualSortedLicenses = $this->licenseParser->sortDataByLicensePriority( $licenses,
-			function ( $v ) {
+			static function ( $v ) {
 				return $v;
 			}
 		);
@@ -230,7 +230,7 @@ class LicenseParserTest extends \MediaWikiTestCase {
 		];
 		$expectedSortOrder = [ 2, 1, 0 ];
 		$sortedLicenseData = $this->licenseParser->sortDataByLicensePriority( $licenseData,
-			function ( $license ) {
+			static function ( $license ) {
 				if ( !isset( $license['LicenseShortName'] ) ) {
 					return null;
 				}

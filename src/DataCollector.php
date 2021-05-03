@@ -267,7 +267,7 @@ class DataCollector {
 			// is destructed.
 
 			global $wgHooks;
-			$makeAbsolute = function ( Title $title, &$url, $query ) {
+			$makeAbsolute = static function ( Title $title, &$url, $query ) {
 				global $wgServer, $wgRequest;
 				if (
 					// relative URL
@@ -282,7 +282,7 @@ class DataCollector {
 			$wgHooks['GetLocalURL::Internal']['CommonsMetadata::getDescriptionText'] =
 				$makeAbsolute;
 
-			$sc = new ScopedCallback( function () {
+			$sc = new ScopedCallback( static function () {
 				global $wgHooks;
 				unset( $wgHooks['GetLocalURL::Internal']['CommonsMetadata::getDescriptionText'] );
 			} );
@@ -421,7 +421,7 @@ class DataCollector {
 		}
 
 		$sortedLicenses = $this->licenseParser->sortDataByLicensePriority( $licenses,
-			function ( $license ) {
+			static function ( $license ) {
 				if ( !isset( $license['LicenseShortName'] ) ) {
 					return null;
 				}
