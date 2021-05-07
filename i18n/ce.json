@@ -6,13 +6,13 @@
 	},
 	"commonsmetadata-desc": "Суьртан «extmetadata» хьал API-модуле доккху суьртийн дийцаре агӀонашкахь болу хаам лато аьтту хуьлуьйту, кепаш лелош болу, Викилармехь дукха лело",
 	"commonsmetadata-trackingcategory-no-license": "Машинан-еша ло лицензи йоцу файлаш",
-	"commonsmetadata-trackingcategory-no-license-desc": "Файлан яц [{{MediaWiki:Commonsmetadata-doc-url}} machine-readable] лицензин кеп.",
+	"commonsmetadata-trackingcategory-no-license-desc": "Файлан йац [{{MediaWiki:Commonsmetadata-doc-url}} machine-readable] лицензин кеп.",
 	"commonsmetadata-trackingcategory-no-description": "Машинан-еша цало хаам болу файлаш",
-	"commonsmetadata-trackingcategory-no-description-desc": "Файлан яц [{{MediaWiki:Commonsmetadata-doc-url}} machine-readable] хааман кеп, я и язйо меттиг юьзна яц.",
+	"commonsmetadata-trackingcategory-no-description-desc": "Файлан йац [{{MediaWiki:Commonsmetadata-doc-url}} machine-readable] хааман кеп, йа и йазйо меттиг йуьзна йац.",
 	"commonsmetadata-trackingcategory-no-author": "Машинан-еша ло автор язъянза йолу файлаш",
-	"commonsmetadata-trackingcategory-no-author-desc": "Файлан яц [{{MediaWiki:Commonsmetadata-doc-url}} machine-readable] хааман кеп, я цуна авторан меттиг юьзна яц.",
+	"commonsmetadata-trackingcategory-no-author-desc": "Файлан йац [{{MediaWiki:Commonsmetadata-doc-url}} machine-readable] хааман кеп, йа цуна авторан меттиг йуьзна йац.",
 	"commonsmetadata-trackingcategory-no-source": "Машинан-еша ло хьост йоцу файлаш",
-	"commonsmetadata-trackingcategory-no-source-desc": "Файлан яц [{{MediaWiki:Commonsmetadata-doc-url}} machine-readable] хааман кеп, я цуна хьост язйо меттиг юьзна яц.",
+	"commonsmetadata-trackingcategory-no-source-desc": "Файлан йац [{{MediaWiki:Commonsmetadata-doc-url}} machine-readable] хааман кеп, йа цуна хьост йазйо меттиг йуьзна йац.",
 	"commonsmetadata-trackingcategory-no-patent": "Машинан-еша цалуш патент йолу файлаш",
-	"commonsmetadata-trackingcategory-no-patent-desc": "Файл чохь яц [{{MediaWiki:Commonsmetadata-doc-url}} machine-readable] патентан кеп."
+	"commonsmetadata-trackingcategory-no-patent-desc": "Файл чохь йац [{{MediaWiki:Commonsmetadata-doc-url}} machine-readable] патентан кеп."
 }
