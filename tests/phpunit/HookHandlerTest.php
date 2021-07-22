@@ -18,7 +18,7 @@ class HookHandlerTest extends TestCase {
 	/** @var ParserTestHelper */
 	protected $parserTestHelper;
 
-	public function setUp() : void {
+	public function setUp(): void {
 		$this->parserTestHelper = new ParserTestHelper();
 		$this->parserTestHelper->setTestCase( $this );
 	}

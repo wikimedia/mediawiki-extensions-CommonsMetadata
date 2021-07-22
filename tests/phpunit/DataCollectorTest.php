@@ -25,7 +25,7 @@ class DataCollectorTest extends \MediaWikiTestCase {
 	/** @var MockObject */
 	protected $file;
 
-	public function setUp() : void {
+	public function setUp(): void {
 		parent::setUp();
 
 		$language = $this->createMock( Language::class );
