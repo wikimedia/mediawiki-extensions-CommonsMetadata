@@ -472,6 +472,7 @@ class TemplateParser {
 			}
 			$node->removeChild( $languageName );
 		}
+		// @phan-suppress-next-line PhanTypeMismatchReturnSuperType cloneNode returns `static`
 		return $node;
 	}
 

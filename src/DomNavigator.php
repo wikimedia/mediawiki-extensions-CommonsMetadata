@@ -179,6 +179,7 @@ class DomNavigator {
 				return null;
 			}
 		}
+		// @phan-suppress-next-line PhanTypeMismatchReturnSuperType
 		return $node;
 	}
 
