@@ -7,9 +7,7 @@ use ForeignAPIFile;
 use Language;
 use LocalFile;
 use ParserOutput;
-use Title;
 use WikiFilePage;
-use Wikimedia\ScopedCallback;
 
 /**
  * Class to handle metadata collection and formatting, and manage more specific data extraction
@@ -257,37 +255,15 @@ class DataCollector {
 		# files to help compensate. For foreign files, this method is cached
 		# via parser cache, and possibly a second cache depending on
 		# descriptionCacheExpiry (disabled on Wikimedia).
+		$text = $file->getDescriptionText( $language );
 
 		if ( get_class( $file ) == 'LocalFile' || get_class( $file ) == 'LocalFileMock' ) {
 			// LocalFile gets the text in a different way, and ends up with different output
-			// (specifically, relative instead of absolute URLs). There is no proper way to
-			// influence this process (see the end of Title::getLocalURL for details), so
-			// we mess with one of the hooks.
-			// The ScopedCallback object will unmess it once this method returns and the object
-			// is destructed.
-
-			global $wgHooks;
-			$makeAbsolute = static function ( Title $title, &$url, $query ) {
-				global $wgServer, $wgRequest;
-				if (
-					// relative URL
-					substr( $url, 0, 1 ) === '/' && substr( $url, 1, 2 ) !== '/'
-					// for action=render $wgServer will be added in getLocalURL
-					&& $wgRequest->getVal( 'action' ) != 'render'
-				) {
-					$url = $wgServer . $url;
-				}
-				return true;
-			};
-			$wgHooks['GetLocalURL::Internal']['CommonsMetadata::getDescriptionText'] =
-				$makeAbsolute;
-
-			$sc = new ScopedCallback( static function () {
-				global $wgHooks;
-				unset( $wgHooks['GetLocalURL::Internal']['CommonsMetadata::getDescriptionText'] );
-			} );
+			// (specifically, relative instead of absolute URLs), so transform local URLs
+			// to absolute URLs after parse.
+			$text = ( new ParserOutput( $text ) )->getText( [ 'absoluteURLs' => true ] );
 		}
-		$text = $file->getDescriptionText( $language );
+
 		return $text;
 	}
 
