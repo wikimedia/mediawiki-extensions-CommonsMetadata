@@ -9,6 +9,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use Title;
 
 /**
+ * @group Database
  * @covers \CommonsMetadata\DataCollector
  * @group Extensions/CommonsMetadata
  */
@@ -130,6 +131,23 @@ class DataCollectorTest extends \MediaWikiTestCase {
 
 		$this->assertMetadataValue( 'DateTime', '2014-12-08 16:04:26', $metadata );
 		$this->assertMetadataValue( 'DateTimeOriginal', '2014-12-08 16:04:26', $metadata );
+	}
+
+	public function testFilePageAbsoluteUrls() {
+		$this->setMwGlobals( 'wgServer', '//TESTING_SERVER' );
+		$this->editPage( __METHOD__, '[[Test]]', '', NS_FILE );
+		$file = new \LocalFile(
+			Title::makeTitle( NS_FILE, __METHOD__ ),
+			$this->getServiceContainer()->getRepoGroup()->getLocalRepo()
+		);
+
+		$this->templateParser->expects( $this->once() )->method( 'parsePage' )
+			->will( $this->returnCallback( function ( string $html ) {
+				$this->assertStringContainsString( '//TESTING_SERVER/', $html );
+			} ) );
+
+		$metadata = [];
+		$this->dataCollector->collect( $metadata, $file );
 	}
 
 	/*------------------------------- Logic tests --------------------------*/
