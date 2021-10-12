@@ -6,7 +6,7 @@ namespace CommonsMetadata;
  * @covers \CommonsMetadata\LicenseParser
  * @group Extensions/CommonsMetadata
  */
-class LicenseParserTest extends \MediaWikiTestCase {
+class LicenseParserTest extends \MediaWikiIntegrationTestCase {
 	/** @var LicenseParser */
 	protected $licenseParser;
 

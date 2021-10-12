@@ -6,7 +6,7 @@ namespace CommonsMetadata;
  * @covers \CommonsMetadata\DomNavigator
  * @group Extensions/CommonsMetadata
  */
-class DomNavigatorTest extends \MediaWikiTestCase {
+class DomNavigatorTest extends \MediaWikiIntegrationTestCase {
 	public function testHasClass() {
 		$navigator = new DomNavigator( '<span class="foo"></span>' );
 		$node = $navigator->getByXpath( '//body/*' );

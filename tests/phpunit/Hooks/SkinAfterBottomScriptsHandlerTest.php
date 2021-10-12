@@ -10,7 +10,7 @@ use Title;
  * @covers \CommonsMetadata\Hooks\SkinAfterBottomScriptsHandler
  * @group Extensions/CommonsMetadata
  */
-class SkinAfterBottomScriptsHandlerTest extends \MediaWikiTestCase {
+class SkinAfterBottomScriptsHandlerTest extends \MediaWikiIntegrationTestCase {
 	/** @var string */
 	private $publicDomainUrl;
 

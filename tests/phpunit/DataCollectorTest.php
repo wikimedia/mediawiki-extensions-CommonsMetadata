@@ -13,7 +13,7 @@ use Title;
  * @covers \CommonsMetadata\DataCollector
  * @group Extensions/CommonsMetadata
  */
-class DataCollectorTest extends \MediaWikiTestCase {
+class DataCollectorTest extends \MediaWikiIntegrationTestCase {
 	/** @var MockObject */
 	protected $templateParser;
 
