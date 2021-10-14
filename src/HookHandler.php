@@ -132,7 +132,9 @@ class HookHandler {
 		 * * attempt to fetch from cache, which should usually be fine
 		 * * then fallback to DB, for files that have just been renamed
 		 */
-		$repo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
+		$services = MediaWikiServices::getInstance();
+		$trackingCategories = $services->getTrackingCategories();
+		$repo = $services->getRepoGroup()->getLocalRepo();
 		if ( $title->isRedirect() ) {
 			return true;
 		}
@@ -149,8 +151,11 @@ class HookHandler {
 
 		$categoryKeys = $dataCollector->verifyAttributionMetadata( $parserOutput, $file );
 		foreach ( $categoryKeys as $key ) {
-			$parserOutput->addTrackingCategory(
-				'commonsmetadata-trackingcategory-' . $key, $title );
+			$trackingCategories->addTrackingCategory(
+				$parserOutput,
+				'commonsmetadata-trackingcategory-' . $key,
+				$title
+			);
 		}
 
 		return true;
