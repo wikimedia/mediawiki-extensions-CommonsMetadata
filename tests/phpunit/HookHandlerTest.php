@@ -40,7 +40,7 @@ class HookHandlerTest extends TestCase {
 
 		// metdata from other sources is kept but overwritten on conflict
 		$this->assertArrayHasKey( 'OldKey', $metadata );
-		$this->assertEquals( $metadata['OldKey'], 'OldValue' );
+		$this->assertEquals( 'OldValue', $metadata['OldKey'] );
 		$this->assertMetadataFieldEquals( 'Bar|Baz', 'Categories', $metadata );
 	}
 
@@ -60,7 +60,7 @@ class HookHandlerTest extends TestCase {
 
 		// metdata from other sources is kept but overwritten on conflict
 		$this->assertArrayHasKey( 'OldKey', $metadata );
-		$this->assertEquals( $metadata['OldKey'], 'OldValue' );
+		$this->assertEquals( 'OldValue', $metadata['OldKey'] );
 		$this->assertMetadataFieldEquals( 'I_will_remain', 'Categories', $metadata );
 	}
 
@@ -81,7 +81,7 @@ class HookHandlerTest extends TestCase {
 
 		// metdata from other sources is kept but overwritten on conflict
 		$this->assertArrayHasKey( 'OldKey', $metadata );
-		$this->assertEquals( $metadata['OldKey'], 'OldValue' );
+		$this->assertEquals( 'OldValue', $metadata['OldKey'] );
 		$this->assertMetadataFieldEquals( 'Bar|Baz', 'Categories', $metadata );
 	}
 
