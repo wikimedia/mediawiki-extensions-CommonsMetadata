@@ -12,5 +12,7 @@
 	"commonsmetadata-trackingcategory-no-author": "Files sin autor legibile per machina",
 	"commonsmetadata-trackingcategory-no-author-desc": "Le file non ha un patrono de information [{{MediaWiki:Commonsmetadata-doc-url}} legibile per machina], o su campo de autor non es completate.",
 	"commonsmetadata-trackingcategory-no-source": "Files sin fonte legibile per machina",
-	"commonsmetadata-trackingcategory-no-source-desc": "Le file non ha un patrono de information [{{MediaWiki:Commonsmetadata-doc-url}} legibile per machina], o su campo de fonte non es completate."
+	"commonsmetadata-trackingcategory-no-source-desc": "Le file non ha un patrono de information [{{MediaWiki:Commonsmetadata-doc-url}} legibile per machina], o su campo de fonte non es completate.",
+	"commonsmetadata-trackingcategory-no-patent": "Files sin patente legibile per machina",
+	"commonsmetadata-trackingcategory-no-patent-desc": "Le file non ha un patrono de patente [{{MediaWiki:Commonsmetadata-doc-url}} legibile per machina]."
 }

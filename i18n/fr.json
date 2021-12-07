@@ -5,7 +5,8 @@
 			"JackPotte",
 			"Thibaut120094",
 			"VIGNERON",
-			"Wladek92"
+			"Wladek92",
+			"McDutchie"
 		]
 	},
 	"commonsmetadata-desc": "Étend la propriété « extmetadata » du module d’API information d’image pour inclure des informations stockées dans les pages de description de l’image qui utilisent les modèles courants de Wikimedia Commons",
@@ -17,6 +18,6 @@
 	"commonsmetadata-trackingcategory-no-author-desc": "Le fichier n’a pas de modèle d’information [{{MediaWiki:Commonsmetadata-doc-url}} lisible par une machine], ou bien son champ auteur n’est pas rempli.",
 	"commonsmetadata-trackingcategory-no-source": "Fichiers sans source lisible par une machine",
 	"commonsmetadata-trackingcategory-no-source-desc": "Le fichier n’a pas de modèle d’information [{{MediaWiki:Commonsmetadata-doc-url}} lisible par une machine], ou bien son champ source n’est pas rempli.",
-	"commonsmetadata-trackingcategory-no-patent": "Fichiers sans licence lisibles par la machine",
-	"commonsmetadata-trackingcategory-no-patent-desc": "Ce fichier n’a pas de modèle de licence [{{MediaWiki:Commonsmetadata-doc-url}} lisible par la machine]."
+	"commonsmetadata-trackingcategory-no-patent": "Fichiers sans brevet lisible par machine",
+	"commonsmetadata-trackingcategory-no-patent-desc": "Le fichier n’a aucun modèle de brevet [{{MediaWiki:Commonsmetadata-doc-url}} lisible par une machine]."
 }
