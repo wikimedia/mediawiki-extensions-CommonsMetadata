@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Daud I.F. Argana"
+		]
+	},
+	"commonsmetadata-desc": "Meluaskan atribut \"extmetadata\" dari modul API informasi gambar untuk memasukkan informasi yang disimpan di dalam halaman deskripsi gambar yang menggunakan templat yang biasa digunakan di Wikimedia Commons",
+	"commonsmetadata-trackingcategory-no-license": "Berkas tanpa lisensi yang bisa dibaca mesin",
+	"commonsmetadata-trackingcategory-no-license-desc": "Berkas-berkas di sini tidak memiliki templat lisensi yang [{{MediaWiki:Commonsmetadata-doc-url}} bisa dibaca oleh mesin].",
+	"commonsmetadata-trackingcategory-no-description": "Berkas tanpa keterangan yang bisa dibaca mesin",
+	"commonsmetadata-trackingcategory-no-description-desc": "Berkas-berkas di sini tidak memiliki templat informasi yang [{{MediaWiki:Commonsmetadata-doc-url}} bisa dibaca oleh mesin], ataupun isian deskripsinya tidak diisi.",
+	"commonsmetadata-trackingcategory-no-author": "Berkas tanpa penulis yang bisa dibaca mesin",
+	"commonsmetadata-trackingcategory-no-author-desc": "Berkas ini tidak memiliki templat informasi yang [{{MediaWiki:Commonsmetadata-doc-url}} bisa dibaca oleh mesin], atau isian pembuatnya tidak diisi.",
+	"commonsmetadata-trackingcategory-no-source": "Berkas tanpa sumber yang bisa dibaca mesin",
+	"commonsmetadata-trackingcategory-no-source-desc": "Berkas-berkas di sini tidak memiliki templat informasi yang [{{MediaWiki:Commonsmetadata-doc-url}} bisa dibaca oleh mesin], ataupun isian sumbernya tidak diisi.",
+	"commonsmetadata-trackingcategory-no-patent": "Berkas tanpa paten yang bisa dibaca mesin",
+	"commonsmetadata-trackingcategory-no-patent-desc": "Berkas-berkas di sini tidak memiliki templat paten yang [{{MediaWiki:Commonsmetadata-doc-url}} bisa dibaca oleh mesin]."
+}
