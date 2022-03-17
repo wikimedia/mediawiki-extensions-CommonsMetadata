@@ -2,6 +2,8 @@
 
 namespace CommonsMetadata;
 
+use DOMElement;
+
 /**
  * @covers \CommonsMetadata\DomNavigator
  * @group Extensions/CommonsMetadata
@@ -184,15 +186,15 @@ class DomNavigatorTest extends \MediaWikiIntegrationTestCase {
 		$node = $navigator->getByXpath( "//*[@id = 'c']" );
 
 		$closest = $navigator->closest( $node, 'ul' );
-		$this->assertInstanceOf( 'DOMElement', $closest );
+		$this->assertInstanceOf( DOMElement::class, $closest );
 		$this->assertEquals( 'a', $closest->getAttribute( 'id' ) );
 
 		$closest = $navigator->closest( $node, 'li' );
-		$this->assertInstanceOf( 'DOMElement', $closest );
+		$this->assertInstanceOf( DOMElement::class, $closest );
 		$this->assertEquals( 'b', $closest->getAttribute( 'id' ) );
 
 		$closest = $navigator->closest( $node, 'span' );
-		$this->assertInstanceOf( 'DOMElement', $closest );
+		$this->assertInstanceOf( DOMElement::class, $closest );
 		$this->assertEquals( 'c', $closest->getAttribute( 'id' ) );
 
 		$closest = $navigator->closest( $node, 'b' );
@@ -204,14 +206,14 @@ class DomNavigatorTest extends \MediaWikiIntegrationTestCase {
 			'<div><span>1</span><span id="foo">2</span><span>3</span><span>4</span></div>' );
 		$node = $navigator->getByXpath( "//*[@id = 'foo']" );
 		$nextSibling = $navigator->nextElementSibling( $node );
-		$this->assertInstanceOf( 'DOMElement', $nextSibling );
+		$this->assertInstanceOf( DOMElement::class, $nextSibling );
 		$this->assertEquals( 3, $nextSibling->textContent );
 
 		$navigator = new DomNavigator(
 			'<div><span>1</span><span id="foo">2</span>asd<!--fgh--><span>3</span></div>' );
 		$node = $navigator->getByXpath( "//*[@id = 'foo']" );
 		$nextSibling = $navigator->nextElementSibling( $node );
-		$this->assertInstanceOf( 'DOMElement', $nextSibling );
+		$this->assertInstanceOf( DOMElement::class, $nextSibling );
 		$this->assertEquals( 3, $nextSibling->textContent );
 
 		$navigator = new DomNavigator( '<div><span>1</span><span id="foo">2</span>' );
@@ -250,7 +252,7 @@ class DomNavigatorTest extends \MediaWikiIntegrationTestCase {
 		$this->assertEquals( count( $expected ), $nodes->length );
 		foreach ( $expected as $i => $attr ) {
 			$node = $nodes->item( $i );
-			$this->assertInstanceOf( 'DOMElement', $node );
+			$this->assertInstanceOf( DOMElement::class, $node );
 			$this->assertEquals( $attr, $node->getAttribute( $attributeName ), $message ?:
 				"Failed to assert that attribute '$attributeName' of node $i equals '$attr'" );
 		}
