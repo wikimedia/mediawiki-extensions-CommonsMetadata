@@ -3,10 +3,11 @@
 		"authors": [
 			"Armin1392",
 			"Ebraminio",
-			"Ladsgroup"
+			"Ladsgroup",
+			"Beginneruser"
 		]
 	},
-	"commonsmetadata-desc": "گسترش \"extmetadata\" ویژگی اطلاعات عکس بخش ای‌پی‌آی برای شامل کردن اطلاعات ذخیره شده در صفحات شرح عکسی که از الگوهای رایج استفاده شده در مدیاویکی همگانی، استفاده می‌شود.",
+	"commonsmetadata-desc": "ویژگی \"extmetadata\" از اطلاعات تصویر پودمان API گسترش یافته‌است برای دربرداشتن اطلاعاتی ذخیره‌شده در صفحه‌های توضیحات تصویر که، الگوهایی به‌کار می‌گیرند که به طور رایج در ویکی‌انبار استفاده می‌شود.",
 	"commonsmetadata-trackingcategory-no-license": "پرونده‌های بدون مجوز قابل خواندن برای ماشین",
 	"commonsmetadata-trackingcategory-no-license-desc": "این پرونده هیچ الگوی مجوز [{{MediaWiki:Commonsmetadata-doc-url}} قابل‌پردازش برای ماشین]  ندارد.",
 	"commonsmetadata-trackingcategory-no-description": "پرونده‌های بدون توضیح قابل خواندن برای ماشین",
