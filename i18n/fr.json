@@ -14,11 +14,11 @@
 	"commonsmetadata-trackingcategory-no-license": "Fichiers sans licence lisible par une machine",
 	"commonsmetadata-trackingcategory-no-license-desc": "Le fichier n’a aucun modèle de licence [{{MediaWiki:Commonsmetadata-doc-url}} lisible par une machine].",
 	"commonsmetadata-trackingcategory-no-description": "Fichiers sans description lisible par une machine",
-	"commonsmetadata-trackingcategory-no-description-desc": "Le fichier n’a pas de modèle d’information [{{MediaWiki:Commonsmetadata-doc-url}} lisible par une machine], ou bien son champ description n’est pas rempli.",
+	"commonsmetadata-trackingcategory-no-description-desc": "Le fichier n’a aucun modèle d’informations [{{MediaWiki:Commonsmetadata-doc-url}} lisibles par une machine], ou bien son champ description n’est pas rempli.",
 	"commonsmetadata-trackingcategory-no-author": "Fichiers sans auteur lisible par une machine",
-	"commonsmetadata-trackingcategory-no-author-desc": "Le fichier n’a pas de modèle d’information [{{MediaWiki:Commonsmetadata-doc-url}} lisible par une machine], ou bien son champ auteur n’est pas rempli.",
+	"commonsmetadata-trackingcategory-no-author-desc": "Le fichier n’a aucun modèle d’informations [{{MediaWiki:Commonsmetadata-doc-url}} lisibles par une machine], ou bien son champ auteur n’est pas rempli.",
 	"commonsmetadata-trackingcategory-no-source": "Fichiers sans source lisible par une machine",
-	"commonsmetadata-trackingcategory-no-source-desc": "Le fichier n’a pas de modèle d’information [{{MediaWiki:Commonsmetadata-doc-url}} lisible par une machine], ou bien son champ source n’est pas rempli.",
+	"commonsmetadata-trackingcategory-no-source-desc": "Le fichier n’a aucun modèle d’informations [{{MediaWiki:Commonsmetadata-doc-url}} lisibles par une machine], ou bien son champ source n’est pas rempli.",
 	"commonsmetadata-trackingcategory-no-patent": "Fichiers sans brevet lisible par machine",
 	"commonsmetadata-trackingcategory-no-patent-desc": "Le fichier n’a aucun modèle de brevet [{{MediaWiki:Commonsmetadata-doc-url}} lisible par une machine]."
 }
