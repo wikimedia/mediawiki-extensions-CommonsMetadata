@@ -17,5 +17,6 @@
 	"commonsmetadata-trackingcategory-no-source": "{{tracking category name}}\nName of the tracking category for files with no machine-readable source",
 	"commonsmetadata-trackingcategory-no-source-desc": "Description of the inclusion criteria for tracking category for files with no machine-readable license",
 	"commonsmetadata-trackingcategory-no-patent": "{{tracking category name}}\nName of the tracking category for files with no machine-readable patent",
-	"commonsmetadata-trackingcategory-no-patent-desc": "Description of the inclusion criteria for tracking category for files with no machine-readable patent"
+	"commonsmetadata-trackingcategory-no-patent-desc": "Description of the inclusion criteria for tracking category for files with no machine-readable patent",
+	"commonsmetadata-artistcredit-separator": "Separator used to seperate and list multiple values of authors"
 }

@@ -73,6 +73,7 @@ class HookHandler implements
 		$fallbacks = MediaWikiServices::getInstance()->getLanguageFallback()->getAll( $lang->getCode() );
 		array_unshift( $fallbacks, $lang->getCode() );
 		$templateParser->setPriorityLanguages( $fallbacks );
+		$templateParser->setArtistCreditSeparator( $context->msg( 'commonsmetadata-artistcredit-separator' )->text() );
 
 		$dataCollector = new DataCollector();
 		$dataCollector->setLanguage( $lang );
@@ -176,6 +177,7 @@ class HookHandler implements
 		$fallbacks = MediaWikiServices::getInstance()->getLanguageFallback()->getAll( $lang->getCode() );
 		array_unshift( $fallbacks, $lang->getCode() );
 		$templateParser->setPriorityLanguages( $fallbacks );
+		$templateParser->setArtistCreditSeparator( wfMessage( 'commonsmetadata-artistcredit-separator' )->text() );
 
 		$dataCollector = new DataCollector();
 		$dataCollector->setLanguage( $lang );

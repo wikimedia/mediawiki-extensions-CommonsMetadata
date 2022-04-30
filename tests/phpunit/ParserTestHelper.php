@@ -197,6 +197,9 @@ class ParserTestHelper {
 		$context->expects( $this->testCase->any() )
 			->method( 'getLanguage' )
 			->will( $this->testCase->returnValue( $language ) );
+		$context->expects( $this->testCase->any() )
+			->method( 'msg' )
+			->willReturn( wfMessage( 'commonsmetadata-artistcredit-separator' )->inLanguage( 'en' ) );
 		return $context;
 	}
 }

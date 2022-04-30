@@ -99,6 +99,9 @@ class TemplateParser {
 	/** @var bool */
 	protected $multiLanguage = false;
 
+	/** @var string */
+	protected $artistCreditSeparator = ' / ';
+
 	/**
 	 * When parsing multi-language text, use the first available language from this array.
 	 * (Order matters - try to use the first element, if not available the second etc.)
@@ -115,6 +118,15 @@ class TemplateParser {
 	 */
 	public function setMultiLanguage( $multiLanguage ) {
 		$this->multiLanguage = $multiLanguage;
+	}
+
+	/**
+	 * The separator used between multiple values of artist or credit when retrieved from a vcard
+	 * @param string $separator
+	 * @return void
+	 */
+	public function setArtistCreditSeparator( $separator ) {
+		$this->artistCreditSeparator = $separator;
 	}
 
 	/**
@@ -291,12 +303,7 @@ class TemplateParser {
 	 * @return string
 	 */
 	protected function parseFieldArtist( DomNavigator $domNavigator, DOMNode $node ) {
-		$field = $this->extractHCardProperty( $domNavigator, $node, 'fn' );
-		if ( $field ) {
-			return $this->cleanedInnerHtml( $field );
-		}
-
-		return $this->parseContents( $domNavigator, $node );
+		return $this->parseCreditOrArtist( $domNavigator, $node );
 	}
 
 	/**
@@ -305,9 +312,21 @@ class TemplateParser {
 	 * @return string
 	 */
 	protected function parseFieldCredit( DomNavigator $domNavigator, DOMNode $node ) {
-		$field = $this->extractHCardProperty( $domNavigator, $node, 'fn' );
-		if ( $field ) {
-			return $this->cleanedInnerHtml( $field );
+		return $this->parseCreditOrArtist( $domNavigator, $node );
+	}
+
+	/**
+	 * @param DomNavigator $domNavigator
+	 * @param DOMNode $node
+	 * @return string
+	 */
+	protected function parseCreditOrArtist( DomNavigator $domNavigator, DOMNode $node ) {
+		$fields = $this->extractHCardProperty( $domNavigator, $node, 'fn' );
+		if ( count( $fields ) ) {
+			$fields = array_map( function ( $field ) {
+				return $this->cleanedInnerHtml( $field );
+			}, $fields );
+			return implode( $this->artistCreditSeparator, $fields );
 		}
 
 		return $this->parseContents( $domNavigator, $node );
@@ -329,20 +348,22 @@ class TemplateParser {
 	}
 
 	/**
-	 * Extracts an hCard property from a DOMNode that contains an hCard
+	 * Extracts an hCard property from a DOMNode that contains one or more hCard
 	 * @param DomNavigator $domNavigator
 	 * @param DOMNode $node
 	 * @param string $property hCard property to be extracted
-	 * @return DOMNode
+	 * @return array
 	 */
 	protected function extractHCardProperty(
 		DomNavigator $domNavigator, DOMNode $node, $property
 	) {
+		$values = [];
 		foreach ( $domNavigator->findElementsWithClass( '*', 'vcard', $node ) as $vcard ) {
 			foreach ( $domNavigator->findElementsWithClass( '*', $property, $vcard ) as $name ) {
-				return $name;
+				$values[] = $name;
 			}
 		}
+		return $values;
 	}
 
 	/**
