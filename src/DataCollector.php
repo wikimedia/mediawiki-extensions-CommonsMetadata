@@ -117,7 +117,11 @@ class DataCollector {
 	 */
 	public function verifyAttributionMetadata( ParserOutput $parserOutput, File $file ) {
 		// HTML code of the file description
-		$descriptionText = $parserOutput->getText();
+		if ( !$parserOutput->hasText() ) {
+			$descriptionText = '';
+		} else {
+			$descriptionText = $parserOutput->getText();
+		}
 
 		$templateData = $this->templateParser->parsePage( $descriptionText );
 		$problems = $licenseData = $informationData = [];

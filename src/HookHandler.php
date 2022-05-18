@@ -115,6 +115,7 @@ class HookHandler {
 		if (
 			!$wgCommonsMetadataSetTrackingCategories
 			|| !$title->inNamespace( NS_FILE )
+			|| !$parserOutput->hasText()
 			|| $content->getModel() !== CONTENT_MODEL_WIKITEXT
 		) {
 			return true;
