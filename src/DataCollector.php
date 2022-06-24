@@ -6,6 +6,8 @@ use File;
 use ForeignAPIFile;
 use Language;
 use LocalFile;
+use MediaWiki\MediaWikiServices;
+use MWException;
 use ParserOutput;
 use WikiFilePage;
 
@@ -287,7 +289,11 @@ class DataCollector {
 			// for local or shared DB files (which are also LocalFile subclasses)
 			// categories can be queried directly from the database
 
-			$page = new WikiFilePage( $file->getOriginalTitle() );
+			$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $file->getOriginalTitle() );
+			if ( !$page instanceof WikiFilePage ) {
+				throw new MWException( 'Cannot instance WikiFilePage to get categories for ' . $file->getName()
+					. ', got instance of ' . get_class( $page ) );
+			}
 			$page->setFile( $file );
 
 			$categoryTitles = $page->getForeignCategories();
