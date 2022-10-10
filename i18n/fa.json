@@ -4,6 +4,7 @@
 			"Armin1392",
 			"Beginneruser",
 			"Ebraminio",
+			"Jeeputer",
 			"Ladsgroup"
 		]
 	},
@@ -15,5 +16,6 @@
 	"commonsmetadata-trackingcategory-no-author": "پرونده‌های بدون ایجادکنندهٔ قابل خواندن برای ماشین",
 	"commonsmetadata-trackingcategory-no-author-desc": "این پرونده هیچ الگوی اطلاعات [{{MediaWiki:Commonsmetadata-doc-url}} قابل‌پردازش برای ماشین] ندارد، یا بخش نویسنده آن کامل نشده‌است.",
 	"commonsmetadata-trackingcategory-no-source": "پرونده‌های بدون منبع قابل خواندن برای ماشین",
-	"commonsmetadata-trackingcategory-no-source-desc": "این پرونده هیچ الگوی اطلاعات [{{MediaWiki:Commonsmetadata-doc-url}} قابل‌پردازش برای ماشین] ندارد، یا بخش منبع آن کامل نشده‌است."
+	"commonsmetadata-trackingcategory-no-source-desc": "این پرونده هیچ الگوی اطلاعات [{{MediaWiki:Commonsmetadata-doc-url}} قابل‌پردازش برای ماشین] ندارد، یا بخش منبع آن کامل نشده‌است.",
+	"commonsmetadata-trackingcategory-no-patent": "پرونده‌های بدون امتیازنامه قابل خواندن برای ماشین"
 }
