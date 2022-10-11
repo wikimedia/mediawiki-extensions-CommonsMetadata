@@ -7,13 +7,13 @@
 	},
 	"commonsmetadata-desc": "Razširi lastnost »extmetadatai« modula API za slikovne informacije tako, da ta vključuje informacije, shranjene na straneh z opisi slik, ki uporabljajo predloge, ki se pogosto uporabljajo v Wikimedijini zbirki.",
 	"commonsmetadata-trackingcategory-no-license": "Datoteke brez strojno berljivega dovoljenja",
-	"commonsmetadata-trackingcategory-no-license-desc": "Datoteka ne vsebuje nobene [{{MediaWiki:Commonsmetadata-doc-url}} strojno berljive] predloge o dovoljenju.",
+	"commonsmetadata-trackingcategory-no-license-desc": "Datoteka ne vsebuje nobene [{{MediaWiki:Commonsmetadata-doc-url}} strojno berljive] predloge o licenci.",
 	"commonsmetadata-trackingcategory-no-description": "Datoteke brez strojno berljivega opisa",
-	"commonsmetadata-trackingcategory-no-description-desc": "Datoteka ne vsebuje nobene [{{MediaWiki:Commonsmetadata-doc-url}} strojno berljive] predloge o informacijah ali pa ji manjka podatek z opisom.",
+	"commonsmetadata-trackingcategory-no-description-desc": "Datoteka ne vsebuje nobene [{{MediaWiki:Commonsmetadata-doc-url}} strojno berljive] predloge s podatki ali pa ni izpolnjeno polje za opis.",
 	"commonsmetadata-trackingcategory-no-author": "Datoteke brez strojno berljivega avtorja",
-	"commonsmetadata-trackingcategory-no-author-desc": "Datoteka ne vsebuje nobene [{{MediaWiki:Commonsmetadata-doc-url}} strojno berljive] predloge o informacijah ali pa ji manjka podatek o avtorju.",
+	"commonsmetadata-trackingcategory-no-author-desc": "Datoteka ne vsebuje nobene [{{MediaWiki:Commonsmetadata-doc-url}} strojno berljive] predloge o informacijah ali pa ni izpolnjeno polje za avtorja.",
 	"commonsmetadata-trackingcategory-no-source": "Datoteke brez strojno berljivega vira",
-	"commonsmetadata-trackingcategory-no-source-desc": "Datoteka ne vsebuje nobene [{{MediaWiki:Commonsmetadata-doc-url}} strojno berljive] predloge o informacijah ali pa ji manjka podatek o viru.",
+	"commonsmetadata-trackingcategory-no-source-desc": "Datoteka ne vsebuje nobene [{{MediaWiki:Commonsmetadata-doc-url}} strojno berljive] predloge o informacijah ali pa ni izpolnjeno polje za vir.",
 	"commonsmetadata-trackingcategory-no-patent": "Datoteke brez strojno berljivega patenta",
-	"commonsmetadata-trackingcategory-no-patent-desc": "Ta datoteka nima nobene [{{MediaWiki:Commonsmetadata-doc-url}} strojno čitljive] predloge o patentu."
+	"commonsmetadata-trackingcategory-no-patent-desc": "Ta datoteka nima nobene [{{MediaWiki:Commonsmetadata-doc-url}} strojno berljive] predloge za patent."
 }
