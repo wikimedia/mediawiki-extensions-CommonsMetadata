@@ -43,7 +43,7 @@ class LicenseParser {
 	 * Takes an array width license data and sorts it by license priority.
 	 * The sort is stable, and the input array is not changed.
 	 * The method will call $getLicenseStringCallback( $data[$key], $key ) and expect a license name
-	 * @param array $data
+	 * @param string[] $data
 	 * @param callable $getLicenseStringCallback
 	 * @return array
 	 */
