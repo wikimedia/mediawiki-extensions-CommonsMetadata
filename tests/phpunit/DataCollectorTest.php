@@ -264,7 +264,7 @@ class DataCollectorTest extends \MediaWikiIntegrationTestCase {
 			->will( $this->returnValue( null ) );
 
 		$problems = $this->dataCollector->verifyAttributionMetadata( new ParserOutput(), $this->file );
-		$this->assertEmpty( $problems );
+		$this->assertSame( [], $problems );
 	}
 
 	public function testVerifyAttributionMetadataWithAttribution() {
@@ -280,7 +280,7 @@ class DataCollectorTest extends \MediaWikiIntegrationTestCase {
 			->will( $this->returnValue( null ) );
 
 		$problems = $this->dataCollector->verifyAttributionMetadata( new ParserOutput(), $this->file );
-		$this->assertEmpty( $problems );
+		$this->assertSame( [], $problems );
 	}
 
 	public function testVerifyWithEmptyMetadata() {

@@ -14,7 +14,7 @@ class TemplateParserTest extends \MediaWikiIntegrationTestCase {
 	 */
 	public function testEmptyString() {
 		$data = $this->getParser()->parsePage( '' );
-		$this->assertEmpty( $data );
+		$this->assertSame( [], $data );
 	}
 
 	// -------------------- description tests --------------------
