@@ -6,6 +6,7 @@ use ForeignAPIFile;
 use ForeignDBFile;
 use IContextSource;
 use LocalFile;
+use MediaWiki\MediaWikiServices;
 use PHPUnit\Framework\TestCase;
 
 class ParserTestHelper {
@@ -189,7 +190,7 @@ class ParserTestHelper {
 	 * @return IContextSource
 	 */
 	public function getContext( $languageCode ) {
-		$language = \Language::factory( $languageCode );
+		$language = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $languageCode );
 		$context = $this->testCase->getMockBuilder( IContextSource::class )
 			->disableOriginalConstructor()
 			->getMock();
