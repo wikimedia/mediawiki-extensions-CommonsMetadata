@@ -62,7 +62,7 @@ class HookHandler {
 
 		$templateParser = new TemplateParser();
 		$templateParser->setMultiLanguage( !$singleLang );
-		$fallbacks = Language::getFallbacksFor( $lang->getCode() );
+		$fallbacks = MediaWikiServices::getInstance()->getLanguageFallback()->getAll( $lang->getCode() );
 		array_unshift( $fallbacks, $lang->getCode() );
 		$templateParser->setPriorityLanguages( $fallbacks );
 
@@ -170,7 +170,7 @@ class HookHandler {
 	private static function getDataCollector( Language $lang, $singleLang ) {
 		$templateParser = new TemplateParser();
 		$templateParser->setMultiLanguage( !$singleLang );
-		$fallbacks = Language::getFallbacksFor( $lang->getCode() );
+		$fallbacks = MediaWikiServices::getInstance()->getLanguageFallback()->getAll( $lang->getCode() );
 		array_unshift( $fallbacks, $lang->getCode() );
 		$templateParser->setPriorityLanguages( $fallbacks );
 
