@@ -1,6 +1,7 @@
 {
 	"@metadata": {
 		"authors": [
+			"Brettchenweber",
 			"Kghbln",
 			"Metalhead64"
 		]
@@ -14,6 +15,6 @@
 	"commonsmetadata-trackingcategory-no-author-desc": "Die Datei hat keine [{{MediaWiki:Commonsmetadata-doc-url}} maschinenlesbare] Informationsvorlage oder das Urheberfeld ist nicht ausgefüllt.",
 	"commonsmetadata-trackingcategory-no-source": "Dateien mit keiner maschinenlesbaren Quelle",
 	"commonsmetadata-trackingcategory-no-source-desc": "Die Datei hat keine [{{MediaWiki:Commonsmetadata-doc-url}} maschinenlesbare] Informationsvorlage oder das Quellenfeld ist nicht ausgefüllt.",
-	"commonsmetadata-trackingcategory-no-patent": "Dateien ohne maschinenlesbarem Patent",
+	"commonsmetadata-trackingcategory-no-patent": "Dateien ohne maschinenlesbares Patent",
 	"commonsmetadata-trackingcategory-no-patent-desc": "Die Datei hat keine [{{MediaWiki:Commonsmetadata-doc-url}} maschinenlesbare] Patentvorlage."
 }
