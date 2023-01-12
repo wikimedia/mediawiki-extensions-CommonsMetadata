@@ -23,16 +23,13 @@ class DomNavigator {
 	 * @param string $html
 	 */
 	public function __construct( $html ) {
-		// libxml mutilates UTF-8 chars unless they are encoded as entities
-		$html = mb_convert_encoding( $html, 'HTML-ENTITIES', 'UTF-8' );
-
 		$oldLoaderState = false;
 		if ( LIBXML_VERSION < 20900 ) {
 			$oldLoaderState = libxml_disable_entity_loader( true );
 		}
 		$oldHandlerState = libxml_use_internal_errors( true );
 		$dom = new DOMDocument();
-		$dom->loadHTML( $html );
+		$dom->loadHTML( '<!doctype html><html><head><meta charset="UTF-8"/></head><body>' . $html . '</body></html>' );
 		$this->domx = new DOMXPath( $dom );
 		if ( LIBXML_VERSION < 20900 ) {
 			libxml_disable_entity_loader( $oldLoaderState );
