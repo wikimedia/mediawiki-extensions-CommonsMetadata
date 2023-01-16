@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Kghbln",
-			"Metalhead64"
+			"Metalhead64",
+			"Brettchenweber"
 		]
 	},
 	"commonsmetadata-desc": "Reichert das Attribut „extmetadata“ des API-Moduls zu Bildinformationen um Informationen aus den Bildbeschreibungsvorlagen auf „Wikimedia Commons“ an",
@@ -14,6 +15,6 @@
 	"commonsmetadata-trackingcategory-no-author-desc": "Die Datei hat keine [{{MediaWiki:Commonsmetadata-doc-url}} maschinenlesbare] Informationsvorlage oder das Urheberfeld ist nicht ausgefüllt.",
 	"commonsmetadata-trackingcategory-no-source": "Dateien mit keiner maschinenlesbaren Quelle",
 	"commonsmetadata-trackingcategory-no-source-desc": "Die Datei hat keine [{{MediaWiki:Commonsmetadata-doc-url}} maschinenlesbare] Informationsvorlage oder das Quellenfeld ist nicht ausgefüllt.",
-	"commonsmetadata-trackingcategory-no-patent": "Dateien ohne maschinenlesbarem Patent",
+	"commonsmetadata-trackingcategory-no-patent": "Dateien ohne maschinenlesbares Patent",
 	"commonsmetadata-trackingcategory-no-patent-desc": "Die Datei hat keine [{{MediaWiki:Commonsmetadata-doc-url}} maschinenlesbare] Patentvorlage."
 }
