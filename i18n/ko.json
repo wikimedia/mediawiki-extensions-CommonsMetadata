@@ -6,6 +6,7 @@
 			"Kwj2772",
 			"Namoroka",
 			"Priviet",
+			"Ykhwong",
 			"아라"
 		]
 	},
@@ -17,5 +18,7 @@
 	"commonsmetadata-trackingcategory-no-author": "기계가 읽을 수 있는 저자가 없는 파일",
 	"commonsmetadata-trackingcategory-no-author-desc": "[{{MediaWiki:Commonsmetadata-doc-url}} 기계가 판독 가능]한 파일 정보 틀이 없거나, 저작자가 기재되지 않은 파일입니다.",
 	"commonsmetadata-trackingcategory-no-source": "기계가 읽을 수 있는 출처가 없는 파일",
-	"commonsmetadata-trackingcategory-no-source-desc": "[{{MediaWiki:Commonsmetadata-doc-url}} 기계가 판독 가능]한 파일 정보 틀이 없거나, 출처가 기재되지 않은 파일입니다."
+	"commonsmetadata-trackingcategory-no-source-desc": "[{{MediaWiki:Commonsmetadata-doc-url}} 기계가 판독 가능]한 파일 정보 틀이 없거나, 출처가 기재되지 않은 파일입니다.",
+	"commonsmetadata-trackingcategory-no-patent": "기계가 읽을 수 있는 특허가 없는 파일",
+	"commonsmetadata-trackingcategory-no-patent-desc": "이 파일에는 [{{MediaWiki:Commonsmetadata-doc-url}} 기계가 읽을 수 있는] 특허 틀이 없습니다."
 }
