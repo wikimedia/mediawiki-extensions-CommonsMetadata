@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Aftabuzzaman",
+			"Tahmid",
 			"আফতাবুজ্জামান"
 		]
 	},
@@ -13,5 +14,7 @@
 	"commonsmetadata-trackingcategory-no-author": "যন্ত্রে পাঠযোগ্য লেখক ছাড়া ফাইল",
 	"commonsmetadata-trackingcategory-no-author-desc": "ফাইলে একটি [{{MediaWiki:Commonsmetadata-doc-url}} যন্ত্রে পাঠযোগ্য] তথ্য টেমপ্লেট নেই, বা এর লেখকের ঘর পূরণ করা হয়নি।",
 	"commonsmetadata-trackingcategory-no-source": "যন্ত্রে পাঠযোগ্য উৎস ছাড়া ফাইল",
-	"commonsmetadata-trackingcategory-no-source-desc": "ফাইলে একটি [{{MediaWiki:Commonsmetadata-doc-url}} যন্ত্রে পাঠযোগ্য] তথ্য টেমপ্লেট নেই, বা এর উৎসের ঘর পূরণ করা হয়নি।"
+	"commonsmetadata-trackingcategory-no-source-desc": "ফাইলে একটি [{{MediaWiki:Commonsmetadata-doc-url}} যন্ত্রে পাঠযোগ্য] তথ্য টেমপ্লেট নেই, বা এর উৎসের ঘর পূরণ করা হয়নি।",
+	"commonsmetadata-trackingcategory-no-patent": "যন্ত্রে পাঠযোগ্য পেটেন্ট ছাড়া ফাইল",
+	"commonsmetadata-trackingcategory-no-patent-desc": "ফাইলে কোনো [{{MediaWiki:Commonsmetadata-doc-url}} যন্ত্রে পাঠযোগ্য] পেটেন্ট টেমপ্লেট নেই।"
 }
