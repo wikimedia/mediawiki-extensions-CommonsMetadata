@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Aftabuzzaman",
-			"আফতাবুজ্জামান"
+			"আফতাবুজ্জামান",
+			"Tahmid"
 		]
 	},
 	"commonsmetadata-desc": "ছবি বর্ণনা পাতায় সঞ্চিত তথ্য অন্তর্ভুক্ত করতে চিত্রের তথ্য এপিআই মডিউলের \"extmetadata\" বৈশিষ্ট্য প্রসারিত করে যা সাধারণভাবে উইকিমিডিয়া কমন্সে ব্যবহার করা টেমপ্লেটে ব্যবহার করা হয়",
@@ -13,5 +14,7 @@
 	"commonsmetadata-trackingcategory-no-author": "যন্ত্রে পাঠযোগ্য লেখক ছাড়া ফাইল",
 	"commonsmetadata-trackingcategory-no-author-desc": "ফাইলে একটি [{{MediaWiki:Commonsmetadata-doc-url}} যন্ত্রে পাঠযোগ্য] তথ্য টেমপ্লেট নেই, বা এর লেখকের ঘর পূরণ করা হয়নি।",
 	"commonsmetadata-trackingcategory-no-source": "যন্ত্রে পাঠযোগ্য উৎস ছাড়া ফাইল",
-	"commonsmetadata-trackingcategory-no-source-desc": "ফাইলে একটি [{{MediaWiki:Commonsmetadata-doc-url}} যন্ত্রে পাঠযোগ্য] তথ্য টেমপ্লেট নেই, বা এর উৎসের ঘর পূরণ করা হয়নি।"
+	"commonsmetadata-trackingcategory-no-source-desc": "ফাইলে একটি [{{MediaWiki:Commonsmetadata-doc-url}} যন্ত্রে পাঠযোগ্য] তথ্য টেমপ্লেট নেই, বা এর উৎসের ঘর পূরণ করা হয়নি।",
+	"commonsmetadata-trackingcategory-no-patent": "যন্ত্রে পাঠযোগ্য পেটেন্ট ছাড়া ফাইল",
+	"commonsmetadata-trackingcategory-no-patent-desc": "ফাইলে কোনো [{{MediaWiki:Commonsmetadata-doc-url}} যন্ত্রে পাঠযোগ্য] পেটেন্ট টেমপ্লেট নেই।"
 }
