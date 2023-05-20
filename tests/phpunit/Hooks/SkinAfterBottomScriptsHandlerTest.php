@@ -35,7 +35,7 @@ class SkinAfterBottomScriptsHandlerTest extends \MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expectedSchema, $actualSchema );
 	}
 
-	public function provideImageWithLicenseData() {
+	public static function provideImageWithLicenseData() {
 		$metadata = [
 			'LicenseUrl' => [
 				'value' => 'https://creativecommons.org/licenses/by-sa/4.0',
@@ -70,7 +70,8 @@ class SkinAfterBottomScriptsHandlerTest extends \MediaWikiIntegrationTestCase {
 	/**
 	 * @dataProvider provideInvalidFiles
 	 */
-	public function testGetSchemaElementWithInvalidFiles( $file ) {
+	public function testGetSchemaElementWithInvalidFiles( $mockExists, $mockMediaType ) {
+		$file = $mockExists === null ? null : $this->getMockFile( $mockExists, $mockMediaType );
 		// We'll set up the mock format's fetchExtendedMetadata method to return
 		// an empty array so we can test the scenario of a valid file that gets
 		// back no extended metadata.
@@ -83,16 +84,12 @@ class SkinAfterBottomScriptsHandlerTest extends \MediaWikiIntegrationTestCase {
 		$this->assertSame( '', $result );
 	}
 
-	public function provideInvalidFiles() {
-		$nonexistentFile = $this->getMockFile( false, null );
-		$wrongMediaTypeFile = $this->getMockFile( true, MEDIATYPE_AUDIO );
-		$validFile = $this->getMockFile( true, MEDIATYPE_BITMAP );
-
+	public static function provideInvalidFiles() {
 		return [
-			'Null value' => [ null ],
-			'Nonexistent file' => [ $nonexistentFile ],
-			'Wrong media type' => [ $wrongMediaTypeFile ] ,
-			'No extended metadata' => [ $validFile ]
+			'Null value' => [ null, null ],
+			'Nonexistent file' => [ false, null ],
+			'Wrong media type' => [ true, MEDIATYPE_AUDIO ] ,
+			'No extended metadata' => [ true, MEDIATYPE_BITMAP ]
 		];
 	}
 
@@ -113,7 +110,7 @@ class SkinAfterBottomScriptsHandlerTest extends \MediaWikiIntegrationTestCase {
 		$this->assertEquals( $expected, $actual );
 	}
 
-	public function providePublicDomainImageData() {
+	public static function providePublicDomainImageData() {
 		$metadata = [
 			'License' => [
 				'value' => 'pd',
@@ -140,7 +137,7 @@ class SkinAfterBottomScriptsHandlerTest extends \MediaWikiIntegrationTestCase {
 		];
 	}
 
-	public function provideImageWithMissingUploadDateData() {
+	public static function provideImageWithMissingUploadDateData() {
 		$metadata = [
 			'LicenseUrl' => [
 				'value' => 'https://creativecommons.org/licenses/by-sa/4.0',

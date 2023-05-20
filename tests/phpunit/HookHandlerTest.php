@@ -108,7 +108,7 @@ class HookHandlerTest extends TestCase {
 		}
 	}
 
-	public function provideDescriptionData() {
+	public static function provideDescriptionData() {
 		return [
 			[ 'noinfo' ],
 			[ 'simple' ],

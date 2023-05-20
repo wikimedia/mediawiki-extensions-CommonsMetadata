@@ -123,7 +123,7 @@ class LicenseParserTest extends \MediaWikiIntegrationTestCase {
 		$this->assertLicenseHasGreaterPriority( $greaterLicenseData, $smallerLicenseData );
 	}
 
-	public function provideGetLicensePriorityData() {
+	public static function provideGetLicensePriorityData() {
 		return [
 			[ // PD wins over CC
 				[ // this should have higher priority...
