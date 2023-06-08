@@ -4,10 +4,10 @@ namespace CommonsMetadata;
 
 use File;
 use ForeignAPIFile;
+use InvalidArgumentException;
 use Language;
 use LocalFile;
 use MediaWiki\MediaWikiServices;
-use MWException;
 use ParserOutput;
 use WikiFilePage;
 
@@ -291,8 +291,10 @@ class DataCollector {
 
 			$page = MediaWikiServices::getInstance()->getWikiPageFactory()->newFromTitle( $file->getOriginalTitle() );
 			if ( !$page instanceof WikiFilePage ) {
-				throw new MWException( 'Cannot instance WikiFilePage to get categories for ' . $file->getName()
-					. ', got instance of ' . get_class( $page ) );
+				throw new InvalidArgumentException(
+					'Cannot instance WikiFilePage to get categories for ' . $file->getName()
+					. ', got instance of ' . get_class( $page )
+				);
 			}
 			$page->setFile( $file );
 
