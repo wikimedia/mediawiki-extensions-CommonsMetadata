@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Winston Sung"
+		]
+	},
+	"commonsmetadata-desc": "Proširuje osobinu za informiranje „extmetadata“ u API-modul sa informacijama što stoje na opisnima stranicama slika koje koriste  šabloni zastupljeni na Ostavi",
+	"commonsmetadata-trackingcategory-no-license": "Datoteke bez mašinski čitljive licence",
+	"commonsmetadata-trackingcategory-no-license-desc": "Ova datoteka nema [{{MediaWiki:Commonsmetadata-doc-url}} mašinski čitljiv] licencni šablon.",
+	"commonsmetadata-trackingcategory-no-description": "Datoteke bez mašinski čitljivog opisa",
+	"commonsmetadata-trackingcategory-no-description-desc": "Ova datoteka nema [{{MediaWiki:Commonsmetadata-doc-url}} mašinski čitljiv] informativni šablon ili pak nije mu popunjeno polje opis.",
+	"commonsmetadata-trackingcategory-no-author": "Datoteke bez mašinski čitljivog autora",
+	"commonsmetadata-trackingcategory-no-author-desc": "Ova datoteka nema [{{MediaWiki:Commonsmetadata-doc-url}} mašinski čitljiv] informativni šablon ili pak nije mu popunjeno polje autor.",
+	"commonsmetadata-trackingcategory-no-source": "Datoteke bez mašinski čitljivog izvora",
+	"commonsmetadata-trackingcategory-no-source-desc": "Ova datoteka nema [{{MediaWiki:Commonsmetadata-doc-url}} mašinski čitljiv] informativni šablon ili pak nije mu popunjeno polje izvor.",
+	"commonsmetadata-trackingcategory-no-patent": "Datoteke bez mašinski čitljivog patenta",
+	"commonsmetadata-trackingcategory-no-patent-desc": "Ova datoteka nema [{{MediaWiki:Commonsmetadata-doc-url}} mašinski čitljiv] patentni šablon."
+}
