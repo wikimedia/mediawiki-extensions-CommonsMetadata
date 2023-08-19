@@ -4,7 +4,7 @@ namespace CommonsMetadata\Hooks;
 
 use File;
 use FormatMetadata;
-use Title;
+use MediaWiki\Title\Title;
 
 /**
  * @covers \CommonsMetadata\Hooks\SkinAfterBottomScriptsHandler

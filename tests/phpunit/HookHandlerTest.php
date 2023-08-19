@@ -5,8 +5,8 @@ namespace CommonsMetadata;
 use CommonsMetadata\Hooks\SkinAfterBottomScriptsHandler;
 use File;
 use LocalRepo;
+use MediaWiki\Title\Title;
 use PHPUnit\Framework\TestCase;
-use Title;
 
 require_once __DIR__ . "/ParserTestHelper.php";
 

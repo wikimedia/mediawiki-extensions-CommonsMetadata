@@ -5,7 +5,7 @@ namespace CommonsMetadata\Hooks;
 use File;
 use FormatMetadata;
 use Html;
-use Title;
+use MediaWiki\Title\Title;
 
 /**
  * @license GPL-2.0-or-later

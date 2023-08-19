@@ -11,9 +11,9 @@ use IContextSource;
 use Language;
 use LocalRepo;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Title\Title;
 use ParserOutput;
 use Skin;
-use Title;
 
 /**
  * Hook handler
