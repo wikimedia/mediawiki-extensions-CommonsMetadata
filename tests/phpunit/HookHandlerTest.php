@@ -33,7 +33,7 @@ class HookHandlerTest extends TestCase {
 		$file = $this->parserTestHelper->getLocalFile( $description, $categories );
 		$context = $this->parserTestHelper->getContext( 'en' );
 
-		HookHandler::onGetExtendedMetadata( $metadata, $file, $context, true, $maxCache );
+		( new HookHandler )->onGetExtendedMetadata( $metadata, $file, $context, true, $maxCache );
 
 		// cache interval was not changed
 		$this->assertEquals( 3600, $maxCache );
@@ -53,7 +53,7 @@ class HookHandlerTest extends TestCase {
 		$file = $this->parserTestHelper->getForeignApiFile( $description );
 		$context = $this->parserTestHelper->getContext( 'en' );
 
-		HookHandler::onGetExtendedMetadata( $metadata, $file, $context, true, $maxCache );
+		( new HookHandler )->onGetExtendedMetadata( $metadata, $file, $context, true, $maxCache );
 
 		// cache interval was not changed
 		$this->assertEquals( 3600, $maxCache );
@@ -74,7 +74,7 @@ class HookHandlerTest extends TestCase {
 		$file = $this->parserTestHelper->getForeignDbFile( $description, $categories );
 		$context = $this->parserTestHelper->getContext( 'en' );
 
-		HookHandler::onGetExtendedMetadata( $metadata, $file, $context, true, $maxCache );
+		( new HookHandler )->onGetExtendedMetadata( $metadata, $file, $context, true, $maxCache );
 
 		// cache interval is 12 hours for all remote files
 		$this->assertEquals( 3600 * 12, $maxCache );
@@ -98,7 +98,7 @@ class HookHandlerTest extends TestCase {
 		$file = $this->parserTestHelper->getLocalFile( $description, [] );
 		$context = $this->parserTestHelper->getContext( 'en' );
 
-		HookHandler::onGetExtendedMetadata( $actualMetadata, $file, $context, true, $maxCache );
+		( new HookHandler )->onGetExtendedMetadata( $actualMetadata, $file, $context, true, $maxCache );
 
 		$expectedMetadata = $this->parserTestHelper->getMetadata( $testName );
 		foreach ( $expectedMetadata as $key => $val ) {

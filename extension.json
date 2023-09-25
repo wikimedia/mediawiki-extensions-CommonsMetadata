@@ -9,10 +9,15 @@
 		"MediaWiki": ">= 1.41"
 	},
 	"Hooks": {
-		"GetExtendedMetadata": "CommonsMetadata\\HookHandler::onGetExtendedMetadata",
-		"ValidateExtendedMetadataCache": "CommonsMetadata\\HookHandler::onValidateExtendedMetadataCache",
-		"ContentAlterParserOutput": "CommonsMetadata\\HookHandler::onContentAlterParserOutput",
-		"SkinAfterBottomScripts": "CommonsMetadata\\HookHandler::onSkinAfterBottomScripts"
+		"GetExtendedMetadata": "main",
+		"ValidateExtendedMetadataCache": "main",
+		"ContentAlterParserOutput": "main",
+		"SkinAfterBottomScripts": "main"
+	},
+	"HookHandlers": {
+		"main": {
+			"class": "CommonsMetadata\\HookHandler"
+		}
 	},
 	"MessagesDirs": {
 		"CommonsMetadata": [
