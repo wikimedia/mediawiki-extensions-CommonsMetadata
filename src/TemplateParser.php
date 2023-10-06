@@ -467,7 +467,8 @@ class TemplateParser {
 		$node = $node->cloneNode( true );
 		$languageNames = $domNavigator->findElementsWithClass( 'span', 'language', $node );
 		foreach ( $languageNames as $languageName ) {
-			if ( !$node->isSameNode( $languageName->parentNode ) ) {
+			$parentNode = $languageName->parentNode;
+			if ( $parentNode !== null && !$node->isSameNode( $parentNode ) ) {
 				continue; // language names are direct children
 			}
 			$node->removeChild( $languageName );
