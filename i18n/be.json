@@ -13,5 +13,6 @@
 	"commonsmetadata-trackingcategory-no-author-desc": "Файл не змяшчае [{{MediaWiki:Commonsmetadata-doc-url}} машыначытальных] шаблонаў з аўтарам, або поле для аўтара не запоўнена.",
 	"commonsmetadata-trackingcategory-no-source": "Файлы без машыначытальнай крыніцы",
 	"commonsmetadata-trackingcategory-no-source-desc": "Файл не змяшчае [{{MediaWiki:Commonsmetadata-doc-url}} машыначытальных] шаблонаў з крыніцай, або поле для крыніцы не запоўнена.",
-	"commonsmetadata-trackingcategory-no-patent": "Файлы без машыначытальнага патэнта"
+	"commonsmetadata-trackingcategory-no-patent": "Файлы без машыначытальнага патэнта",
+	"commonsmetadata-trackingcategory-no-patent-desc": "Файл не змяшчае [{{MediaWiki:Commonsmetadata-doc-url}} машыначытальнага] шаблона патэнта."
 }
