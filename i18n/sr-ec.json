@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"Kizule",
 			"Milicevic01"
 		]
 	},
+	"commonsmetadata-desc": "Проширује својство \"extmetadata\" информација о слици, тако да укључи информације које су сачуване на страницама описа слике који се користе у често коришћеним шаблонима на Викимедијиној остави",
 	"commonsmetadata-trackingcategory-no-license": "Датотеке без машински читљиве лиценце",
 	"commonsmetadata-trackingcategory-no-license-desc": "Датотеке које немају [{{MediaWiki:Commonsmetadata-doc-url}} машински читљиву] лиценцу.",
 	"commonsmetadata-trackingcategory-no-description": "Датотеке без машински читљивог описа",
