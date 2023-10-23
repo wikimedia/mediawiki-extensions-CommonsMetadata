@@ -4,6 +4,7 @@
 			"Milicevic01"
 		]
 	},
+	"commonsmetadata-desc": "Proširuje svojstvo \"extmetadata\" informacija o slici, tako da uključi informacije koje su sačuvane na stranicama opisa slike koji se koriste u često korišćenim šablonima na Vikimedijinoj ostavi",
 	"commonsmetadata-trackingcategory-no-license": "Datoteke bez mašinski čitljive licence",
 	"commonsmetadata-trackingcategory-no-license-desc": "Datoteke koje nemaju [{{MediaWiki:Commonsmetadata-doc-url}} mašinski čitljivu] licencu.",
 	"commonsmetadata-trackingcategory-no-description": "Datoteke bez mašinski čitljivog opisa",
@@ -11,5 +12,7 @@
 	"commonsmetadata-trackingcategory-no-author": "Datoteke bez mašinski čitljivog autora",
 	"commonsmetadata-trackingcategory-no-author-desc": "Datoteke koje nemaju [{{MediaWiki:Commonsmetadata-doc-url}} mašinski čitljiv] informativni šablon ili polje autor nije popunjeno.",
 	"commonsmetadata-trackingcategory-no-source": "Datoteke bez mašinski čitljivog izvora",
-	"commonsmetadata-trackingcategory-no-source-desc": "Datoteke koje nemaju [{{MediaWiki:Commonsmetadata-doc-url}} mašinski čitljiv] informativni šablon ili polje izvor nije popunjeno."
+	"commonsmetadata-trackingcategory-no-source-desc": "Datoteke koje nemaju [{{MediaWiki:Commonsmetadata-doc-url}} mašinski čitljiv] informativni šablon ili polje izvor nije popunjeno.",
+	"commonsmetadata-trackingcategory-no-patent": "Datoteke bez mašinski čitljivog patenta",
+	"commonsmetadata-trackingcategory-no-patent-desc": "Datoteke koje nemaju [{{MediaWiki:Commonsmetadata-doc-url}} mašinski čitljiv] šablon patent."
 }
