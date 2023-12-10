@@ -4,7 +4,7 @@ namespace CommonsMetadata\Hooks;
 
 use File;
 use FormatMetadata;
-use Html;
+use MediaWiki\Html\Html;
 use MediaWiki\Title\Title;
 
 /**
