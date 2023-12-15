@@ -7,6 +7,7 @@ use ForeignAPIFile;
 use InvalidArgumentException;
 use Language;
 use LocalFile;
+use LogicException;
 use MediaWiki\MediaWikiServices;
 use ParserOutput;
 use WikiFilePage;
@@ -282,9 +283,13 @@ class DataCollector {
 		$categories = [];
 
 		if ( is_a( $file, 'LocalFileMock' ) || is_a( $file, 'ForeignDBFileMock' ) ) {
+			if ( !defined( 'MW_PHPUNIT_TEST' ) ) {
+				throw new LogicException( 'Can only be called in tests' );
+			}
 			// with all the hard-coded dependencies, mocking categoriy retrieval properly is
 			// pretty much impossible
-			return $file->mockedCategories;
+			// @phan-suppress-next-line PhanUndeclaredClassStaticProperty
+			return ParserTestHelper::$mockedCategories[$file->getDescriptionText()] ?? [];
 		} elseif ( $file instanceof LocalFile ) {
 			// for local or shared DB files (which are also LocalFile subclasses)
 			// categories can be queried directly from the database

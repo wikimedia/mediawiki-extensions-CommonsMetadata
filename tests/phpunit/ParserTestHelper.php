@@ -65,6 +65,8 @@ class ParserTestHelper {
 		'restrict' => 'File_Logo_NIKE.svg',
 	];
 
+	public static array $mockedCategories = [];
+
 	/**
 	 * @var TestCase
 	 */
@@ -138,7 +140,7 @@ class ParserTestHelper {
 		$file->expects( $this->testCase->any() )
 			->method( 'getMimeType' )
 			->will( $this->testCase->returnValue( $mime ) );
-		$file->mockedCategories = $categories;
+		self::$mockedCategories[$description] = $categories;
 		return $file;
 	}
 
@@ -181,7 +183,7 @@ class ParserTestHelper {
 		$file->expects( $this->testCase->any() )
 			->method( 'getDescriptionTouched' )
 			->will( $this->testCase->returnValue( false ) );
-		$file->mockedCategories = $categories;
+		self::$mockedCategories[$description] = $categories;
 		return $file;
 	}
 
