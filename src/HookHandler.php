@@ -8,7 +8,6 @@ use DerivativeContext;
 use File;
 use FormatMetadata;
 use IContextSource;
-use Language;
 use LocalRepo;
 use MediaWiki\Content\Hook\ContentAlterParserOutputHook;
 use MediaWiki\Hook\GetExtendedMetadataHook;
@@ -18,6 +17,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use ParserOutput;
 use Skin;
+use Wikimedia\Bcp47Code\Bcp47Code;
 
 /**
  * Hook handler
@@ -152,8 +152,8 @@ class HookHandler implements
 			}
 		}
 
-		$language = $content->getContentHandler()->getPageViewLanguage( $title, $content );
-		$dataCollector = self::getDataCollector( $language, true );
+		$langCode = $parserOutput->getLanguage() ?? $services->getContentLanguage();
+		$dataCollector = self::getDataCollector( $langCode, true );
 
 		$categoryKeys = $dataCollector->verifyAttributionMetadata( $parserOutput, $file );
 		foreach ( $categoryKeys as $key ) {
@@ -166,16 +166,18 @@ class HookHandler implements
 	}
 
 	/**
-	 * @param Language $lang
+	 * @param Bcp47Code $langCode
 	 * @param bool $singleLang
 	 * @return DataCollector
 	 */
-	private static function getDataCollector( Language $lang, $singleLang ) {
+	private static function getDataCollector( Bcp47Code $langCode, $singleLang ) {
 		$templateParser = new TemplateParser();
 		$templateParser->setMultiLanguage( !$singleLang );
-		$fallbacks = MediaWikiServices::getInstance()->getLanguageFallback()->getAll( $lang->getCode() );
-		array_unshift( $fallbacks, $lang->getCode() );
+		$fallbacks = MediaWikiServices::getInstance()->getLanguageFallback()->getAll( $langCode->toBcp47Code() );
+		array_unshift( $fallbacks, $langCode->toBcp47Code() );
 		$templateParser->setPriorityLanguages( $fallbacks );
+
+		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $langCode );
 
 		$dataCollector = new DataCollector();
 		$dataCollector->setLanguage( $lang );
