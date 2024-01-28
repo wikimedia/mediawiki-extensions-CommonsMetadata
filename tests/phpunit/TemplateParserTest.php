@@ -235,7 +235,9 @@ class TemplateParserTest extends \MediaWikiIntegrationTestCase {
 		$data = $this->parseTestHTML( 'creator_template' );
 		$this->assertFieldEquals( 'Artist',
 			'<bdi>After <a href="//en.wikipedia.org/wiki/George_Gower" class="extiw" ' .
-				'title="en:George Gower">George Gower</a></bdi>',
+				'title="en:George Gower">George Gower</a></bdi> / ' .
+				'<bdi><a href="//en.wikipedia.org/wiki/User:Example" class="extiw" ' .
+				'title="en:User:Example">Example User</a></bdi>',
 			$data, TemplateParser::INFORMATION_FIELDS_KEY );
 	}
 
