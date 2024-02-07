@@ -1,17 +1,18 @@
 {
 	"@metadata": {
 		"authors": [
-			"Snævar"
+			"Snævar",
+			"Stefán Örvar Sigmundsson"
 		]
 	},
-	"commonsmetadata-trackingcategory-no-license": "Skrár með engin vélar-lesanleg leyfi",
+	"commonsmetadata-trackingcategory-no-license": "Skrár með ekkert vélarlesanlegt leyfi",
 	"commonsmetadata-trackingcategory-no-license-desc": "Skráin hefur ekkert leyfi sem er [{{MediaWiki:Commonsmetadata-doc-url}} lesanlegt af vélum].",
-	"commonsmetadata-trackingcategory-no-description": "Skrár með enga vélar-lesanlega lýsingu",
+	"commonsmetadata-trackingcategory-no-description": "Skrár með enga vélarlesanlega lýsingu",
 	"commonsmetadata-trackingcategory-no-description-desc": "Skráin hefur ekki upplýsingasnið sem er  [{{MediaWiki:Commonsmetadata-doc-url}} lesanlegt af vélum], eða leyfisreiturinn er ekki fylltur út.",
-	"commonsmetadata-trackingcategory-no-author": "Skrár með engan vélar-lesanlegan höfund",
+	"commonsmetadata-trackingcategory-no-author": "Skrár með engan vélarlesanlegan höfund",
 	"commonsmetadata-trackingcategory-no-author-desc": "Skráin hefur ekki upplýsingasnið sem er [{{MediaWiki:Commonsmetadata-doc-url}} lesanlegt af vélum], eða höfundar reiturinn er ekki fylltur út.",
-	"commonsmetadata-trackingcategory-no-source": "Skrár með engan vélar-lesanlegan uppruna",
+	"commonsmetadata-trackingcategory-no-source": "Skrár með engan vélarlesanlegan uppruna",
 	"commonsmetadata-trackingcategory-no-source-desc": "Skráin hefur ekki upplýsingasnið sem er [{{MediaWiki:Commonsmetadata-doc-url}} lesanlegt af vélum], eða uppruna reiturinn er ekki fylltur út.",
-	"commonsmetadata-trackingcategory-no-patent": "Skrár með ekkert vélar-lesanlegt einkaleyfi",
+	"commonsmetadata-trackingcategory-no-patent": "Skrár með ekkert vélarlesanlegt einkaleyfi",
 	"commonsmetadata-trackingcategory-no-patent-desc": "Skráin er ekki með [{{MediaWiki:Commonsmetadata-doc-url}} vélar-lesanlegt] einkaleyfis snið."
 }
