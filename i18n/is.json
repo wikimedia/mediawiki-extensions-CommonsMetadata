@@ -6,13 +6,13 @@
 		]
 	},
 	"commonsmetadata-trackingcategory-no-license": "Skrár með ekkert vélarlesanlegt leyfi",
-	"commonsmetadata-trackingcategory-no-license-desc": "Skráin hefur ekkert leyfi sem er [{{MediaWiki:Commonsmetadata-doc-url}} lesanlegt af vélum].",
+	"commonsmetadata-trackingcategory-no-license-desc": "Skráin hefur ekki [{{MediaWiki:Commonsmetadata-doc-url}} vélarlesanlegt] leyfissnið.",
 	"commonsmetadata-trackingcategory-no-description": "Skrár með enga vélarlesanlega lýsingu",
-	"commonsmetadata-trackingcategory-no-description-desc": "Skráin hefur ekki upplýsingasnið sem er  [{{MediaWiki:Commonsmetadata-doc-url}} lesanlegt af vélum], eða leyfisreiturinn er ekki fylltur út.",
+	"commonsmetadata-trackingcategory-no-description-desc": "Skráin hefur ekki [{{MediaWiki:Commonsmetadata-doc-url}} vélarlesanlegt] upplýsingasnið eða lýsingarreitur þess er ekki fylltur út.",
 	"commonsmetadata-trackingcategory-no-author": "Skrár með engan vélarlesanlegan höfund",
-	"commonsmetadata-trackingcategory-no-author-desc": "Skráin hefur ekki upplýsingasnið sem er [{{MediaWiki:Commonsmetadata-doc-url}} lesanlegt af vélum], eða höfundar reiturinn er ekki fylltur út.",
+	"commonsmetadata-trackingcategory-no-author-desc": "Skráin hefur ekki [{{MediaWiki:Commonsmetadata-doc-url}} vélarlesanlegt] upplýsingasnið eða höfundareitur þess er ekki fylltur út.",
 	"commonsmetadata-trackingcategory-no-source": "Skrár með engan vélarlesanlegan uppruna",
-	"commonsmetadata-trackingcategory-no-source-desc": "Skráin hefur ekki upplýsingasnið sem er [{{MediaWiki:Commonsmetadata-doc-url}} lesanlegt af vélum], eða uppruna reiturinn er ekki fylltur út.",
+	"commonsmetadata-trackingcategory-no-source-desc": "Skráin hefur ekki [{{MediaWiki:Commonsmetadata-doc-url}} vélarlesanlegt] upplýsingasnið eða upprunareitur þess er ekki fylltur út.",
 	"commonsmetadata-trackingcategory-no-patent": "Skrár með ekkert vélarlesanlegt einkaleyfi",
-	"commonsmetadata-trackingcategory-no-patent-desc": "Skráin er ekki með [{{MediaWiki:Commonsmetadata-doc-url}} vélar-lesanlegt] einkaleyfis snið."
+	"commonsmetadata-trackingcategory-no-patent-desc": "Skráin hefur ekki [{{MediaWiki:Commonsmetadata-doc-url}} vélarlesanlegt] einkaleyfissnið."
 }
