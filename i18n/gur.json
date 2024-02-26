@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Baba Ayɛ'ɛra",
-			"Akakiiri"
+			"Akakiiri",
+			"Reedy"
 		]
 	},
 	"commonsmetadata-desc": "Ba malum vurege \"extimatadata\" foote lɔgerɔ yɛla yelesum n de API lɔkɔ tole nɛŋa la yelesum sebo n pa'alɛ foote la pɛgera n doose se'em dee zo'e zo'e puan ti a bɔna Wikimedia fɔɔra zi'an la",
@@ -15,5 +16,5 @@
 	"commonsmetadata-trackingcategory-no-source": "Faali duma n ka tari tuntɔɔ sadɔtɔ",
 	"commonsmetadata-trackingcategory-no-source-desc": "Faali la ka tari [{{MediaWiki:Commonsmetadata-docurl}} machine-readable] lasebaarɛ tɛmpilati, bii a'field' la zi'an ka 'filled' yese.",
 	"commonsmetadata-trackingcategory-no-patent": "Faali duma n ka tari magazim tuntɔɔ 'patent'",
-	"commonsmetadata-trackingcategory-no-patent-desc": "Faali la ka tari [{{Mediawiki: Commonsmetadata-docurl}} magazim-tuntɔɔ] 'patent'tɛmpileti."
+	"commonsmetadata-trackingcategory-no-patent-desc": "Faali la ka tari [{{MediaWiki:Commonsmetadata-docurl}} magazim-tuntɔɔ] 'patent'tɛmpileti."
 }
