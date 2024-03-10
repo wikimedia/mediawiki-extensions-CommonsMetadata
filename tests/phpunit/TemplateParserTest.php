@@ -106,7 +106,7 @@ class TemplateParserTest extends \MediaWikiIntegrationTestCase {
 			[ 'value', 'source' ], array_keys( $data['DateTimeOriginal'] )
 		);
 		$this->assertArrayEquals(
-			[ 'de','en','_type' ], array_keys( $data['DateTimeOriginal']['value'] )
+			[ 'de', 'en', '_type' ], array_keys( $data['DateTimeOriginal']['value'] )
 		);
 	}
 

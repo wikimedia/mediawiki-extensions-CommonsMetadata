@@ -140,7 +140,7 @@ class HookHandlerTest extends TestCase {
 		$handler->expects( $this->once() )
 			->method( 'getSchemaElement' )
 			->with( $title, $localRepo->newFile( $title ) )
-			->will( $this->returnValue( 'Script with URL: ' . $localRepo->newFile( $title )->getFullUrl() ) );
+			->willReturn( 'Script with URL: ' . $localRepo->newFile( $title )->getFullUrl() );
 
 		$expected = 'Script with URL: ' . $url;
 		$hooksObject = new HookHandler();
@@ -156,12 +156,12 @@ class HookHandlerTest extends TestCase {
 		$file = $this->createMock( File::class );
 		$file->expects( $this->any() )
 			->method( 'getFullUrl' )
-			->will( $this->returnValue( $title->getFullUrl() ) );
+			->willReturn( $title->getFullUrl() );
 
 		$localRepo = $this->createMock( LocalRepo::class );
 		$localRepo->expects( $this->any() )
 			->method( 'newFile' )
-			->will( $this->returnValue( $file ) );
+			->willReturn( $file );
 
 		return $localRepo;
 	}
@@ -174,7 +174,7 @@ class HookHandlerTest extends TestCase {
 		$mock = $this->createMock( Title::class );
 		$mock->expects( $this->any() )
 			->method( 'getFullUrl' )
-			->will( $this->returnValue( $fullUrl ) );
+			->willReturn( $fullUrl );
 		return $mock;
 	}
 }

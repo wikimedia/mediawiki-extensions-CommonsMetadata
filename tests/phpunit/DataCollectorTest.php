@@ -35,7 +35,7 @@ class DataCollectorTest extends \MediaWikiIntegrationTestCase {
 		$this->licenseParser = $this->createMock( \CommonsMetadata\LicenseParser::class );
 		$this->licenseParser->expects( $this->any() )
 			->method( 'sortDataByLicensePriority' )
-			->will( $this->returnArgument( 0 ) );
+			->willReturnArgument( 0 );
 		$this->file = $this->createMock( File::class );
 
 		$this->dataCollector = new DataCollector();
@@ -48,15 +48,15 @@ class DataCollectorTest extends \MediaWikiIntegrationTestCase {
 
 	public function testEmptyMetadata() {
 		$this->templateParser->expects( $this->once() )->method( 'parsePage' )
-			->will( $this->returnValue( [
+			->willReturn( [
 				TemplateParser::COORDINATES_KEY => [],
 				TemplateParser::INFORMATION_FIELDS_KEY => [],
 				TemplateParser::LICENSES_KEY => [],
 				TemplateParser::DELETION_KEY => [],
 				TemplateParser::RESTRICTIONS_KEY => [],
-			] ) );
+			] );
 		$this->licenseParser->expects( $this->any() )->method( 'parseLicenseString' )
-			->will( $this->returnValue( null ) );
+			->willReturn( null );
 		$metadata = [];
 
 		$this->dataCollector->collect( $metadata, $this->file );
@@ -67,9 +67,9 @@ class DataCollectorTest extends \MediaWikiIntegrationTestCase {
 
 	public function testNoMetadata() {
 		$this->templateParser->expects( $this->once() )->method( 'parsePage' )
-			->will( $this->returnValue( [] ) );
+			->willReturn( [] );
 		$this->licenseParser->expects( $this->any() )->method( 'parseLicenseString' )
-			->will( $this->returnValue( null ) );
+			->willReturn( null );
 		$metadata = [];
 
 		$this->dataCollector->collect( $metadata, $this->file );
@@ -80,9 +80,9 @@ class DataCollectorTest extends \MediaWikiIntegrationTestCase {
 
 	public function testMissingMetadata() {
 		$this->templateParser->expects( $this->once() )->method( 'parsePage' )
-			->will( $this->returnValue( null ) );
+			->willReturn( null );
 		$this->licenseParser->expects( $this->any() )->method( 'parseLicenseString' )
-			->will( $this->returnValue( null ) );
+			->willReturn( null );
 		$metadata = [];
 
 		$this->dataCollector->collect( $metadata, $this->file );
@@ -93,13 +93,13 @@ class DataCollectorTest extends \MediaWikiIntegrationTestCase {
 
 	public function testTemplateMetadataFormatForSingleValuedProperty() {
 		$this->templateParser->expects( $this->once() )->method( 'parsePage' )
-			->will( $this->returnValue( [
+			->willReturn( [
 				TemplateParser::LICENSES_KEY => [
 					[ 'UsageTerms' => 'foo' ],
 				],
-			] ) );
+			] );
 		$this->licenseParser->expects( $this->any() )->method( 'parseLicenseString' )
-			->will( $this->returnValue( null ) );
+			->willReturn( null );
 		$metadata = [];
 
 		$this->dataCollector->collect( $metadata, $this->file );
@@ -109,13 +109,13 @@ class DataCollectorTest extends \MediaWikiIntegrationTestCase {
 
 	public function testTemplateMetadataFormatForMultiValuedProperty() {
 		$this->templateParser->expects( $this->once() )->method( 'parsePage' )
-			->will( $this->returnValue( [
+			->willReturn( [
 				TemplateParser::LICENSES_KEY => [
 					[ 'UsageTerms' => 'foo' ],
 				],
-			] ) );
+			] );
 		$this->licenseParser->expects( $this->any() )->method( 'parseLicenseString' )
-			->will( $this->returnValue( null ) );
+			->willReturn( null );
 		$metadata = [];
 
 		$this->dataCollector->collect( $metadata, $this->file );
@@ -142,9 +142,9 @@ class DataCollectorTest extends \MediaWikiIntegrationTestCase {
 		);
 
 		$this->templateParser->expects( $this->once() )->method( 'parsePage' )
-			->will( $this->returnCallback( function ( string $html ) {
+			->willReturnCallback( function ( string $html ) {
 				$this->assertStringContainsString( '//TESTING_SERVER/', $html );
-			} ) );
+			} );
 
 		$metadata = [];
 		$this->dataCollector->collect( $metadata, $file );
@@ -162,7 +162,7 @@ class DataCollectorTest extends \MediaWikiIntegrationTestCase {
 
 		$this->licenseParser->expects( $this->any() )
 			->method( 'parseLicenseString' )
-			->will( $this->returnValueMap( [
+			->willReturnMap( [
 				[ 'CC-BY-SA-2.0', [
 					'family' => 'cc',
 					'type' => 'cc-by-sa',
@@ -170,7 +170,7 @@ class DataCollectorTest extends \MediaWikiIntegrationTestCase {
 					'region' => null,
 					'name' => 'cc-by-sa-2.0',
 				] ],
-			] ) );
+			] );
 
 		$categoryData = $getCategoryMetadataMethod->invokeArgs(
 			$this->dataCollector, [ $categories ] );
@@ -186,12 +186,12 @@ class DataCollectorTest extends \MediaWikiIntegrationTestCase {
 
 		$this->licenseParser->expects( $this->any() )
 			->method( 'parseLicenseString' )
-			->will( $this->returnValueMap( [
+			->willReturnMap( [
 				[ 'quux', [
 					'family' => 'quux.family',
 					'name' => 'quux.name',
 				] ],
-			] ) );
+			] );
 
 		$templateData = $getTemplateMetadataMethod->invokeArgs( $this->dataCollector, [ [
 			TemplateParser::COORDINATES_KEY => [ [ 'Foo' => 'bar' ] ],
@@ -252,16 +252,16 @@ class DataCollectorTest extends \MediaWikiIntegrationTestCase {
 
 	public function testVerifyAttributionMetadata() {
 		$this->templateParser->expects( $this->once() )->method( 'parsePage' )
-			->will( $this->returnValue( [
+			->willReturn( [
 				TemplateParser::INFORMATION_FIELDS_KEY => [ [
 					'ImageDescription' => 'blah',
 					'Artist' => 'blah blah',
 					'Credit' => 'blah blah blah',
 				] ],
 				TemplateParser::LICENSES_KEY => [ [ 'LicenseShortName' => 'quux' ] ],
-			] ) );
+			] );
 		$this->licenseParser->expects( $this->any() )->method( 'parseLicenseString' )
-			->will( $this->returnValue( null ) );
+			->willReturn( null );
 
 		$problems = $this->dataCollector->verifyAttributionMetadata( new ParserOutput(), $this->file );
 		$this->assertSame( [], $problems );
@@ -269,15 +269,15 @@ class DataCollectorTest extends \MediaWikiIntegrationTestCase {
 
 	public function testVerifyAttributionMetadataWithAttribution() {
 		$this->templateParser->expects( $this->once() )->method( 'parsePage' )
-			->will( $this->returnValue( [
+			->willReturn( [
 				TemplateParser::INFORMATION_FIELDS_KEY => [ [
 					'ImageDescription' => 'blah',
 					'Attribution' => 'blah blah',
 				] ],
 				TemplateParser::LICENSES_KEY => [ [ 'LicenseShortName' => 'quux' ] ],
-			] ) );
+			] );
 		$this->licenseParser->expects( $this->any() )->method( 'parseLicenseString' )
-			->will( $this->returnValue( null ) );
+			->willReturn( null );
 
 		$problems = $this->dataCollector->verifyAttributionMetadata( new ParserOutput(), $this->file );
 		$this->assertSame( [], $problems );
@@ -285,14 +285,14 @@ class DataCollectorTest extends \MediaWikiIntegrationTestCase {
 
 	public function testVerifyWithEmptyMetadata() {
 		$this->templateParser->expects( $this->once() )->method( 'parsePage' )
-			->will( $this->returnValue( [
+			->willReturn( [
 				TemplateParser::COORDINATES_KEY => [],
 				TemplateParser::INFORMATION_FIELDS_KEY => [],
 				TemplateParser::LICENSES_KEY => [],
 				TemplateParser::DELETION_KEY => [],
-			] ) );
+			] );
 		$this->licenseParser->expects( $this->any() )->method( 'parseLicenseString' )
-			->will( $this->returnValue( null ) );
+			->willReturn( null );
 
 		$problems = $this->dataCollector->verifyAttributionMetadata( new ParserOutput(), $this->file );
 
@@ -304,9 +304,9 @@ class DataCollectorTest extends \MediaWikiIntegrationTestCase {
 
 	public function testVerifyWithNoMetadata() {
 		$this->templateParser->expects( $this->once() )->method( 'parsePage' )
-			->will( $this->returnValue( [] ) );
+			->willReturn( [] );
 		$this->licenseParser->expects( $this->any() )->method( 'parseLicenseString' )
-			->will( $this->returnValue( null ) );
+			->willReturn( null );
 
 		$problems = $this->dataCollector->verifyAttributionMetadata( new ParserOutput(), $this->file );
 
@@ -318,9 +318,9 @@ class DataCollectorTest extends \MediaWikiIntegrationTestCase {
 
 	public function testVerifyWithMissingMetadata() {
 		$this->templateParser->expects( $this->once() )->method( 'parsePage' )
-			->will( $this->returnValue( null ) );
+			->willReturn( null );
 		$this->licenseParser->expects( $this->any() )->method( 'parseLicenseString' )
-			->will( $this->returnValue( null ) );
+			->willReturn( null );
 
 		$problems = $this->dataCollector->verifyAttributionMetadata( new ParserOutput(), $this->file );
 

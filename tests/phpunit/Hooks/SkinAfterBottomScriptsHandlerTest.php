@@ -88,7 +88,7 @@ class SkinAfterBottomScriptsHandlerTest extends \MediaWikiIntegrationTestCase {
 		return [
 			'Null value' => [ null, null ],
 			'Nonexistent file' => [ false, null ],
-			'Wrong media type' => [ true, MEDIATYPE_AUDIO ] ,
+			'Wrong media type' => [ true, MEDIATYPE_AUDIO ],
 			'No extended metadata' => [ true, MEDIATYPE_BITMAP ]
 		];
 	}
@@ -171,7 +171,7 @@ class SkinAfterBottomScriptsHandlerTest extends \MediaWikiIntegrationTestCase {
 		$mock = $this->createMock( FormatMetadata::class );
 		$mock->expects( $this->any() )
 			->method( 'fetchExtendedMetadata' )
-			->will( $this->returnValue( $extendedMetadata ) );
+			->willReturn( $extendedMetadata );
 		return $mock;
 	}
 
@@ -184,13 +184,13 @@ class SkinAfterBottomScriptsHandlerTest extends \MediaWikiIntegrationTestCase {
 		$mock = $this->createMock( File::class );
 		$mock->expects( $this->any() )
 			->method( 'getFullURL' )
-			->will( $this->returnValue( 'https://commons.wikimedia.org/image/0/0f/Schema_test.jpg' ) );
+			->willReturn( 'https://commons.wikimedia.org/image/0/0f/Schema_test.jpg' );
 		$mock->expects( $this->any() )
 			->method( 'exists' )
-			->will( $this->returnValue( $exists ) );
+			->willReturn( $exists );
 		$mock->expects( $this->any() )
 			->method( 'getMediaType' )
-			->will( $this->returnValue( $mediaType ) );
+			->willReturn( $mediaType );
 		return $mock;
 	}
 
@@ -201,7 +201,7 @@ class SkinAfterBottomScriptsHandlerTest extends \MediaWikiIntegrationTestCase {
 		$mock = $this->createMock( Title::class );
 		$mock->expects( $this->any() )
 			->method( 'getFullURL' )
-			->will( $this->returnValue( 'https://commons.wikimedia.org/wiki/File:Schema_test.jpg' ) );
+			->willReturn( 'https://commons.wikimedia.org/wiki/File:Schema_test.jpg' );
 		return $mock;
 	}
 
