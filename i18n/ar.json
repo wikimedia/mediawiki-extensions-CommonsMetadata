@@ -15,6 +15,5 @@
 	"commonsmetadata-trackingcategory-no-source": "ملفات بلا مصدر قابل للقراءة الآلية",
 	"commonsmetadata-trackingcategory-no-source-desc": "هذا الملف لم يوضع له قالب معلومات [{{MediaWiki:Commonsmetadata-doc-url}} قابل للقراءة الآلية] أو أن حقل المصدر في القالب متروك فارغاً.",
 	"commonsmetadata-trackingcategory-no-patent": "ملفات بلا براءة اختراع قابلة للقراءة الآلية",
-	"commonsmetadata-trackingcategory-no-patent-desc": "هذا الملف لم يوضع له قالب براءة اختراع [{{MediaWiki:Commonsmetadata-doc-url}} قابل للقراءة الآلية].",
-	"commonsmetadata-artistcredit-separator": "&#32;/&#32;"
+	"commonsmetadata-trackingcategory-no-patent-desc": "هذا الملف لم يوضع له قالب براءة اختراع [{{MediaWiki:Commonsmetadata-doc-url}} قابل للقراءة الآلية]."
 }
