@@ -2,12 +2,13 @@
 	"@metadata": {
 		"authors": [
 			"Fulup",
-			"Pymouss"
+			"Pymouss",
+			"Huñvreüs"
 		]
 	},
 	"commonsmetadata-desc": "Astenn a ra perzh \"extmetadata\" ar mollad titouroù skeudennoù API evit degas titouroù enrollet e pajennoù deskrivañ ar skeudenn a implij ar patromoù a reer ganto war Wikimedia Commons.",
-	"commonsmetadata-trackingcategory-no-license": "Restroù hep aotre-implijout lennus gant un urzhiater",
-	"commonsmetadata-trackingcategory-no-description": "Restroù hep deskrivadur lennus gant un urzhiater",
-	"commonsmetadata-trackingcategory-no-author": "Restroù hep aozer lennus gant un urzhiater",
-	"commonsmetadata-trackingcategory-no-source": "Restroù hep mammenn lennus gant un urzhiater"
+	"commonsmetadata-trackingcategory-no-license": "Restroù hep aotre-implijout lennus gant un urzhiataer",
+	"commonsmetadata-trackingcategory-no-description": "Restroù hep deskrivadur lennus gant un urzhiataer",
+	"commonsmetadata-trackingcategory-no-author": "Restroù hep aozer lennus gant un urzhiataer",
+	"commonsmetadata-trackingcategory-no-source": "Restroù hep mammenn lennus gant un urzhiataer"
 }
