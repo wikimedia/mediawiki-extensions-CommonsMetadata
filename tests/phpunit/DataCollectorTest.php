@@ -4,8 +4,8 @@ namespace CommonsMetadata;
 
 use File;
 use Language;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Title\Title;
-use ParserOutput;
 use PHPUnit\Framework\MockObject\MockObject;
 
 /**

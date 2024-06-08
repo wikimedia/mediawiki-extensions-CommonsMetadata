@@ -4,18 +4,18 @@ namespace CommonsMetadata;
 
 use CommonsMetadata\Hooks\SkinAfterBottomScriptsHandler;
 use Content;
-use DerivativeContext;
 use File;
 use FormatMetadata;
-use IContextSource;
 use LocalRepo;
 use MediaWiki\Content\Hook\ContentAlterParserOutputHook;
+use MediaWiki\Context\DerivativeContext;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\Hook\GetExtendedMetadataHook;
 use MediaWiki\Hook\SkinAfterBottomScriptsHook;
 use MediaWiki\Hook\ValidateExtendedMetadataCacheHook;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Title\Title;
-use ParserOutput;
 use Skin;
 use Wikimedia\Bcp47Code\Bcp47Code;
 

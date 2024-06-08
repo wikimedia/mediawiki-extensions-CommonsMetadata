@@ -9,7 +9,7 @@ use Language;
 use LocalFile;
 use LogicException;
 use MediaWiki\MediaWikiServices;
-use ParserOutput;
+use MediaWiki\Parser\ParserOutput;
 use WikiFilePage;
 
 /**

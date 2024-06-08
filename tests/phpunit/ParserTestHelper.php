@@ -4,8 +4,8 @@ namespace CommonsMetadata;
 
 use ForeignAPIFile;
 use ForeignDBFile;
-use IContextSource;
 use LocalFile;
+use MediaWiki\Context\IContextSource;
 use MediaWiki\MediaWikiServices;
 use PHPUnit\Framework\TestCase;
 
