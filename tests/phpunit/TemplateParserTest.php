@@ -244,6 +244,12 @@ class TemplateParserTest extends \MediaWikiIntegrationTestCase {
 	 */
 	public function testTitle() {
 		$data = $this->parseTestHTML( 'title' );
+
+		// Remove newlines from HTML.
+		$data[TemplateParser::INFORMATION_FIELDS_KEY][0] = str_replace( "\n", '',
+			$data[TemplateParser::INFORMATION_FIELDS_KEY][0]
+		);
+
 		$this->assertFieldEquals( 'ObjectName', '<span class="fn"><span style="font-size:0.9em">'
 			. 'German: <i>Askaris, die mit eingesetzt waren</i></span><span '
 			. 'style="font-weight:bold"><br><i>Askaris used during the operation</i></span></span>',
