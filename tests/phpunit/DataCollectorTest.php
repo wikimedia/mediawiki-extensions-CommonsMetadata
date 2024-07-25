@@ -4,6 +4,7 @@ namespace CommonsMetadata;
 
 use File;
 use Language;
+use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Title\Title;
 use PHPUnit\Framework\MockObject\MockObject;
@@ -134,7 +135,7 @@ class DataCollectorTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	public function testFilePageAbsoluteUrls() {
-		$this->setMwGlobals( 'wgServer', '//TESTING_SERVER' );
+		$this->overrideConfigValue( MainConfigNames::Server, '//TESTING_SERVER' );
 		$this->editPage( __METHOD__, '[[Test]]', '', NS_FILE );
 		$file = new \LocalFile(
 			Title::makeTitle( NS_FILE, __METHOD__ ),
