@@ -3,12 +3,18 @@
 		"authors": [
 			"Nike",
 			"Pyscowicz",
+			"Samoasambia",
 			"Stryn"
 		]
 	},
 	"commonsmetadata-trackingcategory-no-license": "Tiedostot ilman koneellisesti luettavaa lisenssiä",
+	"commonsmetadata-trackingcategory-no-license-desc": "Tiedostossa ei ole yhtään [{{MediaWiki:Commonsmetadata-doc-url}} koneluettavaa] lisenssimallinetta.",
 	"commonsmetadata-trackingcategory-no-description": "Tiedostot ilman koneellisesti luettavaa kuvausta",
+	"commonsmetadata-trackingcategory-no-description-desc": "Tiedostossa ei ole yhtään [{{MediaWiki:Commonsmetadata-doc-url}} koneluettavaa] lisenssimallinetta tai sen kuvauskenttää ei ole täytetty.",
 	"commonsmetadata-trackingcategory-no-author": "Tiedostot ilman koneellisesti luettavaa tekijää",
+	"commonsmetadata-trackingcategory-no-author-desc": "Tiedostossa ei ole yhtään [{{MediaWiki:Commonsmetadata-doc-url}} koneluettavaa] lisenssimallinetta tai sen tekijäkenttää ei ole täytetty.",
 	"commonsmetadata-trackingcategory-no-source": "Tiedostot ilman koneellisesti luettavaa lähdettä",
-	"commonsmetadata-trackingcategory-no-patent": "Tiedostot ilman koneellisesti luettavaa patenttia"
+	"commonsmetadata-trackingcategory-no-source-desc": "Tiedostossa ei ole yhtään [{{MediaWiki:Commonsmetadata-doc-url}} koneluettavaa] lisenssimallinetta tai sen lähdekenttää ei ole täytetty.",
+	"commonsmetadata-trackingcategory-no-patent": "Tiedostot ilman koneellisesti luettavaa patenttia",
+	"commonsmetadata-trackingcategory-no-patent-desc": "Tiedostossa ei ole yhtään [{{MediaWiki:Commonsmetadata-doc-url}} koneluettavaa] patenttimallinetta."
 }
