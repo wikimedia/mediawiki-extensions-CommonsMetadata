@@ -2,12 +2,15 @@
 	"@metadata": {
 		"authors": [
 			"Cekli829",
-			"Sultan11"
+			"Sultan11",
+			"Nemoralis"
 		]
 	},
 	"commonsmetadata-trackingcategory-no-license": "Sistem tərəfindən oxuna bilən bir lisenziya sahib olmayan fayllar",
 	"commonsmetadata-trackingcategory-no-description": "Sistem tərəfindən izahlı təqdimata sahib olmayan fayllar",
 	"commonsmetadata-trackingcategory-no-author": "Sistem tərəfindən oxuna bilən bir müəllifə sahib olmayan fayllar",
 	"commonsmetadata-trackingcategory-no-source": "Sistem tərəfindən oxuna bilən mənbəyə sahib olmayan fayllar",
-	"commonsmetadata-trackingcategory-no-source-desc": "Fayl hər hansı bir [{{MediaWiki:Commonsmetadata-doc-url}} sistem] məlumat şablonuna sahib deyil və ya mənbə sahəsi doldurulmamış."
+	"commonsmetadata-trackingcategory-no-source-desc": "Fayl hər hansı bir [{{MediaWiki:Commonsmetadata-doc-url}} sistem] məlumat şablonuna sahib deyil və ya mənbə sahəsi doldurulmamış.",
+	"commonsmetadata-trackingcategory-no-patent": "Sistem tərəfindən oxuna bilən patenti olmayan fayllar",
+	"commonsmetadata-trackingcategory-no-patent-desc": "Faylın [{{MediaWiki:Commonsmetadata-doc-url}} sistem tərəfindən oxuna bilən] patent şablonu yoxdur."
 }
