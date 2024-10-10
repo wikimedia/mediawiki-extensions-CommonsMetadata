@@ -1,8 +1,19 @@
 {
 	"@metadata": {
 		"authors": [
-			"Luky001"
+			"Luky001",
+			"Spider 001757"
 		]
 	},
-	"commonsmetadata-desc": "Rozšíri vlastnosť „extmetadata“ v API module pre informácie o obrázkoch o informácie uložené na popisných stránkach súborov, ktoré používajú šablóny bežne používané na Wikimedia Commons"
+	"commonsmetadata-desc": "Rozšíri vlastnosť „extmetadata“ v API module pre informácie o obrázkoch o informácie uložené na popisných stránkach súborov, ktoré používajú šablóny bežne používané na Wikimedia Commons",
+	"commonsmetadata-trackingcategory-no-license": "Súbory bez strojovo čitateľnej licencie",
+	"commonsmetadata-trackingcategory-no-license-desc": "Súbor nemá žiadnu [{{MediaWiki:Commonsmetadata-doc-url}} strojovo čitateľnú] šablónu licencie.",
+	"commonsmetadata-trackingcategory-no-description": "Súbory bez strojovo čitateľného popisu",
+	"commonsmetadata-trackingcategory-no-description-desc": "Súbor nemá žiadnu [{{MediaWiki:Commonsmetadata-doc-url}} strojovo čitateľnú] šablónu s informáciami alebo je jej pole s popisom nevyplnené.",
+	"commonsmetadata-trackingcategory-no-author": "Súbory bez strojovo čitateľného autora",
+	"commonsmetadata-trackingcategory-no-author-desc": "Súbor nemá žiadnu [{{MediaWiki:Commonsmetadata-doc-url}} strojovo čitateľnú] šablónu s informáciami alebo je jej pole s autorom nevyplnené.",
+	"commonsmetadata-trackingcategory-no-source": "Súbory bez strojovo čitateľného zdroja",
+	"commonsmetadata-trackingcategory-no-source-desc": "Súbor nemá žiadnu [{{MediaWiki:Commonsmetadata-doc-url}} strojovo čitateľnú] šablónu s informáciami alebo je jej pole so zdrojom nevyplnené.",
+	"commonsmetadata-trackingcategory-no-patent": "Súbory bez strojovo čitateľného patentu",
+	"commonsmetadata-trackingcategory-no-patent-desc": "Súbor nemá žiadnu [{{MediaWiki:Commonsmetadata-doc-url}} strojovo čitateľnú] šablónu patentu."
 }
