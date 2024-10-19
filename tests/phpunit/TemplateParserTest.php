@@ -2,8 +2,6 @@
 
 namespace CommonsMetadata;
 
-require_once __DIR__ . "/ParserTestHelper.php";
-
 /**
  * @covers \CommonsMetadata\TemplateParser
  * @group Extensions/CommonsMetadata

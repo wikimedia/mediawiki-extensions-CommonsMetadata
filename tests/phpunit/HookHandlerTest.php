@@ -8,8 +8,6 @@ use LocalRepo;
 use MediaWiki\Title\Title;
 use PHPUnit\Framework\TestCase;
 
-require_once __DIR__ . "/ParserTestHelper.php";
-
 /**
  * @covers \CommonsMetadata\HookHandler
  * @group Extensions/CommonsMetadata

@@ -44,6 +44,9 @@
 	"AutoloadNamespaces": {
 		"CommonsMetadata\\": "src/"
 	},
+	"TestAutoloadClasses": {
+		"CommonsMetadata\\ParserTestHelper": "tests/phpunit/ParserTestHelper.php"
+	},
 	"TrackingCategories": [
 		"commonsmetadata-trackingcategory-no-license",
 		"commonsmetadata-trackingcategory-no-description",
