@@ -3,7 +3,7 @@
 namespace CommonsMetadata;
 
 use File;
-use Language;
+use MediaWiki\Language\Language;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Title\Title;

@@ -3,10 +3,10 @@
 namespace CommonsMetadata;
 
 use CommonsMetadata\Hooks\SkinAfterBottomScriptsHandler;
-use Content;
 use File;
 use FormatMetadata;
 use LocalRepo;
+use MediaWiki\Content\Content;
 use MediaWiki\Content\Hook\ContentAlterParserOutputHook;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\IContextSource;
