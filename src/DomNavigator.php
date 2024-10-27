@@ -45,7 +45,7 @@ class DomNavigator {
 	 * @param DOMNode|null $context if present, the method will only search inside this element
 	 * @return DOMNodeList|DOMElement[]
 	 */
-	public function findElementsWithClass( $element, $class, DOMNode $context = null ) {
+	public function findElementsWithClass( $element, $class, ?DOMNode $context = null ) {
 		$element = $this->handleElementOrList( $element );
 		$xpath = "./descendant-or-self::{$element}" .
 			"[contains(concat(' ', normalize-space(@class), ' '), ' $class ')]";
@@ -60,7 +60,7 @@ class DomNavigator {
 	 * @param DOMNode|null $context if present, the method will only search inside this element
 	 * @return DOMNodeList|DOMElement[]
 	 */
-	public function findElementsWithClassPrefix( $element, $classPrefix, DOMNode $context = null ) {
+	public function findElementsWithClassPrefix( $element, $classPrefix, ?DOMNode $context = null ) {
 		$element = $this->handleElementOrList( $element );
 		$xpath = "./descendant-or-self::{$element}" .
 			"[contains(concat(' ', normalize-space(@class)), ' $classPrefix')]";
@@ -75,7 +75,7 @@ class DomNavigator {
 	 * @param DOMNode|null $context if present, the method will only search inside this element
 	 * @return DOMNodeList|DOMElement[]
 	 */
-	public function findElementsWithClassAndLang( $element, $class, DOMNode $context = null ) {
+	public function findElementsWithClassAndLang( $element, $class, ?DOMNode $context = null ) {
 		$element = $this->handleElementOrList( $element );
 		$xpath = "./descendant-or-self::{$element}" .
 			"[@lang and contains(concat(' ', normalize-space(@class), ' '), ' $class ')]";
@@ -91,7 +91,7 @@ class DomNavigator {
 	 * @param DOMNode|null $context if present, the method will only search inside this element
 	 * @return DOMNodeList|DOMElement[]
 	 */
-	public function findElementsWithId( $element, $id, DOMNode $context = null ) {
+	public function findElementsWithId( $element, $id, ?DOMNode $context = null ) {
 		$element = $this->handleElementOrList( $element );
 		$xpath = "./descendant-or-self::{$element}[@id='$id']";
 		return $this->findByXpath( $xpath, $context );
@@ -105,7 +105,7 @@ class DomNavigator {
 	 * @param DOMNode|null $context if present, the method will only search inside this element
 	 * @return DOMNodeList|DOMElement[]
 	 */
-	public function findElementsWithIdPrefix( $element, $idPrefix, DOMNode $context = null ) {
+	public function findElementsWithIdPrefix( $element, $idPrefix, ?DOMNode $context = null ) {
 		$element = $this->handleElementOrList( $element );
 		$xpath = "./descendant-or-self::{$element}[starts-with(@id, '$idPrefix')]";
 		return $this->findByXpath( $xpath, $context );
@@ -120,7 +120,7 @@ class DomNavigator {
 	 * @param DOMNode|null $context if present, the method will only search inside this element
 	 * @return DOMNodeList|DOMElement[]
 	 */
-	public function findElementsWithAttribute( $element, $attribute, DOMNode $context = null ) {
+	public function findElementsWithAttribute( $element, $attribute, ?DOMNode $context = null ) {
 		$element = $this->handleElementOrList( $element );
 		$xpath = "./descendant-or-self::{$element}[@{$attribute}]";
 		return $this->findByXpath( $xpath, $context );
@@ -186,7 +186,7 @@ class DomNavigator {
 	 * @param DOMNode|null $context
 	 * @return DOMNodeList|DOMNode[]
 	 */
-	public function findByXpath( $xpath, DOMNode $context = null ) {
+	public function findByXpath( $xpath, ?DOMNode $context = null ) {
 		$results = $this->domx->query( $xpath, $context );
 		if ( $results === false ) {
 			$error = libxml_get_last_error();
@@ -204,7 +204,7 @@ class DomNavigator {
 	 * @param DOMNode|null $context
 	 * @return DOMNode|null
 	 */
-	public function getByXpath( $xpath, DOMNode $context = null ) {
+	public function getByXpath( $xpath, ?DOMNode $context = null ) {
 		$results = $this->findByXpath( $xpath, $context );
 		foreach ( $results as $result ) {
 			return $result;
