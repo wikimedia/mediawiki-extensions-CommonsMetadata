@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Mainframe98",
-			"Siebrand"
+			"Siebrand",
+			"Ooswesthoesbes"
 		]
 	},
 	"commonsmetadata-desc": "Breidt de eigenschap \"extmetadata\" van de API-module voor afbeeldingengegevens uit met gegevens die zijn opgeslagen in de bestandsbeschrijvingspagina's die veel gebruikte sjablonen van Wikimedia Commons gebruiken",
