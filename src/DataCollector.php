@@ -8,6 +8,7 @@ use InvalidArgumentException;
 use LocalFile;
 use LogicException;
 use MediaWiki\Language\Language;
+use MediaWiki\Linker\Linker;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserOutput;
 use WikiFilePage;
@@ -123,7 +124,7 @@ class DataCollector {
 		if ( !$parserOutput->hasText() ) {
 			$descriptionText = '';
 		} else {
-			$descriptionText = $parserOutput->getText();
+			$descriptionText = $parserOutput->getRawText();
 		}
 
 		$templateData = $this->templateParser->parsePage( $descriptionText );
@@ -268,7 +269,7 @@ class DataCollector {
 			// LocalFile gets the text in a different way, and ends up with different output
 			// (specifically, relative instead of absolute URLs), so transform local URLs
 			// to absolute URLs after parse.
-			$text = ( new ParserOutput( $text ) )->getText( [ 'absoluteURLs' => true ] );
+			$text = Linker::expandLocalLinks( $text );
 		}
 
 		return $text;
