@@ -5,7 +5,7 @@
 			"Janezdrilc"
 		]
 	},
-	"commonsmetadata-desc": "Razširi lastnost »extmetadatai« modula API za slikovne informacije tako, da ta vključuje informacije, shranjene na straneh z opisi slik, ki uporabljajo predloge, ki se pogosto uporabljajo v Wikimedijini zbirki.",
+	"commonsmetadata-desc": "Razširi lastnost »extmetadatai« modula API-ja za slikovne informacije tako, da ta vključuje informacije, shranjene na straneh z opisi slik, ki uporabljajo predloge, ki se pogosto uporabljajo v Wikimedijini zbirki.",
 	"commonsmetadata-trackingcategory-no-license": "Datoteke brez strojno berljivega dovoljenja",
 	"commonsmetadata-trackingcategory-no-license-desc": "Datoteka ne vsebuje nobene [{{MediaWiki:Commonsmetadata-doc-url}} strojno berljive] predloge o licenci.",
 	"commonsmetadata-trackingcategory-no-description": "Datoteke brez strojno berljivega opisa",
