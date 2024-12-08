@@ -393,17 +393,6 @@ class TemplateParserTest extends \MediaWikiIntegrationTestCase {
 			. '00:25, 16 November 2014 (UTC)', $data, TemplateParser::DELETION_KEY );
 	}
 
-	/**
-	 * Manually executed speed test to compare performance of the two parsers.
-	 */
-	public function _testParsingSpeed() {
-		for ( $i = 0; $i < 100; $i++ ) {
-			foreach ( ParserTestHelper::$testHTMLFiles as $test => $_ ) {
-				$this->parseTestHTML( $test );
-			}
-		}
-	}
-
 	// -------------------- helpers --------------------
 
 	/**
