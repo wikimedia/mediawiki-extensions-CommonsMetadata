@@ -138,7 +138,8 @@ class TemplateParser {
 	 * @return array The properties extracted from the page.
 	 */
 	public function parsePage( $html ) {
-		if ( !$html ) { // DOMDocument does not like empty strings
+		if ( !$html ) {
+			// DOMDocument does not like empty strings
 			return [];
 		}
 
@@ -459,7 +460,8 @@ class TemplateParser {
 	 */
 	protected function parseContents( DomNavigator $domNavigator, DOMNode $node ) {
 		$languageNodes = $domNavigator->findElementsWithClassAndLang( 'div', 'description', $node );
-		if ( !$languageNodes->length ) { // no language templates at all
+		if ( !$languageNodes->length ) {
+			// no language templates at all
 			return $this->cleanedInnerHtml( $node );
 		}
 		$languages = [];
@@ -490,7 +492,8 @@ class TemplateParser {
 		foreach ( $languageNames as $languageName ) {
 			$parentNode = $languageName->parentNode;
 			if ( $parentNode !== null && !$node->isSameNode( $parentNode ) ) {
-				continue; // language names are direct children
+				// language names are direct children
+				continue;
 			}
 			$node->removeChild( $languageName );
 		}

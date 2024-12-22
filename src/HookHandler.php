@@ -98,9 +98,9 @@ class HookHandler implements
 	 * @return bool Is metadata still valid
 	 */
 	public function onValidateExtendedMetadataCache( $timestamp, $file ) {
-		return // use cached value if...
-			// we don't know when the file was last updated
-			!$file->getDescriptionTouched()
+		// use cached value if...
+		// we don't know when the file was last updated
+		return !$file->getDescriptionTouched()
 			// or last update was before we cached it
 			|| wfTimestamp( TS_UNIX, $file->getDescriptionTouched() )
 				<= wfTimestamp( TS_UNIX, $timestamp );

@@ -343,7 +343,8 @@ class DataCollector {
 				unset( $categories[$i] );
 			}
 		}
-		$categories = array_merge( $categories ); // renumber to avoid holes in array
+		// renumber to avoid holes in array
+		$categories = array_merge( $categories );
 		return $licenses;
 	}
 
@@ -363,8 +364,10 @@ class DataCollector {
 				}
 			}
 		}
-		$categories = array_merge( $categories ); // renumber to avoid holes in array
-		return array_unique( $assessments ); // potd/poty can happen multiple times
+		// renumber to avoid holes in array
+		$categories = array_merge( $categories );
+		// potd/poty can happen multiple times
+		return array_unique( $assessments );
 	}
 
 	/**

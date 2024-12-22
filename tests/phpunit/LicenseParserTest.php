@@ -124,6 +124,7 @@ class LicenseParserTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	public static function provideGetLicensePriorityData() {
+		// phpcs:disable MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment
 		return [
 			[ // PD wins over CC
 				[ // this should have higher priority...
@@ -190,6 +191,7 @@ class LicenseParserTest extends \MediaWikiIntegrationTestCase {
 				],
 			],
 		];
+		// phpcs:enable MediaWiki.WhiteSpace.SpaceBeforeSingleLineComment.NewLineComment
 	}
 
 	public function testSortDataByLicensePriority() {

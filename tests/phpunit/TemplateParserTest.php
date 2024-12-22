@@ -82,7 +82,8 @@ class TemplateParserTest extends \MediaWikiIntegrationTestCase {
 	 */
 	public function testDateInMultipleLanguages() {
 		$parser = $this->getParser( false );
-		$data = $this->parseTestHTML( 'multilang_date', $parser ); // en/de dates
+		// en/de dates
+		$data = $this->parseTestHTML( 'multilang_date', $parser );
 		$dataCollector = new DataCollector();
 		$dataCollector->setTemplateParser( $parser );
 		$dataCollector->setLicenseParser( new LicenseParser() );
@@ -113,7 +114,8 @@ class TemplateParserTest extends \MediaWikiIntegrationTestCase {
 	 * be returned, regardless of user language.
 	 */
 	public function testDescriptionInMultipleLanguages() {
-		$data = $this->parseTestHTML( 'multilang' ); // en/fr/de description
+		// en/fr/de description
+		$data = $this->parseTestHTML( 'multilang' );
 		$this->assertFieldContainsString( 'ImageDescription', 'Assembly', $data,
 			TemplateParser::INFORMATION_FIELDS_KEY );
 		$this->assertFieldNotContainsString( 'ImageDescription', 'Rassemblement', $data,
@@ -296,8 +298,6 @@ class TemplateParserTest extends \MediaWikiIntegrationTestCase {
 		$this->assertFieldEquals( 'DateTimeOriginal', '1885-1890', $data,
 			TemplateParser::INFORMATION_FIELDS_KEY );
 	}
-
-	// -------------------- license tests --------------------
 
 	public function testSingleLicense() {
 		$data = $this->parseTestHTML( 'simple' );

@@ -45,8 +45,6 @@ class DataCollectorTest extends \MediaWikiIntegrationTestCase {
 		$this->dataCollector->setLicenseParser( $this->licenseParser );
 	}
 
-	/*------------------------------- Format tests --------------------------*/
-
 	public function testEmptyMetadata() {
 		$this->templateParser->expects( $this->once() )->method( 'parsePage' )
 			->willReturn( [
@@ -151,8 +149,6 @@ class DataCollectorTest extends \MediaWikiIntegrationTestCase {
 		$this->dataCollector->collect( $metadata, $file );
 	}
 
-	/*------------------------------- Logic tests --------------------------*/
-
 	public function testGetCategoryMetadata() {
 		$getCategoryMetadataMethod = new \ReflectionMethod(
 			$this->dataCollector, 'getCategoryMetadata' );
@@ -248,8 +244,6 @@ class DataCollectorTest extends \MediaWikiIntegrationTestCase {
 		] ] );
 		$this->assertMetadataValue( 'NonFree', '1', $templateData );
 	}
-
-	/*-------------------- verifyAttributionMetadata tests -------------*/
 
 	public function testVerifyAttributionMetadata() {
 		$this->templateParser->expects( $this->once() )->method( 'parsePage' )
@@ -364,8 +358,6 @@ class DataCollectorTest extends \MediaWikiIntegrationTestCase {
 
 		$this->assertNotContains( 'no-patent', $problems );
 	}
-
-	/*------------------------------- Helpers --------------------------*/
 
 	protected function assertMetadataValue( $field, $expected, $metadata, $message = '' ) {
 		$this->assertArrayHasKey( $field, $metadata,

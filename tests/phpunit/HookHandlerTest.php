@@ -127,8 +127,6 @@ class HookHandlerTest extends TestCase {
 		$this->assertEquals( $expected, $metadata[$field]['value'] );
 	}
 
-	/*----------------------------------------------------------*/
-
 	public function testDoSkinAfterBottomScripts() {
 		$url = 'https://commons.wikimedia.org/image/0/0f/Schema_test.jpg';
 		$title = $this->getMockTitle( $url );
