@@ -31,10 +31,14 @@ class LicenseParser {
 	 * - region: e.g. nl
 	 * - name: all the above put together, e.g. cc-by-sa-2.5-nl
 	 * Only name is required.
-	 * @param string $str
+	 * @param string|null $str
 	 * @return array|null
 	 */
-	public function parseLicenseString( $str ) {
+	public function parseLicenseString( ?string $str ): ?array {
+		if ( $str === null ) {
+			return null;
+		}
+
 		return $this->parseCreativeCommonsLicenseString( $str )
 			?: $this->parsePublicDomainLicenseString( $str );
 	}
@@ -159,7 +163,7 @@ class LicenseParser {
 	/**
 	 * Returns a priority value for this license. The license with the highest priority will be
 	 * returned in the GetExtendedMetadata hook.
-	 * @param array $licenseData data from LicenseParser::parseLicenseString()
+	 * @param array|null $licenseData data from LicenseParser::parseLicenseString()
 	 * @return int
 	 */
 	protected function getLicensePriority( $licenseData ) {
