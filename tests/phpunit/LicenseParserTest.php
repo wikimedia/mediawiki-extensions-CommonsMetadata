@@ -15,32 +15,21 @@ class LicenseParserTest extends \MediaWikiIntegrationTestCase {
 		$this->licenseParser = new LicenseParser();
 	}
 
-	public function testEmptyString() {
-		$licenseString = '';
+	/**
+	 * @dataProvider provideUnrecognizedLicenses
+	 */
+	public function testUnrecognizedLicenses( ?string $licenseString ): void {
 		$data = $this->licenseParser->parseLicenseString( $licenseString );
 		$this->assertLicenseIsNotRecognized( $data );
 	}
 
-	public function testTotallyWrongString() {
-		$licenseString = 'foo';
-		$data = $this->licenseParser->parseLicenseString( $licenseString );
-		$this->assertLicenseIsNotRecognized( $data );
-	}
-
-	public function testCCLicenseWithoutVersion() {
-		$licenseString = 'cc-by-sa';
-		$data = $this->licenseParser->parseLicenseString( $licenseString );
-		$this->assertLicenseIsNotRecognized( $data );
-	}
-
-	public function testNonFreeLicense() {
-		$licenseString = 'cc-by-nc-sa-3.0';
-		$data = $this->licenseParser->parseLicenseString( $licenseString );
-		$this->assertLicenseIsNotRecognized( $data );
-
-		$licenseString = 'cc-by-nd-2.1';
-		$data = $this->licenseParser->parseLicenseString( $licenseString );
-		$this->assertLicenseIsNotRecognized( $data );
+	public function provideUnrecognizedLicenses(): iterable {
+		yield 'null license string' => [ null ];
+		yield 'empty license string' => [ '' ];
+		yield 'wrong license string' => [ 'foo' ];
+		yield 'CC license without version' => [ 'cc-by-sa' ];
+		yield 'non-free license (CC-BY-NC-SA 3.0)' => [ 'cc-by-nc-sa-3.0' ];
+		yield 'non-free license (CC-BY-ND 2.1)' => [ 'cc-by-nd-2.1' ];
 	}
 
 	public function testNormalCCLicense() {
