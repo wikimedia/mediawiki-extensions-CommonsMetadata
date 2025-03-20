@@ -3,6 +3,7 @@
 namespace CommonsMetadata;
 
 use File;
+use MediaWiki\FileRepo\File\LocalFile;
 use MediaWiki\Language\Language;
 use MediaWiki\MainConfigNames;
 use MediaWiki\Parser\ParserOutput;
@@ -135,7 +136,7 @@ class DataCollectorTest extends \MediaWikiIntegrationTestCase {
 	public function testFilePageAbsoluteUrls() {
 		$this->overrideConfigValue( MainConfigNames::Server, '//TESTING_SERVER' );
 		$this->editPage( __METHOD__, '[[Test]]', '', NS_FILE );
-		$file = new \LocalFile(
+		$file = new LocalFile(
 			Title::makeTitle( NS_FILE, __METHOD__ ),
 			$this->getServiceContainer()->getRepoGroup()->getLocalRepo()
 		);

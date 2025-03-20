@@ -5,8 +5,8 @@ namespace CommonsMetadata;
 use File;
 use ForeignAPIFile;
 use InvalidArgumentException;
-use LocalFile;
 use LogicException;
+use MediaWiki\FileRepo\File\LocalFile;
 use MediaWiki\Language\Language;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MediaWikiServices;
@@ -265,7 +265,7 @@ class DataCollector {
 		# descriptionCacheExpiry (disabled on Wikimedia).
 		$text = $file->getDescriptionText( $language );
 
-		if ( get_class( $file ) == 'LocalFile' || get_class( $file ) == 'LocalFileMock' ) {
+		if ( get_class( $file ) == LocalFile::class || get_class( $file ) == 'LocalFileMock' ) {
 			// LocalFile gets the text in a different way, and ends up with different output
 			// (specifically, relative instead of absolute URLs), so transform local URLs
 			// to absolute URLs after parse.

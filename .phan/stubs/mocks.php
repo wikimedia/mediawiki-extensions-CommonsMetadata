@@ -5,6 +5,9 @@
  * @phpcs:disable MediaWiki.Files.ClassMatchesFilename,Generic.Files.OneObjectStructurePerFile
  */
 
+use MediaWiki\FileRepo\File\ForeignDBFile;
+use MediaWiki\FileRepo\File\LocalFile;
+
 class ForeignDBFileMock extends ForeignDBFile {
 }
 
