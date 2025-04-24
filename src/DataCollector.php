@@ -2,16 +2,16 @@
 
 namespace CommonsMetadata;
 
-use File;
-use ForeignAPIFile;
 use InvalidArgumentException;
 use LogicException;
+use MediaWiki\FileRepo\File\File;
+use MediaWiki\FileRepo\File\ForeignAPIFile;
 use MediaWiki\FileRepo\File\LocalFile;
 use MediaWiki\Language\Language;
 use MediaWiki\Linker\Linker;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\WikiFilePage;
 use MediaWiki\Parser\ParserOutput;
-use WikiFilePage;
 
 /**
  * Class to handle metadata collection and formatting, and manage more specific data extraction

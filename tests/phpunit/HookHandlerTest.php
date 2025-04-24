@@ -3,8 +3,8 @@
 namespace CommonsMetadata;
 
 use CommonsMetadata\Hooks\SkinAfterBottomScriptsHandler;
-use File;
-use LocalRepo;
+use MediaWiki\FileRepo\File\File;
+use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\Title\Title;
 use PHPUnit\Framework\TestCase;
 

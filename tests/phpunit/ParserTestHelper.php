@@ -2,10 +2,10 @@
 
 namespace CommonsMetadata;
 
-use ForeignAPIFile;
-use ForeignDBFile;
-use LocalFile;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\FileRepo\File\ForeignAPIFile;
+use MediaWiki\FileRepo\File\ForeignDBFile;
+use MediaWiki\FileRepo\File\LocalFile;
 use MediaWiki\MediaWikiServices;
 use PHPUnit\Framework\TestCase;
 

@@ -2,7 +2,7 @@
 
 namespace CommonsMetadata;
 
-use File;
+use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\File\LocalFile;
 use MediaWiki\Language\Language;
 use MediaWiki\MainConfigNames;

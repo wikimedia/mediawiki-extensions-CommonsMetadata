@@ -3,20 +3,20 @@
 namespace CommonsMetadata;
 
 use CommonsMetadata\Hooks\SkinAfterBottomScriptsHandler;
-use File;
 use FormatMetadata;
-use LocalRepo;
 use MediaWiki\Content\Content;
 use MediaWiki\Content\Hook\ContentAlterParserOutputHook;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\IContextSource;
+use MediaWiki\FileRepo\File\File;
+use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\Hook\GetExtendedMetadataHook;
 use MediaWiki\Hook\SkinAfterBottomScriptsHook;
 use MediaWiki\Hook\ValidateExtendedMetadataCacheHook;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Skin\Skin;
 use MediaWiki\Title\Title;
-use Skin;
 use Wikimedia\Bcp47Code\Bcp47Code;
 
 /**

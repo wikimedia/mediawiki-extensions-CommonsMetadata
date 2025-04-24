@@ -2,8 +2,8 @@
 
 namespace CommonsMetadata\Hooks;
 
-use File;
 use FormatMetadata;
+use MediaWiki\FileRepo\File\File;
 use MediaWiki\Html\Html;
 use MediaWiki\Title\Title;
 
