@@ -23,7 +23,7 @@ class LicenseParserTest extends \MediaWikiIntegrationTestCase {
 		$this->assertLicenseIsNotRecognized( $data );
 	}
 
-	public function provideUnrecognizedLicenses(): iterable {
+	public static function provideUnrecognizedLicenses(): iterable {
 		yield 'null license string' => [ null ];
 		yield 'empty license string' => [ '' ];
 		yield 'wrong license string' => [ 'foo' ];
