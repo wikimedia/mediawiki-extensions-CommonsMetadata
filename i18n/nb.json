@@ -5,7 +5,7 @@
 			"Jon Harald Søby"
 		]
 	},
-	"commonsmetadata-desc": "Utvider API-modulens \"extmetadata\" egenskaper for billedinformasjon til å inkludere informasjon fra filsider for de mest brukte malene på Wikimedia Commons",
+	"commonsmetadata-desc": "Utvider «extmetadata»-egenskapen i API-modulen for bildeinformasjon til å inkludere informasjon fra filsider for ofte brukte maler på Wikimedia Commons.",
 	"commonsmetadata-trackingcategory-no-license": "Filer uten maskinlesbar lisens",
 	"commonsmetadata-trackingcategory-no-license-desc": "Denne filen har ingen [{{MediaWiki:Commonsmetadata-doc-url}} maskinlesbar] lisensmal.",
 	"commonsmetadata-trackingcategory-no-description": "Filer uten maskinlesbar beskrivelse",
