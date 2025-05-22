@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Ant176",
+			"Foomin10",
 			"Fryed-peach",
 			"Shirayuki",
 			"Yusuke1109",
@@ -14,7 +15,7 @@
 	"commonsmetadata-trackingcategory-no-description": "機械的に読み取れる解説がないファイル",
 	"commonsmetadata-trackingcategory-no-description-desc": "このファイルには[{{MediaWiki:Commonsmetadata-doc-url}} 機械可読]な情報テンプレートがないか、その解説欄が記入されていません。",
 	"commonsmetadata-trackingcategory-no-author": "機械的に読み取れる作者がないファイル",
-	"commonsmetadata-trackingcategory-no-author-desc": "このファイルには[{{MediaWiki:Commonsmetadata-doc-url}} 機械可読]な情報テンプレートがないか、その著者欄が記入されていません。",
+	"commonsmetadata-trackingcategory-no-author-desc": "このファイルには[{{MediaWiki:Commonsmetadata-doc-url}} 機械可読]な情報テンプレートがないか、その作者欄が記入されていません。",
 	"commonsmetadata-trackingcategory-no-source": "機械的に読み取れる情報源がないファイル",
 	"commonsmetadata-trackingcategory-no-source-desc": "このファイルには[{{MediaWiki:Commonsmetadata-doc-url}} 機械可読]な情報テンプレートがないか、その情報源が記入されていません。",
 	"commonsmetadata-trackingcategory-no-patent": "機械的に読み取れる特許がないファイル",
