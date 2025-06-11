@@ -4,6 +4,7 @@ namespace CommonsMetadata;
 
 use DOMElement;
 use DOMNode;
+use MediaWiki\MediaWikiServices;
 
 /**
  * Class to parse metadata from commons formatted wiki pages.
@@ -409,13 +410,14 @@ class TemplateParser {
 	 */
 	protected function parseNuke( DomNavigator $domNavigator ) {
 		$deletions = [];
+		$urlUtils = MediaWikiServices::getInstance()->getUrlUtils();
 
 		foreach ( $domNavigator->findElementsWithClass( '*', 'nuke' ) as $nukeNode ) {
 			$nukeLink = $nukeNode->firstChild;
 			if ( $nukeLink
 				&& $nukeLink instanceof DOMElement && $nukeLink->hasAttribute( 'href' )
 			) {
-				$urlBits = wfParseUrl( $nukeLink->getAttribute( 'href' ) );
+				$urlBits = $urlUtils->parse( $nukeLink->getAttribute( 'href' ) ) ?? [];
 				if ( isset( $urlBits['query'] ) ) {
 					$params = wfCgiToArray( $urlBits['query'] );
 					if ( isset( $params['action'] ) && $params['action'] === 'delete'
