@@ -17,5 +17,5 @@
 	"commonsmetadata-trackingcategory-no-source": "Makine sistemi tarafından okunabilir kaynağa sahip olmayan dosyalar",
 	"commonsmetadata-trackingcategory-no-source-desc": "Dosya herhangi bir [{{MediaWiki:Commonsmetadata-doc-url}} makine okunabilir] bilgi şablonuna sahip değil ya da kaynak alanı doldurulmamış.",
 	"commonsmetadata-trackingcategory-no-patent": "Makine sistemi tarafından okunabilir bir patente sahip olmayan dosyalar",
-	"commonsmetadata-trackingcategory-no-patent-desc": "Dosya bir [{{MediaWiki:Commonsmetadata-doc-url}} makineyle okunabilen] patent şablonuna sahip değil."
+	"commonsmetadata-trackingcategory-no-patent-desc": "Dosya herhangi bir [{{MediaWiki:Commonsmetadata-doc-url}} makine okunabilir] patent şablonuna sahip değil."
 }
