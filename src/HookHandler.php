@@ -4,16 +4,21 @@ namespace CommonsMetadata;
 
 use CommonsMetadata\Hooks\SkinAfterBottomScriptsHandler;
 use FormatMetadata;
+use MediaWiki\Category\TrackingCategories;
+use MediaWiki\Config\ConfigFactory;
 use MediaWiki\Content\Content;
 use MediaWiki\Content\Hook\ContentAlterParserOutputHook;
 use MediaWiki\Context\DerivativeContext;
 use MediaWiki\Context\IContextSource;
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\LocalRepo;
+use MediaWiki\FileRepo\RepoGroup;
 use MediaWiki\Hook\GetExtendedMetadataHook;
 use MediaWiki\Hook\SkinAfterBottomScriptsHook;
 use MediaWiki\Hook\ValidateExtendedMetadataCacheHook;
-use MediaWiki\MediaWikiServices;
+use MediaWiki\Language\Language;
+use MediaWiki\Languages\LanguageFactory;
+use MediaWiki\Languages\LanguageFallback;
 use MediaWiki\Parser\ParserOutput;
 use MediaWiki\Skin\Skin;
 use MediaWiki\Title\Title;
@@ -36,6 +41,16 @@ class HookHandler implements
 	 * @var float
 	 */
 	private const VERSION = 1.2;
+
+	public function __construct(
+		private readonly ConfigFactory $configFactory,
+		private readonly Language $contentLanguage,
+		private readonly LanguageFactory $languageFactory,
+		private readonly LanguageFallback $languageFallback,
+		private readonly RepoGroup $repoGroup,
+		private readonly TrackingCategories $trackingCategories,
+	) {
+	}
 
 	/**
 	 * Hook handler for extended metadata
@@ -70,7 +85,7 @@ class HookHandler implements
 
 		$templateParser = new TemplateParser();
 		$templateParser->setMultiLanguage( !$singleLang );
-		$fallbacks = MediaWikiServices::getInstance()->getLanguageFallback()->getAll( $lang->getCode() );
+		$fallbacks = $this->languageFallback->getAll( $lang->getCode() );
 		array_unshift( $fallbacks, $lang->getCode() );
 		$templateParser->setPriorityLanguages( $fallbacks );
 		$templateParser->setArtistCreditSeparator( $context->msg( 'commonsmetadata-artistcredit-separator' )->text() );
@@ -139,9 +154,7 @@ class HookHandler implements
 		 * * attempt to fetch from cache, which should usually be fine
 		 * * then fallback to DB, for files that have just been renamed
 		 */
-		$services = MediaWikiServices::getInstance();
-		$trackingCategories = $services->getTrackingCategories();
-		$repo = $services->getRepoGroup()->getLocalRepo();
+		$repo = $this->repoGroup->getLocalRepo();
 		if ( $title->isRedirect() ) {
 			return;
 		}
@@ -153,12 +166,12 @@ class HookHandler implements
 			}
 		}
 
-		$langCode = $parserOutput->getLanguage() ?? $services->getContentLanguage();
-		$dataCollector = self::getDataCollector( $langCode, true );
+		$langCode = $parserOutput->getLanguage() ?? $this->contentLanguage;
+		$dataCollector = $this->getDataCollector( $langCode, true );
 
 		$categoryKeys = $dataCollector->verifyAttributionMetadata( $parserOutput, $file );
 		foreach ( $categoryKeys as $key ) {
-			$trackingCategories->addTrackingCategory(
+			$this->trackingCategories->addTrackingCategory(
 				$parserOutput,
 				'commonsmetadata-trackingcategory-' . $key,
 				$title
@@ -171,15 +184,15 @@ class HookHandler implements
 	 * @param bool $singleLang
 	 * @return DataCollector
 	 */
-	private static function getDataCollector( Bcp47Code $langCode, $singleLang ) {
+	private function getDataCollector( Bcp47Code $langCode, $singleLang ) {
 		$templateParser = new TemplateParser();
 		$templateParser->setMultiLanguage( !$singleLang );
-		$fallbacks = MediaWikiServices::getInstance()->getLanguageFallback()->getAll( $langCode->toBcp47Code() );
+		$fallbacks = $this->languageFallback->getAll( $langCode->toBcp47Code() );
 		array_unshift( $fallbacks, $langCode->toBcp47Code() );
 		$templateParser->setPriorityLanguages( $fallbacks );
 		$templateParser->setArtistCreditSeparator( wfMessage( 'commonsmetadata-artistcredit-separator' )->text() );
 
-		$lang = MediaWikiServices::getInstance()->getLanguageFactory()->getLanguage( $langCode );
+		$lang = $this->languageFactory->getLanguage( $langCode );
 
 		$dataCollector = new DataCollector();
 		$dataCollector->setLanguage( $lang );
@@ -211,7 +224,7 @@ class HookHandler implements
 			return;
 		}
 
-		$localRepo = MediaWikiServices::getInstance()->getRepoGroup()->getLocalRepo();
+		$localRepo = $this->repoGroup->getLocalRepo();
 
 		// Get and prepare FormatMetadata object.
 		$format = new FormatMetadata;
@@ -222,7 +235,7 @@ class HookHandler implements
 		$format->setContext( $context );
 
 		// Get URL for public domain page from config.
-		$config = MediaWikiServices::getInstance()->getConfigFactory()->makeConfig( 'CommonsMetadata' );
+		$config = $this->configFactory->makeConfig( 'CommonsMetadata' );
 		$publicDomainPageUrl = $config->get( 'CommonsMetadataPublicDomainPageUrl' );
 
 		$handler = new SkinAfterBottomScriptsHandler( $format, $publicDomainPageUrl );

@@ -16,7 +16,15 @@
 	},
 	"HookHandlers": {
 		"main": {
-			"class": "CommonsMetadata\\HookHandler"
+			"class": "CommonsMetadata\\HookHandler",
+			"services": [
+				"ConfigFactory",
+				"ContentLanguage",
+				"LanguageFactory",
+				"LanguageFallback",
+				"RepoGroup",
+				"TrackingCategories"
+			]
 		}
 	},
 	"MessagesDirs": {

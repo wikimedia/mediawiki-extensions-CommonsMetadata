@@ -5,6 +5,7 @@ namespace CommonsMetadata;
 use CommonsMetadata\Hooks\SkinAfterBottomScriptsHandler;
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\LocalRepo;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Title\Title;
 use PHPUnit\Framework\TestCase;
 
@@ -15,6 +16,18 @@ use PHPUnit\Framework\TestCase;
 class HookHandlerTest extends TestCase {
 	/** @var ParserTestHelper */
 	protected $parserTestHelper;
+
+	private function newHookHandler(): HookHandler {
+		$services = MediaWikiServices::getInstance();
+		return new HookHandler(
+			$services->getConfigFactory(),
+			$services->getContentLanguage(),
+			$services->getLanguageFactory(),
+			$services->getLanguageFallback(),
+			$services->getRepoGroup(),
+			$services->getTrackingCategories()
+		);
+	}
 
 	public function setUp(): void {
 		$this->parserTestHelper = new ParserTestHelper();
@@ -31,7 +44,7 @@ class HookHandlerTest extends TestCase {
 		$file = $this->parserTestHelper->getLocalFile( $description, $categories );
 		$context = $this->parserTestHelper->getContext( 'en' );
 
-		( new HookHandler )->onGetExtendedMetadata( $metadata, $file, $context, true, $maxCache );
+		$this->newHookHandler()->onGetExtendedMetadata( $metadata, $file, $context, true, $maxCache );
 
 		// cache interval was not changed
 		$this->assertEquals( 3600, $maxCache );
@@ -51,7 +64,7 @@ class HookHandlerTest extends TestCase {
 		$file = $this->parserTestHelper->getForeignApiFile( $description );
 		$context = $this->parserTestHelper->getContext( 'en' );
 
-		( new HookHandler )->onGetExtendedMetadata( $metadata, $file, $context, true, $maxCache );
+		$this->newHookHandler()->onGetExtendedMetadata( $metadata, $file, $context, true, $maxCache );
 
 		// cache interval was not changed
 		$this->assertEquals( 3600, $maxCache );
@@ -72,7 +85,7 @@ class HookHandlerTest extends TestCase {
 		$file = $this->parserTestHelper->getForeignDbFile( $description, $categories );
 		$context = $this->parserTestHelper->getContext( 'en' );
 
-		( new HookHandler )->onGetExtendedMetadata( $metadata, $file, $context, true, $maxCache );
+		$this->newHookHandler()->onGetExtendedMetadata( $metadata, $file, $context, true, $maxCache );
 
 		// cache interval is 12 hours for all remote files
 		$this->assertEquals( 3600 * 12, $maxCache );
@@ -96,7 +109,7 @@ class HookHandlerTest extends TestCase {
 		$file = $this->parserTestHelper->getLocalFile( $description, [] );
 		$context = $this->parserTestHelper->getContext( 'en' );
 
-		( new HookHandler )->onGetExtendedMetadata( $actualMetadata, $file, $context, true, $maxCache );
+		$this->newHookHandler()->onGetExtendedMetadata( $actualMetadata, $file, $context, true, $maxCache );
 
 		$expectedMetadata = $this->parserTestHelper->getMetadata( $testName );
 		foreach ( $expectedMetadata as $key => $val ) {
@@ -139,7 +152,7 @@ class HookHandlerTest extends TestCase {
 			->willReturn( 'Script with URL: ' . $localRepo->newFile( $title )->getFullUrl() );
 
 		$expected = 'Script with URL: ' . $url;
-		$hooksObject = new HookHandler();
+		$hooksObject = $this->newHookHandler();
 		$actual = $hooksObject->doSkinAfterBottomScripts( $localRepo, $handler, $title );
 		$this->assertEquals( $expected, $actual );
 	}
