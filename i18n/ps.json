@@ -4,9 +4,15 @@
 			"شاه زمان پټان"
 		]
 	},
+	"commonsmetadata-desc": "د انځور مالوماتو ای‌پي‌آی نمونه \"extmetadata\" ځانتيا پراخوي؛ ترڅو د انځور څرگنداوي مخونو کې زېرمه شوي مالومات شامل کړي چې په ويکي‌رسنۍ کامنز کې ټوليز ډول کارول شوي کينډۍ کاروي",
 	"commonsmetadata-trackingcategory-no-license": "دوتنې چې ماشين لوست‌وړ منښت نه لري",
+	"commonsmetadata-trackingcategory-no-license-desc": "دا دوتنه هېڅ [{{MediaWiki:Commonsmetadata-doc-url}} ماشين لوست‌وړ] کينډۍ منښت نه لري.",
 	"commonsmetadata-trackingcategory-no-description": "دوتنې چې ماشين لوست‌وړ سپيناو نه لري",
+	"commonsmetadata-trackingcategory-no-description-desc": "دا دوتنه هېڅ [{{MediaWiki:Commonsmetadata-doc-url}} ماشين لوست‌وړ] مالوماتي کينډۍ نه لري، يا د هغې څرگنداوي ډگر ډک شوی نه دی.",
 	"commonsmetadata-trackingcategory-no-author": "دوتنې چې ماشين لوست‌وړ ليکوال نه لري",
+	"commonsmetadata-trackingcategory-no-author-desc": "دا دوتنه هېڅ [{{MediaWiki:Commonsmetadata-doc-url}} ماشين لوست‌وړ] مالوماتي کينډۍ نه لري، يا د هغې د ليکوال ډگر ډک شوی نه دی.",
 	"commonsmetadata-trackingcategory-no-source": "دوتنې چې ماشين لوست‌وړ سرچينه نه لري",
-	"commonsmetadata-trackingcategory-no-patent": "دوتنې چې ماشين لوست‌وړ نوښتي رښته نه لري"
+	"commonsmetadata-trackingcategory-no-source-desc": "دا دوتنه هېڅ [{{MediaWiki:Commonsmetadata-doc-url}} ماشين لوست‌وړ] مالوماتي کينډۍ نه لري، يا د هغې سرچينې ډگر ډک شوی نه دی.",
+	"commonsmetadata-trackingcategory-no-patent": "دوتنې چې ماشين لوست‌وړ نوښتي رښته نه لري",
+	"commonsmetadata-trackingcategory-no-patent-desc": "دا دوتنه هېڅ [{{MediaWiki:Commonsmetadata-doc-url}} ماشين لوست‌وړ] څرگنده کينډۍ نه لري."
 }
