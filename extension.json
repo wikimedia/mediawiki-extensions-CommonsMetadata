@@ -25,7 +25,7 @@
 		]
 	},
 	"ConfigRegistry": {
-		"CommonsMetadata": "GlobalVarConfig::newInstance"
+		"CommonsMetadata": "MediaWiki\\Config\\GlobalVarConfig::newInstance"
 	},
 	"config": {
 		"CommonsMetadataForceRecalculate": {
