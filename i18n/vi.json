@@ -1,7 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Minh Nguyen"
+			"Minh Nguyen",
+			"Nvdtn19"
 		]
 	},
 	"commonsmetadata-desc": "Mở rộng thuộc tính “extmetadata” của mô đun API thông tin hình ảnh để cung cấp thông tin từ các trang miêu tả tập tin bằng cách rút thông tin từ các bản mẫu phổ biến tại Wikimedia Commons",
