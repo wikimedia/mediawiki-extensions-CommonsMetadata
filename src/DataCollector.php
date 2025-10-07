@@ -12,6 +12,7 @@ use MediaWiki\Linker\Linker;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\WikiFilePage;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Parser\ParserOutputLinkTypes;
 
 /**
  * Class to handle metadata collection and formatting, and manage more specific data extraction
@@ -162,13 +163,20 @@ class DataCollector {
 		}
 
 		// Certain uploads (3D objects) need a patent license
-		$templates = $parserOutput->getTemplates();
-		$templates = $templates[NS_TEMPLATE] ?? [];
-		if (
-			!array_key_exists( '3dpatent', $templates ) &&
-			$file->getMimeType() === 'application/sla'
-		) {
-			$problems[] = 'no-patent';
+		if ( $file->getMimeType() === 'application/sla' ) {
+			$foundPatent = false;
+			foreach ( $parserOutput->getLinkList( ParserOutputLinkTypes::TEMPLATE ) as [ 'link' => $template ] ) {
+				if (
+					$template->getNamespace() === NS_TEMPLATE &&
+					$template->getDBkey() === '3dpatent'
+				) {
+					$foundPatent = true;
+					break;
+				}
+			}
+			if ( !$foundPatent ) {
+				$problems[] = 'no-patent';
+			}
 		}
 
 		return $problems;
