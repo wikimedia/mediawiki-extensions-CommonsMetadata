@@ -153,7 +153,6 @@ class DataCollectorTest extends \MediaWikiIntegrationTestCase {
 	public function testGetCategoryMetadata() {
 		$getCategoryMetadataMethod = new \ReflectionMethod(
 			$this->dataCollector, 'getCategoryMetadata' );
-		$getCategoryMetadataMethod->setAccessible( true );
 
 		$categories = [ 'Foo', 'Bar',
 			'Pictures of the year (2012)', 'Pictures of the day (2012)', 'CC-BY-SA-2.0' ];
@@ -180,7 +179,6 @@ class DataCollectorTest extends \MediaWikiIntegrationTestCase {
 	public function testGetTemplateMetadata() {
 		$getTemplateMetadataMethod = new \ReflectionMethod(
 			$this->dataCollector, 'getTemplateMetadata' );
-		$getTemplateMetadataMethod->setAccessible( true );
 
 		$this->licenseParser->expects( $this->any() )
 			->method( 'parseLicenseString' )
@@ -208,7 +206,6 @@ class DataCollectorTest extends \MediaWikiIntegrationTestCase {
 	public function testGetTemplateMetadataForMultipleInfoTemplates() {
 		$getTemplateMetadataMethod = new \ReflectionMethod(
 			$this->dataCollector, 'getTemplateMetadata' );
-		$getTemplateMetadataMethod->setAccessible( true );
 
 		$template1 = [ 'Artist' => 'a1', 'Foo' => 'x' ];
 		$template2 = [ 'Artist' => 'a2', 'Bar' => 'y' ];
@@ -225,7 +222,6 @@ class DataCollectorTest extends \MediaWikiIntegrationTestCase {
 	public function testNonfreeFlag() {
 		// T131896 - NonFree flag cannot be overwritten
 		$getTemplateMetadataMethod = new \ReflectionMethod( $this->dataCollector, 'getTemplateMetadata' );
-		$getTemplateMetadataMethod->setAccessible( true );
 
 		$template1 = [ 'LicenseShortName' => 'Fair Use' ];
 		$template2 = [ 'LicenseShortName' => 'Fair Use', 'NonFree' => '1' ];

@@ -269,7 +269,6 @@ class LicenseParserTest extends \MediaWikiIntegrationTestCase {
 	protected function assertLicenseHasGreaterPriority( $greaterLicenseData, $smallerLicenseData ) {
 		$getLicensePriorityMethod = new \ReflectionMethod(
 			$this->licenseParser, 'getLicensePriority' );
-		$getLicensePriorityMethod->setAccessible( true );
 		$greaterLicensePriority = $getLicensePriorityMethod->invokeArgs(
 			$this->licenseParser, [ $greaterLicenseData ] );
 		$smallerLicensePriority = $getLicensePriorityMethod->invokeArgs(

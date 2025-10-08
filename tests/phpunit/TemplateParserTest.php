@@ -90,10 +90,8 @@ class TemplateParserTest extends \MediaWikiIntegrationTestCase {
 
 		$getTemplateMetadataMethod = new \ReflectionMethod(
 			$dataCollector, 'getTemplateMetadata' );
-		$getTemplateMetadataMethod->setAccessible( true );
 		$normalizeTimestampsMethod = new \ReflectionMethod(
 			$dataCollector, 'normalizeMetadataTimestamps' );
-		$normalizeTimestampsMethod->setAccessible( true );
 
 		$data = $getTemplateMetadataMethod->invokeArgs( $dataCollector, [ $data ] );
 		# ensure that normalizeMetadataTimestamps doesn't crash on this
