@@ -164,16 +164,10 @@ class DataCollector {
 
 		// Certain uploads (3D objects) need a patent license
 		if ( $file->getMimeType() === 'application/sla' ) {
-			$foundPatent = false;
-			foreach ( $parserOutput->getLinkList( ParserOutputLinkTypes::TEMPLATE ) as [ 'link' => $template ] ) {
-				if (
-					$template->getNamespace() === NS_TEMPLATE &&
-					$template->getDBkey() === '3dpatent'
-				) {
-					$foundPatent = true;
-					break;
-				}
-			}
+			$foundPatent = array_any(
+				$parserOutput->getLinkList( ParserOutputLinkTypes::TEMPLATE, NS_TEMPLATE ),
+				static fn ( $item ) => $item['link']->getDBkey() === '3dpatent'
+			);
 			if ( !$foundPatent ) {
 				$problems[] = 'no-patent';
 			}
