@@ -6,11 +6,12 @@
 			"Nemoralis"
 		]
 	},
-	"commonsmetadata-trackingcategory-no-license": "Sistem tərəfindən oxuna bilən bir lisenziya sahib olmayan fayllar",
+	"commonsmetadata-trackingcategory-no-license": "Sistem tərəfindən oxuna bilən bir lisenziyaya sahib olmayan fayllar",
 	"commonsmetadata-trackingcategory-no-license-desc": "Faylın [{{MediaWiki:Commonsmetadata-doc-url}} sistem tərəfindən oxuna bilən] lisenziya şablonu yoxdur.",
-	"commonsmetadata-trackingcategory-no-description": "Sistem tərəfindən izahlı təqdimata sahib olmayan fayllar",
+	"commonsmetadata-trackingcategory-no-description": "Sistem tərəfindən oxuna bilən təsvirə sahib olmayan fayllar",
 	"commonsmetadata-trackingcategory-no-description-desc": "Faylın [{{MediaWiki:Commonsmetadata-doc-url}} sistem tərəfindən oxuna bilən] məlumat şablonu yoxdur və ya mənbə sahəsi doldurulmayıb.",
 	"commonsmetadata-trackingcategory-no-author": "Sistem tərəfindən oxuna bilən bir müəllifə sahib olmayan fayllar",
+	"commonsmetadata-trackingcategory-no-author-desc": "Faylda [{{MediaWiki:Commonsmetadata-doc-url}} maşın tərəfindən oxuna bilən] məlumat şablonu yoxdur və ya onun müəllif sahəsi doldurulmayıb.",
 	"commonsmetadata-trackingcategory-no-source": "Sistem tərəfindən oxuna bilən mənbəyə sahib olmayan fayllar",
 	"commonsmetadata-trackingcategory-no-source-desc": "Fayl hər hansı bir [{{MediaWiki:Commonsmetadata-doc-url}} sistem] məlumat şablonuna sahib deyil və ya mənbə sahəsi doldurulmamış.",
 	"commonsmetadata-trackingcategory-no-patent": "Sistem tərəfindən oxuna bilən patenti olmayan fayllar",
