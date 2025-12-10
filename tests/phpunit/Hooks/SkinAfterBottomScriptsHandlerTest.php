@@ -59,7 +59,11 @@ class SkinAfterBottomScriptsHandlerTest extends \MediaWikiIntegrationTestCase {
 			'contentUrl' => 'https://commons.wikimedia.org/image/0/0f/Schema_test.jpg',
 			'license' => 'https://creativecommons.org/licenses/by-sa/4.0',
 			'acquireLicensePage' => 'https://commons.wikimedia.org/wiki/File:Schema_test.jpg',
-			'uploadDate' => '2020-05-06 22:04:01'
+			'uploadDate' => '2020-05-06 22:04:01',
+			'width' => '360 px',
+			'height' => '240 px',
+			'contentSize' => '1234',
+			'encodingFormat' => 'image/jpeg',
 		];
 
 		return [
@@ -129,7 +133,11 @@ class SkinAfterBottomScriptsHandlerTest extends \MediaWikiIntegrationTestCase {
 			'contentUrl' => 'https://commons.wikimedia.org/image/0/0f/Schema_test.jpg',
 			'license' => 'https://commons.wikimedia.org/wiki/Help:Public_domain',
 			'acquireLicensePage' => 'https://commons.wikimedia.org/wiki/File:Schema_test.jpg',
-			'uploadDate' => '2020-05-06 22:04:01'
+			'uploadDate' => '2020-05-06 22:04:01',
+			'width' => '360 px',
+			'height' => '240 px',
+			'contentSize' => '1234',
+			'encodingFormat' => 'image/jpeg',
 		];
 
 		return [
@@ -155,7 +163,11 @@ class SkinAfterBottomScriptsHandlerTest extends \MediaWikiIntegrationTestCase {
 			'@type' => 'ImageObject',
 			'contentUrl' => 'https://commons.wikimedia.org/image/0/0f/Schema_test.jpg',
 			'license' => 'https://creativecommons.org/licenses/by-sa/4.0',
-			'acquireLicensePage' => 'https://commons.wikimedia.org/wiki/File:Schema_test.jpg'
+			'acquireLicensePage' => 'https://commons.wikimedia.org/wiki/File:Schema_test.jpg',
+			'width' => '360 px',
+			'height' => '240 px',
+			'contentSize' => '1234',
+			'encodingFormat' => 'image/jpeg',
 		];
 
 		return [
@@ -191,6 +203,18 @@ class SkinAfterBottomScriptsHandlerTest extends \MediaWikiIntegrationTestCase {
 		$mock->expects( $this->any() )
 			->method( 'getMediaType' )
 			->willReturn( $mediaType );
+		$mock->expects( $this->any() )
+			->method( 'getMimeType' )
+			->willReturn( 'image/jpeg' );
+		$mock->expects( $this->any() )
+			->method( 'getSize' )
+			->willReturn( 1234 );
+		$mock->expects( $this->any() )
+			->method( 'getWidth' )
+			->willReturn( 360 );
+		$mock->expects( $this->any() )
+			->method( 'getHeight' )
+			->willReturn( 240 );
 		return $mock;
 	}
 

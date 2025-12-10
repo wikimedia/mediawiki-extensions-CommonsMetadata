@@ -5,6 +5,8 @@ namespace CommonsMetadata\Hooks;
 use FormatMetadata;
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\Html\Html;
+use MediaWiki\MediaWikiServices;
+use MediaWiki\Registration\ExtensionRegistry;
 use MediaWiki\Title\Title;
 
 /**
@@ -24,7 +26,7 @@ class SkinAfterBottomScriptsHandler {
 	 * @return string
 	 */
 	public function getSchemaElement( Title $title, $file ) {
-		$allowedMediaTypes = [ MEDIATYPE_BITMAP, MEDIATYPE_DRAWING ];
+		$allowedMediaTypes = [ MEDIATYPE_BITMAP, MEDIATYPE_DRAWING, MEDIATYPE_VIDEO, MEDIATYPE_AUDIO ];
 		if ( $file === null || !$file->exists() || !in_array( $file->getMediaType(), $allowedMediaTypes ) ) {
 			return '';
 		}
@@ -62,9 +64,10 @@ class SkinAfterBottomScriptsHandler {
 			return null;
 		}
 
+		$schemaType = $this->getSchemaType( $file->getMediaType() );
 		$schema = [
 			'@context' => 'https://schema.org',
-			'@type' => 'ImageObject',
+			'@type' => $schemaType,
 			// The original file, which is what's indexed by Google and present
 			// in Google image searches.
 			'contentUrl' => $file->getFullUrl(),
@@ -76,10 +79,70 @@ class SkinAfterBottomScriptsHandler {
 			'acquireLicensePage' => $title->getFullURL(),
 		];
 
+		// MediaObject properties
+		// ObjectName and ImageDescription would override our ogp annotations. disabled for now.
+//		if ( isset( $extendedMetadata[ 'ObjectName' ] ) ) {
+//			$schema['name'] = $extendedMetadata[ 'ObjectName' ][ 'value' ];
+//		}
+//		if ( isset( $extendedMetadata[ 'ImageDescription' ] ) ) {
+//			$schema['description'] = $extendedMetadata[ 'ImageDescription' ][ 'value' ];
+//		}
 		if ( isset( $extendedMetadata[ 'DateTime' ] ) ) {
 			$schema[ 'uploadDate' ] = $extendedMetadata[ 'DateTime' ][ 'value' ];
 		}
 
+		// More specific media properties
+		if ( $schemaType === 'ImageObject' || $schemaType === 'VideoObject' ) {
+			$schema[ 'width' ] = "{$file->getWidth()} px";
+			$schema[ 'height' ] = "{$file->getHeight()} px";
+		}
+		if ( $schemaType === 'AudioObject' || $schemaType === 'VideoObject' ) {
+			$schema[ 'duration' ] = $this->secondsToIso8601Duration( (int)$file->getLength() );
+			if ( ExtensionRegistry::getInstance()->isLoaded( 'TimedMediaHandler' ) ) {
+				$schema[ 'embedUrl' ] = wfAppendQuery( $title->getCanonicalURL(), [ 'embedplayer' => 'true' ] );
+			}
+		}
+		if ( $schemaType === 'VideoObject' ) {
+			$thumb = $file->transform( [ 'width' => 1200, 'height' => 1200 ] );
+			$schema[ 'thumbnailUrl' ] = (string)MediaWikiServices::getInstance()->getUrlUtils()
+				->expand( $thumb->getUrl(), PROTO_CANONICAL );
+		}
+
+		// Additional MediaObject properties
+		$schema['contentSize'] = $file->getSize();
+		$schema['encodingFormat'] = $file->getMimeType();
+
 		return $schema;
+	}
+
+	protected function getSchemaType( string $mediaType ): string {
+		switch ( $mediaType ) {
+			case MEDIATYPE_BITMAP:
+			case MEDIATYPE_DRAWING:
+				return 'ImageObject';
+			case MEDIATYPE_AUDIO:
+				return 'AudioObject';
+			case MEDIATYPE_VIDEO:
+				return 'VideoObject';
+			default:
+				throw new \InvalidArgumentException( 'Unsupported media type for schema.org' );
+		}
+	}
+
+	private function secondsToIso8601Duration( int $seconds ): string {
+		$seconds = max( 0, $seconds );
+		$h = intdiv( $seconds, 3600 );
+		$m = intdiv( $seconds % 3600, 60 );
+		$s = $seconds % 60;
+		$duration = 'PT';
+		if ( $h > 0 ) {
+			$duration .= $h . 'H';
+		}
+		if ( $m > 0 ) {
+			$duration .= $m . 'M';
+		}
+		// Always include seconds to avoid empty PT
+		$duration .= $s . 'S';
+		return $duration;
 	}
 }
