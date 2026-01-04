@@ -11,19 +11,10 @@ use MediaWiki\Title\Title;
  * @license GPL-2.0-or-later
  */
 class SkinAfterBottomScriptsHandler {
-	/** @var FormatMetadata */
-	private $format;
-
-	/** @var string */
-	private $publicDomainPageUrl;
-
-	/**
-	 * @param FormatMetadata $format
-	 * @param string $publicDomainPageUrl
-	 */
-	public function __construct( $format, $publicDomainPageUrl ) {
-		$this->format = $format;
-		$this->publicDomainPageUrl = $publicDomainPageUrl;
+	public function __construct(
+		private readonly FormatMetadata $format,
+		private readonly string $publicDomainPageUrl,
+	) {
 	}
 
 	/**
