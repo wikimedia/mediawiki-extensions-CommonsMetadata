@@ -6,6 +6,7 @@
 			"Sultan11"
 		]
 	},
+	"commonsmetadata-desc": "Vikianbarda geniş istifadə olunan şablonlardan istifadə edən şəkil təsviri səhifələrində saxlanılan məlumatları daxil etmək üçün şəkil məlumatı API modulunun \"extmetadata\" xüsusiyyətini genişləndirir.",
 	"commonsmetadata-trackingcategory-no-license": "Sistem tərəfindən oxuna bilən bir lisenziyaya sahib olmayan fayllar",
 	"commonsmetadata-trackingcategory-no-license-desc": "Faylın [{{MediaWiki:Commonsmetadata-doc-url}} sistem tərəfindən oxuna bilən] lisenziya şablonu yoxdur.",
 	"commonsmetadata-trackingcategory-no-description": "Sistem tərəfindən oxuna bilən təsvirə sahib olmayan fayllar",
