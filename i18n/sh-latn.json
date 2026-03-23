@@ -1,10 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
+			"Aca",
 			"Winston Sung"
 		]
 	},
-	"commonsmetadata-desc": "Proširuje osobinu za informiranje „extmetadata“ u API-modul sa informacijama što stoje na opisnima stranicama slika koje koriste  šabloni zastupljeni na Ostavi",
+	"commonsmetadata-desc": "Proširuje osobinu za informiranje \"extmetadata\" u API-modul sa informacijama što stoje na opisnima stranicama slika koje koriste  šabloni zastupljeni na Ostavi",
 	"commonsmetadata-trackingcategory-no-license": "Datoteke bez mašinski čitljive licence",
 	"commonsmetadata-trackingcategory-no-license-desc": "Ova datoteka nema [{{MediaWiki:Commonsmetadata-doc-url}} mašinski čitljiv] licencni šablon.",
 	"commonsmetadata-trackingcategory-no-description": "Datoteke bez mašinski čitljivog opisa",
