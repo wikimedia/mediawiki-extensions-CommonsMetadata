@@ -2,6 +2,7 @@
 	"@metadata": {
 		"authors": [
 			"Anakmalaysia",
+			"Hakimi97",
 			"SNN95"
 		]
 	},
@@ -13,5 +14,7 @@
 	"commonsmetadata-trackingcategory-no-author": "Fail tanpa pengarang boleh dibaca mesin",
 	"commonsmetadata-trackingcategory-no-author-desc": "Fail ini tiada templat keterangan yang [{{MediaWiki:Commonsmetadata-doc-url}} boleh dibaca oleh mesin], ataupun ruangan pengarangnya tidak diisi.",
 	"commonsmetadata-trackingcategory-no-source": "Fail tanpa sumber boleh dibaca mesin",
-	"commonsmetadata-trackingcategory-no-source-desc": "Fail ini tiada templat keterangan yang [{{MediaWiki:Commonsmetadata-doc-url}} boleh dibaca oleh mesin], ataupun ruangan sumbernya tidak diisi."
+	"commonsmetadata-trackingcategory-no-source-desc": "Fail ini tiada templat keterangan yang [{{MediaWiki:Commonsmetadata-doc-url}} boleh dibaca oleh mesin], ataupun ruangan sumbernya tidak diisi.",
+	"commonsmetadata-trackingcategory-no-patent": "Fail tanpa paten yang boleh dibaca mesin",
+	"commonsmetadata-trackingcategory-no-patent-desc": "Fail ini tidak mempunyai templat paten [{{MediaWiki:Commonsmetadata-doc-url}} yang boleh dibaca mesin]."
 }
