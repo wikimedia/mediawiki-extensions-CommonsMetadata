@@ -3,7 +3,6 @@
 namespace CommonsMetadata;
 
 use CommonsMetadata\Hooks\SkinAfterBottomScriptsHandler;
-use FormatMetadata;
 use MediaWiki\Category\TrackingCategories;
 use MediaWiki\Config\ConfigFactory;
 use MediaWiki\Content\Content;
@@ -13,13 +12,14 @@ use MediaWiki\Context\IContextSource;
 use MediaWiki\FileRepo\File\File;
 use MediaWiki\FileRepo\LocalRepo;
 use MediaWiki\FileRepo\RepoGroup;
-use MediaWiki\Hook\GetExtendedMetadataHook;
-use MediaWiki\Hook\SkinAfterBottomScriptsHook;
-use MediaWiki\Hook\ValidateExtendedMetadataCacheHook;
 use MediaWiki\Language\Language;
-use MediaWiki\Languages\LanguageFactory;
-use MediaWiki\Languages\LanguageFallback;
+use MediaWiki\Language\LanguageFactory;
+use MediaWiki\Language\LanguageFallback;
+use MediaWiki\Media\FormatMetadata;
+use MediaWiki\Media\Hook\GetExtendedMetadataHook;
+use MediaWiki\Media\Hook\ValidateExtendedMetadataCacheHook;
 use MediaWiki\Parser\ParserOutput;
+use MediaWiki\Skin\Hook\SkinAfterBottomScriptsHook;
 use MediaWiki\Skin\Skin;
 use MediaWiki\Title\Title;
 use Wikimedia\Bcp47Code\Bcp47Code;
