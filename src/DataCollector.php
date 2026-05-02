@@ -125,7 +125,7 @@ class DataCollector {
 		if ( !$parserOutput->hasText() ) {
 			$descriptionText = '';
 		} else {
-			$descriptionText = $parserOutput->getRawText();
+			$descriptionText = $parserOutput->getContentHolderText();
 		}
 
 		$templateData = $this->templateParser->parsePage( $descriptionText );
