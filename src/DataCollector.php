@@ -292,7 +292,7 @@ class DataCollector {
 			// with all the hard-coded dependencies, mocking categoriy retrieval properly is
 			// pretty much impossible
 			// @phan-suppress-next-line PhanUndeclaredClassStaticProperty
-			return ParserTestHelper::$mockedCategories[$file->getDescriptionText()] ?? [];
+			return ParserTestHelper::$mockedCategories[$file->getDescriptionText( $this->language )] ?? [];
 		} elseif ( $file instanceof LocalFile ) {
 			// for local or shared DB files (which are also LocalFile subclasses)
 			// categories can be queried directly from the database
