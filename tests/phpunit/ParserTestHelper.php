@@ -130,16 +130,16 @@ class ParserTestHelper {
 			->getMock();
 		$file->expects( $this->testCase->any() )
 			->method( 'isLocal' )
-			->will( $this->testCase->returnValue( true ) );
+			->willReturn( true );
 		$file->expects( $this->testCase->any() )
 			->method( 'getDescriptionText' )
-			->will( $this->testCase->returnValue( $description ) );
+			->willReturn( $description );
 		$file->expects( $this->testCase->any() )
 			->method( 'getDescriptionTouched' )
-			->will( $this->testCase->returnValue( time() ) );
+			->willReturn( time() );
 		$file->expects( $this->testCase->any() )
 			->method( 'getMimeType' )
-			->will( $this->testCase->returnValue( $mime ) );
+			->willReturn( $mime );
 		self::$mockedCategories[$description] = $categories;
 		return $file;
 	}
@@ -154,13 +154,13 @@ class ParserTestHelper {
 			->getMock();
 		$file->expects( $this->testCase->any() )
 			->method( 'isLocal' )
-			->will( $this->testCase->returnValue( false ) );
+			->willReturn( false );
 		$file->expects( $this->testCase->any() )
 			->method( 'getDescriptionText' )
-			->will( $this->testCase->returnValue( $description ) );
+			->willReturn( $description );
 		$file->expects( $this->testCase->any() )
 			->method( 'getDescriptionTouched' )
-			->will( $this->testCase->returnValue( time() ) );
+			->willReturn( time() );
 		return $file;
 	}
 
@@ -176,13 +176,13 @@ class ParserTestHelper {
 			->getMock();
 		$file->expects( $this->testCase->any() )
 			->method( 'isLocal' )
-			->will( $this->testCase->returnValue( false ) );
+			->willReturn( false );
 		$file->expects( $this->testCase->any() )
 			->method( 'getDescriptionText' )
-			->will( $this->testCase->returnValue( $description ) );
+			->willReturn( $description );
 		$file->expects( $this->testCase->any() )
 			->method( 'getDescriptionTouched' )
-			->will( $this->testCase->returnValue( false ) );
+			->willReturn( false );
 		self::$mockedCategories[$description] = $categories;
 		return $file;
 	}
@@ -198,7 +198,7 @@ class ParserTestHelper {
 			->getMock();
 		$context->expects( $this->testCase->any() )
 			->method( 'getLanguage' )
-			->will( $this->testCase->returnValue( $language ) );
+			->willReturn( $language );
 		$context->expects( $this->testCase->any() )
 			->method( 'msg' )
 			->willReturn( wfMessage( 'commonsmetadata-artistcredit-separator' )->inLanguage( 'en' ) );
