@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"AhmedG612"
+		]
+	},
+	"commonsmetadata-desc": "Waxay ballaarisaa hantida \"extmetadata\" ee module-ka API-ga macluumaadka sawirrada si loogu daro macluumaad ku kaydsan bogagga sharaxaadda sawirrada ee isticmaala tusmooyinka caadi ahaan laga isticmaalo Wikimedia Commons",
+	"commonsmetadata-trackingcategory-no-license": "Faylal aan lahayn shati la akhrin karo mashiinka",
+	"commonsmetadata-trackingcategory-no-license-desc": "Faylku ma laha wax tusmo shati ah oo [{{MediaWiki:Commonsmetadata-doc-url}} la akhrin karo mashiinka].",
+	"commonsmetadata-trackingcategory-no-description": "Faylal aan lahayn sharaxaad la akhrin karo mashiinka",
+	"commonsmetadata-trackingcategory-no-description-desc": "Faylku ma laha tusmo macluumaad oo [{{MediaWiki:Commonsmetadata-doc-url}} la akhrin karo mashiinka], ama qaybtiisa sharaxaadda lama buuxin.",
+	"commonsmetadata-trackingcategory-no-author": "Faylal aan lahayn qoraa la akhrin karo mashiinka",
+	"commonsmetadata-trackingcategory-no-author-desc": "Faylku ma laha tusmo macluumaad oo [{{MediaWiki:Commonsmetadata-doc-url}} la akhrin karo mashiinka], ama qaybta qoraaga lama buuxin.",
+	"commonsmetadata-trackingcategory-no-source": "Faylal aan lahayn il la akhrin karo mashiinka",
+	"commonsmetadata-trackingcategory-no-source-desc": "Faylku ma laha tusmo macluumaad oo [{{MediaWiki:Commonsmetadata-doc-url}} la akhrin karo mashiinka], ama qaybta isha lama buuxin.",
+	"commonsmetadata-trackingcategory-no-patent": "Faylal aan lahayn shati ruqsad la akhrin karo mashiinka",
+	"commonsmetadata-trackingcategory-no-patent-desc": "Faylku ma laha tusmo shati ruqsad oo [{{MediaWiki:Commonsmetadata-doc-url}} la akhrin karo mashiinka]."
+}
