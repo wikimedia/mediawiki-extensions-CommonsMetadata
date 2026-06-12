@@ -323,7 +323,7 @@ class DataCollectorTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	public function testVerifyPatentProvided() {
-		$title = Title::newFromText( '3dpatent', NS_TEMPLATE );
+		$title = Title::makeTitle( NS_TEMPLATE, '3dpatent' );
 		$parserOutput = new ParserOutput();
 		$parserOutput->addTemplate( $title, 1, 1 );
 
