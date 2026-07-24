@@ -80,10 +80,10 @@ class SkinAfterBottomScriptsHandler {
 		];
 
 		// MediaObject properties
-		// ObjectName and ImageDescription would override our ogp annotations. disabled for now.
-//		if ( isset( $extendedMetadata[ 'ObjectName' ] ) ) {
-//			$schema['name'] = $extendedMetadata[ 'ObjectName' ][ 'value' ];
-//		}
+		if ( isset( $extendedMetadata[ 'ObjectName' ] ) ) {
+			$schema['name'] = $extendedMetadata[ 'ObjectName' ][ 'value' ];
+		}
+		// ImageDescription would override our ogp annotations. disabled for now.
 //		if ( isset( $extendedMetadata[ 'ImageDescription' ] ) ) {
 //			$schema['description'] = $extendedMetadata[ 'ImageDescription' ][ 'value' ];
 //		}
