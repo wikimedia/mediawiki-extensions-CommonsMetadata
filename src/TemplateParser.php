@@ -399,13 +399,12 @@ class TemplateParser {
 				break;
 			}
 		}
-
 		// Filter out non-http(s) license urls
 		// https://phabricator.wikimedia.org/T435999
 		if (
 			isset( $data[ 'LicenseUrl' ] ) &&
 			!in_array(
-				strtolower( parse_url( $data[ 'LicenseUrl' ], PHP_URL_SCHEME ) ),
+				strtolower( parse_url( $data[ 'LicenseUrl' ], PHP_URL_SCHEME ) ?: '' ),
 				[ 'http', 'https' ]
 			)
 		) {
