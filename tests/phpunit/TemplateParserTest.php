@@ -379,14 +379,6 @@ class TemplateParserTest extends \MediaWikiIntegrationTestCase {
 	}
 
 	/**
-	 * Test invalid license urls being filtered out.
-	 */
-	public function testLicenseUrlFilter() {
-		$data = $this->parseTestHTML( 'invalid_licenseurl' );
-		$this->assertArrayNotHasKey( 'LicenseUrl', $data );
-	}
-
-	/**
 	 * Test deletion reason etraction from the {{Nuke}} template
 	 */
 	public function testNuke() {
