@@ -63,6 +63,8 @@ class ParserTestHelper {
 		'deletion' => 'File_Kerameikos_October_2012_15.JPG',
 		// file with restrictions e.g. trademarked
 		'restrict' => 'File_Logo_NIKE.svg',
+		// file with invalid license url
+		'invalid_licenseurl' => 'File_Sunrise_over_fishing_boats_in_Kerala_invalid_licenseurl.jpg',
 	];
 
 	public static array $mockedCategories = [];
