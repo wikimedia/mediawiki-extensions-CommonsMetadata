@@ -405,7 +405,7 @@ class TemplateParser {
 		if (
 			isset( $data[ 'LicenseUrl' ] ) &&
 			!in_array(
-				strtolower( parse_url( $data[ 'LicenseUrl' ], PHP_URL_SCHEME ) ),
+				strtolower( parse_url( $data[ 'LicenseUrl' ], PHP_URL_SCHEME ) ?: '' ),
 				[ 'http', 'https' ]
 			)
 		) {
