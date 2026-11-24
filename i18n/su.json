@@ -1,0 +1,18 @@
+{
+	"@metadata": {
+		"authors": [
+			"Rafka Aditia"
+		]
+	},
+	"commonsmetadata-desc": "Ngamparkeun atribut \"extmetadata\" tina modul API informasi gambar pikeun ngasupkeun informasi nu disimpen dina kaca pedaran gambar nu maké citakan nu biasa dipaké di Wikimédia Commons",
+	"commonsmetadata-trackingcategory-no-license": "Berkas tanpa lisénsi nu bisa dibaca mesin",
+	"commonsmetadata-trackingcategory-no-license-desc": "Berkas-berkas di dieu teu boga citakan lisénsi [{{MediaWiki:Commonsmetadata-doc-url}} nu bisa dibaca ku mesin].",
+	"commonsmetadata-trackingcategory-no-description": "Berkas tanpa pedaran nu bisa dibaca mesin",
+	"commonsmetadata-trackingcategory-no-description-desc": "Berkas-berkas di dieu teu boga citakan informasi [{{MediaWiki:Commonsmetadata-doc-url}} nu bisa dibaca ku mesin], atawa lolongkrang pedaranana teu dieusian.",
+	"commonsmetadata-trackingcategory-no-author": "Berkas tanpa panyieun nu bisa dibaca mesin",
+	"commonsmetadata-trackingcategory-no-author-desc": "Berkas-berkas di dieu teu boga citakan informasi [{{MediaWiki:Commonsmetadata-doc-url}} nu bisa dibaca ku mesin], atawa lolongkrang panyieunana teu dieusian.",
+	"commonsmetadata-trackingcategory-no-source": "Berkas tanpa sumber nu bisa dibaca mesin",
+	"commonsmetadata-trackingcategory-no-source-desc": "Berkas-berkas di dieu teu boga citakan informasi [{{MediaWiki:Commonsmetadata-doc-url}} nu bisa dibaca ku mesin], atawa lolongkrang sumberna teu dieusian.",
+	"commonsmetadata-trackingcategory-no-patent": "Berkas tanpa patén nu bisa dibaca mesin",
+	"commonsmetadata-trackingcategory-no-patent-desc": "Berkas-berkas di dieu teu boga citakan patén [{{MediaWiki:Commonsmetadata-doc-url}} nu bisa dibaca ku mesin]."
+}
